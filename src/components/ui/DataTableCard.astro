@@ -52,26 +52,26 @@ const { title = 'Lista', icon = 'bi-table' } = Astro.props
       <i class="bi bi-plus-circle me-2"></i> Agregar
     </button>
   </header>
-</section>
 
-<!-- Card Body -->
-<div class="card-body">
-  <!-- Loading Spinner -->
-  <div id="spinnerLoad" class="d-flex justify-content-center align-items-center my-5">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Cargando...</span>
+  <!-- Card Body -->
+  <div class="card-body">
+    <!-- Loading Spinner -->
+    <div id="spinnerLoad" class="d-flex justify-content-center align-items-center my-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
     </div>
-  </div>
 
-  <!-- Table Container -->
-  <section id="tableContainer" class="d-none small">
-    <table id="table" class="table table-sm">
-      <thead>
-        <tr>
-          <slot name="thead" />
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-</div>
+    <!-- Table Container -->
+    <section id="tableContainer" class="d-none small">
+      <table id="table" class="table table-sm">
+        <thead>
+          <tr>
+            <slot name="thead" />
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+</section>

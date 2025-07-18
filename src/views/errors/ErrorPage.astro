@@ -1,55 +1,61 @@
 ---
-const code = Astro.url.searchParams.get("code") ?? "Error";
+const code = Astro.url.searchParams.get('code') ?? 'Error'
 
-let title = "";
-let message = "";
+let title = ''
+let message = ''
 
 switch (code) {
-  case "400":
-    title = "Solicitud no válida";
-    message = "La solicitud no pudo ser procesada. Revisa los datos e intenta nuevamente.";
-    break;
-  case "401":
-    title = "Sesión no iniciada";
-    message = "Debes iniciar sesión para acceder a este recurso. Por favor, autentícate.";
-    break;
-  case "403":
-    title = "Acceso no autorizado";
-    message = "No tienes permiso para acceder a esta página o recurso.";
-    break;
-  case "404":
-    title = "¡Vaya! Página no encontrada";
-    message = "Lo sentimos, la página no existe o fue movida.";
-    break;
-  case "405":
-    title = "Método no permitido";
-    message = "La operación solicitada no es válida para este recurso.";
-    break;
-  case "500":
-    title = "Error en el servidor";
-    message = "Ocurrió un problema inesperado. Estamos trabajando para solucionarlo.";
-    break;
-  case "503":
-    title = "Servicio en mantenimiento";
-    message = "El sistema está temporalmente fuera de servicio. Intenta nuevamente más tarde.";
-    break;
+  case '400':
+    title = 'Solicitud no válida'
+    message = 'La solicitud no pudo ser procesada. Revisa los datos e intenta nuevamente.'
+    break
+  case '401':
+    title = 'Sesión no iniciada'
+    message = 'Debes iniciar sesión para acceder a este recurso. Por favor, autentícate.'
+    break
+  case '403':
+    title = 'Acceso no autorizado'
+    message = 'No tienes permiso para acceder a esta página o recurso.'
+    break
+  case '404':
+    title = '¡Vaya! Página no encontrada'
+    message = 'Lo sentimos, la página no existe o fue movida.'
+    break
+  case '405':
+    title = 'Método no permitido'
+    message = 'La operación solicitada no es válida para este recurso.'
+    break
+  case '500':
+    title = 'Error en el servidor'
+    message = 'Ocurrió un problema inesperado. Estamos trabajando para solucionarlo.'
+    break
+  case '503':
+    title = 'Servicio en mantenimiento'
+    message = 'El sistema está temporalmente fuera de servicio. Intenta nuevamente más tarde.'
+    break
   default:
-    title = "Error inesperado";
-    message = "Algo salió mal. Por favor, intenta más tarde o contacta con soporte.";
+    title = 'Error inesperado'
+    message = 'Algo salió mal. Por favor, intenta más tarde o contacta con soporte.'
 }
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-bs-theme="auto">
   <head>
     <meta charset="UTF-8" />
-	<meta name="description" content="BookStudio es un sistema de biblioteca para gestionar préstamos, libros, autores y otros recursos, facilitando la administración y seguimiento de los préstamos." />
+    <meta
+      name="description"
+      content="BookStudio es un sistema de biblioteca para gestionar préstamos, libros, autores y otros recursos, facilitando la administración y seguimiento de los préstamos."
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
+
     <script src="/js/shared/setup/color-modes.js" is:inline></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="/css/views/auth.css" />
 
     <link href="/images/logo-dark.png" rel="icon" media="(prefers-color-scheme: light)" />
@@ -77,7 +83,12 @@ switch (code) {
           >
             <span class="text-muted small me-2 text-nowrap">Desarrollado por</span>
             <span class="d-inline-flex align-items-center text-nowrap">
-              <img class="logo me-1" alt="Logo de Bookstudio" src="/images/logo-light.png" width="18" />
+              <img
+                class="logo me-1"
+                alt="Logo de Bookstudio"
+                src="/images/logo-light.png"
+                width="18"
+              />
               <span class="fs-6 text-logo align-middle text-body-emphasis">BookStudio</span>
             </span>
           </div>

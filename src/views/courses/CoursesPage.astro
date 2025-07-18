@@ -1,11 +1,11 @@
 ---
-import DashboardLayout from '@layouts/DashboardLayout.astro';
-import DataTableCard from '@components/ui/DataTableCard.astro';
-import Modals from '@components/ui/Modals.astro';
+import DashboardLayout from '@layouts/DashboardLayout.astro'
+import DataTableCard from '@components/ui/DataTableCard.astro'
+import Modals from '@components/ui/Modals.astro'
 
 const customScripts = `
   <script type="module" src="/js/modules/courses/courses.js" defer></script>
-`;
+`
 ---
 
 <DashboardLayout
@@ -15,176 +15,162 @@ const customScripts = `
   username="Jason"
   customScripts={customScripts}
 >
-    <DataTableCard
-      title="Tabla de cursos"
-      icon="bi-stickies"
-    >
-        <Fragment slot="thead">
-			<th scope="col" class="text-start">Código</th>
-			<th scope="col" class="text-start">Nombre</th>
-			<th scope="col" class="text-start">Nivel</th>
-			<th scope="col" class="text-start">Descripción</th>
-			<th scope="col" class="text-center">Estado</th>
-			<th scope="col" class="text-center"></th>
-        </Fragment>
-    </DataTableCard>
-    
-    <Modals
-        slot="modals"
-        addTitle="Agregar un curso"
-        detailsTitle="Detalles del curso"
-        editTitle="Editar curso"
-    >
-        <Fragment slot="add-fields">
-            <div class="row">
-				<!-- Name Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addName" class="form-label">Nombre <span class="text-danger">*</span></label>
-					<input 
-						type="text" 
-						class="form-control" 
-						id="addName" 
-						name="name"
-						placeholder="Ingrese el nombre del curso" 
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Level Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addLevel" class="form-label">Nivel <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control placeholder-color" 
-						id="addLevel" 
-						name="level"
-						title="Seleccione un nivel" 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<!-- Description Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addDescription" class="form-label">Descripción</label>
-					<textarea 
-						class="form-control" 
-						id="addDescription" 
-						name="description"
-						rows="4" 
-						placeholder="Ingrese una breve descripción"
-					></textarea>
-				</div>
-				
-				<!-- Status Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addStatus" class="form-label">Estado <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control placeholder-color" 
-						id="addStatus" 
-						name="status"
-						title="Seleccione un estado" 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-        </Fragment>
+  <DataTableCard title="Tabla de cursos" icon="bi-stickies">
+    <Fragment slot="thead">
+      <th scope="col" class="text-start">Código</th>
+      <th scope="col" class="text-start">Nombre</th>
+      <th scope="col" class="text-start">Nivel</th>
+      <th scope="col" class="text-start">Descripción</th>
+      <th scope="col" class="text-center">Estado</th>
+      <th scope="col" class="text-center"></th>
+    </Fragment>
+  </DataTableCard>
 
-        <Fragment slot="details-body">
-            <!-- ID and Name Section -->
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Código</h6>
-					<p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
-				</div>
-				
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Nombre</h6>
-					<p class="fw-bold" id="detailsName"></p>
-				</div>
-			</div>
-			
-			<!-- Level and Status Section -->
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Nivel</h6>
-					<p class="fw-bold" id="detailsLevel"></p>
-				</div>
-				
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Estado</h6>
-					<p id="detailsStatus"></p>
-				</div>
-			</div>
-			
-			<!-- Description Section -->
-			<div class="row">
-				<div class="col-md-12 mb-3">
-					<h6 class="small text-muted">Descripción</h6>
-					<p class="fw-bold" id="detailsDescription"></p>
-				</div>
-			</div>
-        </Fragment>
+  <Modals
+    slot="modals"
+    addTitle="Agregar un curso"
+    detailsTitle="Detalles del curso"
+    editTitle="Editar curso"
+  >
+    <Fragment slot="add-fields">
+      <div class="row">
+        <!-- Name Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addName" class="form-label">Nombre <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="addName"
+            name="name"
+            placeholder="Ingrese el nombre del curso"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
 
-        <Fragment slot="edit-fields">
-            <!-- Name and Level Section -->
-			<div class="row">
-				<!-- Name Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editName" class="form-label">Nombre <span class="text-danger">*</span></label>
-					<input 
-						type="text" 
-						class="form-control" 
-						id="editName" 
-						name="name"
-						placeholder="Ingrese el nombre del curso" 
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Level Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editLevel" class="form-label">Nivel <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control" 
-						id="editLevel" 
-						name="level"
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-			
-			<!-- Description and Status Section -->
-			<div class="row">
-				<!-- Description Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editDescription" class="form-label">Descripción</label>
-					<textarea 
-						class="form-control" 
-						id="editDescription" 
-						name="description"
-						rows="4" 
-						placeholder="Ingrese una breve descripcion"
-					></textarea>
-				</div>
-				
-				<!-- Status Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editStatus" class="form-label">Estado <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control" 
-						id="editStatus" 
-						name="status"
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-        </Fragment>
-    </Modals>
+        <!-- Level Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addLevel" class="form-label">Nivel <span class="text-danger">*</span></label>
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addLevel"
+            name="level"
+            title="Seleccione un nivel"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Description Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addDescription" class="form-label">Descripción</label>
+          <textarea
+            class="form-control"
+            id="addDescription"
+            name="description"
+            rows="4"
+            placeholder="Ingrese una breve descripción"></textarea>
+        </div>
+
+        <!-- Status Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addStatus" class="form-label">Estado <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addStatus"
+            name="status"
+            title="Seleccione un estado"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="details-body">
+      <!-- ID and Name Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Código</h6>
+          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Nombre</h6>
+          <p class="fw-bold" id="detailsName"></p>
+        </div>
+      </div>
+
+      <!-- Level and Status Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Nivel</h6>
+          <p class="fw-bold" id="detailsLevel"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Estado</h6>
+          <p id="detailsStatus"></p>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <h6 class="small text-muted">Descripción</h6>
+          <p class="fw-bold" id="detailsDescription"></p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="edit-fields">
+      <!-- Name and Level Section -->
+      <div class="row">
+        <!-- Name Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editName" class="form-label">Nombre <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="editName"
+            name="name"
+            placeholder="Ingrese el nombre del curso"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Level Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editLevel" class="form-label">Nivel <span class="text-danger">*</span></label>
+          <select class="selectpicker form-control" id="editLevel" name="level" required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Description and Status Section -->
+      <div class="row">
+        <!-- Description Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editDescription" class="form-label">Descripción</label>
+          <textarea
+            class="form-control"
+            id="editDescription"
+            name="description"
+            rows="4"
+            placeholder="Ingrese una breve descripcion"></textarea>
+        </div>
+
+        <!-- Status Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editStatus" class="form-label"
+            >Estado <span class="text-danger">*</span></label
+          >
+          <select class="selectpicker form-control" id="editStatus" name="status" required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+    </Fragment>
+  </Modals>
 </DashboardLayout>

@@ -10,6 +10,6 @@
       "@pages/*": ["src/pages/*"]
     }
   },
-  "include": [".astro/types.d.ts", "**/*"],
+  "include": [".astro/types.d.ts", "**/*", ".prettierrc.config.mjs"],
   "exclude": ["dist"]
 }

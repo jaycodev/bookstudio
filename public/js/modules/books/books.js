@@ -14,33 +14,29 @@
  * @author Jason
  */
 
-import {
-	loadTableData,
-	addRowToTable,
-	updateRowInTable,
-} from '../../shared/utils/tables/index.js'
+import { loadTableData, addRowToTable, updateRowInTable } from '../../shared/utils/tables/index.js'
 
 import {
-	isValidText,
-	isValidTotalCopies,
-	isValidTotalCopiesInRange,
-	isValidReleaseDate,
-	loadSelectOptions,
-	populateSelect,
+  isValidText,
+  isValidTotalCopies,
+  isValidTotalCopiesInRange,
+  isValidReleaseDate,
+  loadSelectOptions,
+  populateSelect,
 } from '../../shared/utils/forms/index.js'
 
 import {
-	showToast,
-	toggleButtonLoading,
-	toggleModalLoading,
-	placeholderColorSelect,
-	placeholderColorEditSelect,
-	placeholderColorDateInput,
-	setupBootstrapSelectDropdownStyles,
-	getCurrentPeruDate,
+  showToast,
+  toggleButtonLoading,
+  toggleModalLoading,
+  placeholderColorSelect,
+  placeholderColorEditSelect,
+  placeholderColorDateInput,
+  setupBootstrapSelectDropdownStyles,
+  getCurrentPeruDate,
 } from '../../shared/utils/ui/index.js'
 
-/*****************************************
+/** ***************************************
  * GLOBAL VARIABLES AND HELPER FUNCTIONS
  *****************************************/
 
@@ -51,25 +47,25 @@ let courseList = []
 let genreList = []
 
 function loadOptions() {
-	loadSelectOptions({
-		url: './api/books/select-options',
-		onSuccess: (data) => {
-			authorList = data.authors
-			publisherList = data.publishers
-			courseList = data.courses
-			genreList = data.genres
-		},
-	})
+  loadSelectOptions({
+    url: './api/books/select-options',
+    onSuccess: (data) => {
+      authorList = data.authors
+      publisherList = data.publishers
+      courseList = data.courses
+      genreList = data.genres
+    },
+  })
 }
 
-/*****************************************
+/** ***************************************
  * TABLE HANDLING
  *****************************************/
 
 function generateRow(book) {
-	const userRole = sessionStorage.getItem('userRole')
+  const userRole = sessionStorage.getItem('userRole')
 
-	return `
+  return `
 		<tr>
 			<td class="align-middle text-start">
 				<span class="badge bg-body-tertiary text-body-emphasis border">${book.formattedBookId}</span>
@@ -91,10 +87,10 @@ function generateRow(book) {
 			</td>
 			<td class="align-middle text-center">
 				${
-					book.status === 'activo'
-						? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-						: '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
-				}
+          book.status === 'activo'
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
+        }
 			</td>
 			<td class="align-middle text-center">
 				<div class="d-inline-flex gap-2">
@@ -103,13 +99,13 @@ function generateRow(book) {
 						<i class="bi bi-info-circle"></i>
 					</button>
 					${
-						userRole === 'administrador'
-							? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
+            userRole === 'administrador'
+              ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
 							data-bs-toggle="modal" data-bs-target="#editModal" data-id="${book.bookId}" data-formatted-id="${book.formattedBookId}">
 							<i class="bi bi-pencil"></i>
 						</button>`
-							: ''
-					}
+              : ''
+          }
 				</div>
 			</td>
 		</tr>
@@ -117,862 +113,844 @@ function generateRow(book) {
 }
 
 function addRow(book) {
-	addRowToTable(book, generateRow)
+  addRowToTable(book, generateRow)
 }
 
 function loadData() {
-	loadTableData({
-		apiUrl: './api/books',
-		generateRow,
-		generatePDF,
-		generateExcel,
-	})
+  loadTableData({
+    apiUrl: './api/books',
+    generateRow,
+    generatePDF,
+    generateExcel,
+  })
 }
 
 function updateRow(book) {
-	updateRowInTable({
-		entity: book,
-		getFormattedId: (b) => b.formattedBookId?.toString(),
-		updateCellsFn: (row, b) => {
-			row.find('td').eq(1).text(b.title)
+  updateRowInTable({
+    entity: book,
+    getFormattedId: (b) => b.formattedBookId?.toString(),
+    updateCellsFn: (row, b) => {
+      row.find('td').eq(1).text(b.title)
 
-			row.find('td').eq(2).html(`
+      row.find('td').eq(2).html(`
 				<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
 					${b.availableCopies}
 				</span>
 			`)
 
-			row.find('td').eq(3).html(`
+      row.find('td').eq(3).html(`
 				<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">
 					${b.loanedCopies}
 				</span>
 			`)
 
-			row.find('td').eq(4).html(`
+      row.find('td').eq(4).html(`
 				${b.authorName}
 				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedAuthorId}</span>
 			`)
 
-			row.find('td').eq(5).html(`
+      row.find('td').eq(5).html(`
 				${b.publisherName}
 				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedPublisherId}</span>
 			`)
 
-			row
-				.find('td')
-				.eq(6)
-				.html(
-					b.status === 'activo'
-						? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-						: '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-				)
-		},
-	})
+      row
+        .find('td')
+        .eq(6)
+        .html(
+          b.status === 'activo'
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
+        )
+    },
+  })
 }
 
-/*****************************************
+/** ***************************************
  * FORM LOGIC
  *****************************************/
 
 function handleAddForm() {
-	let isFirstSubmit = true
+  let isFirstSubmit = true
 
-	$('#addModal').on('hidden.bs.modal', function () {
-		isFirstSubmit = true
-		$('#addForm').data('submitted', false)
-	})
+  $('#addModal').on('hidden.bs.modal', function () {
+    isFirstSubmit = true
+    $('#addForm').data('submitted', false)
+  })
 
-	$('#addForm').on('input change', 'input, select', function () {
-		if (!isFirstSubmit) {
-			validateAddField($(this))
-		}
-	})
+  $('#addForm').on('input change', 'input, select', function () {
+    if (!isFirstSubmit) {
+      validateAddField($(this))
+    }
+  })
 
-	$('#addForm').on('submit', async function (event) {
-		event.preventDefault()
+  $('#addForm').on('submit', async function (event) {
+    event.preventDefault()
 
-		if ($(this).data('submitted') === true) return
-		$(this).data('submitted', true)
+    if ($(this).data('submitted') === true) return
+    $(this).data('submitted', true)
 
-		if (isFirstSubmit) isFirstSubmit = false
+    if (isFirstSubmit) isFirstSubmit = false
 
-		const form = $(this)[0]
-		let isValid = true
+    const form = $(this)[0]
+    let isValid = true
 
-		$(form)
-			.find('input, select')
-			.not('.bootstrap-select input[type="search"]')
-			.each(function () {
-				if (!validateAddField($(this))) isValid = false
-			})
+    $(form)
+      .find('input, select')
+      .not('.bootstrap-select input[type="search"]')
+      .each(function () {
+        if (!validateAddField($(this))) isValid = false
+      })
 
-		if (!isValid) {
-			$(this).data('submitted', false)
-			return
-		}
+    if (!isValid) {
+      $(this).data('submitted', false)
+      return
+    }
 
-		const formData = new FormData(form)
-		const raw = Object.fromEntries(formData.entries())
+    const formData = new FormData(form)
+    const raw = Object.fromEntries(formData.entries())
 
-		const book = {
-			title: raw.title,
-			totalCopies: parseInt(raw.totalCopies),
-			authorId: parseInt(raw.author),
-			publisherId: parseInt(raw.publisher),
-			courseId: parseInt(raw.course),
-			releaseDate: raw.releaseDate,
-			genreId: parseInt(raw.genre),
-			status: raw.status,
-		}
+    const book = {
+      title: raw.title,
+      totalCopies: parseInt(raw.totalCopies),
+      authorId: parseInt(raw.author),
+      publisherId: parseInt(raw.publisher),
+      courseId: parseInt(raw.course),
+      releaseDate: raw.releaseDate,
+      genreId: parseInt(raw.genre),
+      status: raw.status,
+    }
 
-		const submitButton = $('#addBtn')
-		toggleButtonLoading(submitButton, true)
+    const submitButton = $('#addBtn')
+    toggleButtonLoading(submitButton, true)
 
-		try {
-			const response = await fetch('./api/books', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-				body: JSON.stringify(book),
-			})
+    try {
+      const response = await fetch('./api/books', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(book),
+      })
 
-			const json = await response.json()
+      const json = await response.json()
 
-			if (response.ok && json.success) {
-				addRow(json.data)
-				$('#addModal').modal('hide')
-				showToast('Libro agregado exitosamente.', 'success')
-			} else {
-				console.error(
-					`Backend error (${json.errorType} - ${json.statusCode}):`,
-					json.message,
-				)
-				$('#addModal').modal('hide')
-				showToast('Hubo un error al agregar el libro.', 'error')
-			}
-		} catch (err) {
-			console.error('Unexpected error:', err)
-			showToast('Hubo un error inesperado.', 'error')
-			$('#addModal').modal('hide')
-		} finally {
-			toggleButtonLoading(submitButton, false)
-		}
-	})
+      if (response.ok && json.success) {
+        addRow(json.data)
+        $('#addModal').modal('hide')
+        showToast('Libro agregado exitosamente.', 'success')
+      } else {
+        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
+        $('#addModal').modal('hide')
+        showToast('Hubo un error al agregar el libro.', 'error')
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      showToast('Hubo un error inesperado.', 'error')
+      $('#addModal').modal('hide')
+    } finally {
+      toggleButtonLoading(submitButton, false)
+    }
+  })
 }
 
 function validateAddField(field) {
-	if (field.attr('type') === 'search') {
-		return true
-	}
+  if (field.attr('type') === 'search') {
+    return true
+  }
 
-	let errorMessage = 'Este campo es obligatorio.'
-	let isValid = true
+  let errorMessage = 'Este campo es obligatorio.'
+  let isValid = true
 
-	// Default validation
-	if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage)
-		isValid = false
-	} else {
-		field.removeClass('is-invalid')
-	}
+  // Default validation
+  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage)
+    isValid = false
+  } else {
+    field.removeClass('is-invalid')
+  }
 
-	// Title validation
-	if (field.is('#addTitle')) {
-		const result = isValidText(field.val(), 'título')
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Title validation
+  if (field.is('#addTitle')) {
+    const result = isValidText(field.val(), 'título')
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Total copies validation
-	if (field.is('#addTotalCopies')) {
-		const result = isValidTotalCopies(parseInt(field.val(), 10))
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Total copies validation
+  if (field.is('#addTotalCopies')) {
+    const result = isValidTotalCopies(parseInt(field.val(), 10))
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Release date validation
-	if (field.is('#addReleaseDate')) {
-		const result = isValidReleaseDate(field.val())
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Release date validation
+  if (field.is('#addReleaseDate')) {
+    const result = isValidReleaseDate(field.val())
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Select validation
-	if (field.is('select')) {
-		const container = field.closest('.bootstrap-select')
-		container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-		container.siblings('.invalid-feedback').html(errorMessage)
-	}
+  // Select validation
+  if (field.is('select')) {
+    const container = field.closest('.bootstrap-select')
+    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
+    container.siblings('.invalid-feedback').html(errorMessage)
+  }
 
-	if (!isValid) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage).show()
-	} else {
-		field.removeClass('is-invalid')
-		field.siblings('.invalid-feedback').hide()
-	}
+  if (!isValid) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage).show()
+  } else {
+    field.removeClass('is-invalid')
+    field.siblings('.invalid-feedback').hide()
+  }
 
-	return isValid
+  return isValid
 }
 
 function handleEditForm() {
-	let isFirstSubmit = true
+  let isFirstSubmit = true
 
-	$('#editModal').on('hidden.bs.modal', function () {
-		isFirstSubmit = true
-		$('#editForm').data('submitted', false)
-	})
+  $('#editModal').on('hidden.bs.modal', function () {
+    isFirstSubmit = true
+    $('#editForm').data('submitted', false)
+  })
 
-	$('#editForm').on('input change', 'input, select', function () {
-		if (!isFirstSubmit) {
-			validateEditField($(this))
-		}
-	})
+  $('#editForm').on('input change', 'input, select', function () {
+    if (!isFirstSubmit) {
+      validateEditField($(this))
+    }
+  })
 
-	$('#editForm').on('submit', async function (event) {
-		event.preventDefault()
+  $('#editForm').on('submit', async function (event) {
+    event.preventDefault()
 
-		if ($(this).data('submitted') === true) return
-		$(this).data('submitted', true)
+    if ($(this).data('submitted') === true) return
+    $(this).data('submitted', true)
 
-		if (isFirstSubmit) isFirstSubmit = false
+    if (isFirstSubmit) isFirstSubmit = false
 
-		const form = $(this)[0]
-		let isValid = true
+    const form = $(this)[0]
+    let isValid = true
 
-		$(form)
-			.find('input, select')
-			.not('.bootstrap-select input[type="search"]')
-			.each(function () {
-				if (!validateEditField($(this))) isValid = false
-			})
+    $(form)
+      .find('input, select')
+      .not('.bootstrap-select input[type="search"]')
+      .each(function () {
+        if (!validateEditField($(this))) isValid = false
+      })
 
-		if (!isValid) {
-			$(this).data('submitted', false)
-			return
-		}
+    if (!isValid) {
+      $(this).data('submitted', false)
+      return
+    }
 
-		const bookId = $('#editForm').data('bookId')
+    const bookId = $('#editForm').data('bookId')
 
-		const formData = new FormData(form)
-		const raw = Object.fromEntries(formData.entries())
+    const formData = new FormData(form)
+    const raw = Object.fromEntries(formData.entries())
 
-		const book = {
-			bookId: parseInt(bookId),
-			title: raw.title,
-			totalCopies: parseInt(raw.totalCopies),
-			authorId: parseInt(raw.author),
-			publisherId: parseInt(raw.publisher),
-			courseId: parseInt(raw.course),
-			releaseDate: raw.releaseDate,
-			genreId: parseInt(raw.genre),
-			status: raw.status,
-		}
+    const book = {
+      bookId: parseInt(bookId),
+      title: raw.title,
+      totalCopies: parseInt(raw.totalCopies),
+      authorId: parseInt(raw.author),
+      publisherId: parseInt(raw.publisher),
+      courseId: parseInt(raw.course),
+      releaseDate: raw.releaseDate,
+      genreId: parseInt(raw.genre),
+      status: raw.status,
+    }
 
-		const submitButton = $('#updateBtn')
-		toggleButtonLoading(submitButton, true)
+    const submitButton = $('#updateBtn')
+    toggleButtonLoading(submitButton, true)
 
-		try {
-			const response = await fetch('./api/books', {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-				body: JSON.stringify(book),
-			})
+    try {
+      const response = await fetch('./api/books', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(book),
+      })
 
-			const json = await response.json()
+      const json = await response.json()
 
-			if (response.ok && json.success) {
-				updateRow(json.data)
-				$('#editModal').modal('hide')
-				showToast('Libro actualizado exitosamente.', 'success')
-			} else {
-				console.error(
-					`Backend error (${json.errorType} - ${json.statusCode}):`,
-					json.message,
-				)
-				showToast(
-					json.message || 'Hubo un error al actualizar el libro.',
-					'error',
-				)
-				$('#editModal').modal('hide')
-			}
-		} catch (err) {
-			console.error('Unexpected error:', err)
-			showToast('Hubo un error inesperado.', 'error')
-			$('#editModal').modal('hide')
-		} finally {
-			toggleButtonLoading(submitButton, false)
-		}
-	})
+      if (response.ok && json.success) {
+        updateRow(json.data)
+        $('#editModal').modal('hide')
+        showToast('Libro actualizado exitosamente.', 'success')
+      } else {
+        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
+        showToast(json.message || 'Hubo un error al actualizar el libro.', 'error')
+        $('#editModal').modal('hide')
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      showToast('Hubo un error inesperado.', 'error')
+      $('#editModal').modal('hide')
+    } finally {
+      toggleButtonLoading(submitButton, false)
+    }
+  })
 }
 
 function validateEditField(field) {
-	if (field.attr('type') === 'search') {
-		return true
-	}
+  if (field.attr('type') === 'search') {
+    return true
+  }
 
-	let errorMessage = 'Este campo es obligatorio.'
-	let isValid = true
+  let errorMessage = 'Este campo es obligatorio.'
+  let isValid = true
 
-	// Default validation
-	if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage)
-		isValid = false
-	} else {
-		field.removeClass('is-invalid')
-	}
+  // Default validation
+  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage)
+    isValid = false
+  } else {
+    field.removeClass('is-invalid')
+  }
 
-	// Title validation
-	if (field.is('#editTitle')) {
-		const result = isValidText(field.val(), 'título')
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Title validation
+  if (field.is('#editTitle')) {
+    const result = isValidText(field.val(), 'título')
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Total copies validation
-	if (field.is('#editTotalCopies')) {
-		const copies = parseInt(field.val(), 10)
-		const minCopies = parseInt(field.attr('min'), 10)
-		const result = isValidTotalCopiesInRange(copies, minCopies, 1000)
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Total copies validation
+  if (field.is('#editTotalCopies')) {
+    const copies = parseInt(field.val(), 10)
+    const minCopies = parseInt(field.attr('min'), 10)
+    const result = isValidTotalCopiesInRange(copies, minCopies, 1000)
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Release date validation
-	if (field.is('#editReleaseDate')) {
-		const result = isValidReleaseDate(field.val())
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Release date validation
+  if (field.is('#editReleaseDate')) {
+    const result = isValidReleaseDate(field.val())
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Select validation
-	if (field.is('select')) {
-		const container = field.closest('.bootstrap-select')
-		container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-		container
-			.siblings('.invalid-feedback')
-			.html('Opción seleccionada inactiva o no existente.')
-	}
+  // Select validation
+  if (field.is('select')) {
+    const container = field.closest('.bootstrap-select')
+    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
+    container.siblings('.invalid-feedback').html('Opción seleccionada inactiva o no existente.')
+  }
 
-	if (!isValid) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage).show()
-	} else {
-		field.removeClass('is-invalid')
-		field.siblings('.invalid-feedback').hide()
-	}
+  if (!isValid) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage).show()
+  } else {
+    field.removeClass('is-invalid')
+    field.siblings('.invalid-feedback').hide()
+  }
 
-	return isValid
+  return isValid
 }
 
-/*****************************************
+/** ***************************************
  * MODAL MANAGEMENT
  *****************************************/
 
 function loadModalData() {
-	// Add Modal
-	$(document).on('click', '[data-bs-target="#addModal"]', function () {
-		populateSelect('#addAuthor', authorList, 'authorId', 'name')
-		$('#addAuthor').selectpicker()
+  // Add Modal
+  $(document).on('click', '[data-bs-target="#addModal"]', function () {
+    populateSelect('#addAuthor', authorList, 'authorId', 'name')
+    $('#addAuthor').selectpicker()
 
-		populateSelect('#addPublisher', publisherList, 'publisherId', 'name')
-		$('#addPublisher').selectpicker()
+    populateSelect('#addPublisher', publisherList, 'publisherId', 'name')
+    $('#addPublisher').selectpicker()
 
-		populateSelect('#addCourse', courseList, 'courseId', 'name')
-		$('#addCourse').selectpicker()
+    populateSelect('#addCourse', courseList, 'courseId', 'name')
+    $('#addCourse').selectpicker()
 
-		const today = getCurrentPeruDate()
-		const peruDateStr = today.toISOString().split('T')[0]
-		$('#addReleaseDate').attr('max', peruDateStr)
+    const today = getCurrentPeruDate()
+    const peruDateStr = today.toISOString().split('T')[0]
+    $('#addReleaseDate').attr('max', peruDateStr)
 
-		populateSelect('#addGenre', genreList, 'genreId', 'name')
-		$('#addGenre').selectpicker()
+    populateSelect('#addGenre', genreList, 'genreId', 'name')
+    $('#addGenre').selectpicker()
 
-		$('#addStatus')
-			.selectpicker('destroy')
-			.empty()
-			.append(
-				$('<option>', {
-					value: 'activo',
-					text: 'Activo',
-				}),
-				$('<option>', {
-					value: 'inactivo',
-					text: 'Inactivo',
-				}),
-			)
-		$('#addStatus').selectpicker()
+    $('#addStatus')
+      .selectpicker('destroy')
+      .empty()
+      .append(
+        $('<option>', {
+          value: 'activo',
+          text: 'Activo',
+        }),
+        $('<option>', {
+          value: 'inactivo',
+          text: 'Inactivo',
+        }),
+      )
+    $('#addStatus').selectpicker()
 
-		$('#addForm')[0].reset()
-		$('#addForm .is-invalid').removeClass('is-invalid')
+    $('#addForm')[0].reset()
+    $('#addForm .is-invalid').removeClass('is-invalid')
 
-		placeholderColorDateInput()
-	})
+    placeholderColorDateInput()
+  })
 
-	// Details Modal
-	$(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-		const bookId = $(this).data('id')
-		$('#detailsModalID').text($(this).data('formatted-id'))
+  // Details Modal
+  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
+    const bookId = $(this).data('id')
+    $('#detailsModalID').text($(this).data('formatted-id'))
 
-		toggleModalLoading(this, true)
+    toggleModalLoading(this, true)
 
-		fetch(`./api/books/${encodeURIComponent(bookId)}`, {
-			method: 'GET',
-			headers: {
-				Accept: 'application/json',
-			},
-		})
-			.then(async (response) => {
-				if (!response.ok) {
-					const errorData = await response.json()
-					throw { status: response.status, ...errorData }
-				}
-				return response.json()
-			})
-			.then((data) => {
-				$('#detailsID').text(data.formattedBookId)
-				$('#detailsTitle').text(data.title)
-				$('#detailsAvaibleCopies').text(data.availableCopies)
-				$('#detailsLoanedCopies').text(data.loanedCopies)
+    fetch(`./api/books/${encodeURIComponent(bookId)}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json()
+          throw { status: response.status, ...errorData }
+        }
+        return response.json()
+      })
+      .then((data) => {
+        $('#detailsID').text(data.formattedBookId)
+        $('#detailsTitle').text(data.title)
+        $('#detailsAvaibleCopies').text(data.availableCopies)
+        $('#detailsLoanedCopies').text(data.loanedCopies)
 
-				$('#detailsAuthor').html(`
+        $('#detailsAuthor').html(`
 				${data.authorName}
 				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedAuthorId}</span>
 			`)
-				$('#detailsPublisher').html(`
+        $('#detailsPublisher').html(`
 				${data.publisherName}
 				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedPublisherId}</span>
 			`)
-				$('#detailsCourse').html(`
+        $('#detailsCourse').html(`
 				${data.courseName}
 				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedCourseId}</span>
 			`)
 
-				$('#detailsReleaseDate').text(
-					moment(data.releaseDate).format('DD MMM YYYY'),
-				)
-				$('#detailsGenre').text(data.genreName)
-				$('#detailsStatus').html(
-					data.status === 'activo'
-						? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-						: '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-				)
+        $('#detailsReleaseDate').text(moment(data.releaseDate).format('DD MMM YYYY'))
+        $('#detailsGenre').text(data.genreName)
+        $('#detailsStatus').html(
+          data.status === 'activo'
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
+        )
 
-				toggleModalLoading(this, false)
-			})
-			.catch((error) => {
-				console.error(
-					`Error loading book details (${error.errorType || 'unknown'} - ${error.status}):`,
-					error.message || error,
-				)
-				showToast('Hubo un error al cargar los detalles del libro.', 'error')
-				$('#detailsModal').modal('hide')
-			})
-	})
+        toggleModalLoading(this, false)
+      })
+      .catch((error) => {
+        console.error(
+          `Error loading book details (${error.errorType || 'unknown'} - ${error.status}):`,
+          error.message || error,
+        )
+        showToast('Hubo un error al cargar los detalles del libro.', 'error')
+        $('#detailsModal').modal('hide')
+      })
+  })
 
-	// Edit Modal
-	$(document).on('click', '[data-bs-target="#editModal"]', function () {
-		const bookId = $(this).data('id')
-		$('#editModalID').text($(this).data('formatted-id'))
+  // Edit Modal
+  $(document).on('click', '[data-bs-target="#editModal"]', function () {
+    const bookId = $(this).data('id')
+    $('#editModalID').text($(this).data('formatted-id'))
 
-		toggleModalLoading(this, true)
+    toggleModalLoading(this, true)
 
-		fetch(`./api/books/${encodeURIComponent(bookId)}`, {
-			method: 'GET',
-			headers: {
-				Accept: 'application/json',
-			},
-		})
-			.then(async (response) => {
-				if (!response.ok) {
-					const errorData = await response.json()
-					throw { status: response.status, ...errorData }
-				}
-				return response.json()
-			})
-			.then((data) => {
-				$('#editForm').data('bookId', data.bookId)
-				$('#editTitle').val(data.title)
-				$('#editTotalCopies').val(data.totalCopies)
-				$('#editTotalCopies').attr('min', Math.max(1, data.loanedCopies))
+    fetch(`./api/books/${encodeURIComponent(bookId)}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json()
+          throw { status: response.status, ...errorData }
+        }
+        return response.json()
+      })
+      .then((data) => {
+        $('#editForm').data('bookId', data.bookId)
+        $('#editTitle').val(data.title)
+        $('#editTotalCopies').val(data.totalCopies)
+        $('#editTotalCopies').attr('min', Math.max(1, data.loanedCopies))
 
-				populateSelect('#editAuthor', authorList, 'authorId', 'name')
-				$('#editAuthor').val(data.authorId)
-				$('#editAuthor').selectpicker()
+        populateSelect('#editAuthor', authorList, 'authorId', 'name')
+        $('#editAuthor').val(data.authorId)
+        $('#editAuthor').selectpicker()
 
-				populateSelect('#editPublisher', publisherList, 'publisherId', 'name')
-				$('#editPublisher').val(data.publisherId)
-				$('#editPublisher').selectpicker()
+        populateSelect('#editPublisher', publisherList, 'publisherId', 'name')
+        $('#editPublisher').val(data.publisherId)
+        $('#editPublisher').selectpicker()
 
-				populateSelect('#editCourse', courseList, 'courseId', 'name')
-				$('#editCourse').val(data.courseId)
-				$('#editCourse').selectpicker()
+        populateSelect('#editCourse', courseList, 'courseId', 'name')
+        $('#editCourse').val(data.courseId)
+        $('#editCourse').selectpicker()
 
-				populateSelect('#editGenre', genreList, 'genreId', 'name')
-				$('#editGenre').val(data.genreId)
-				$('#editGenre').selectpicker()
+        populateSelect('#editGenre', genreList, 'genreId', 'name')
+        $('#editGenre').val(data.genreId)
+        $('#editGenre').selectpicker()
 
-				$('#editReleaseDate').val(moment(data.releaseDate).format('YYYY-MM-DD'))
+        $('#editReleaseDate').val(moment(data.releaseDate).format('YYYY-MM-DD'))
 
-				const today = getCurrentPeruDate()
-				const peruDateStr = today.toISOString().split('T')[0]
-				$('#editReleaseDate').attr('max', peruDateStr)
+        const today = getCurrentPeruDate()
+        const peruDateStr = today.toISOString().split('T')[0]
+        $('#editReleaseDate').attr('max', peruDateStr)
 
-				$('#editStatus')
-					.selectpicker('destroy')
-					.empty()
-					.append(
-						$('<option>', { value: 'activo', text: 'Activo' }),
-						$('<option>', { value: 'inactivo', text: 'Inactivo' }),
-					)
-				$('#editStatus').val(data.status)
-				$('#editStatus').selectpicker()
+        $('#editStatus')
+          .selectpicker('destroy')
+          .empty()
+          .append(
+            $('<option>', { value: 'activo', text: 'Activo' }),
+            $('<option>', { value: 'inactivo', text: 'Inactivo' }),
+          )
+        $('#editStatus').val(data.status)
+        $('#editStatus').selectpicker()
 
-				$('#editForm .is-invalid').removeClass('is-invalid')
-				placeholderColorEditSelect()
-				placeholderColorDateInput()
+        $('#editForm .is-invalid').removeClass('is-invalid')
+        placeholderColorEditSelect()
+        placeholderColorDateInput()
 
-				$('#editForm')
-					.find('select')
-					.each(function () {
-						validateEditField($(this), true)
-					})
+        $('#editForm')
+          .find('select')
+          .each(function () {
+            validateEditField($(this), true)
+          })
 
-				toggleModalLoading(this, false)
-			})
-			.catch((error) => {
-				console.error(
-					`Error loading book details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-					error.message || error,
-				)
-				showToast('Hubo un error al cargar los datos del libro.', 'error')
-				$('#editModal').modal('hide')
-			})
-	})
+        toggleModalLoading(this, false)
+      })
+      .catch((error) => {
+        console.error(
+          `Error loading book details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
+          error.message || error,
+        )
+        showToast('Hubo un error al cargar los datos del libro.', 'error')
+        $('#editModal').modal('hide')
+      })
+  })
 }
 
 function formatStrings(str) {
-	const parts = str?.split(/\s+|\n/).filter(Boolean) || []
-	return parts.length > 1
-		? parts.slice(0, -1).join(' ') + ' - ' + parts.at(-1)
-		: parts[0] || ''
+  const parts = str?.split(/\s+|\n/).filter(Boolean) || []
+  return parts.length > 1 ? parts.slice(0, -1).join(' ') + ' - ' + parts.at(-1) : parts[0] || ''
 }
 
 function applyTextColorByColumnPDF(data) {
-	const col = data.column.index
-	const value = data.cell.raw
+  const col = data.column.index
+  const value = data.cell.raw
 
-	const colorMap = {
-		2: [0, 128, 0],
-		3: [255, 193, 7],
-		6: value === 'Activo' ? [0, 128, 0] : [255, 0, 0],
-	}
+  const colorMap = {
+    2: [0, 128, 0],
+    3: [255, 193, 7],
+    6: value === 'Activo' ? [0, 128, 0] : [255, 0, 0],
+  }
 
-	if (colorMap.hasOwnProperty(col)) {
-		data.cell.styles.textColor = colorMap[col]
-	}
+  if (colorMap.hasOwnProperty(col)) {
+    data.cell.styles.textColor = colorMap[col]
+  }
 }
 
 function generatePDF(dataTable) {
-	const pdfBtn = $('#generatePDF')
-	toggleButtonLoading(pdfBtn, true)
+  const pdfBtn = $('#generatePDF')
+  toggleButtonLoading(pdfBtn, true)
 
-	let hasWarnings = false
+  let hasWarnings = false
 
-	try {
-		const { jsPDF } = window.jspdf
-		const doc = new jsPDF('l', 'mm', 'a4')
-		const logoUrl = '/images/bookstudio-logo-no-bg.png'
+  try {
+    const { jsPDF } = window.jspdf
+    const doc = new jsPDF('l', 'mm', 'a4')
+    const logoUrl = '/images/bookstudio-logo-no-bg.png'
 
-		const currentDate = new Date()
-		const fecha = currentDate.toLocaleDateString('es-ES', {
-			day: '2-digit',
-			month: 'long',
-			year: 'numeric',
-		})
-		const hora = currentDate.toLocaleTimeString('en-US', {
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: true,
-		})
+    const currentDate = new Date()
+    const fecha = currentDate.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    })
+    const hora = currentDate.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    })
 
-		const pageWidth = doc.internal.pageSize.getWidth()
-		const margin = 10
-		const topMargin = 5
+    const pageWidth = doc.internal.pageSize.getWidth()
+    const margin = 10
+    const topMargin = 5
 
-		try {
-			doc.addImage(logoUrl, 'PNG', margin, topMargin - 5, 30, 30)
-		} catch (imgError) {
-			console.warn('Logo not available:', imgError)
-			showToast('No se pudo cargar el logo. Se continuará sin él.', 'warning')
-			hasWarnings = true
-		}
+    try {
+      doc.addImage(logoUrl, 'PNG', margin, topMargin - 5, 30, 30)
+    } catch (imgError) {
+      console.warn('Logo not available:', imgError)
+      showToast('No se pudo cargar el logo. Se continuará sin él.', 'warning')
+      hasWarnings = true
+    }
 
-		doc.setFont('helvetica', 'bold')
-		doc.setFontSize(14)
-		doc.text('Lista de libros', pageWidth / 2, topMargin + 13, {
-			align: 'center',
-		})
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(14)
+    doc.text('Lista de libros', pageWidth / 2, topMargin + 13, {
+      align: 'center',
+    })
 
-		doc.setFont('helvetica', 'normal')
-		doc.setFontSize(8)
-		doc.text(`Fecha: ${fecha}`, pageWidth - margin, topMargin + 10, {
-			align: 'right',
-		})
-		doc.text(`Hora: ${hora}`, pageWidth - margin, topMargin + 15, {
-			align: 'right',
-		})
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(8)
+    doc.text(`Fecha: ${fecha}`, pageWidth - margin, topMargin + 10, {
+      align: 'right',
+    })
+    doc.text(`Hora: ${hora}`, pageWidth - margin, topMargin + 15, {
+      align: 'right',
+    })
 
-		const data = dataTable
-			.rows({ search: 'applied' })
-			.nodes()
-			.toArray()
-			.map((row) => {
-				let estado = row.cells[6].innerText.trim()
-				estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
+    const data = dataTable
+      .rows({ search: 'applied' })
+      .nodes()
+      .toArray()
+      .map((row) => {
+        let estado = row.cells[6].innerText.trim()
+        estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
 
-				return [
-					row.cells[0].innerText.trim(),
-					row.cells[1].innerText.trim(),
-					row.cells[2].innerText.trim(),
-					row.cells[3].innerText.trim(),
-					formatStrings(row.cells[4].innerText.trim()),
-					formatStrings(row.cells[5].innerText.trim()),
-					estado,
-				]
-			})
+        return [
+          row.cells[0].innerText.trim(),
+          row.cells[1].innerText.trim(),
+          row.cells[2].innerText.trim(),
+          row.cells[3].innerText.trim(),
+          formatStrings(row.cells[4].innerText.trim()),
+          formatStrings(row.cells[5].innerText.trim()),
+          estado,
+        ]
+      })
 
-		doc.autoTable({
-			startY: topMargin + 25,
-			margin: { left: margin, right: margin },
-			head: [
-				[
-					'Código',
-					'Título',
-					'Ej. disp.',
-					'Ej. prest.',
-					'Autor - Código',
-					'Editorial - Código',
-					'Estado',
-				],
-			],
-			body: data,
-			theme: 'grid',
-			headStyles: {
-				fillColor: [0, 0, 0],
-				textColor: 255,
-				fontStyle: 'bold',
-				fontSize: 8,
-				halign: 'left',
-			},
-			bodyStyles: {
-				font: 'helvetica',
-				fontSize: 7,
-				halign: 'left',
-			},
-			didParseCell: function (data) {
-				if (data.section === 'body') {
-					applyTextColorByColumnPDF(data)
-				}
-			},
-		})
+    doc.autoTable({
+      startY: topMargin + 25,
+      margin: { left: margin, right: margin },
+      head: [
+        [
+          'Código',
+          'Título',
+          'Ej. disp.',
+          'Ej. prest.',
+          'Autor - Código',
+          'Editorial - Código',
+          'Estado',
+        ],
+      ],
+      body: data,
+      theme: 'grid',
+      headStyles: {
+        fillColor: [0, 0, 0],
+        textColor: 255,
+        fontStyle: 'bold',
+        fontSize: 8,
+        halign: 'left',
+      },
+      bodyStyles: {
+        font: 'helvetica',
+        fontSize: 7,
+        halign: 'left',
+      },
+      didParseCell: function (data) {
+        if (data.section === 'body') {
+          applyTextColorByColumnPDF(data)
+        }
+      },
+    })
 
-		const filename = `Lista_de_libros_bookstudio_${fecha.replace(/\s+/g, '_')}.pdf`
+    const filename = `Lista_de_libros_bookstudio_${fecha.replace(/\s+/g, '_')}.pdf`
 
-		const pdfBlob = doc.output('blob')
-		const blobUrl = URL.createObjectURL(pdfBlob)
-		const link = document.createElement('a')
-		link.href = blobUrl
-		link.download = filename
-		document.body.appendChild(link)
-		link.click()
-		document.body.removeChild(link)
+    const pdfBlob = doc.output('blob')
+    const blobUrl = URL.createObjectURL(pdfBlob)
+    const link = document.createElement('a')
+    link.href = blobUrl
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
 
-		if (!hasWarnings) {
-			showToast('PDF generado exitosamente.', 'success')
-		}
-	} catch (error) {
-		console.error('Error generating PDF file:', error)
-		showToast(
-			'Ocurrió un error al generar el PDF. Inténtalo nuevamente.',
-			'error',
-		)
-	} finally {
-		toggleButtonLoading(pdfBtn, false)
-	}
+    if (!hasWarnings) {
+      showToast('PDF generado exitosamente.', 'success')
+    }
+  } catch (error) {
+    console.error('Error generating PDF file:', error)
+    showToast('Ocurrió un error al generar el PDF. Inténtalo nuevamente.', 'error')
+  } finally {
+    toggleButtonLoading(pdfBtn, false)
+  }
 }
 
 function generateExcel(dataTable) {
-	const excelBtn = $('#generateExcel')
-	toggleButtonLoading(excelBtn, true)
+  const excelBtn = $('#generateExcel')
+  toggleButtonLoading(excelBtn, true)
 
-	try {
-		const workbook = new ExcelJS.Workbook()
-		const worksheet = workbook.addWorksheet('Libros')
+  try {
+    const workbook = new ExcelJS.Workbook()
+    const worksheet = workbook.addWorksheet('Libros')
 
-		const currentDate = new Date()
-		const dateStr = currentDate.toLocaleDateString('es-ES', {
-			day: '2-digit',
-			month: 'long',
-			year: 'numeric',
-		})
-		const timeStr = currentDate.toLocaleTimeString('en-US', {
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: true,
-		})
+    const currentDate = new Date()
+    const dateStr = currentDate.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    })
+    const timeStr = currentDate.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    })
 
-		worksheet.mergeCells('A1:G1')
-		const titleCell = worksheet.getCell('A1')
-		titleCell.value = 'Lista de libros - BookStudio'
-		titleCell.font = { name: 'Arial', size: 14, bold: true }
-		titleCell.alignment = { horizontal: 'center' }
+    worksheet.mergeCells('A1:G1')
+    const titleCell = worksheet.getCell('A1')
+    titleCell.value = 'Lista de libros - BookStudio'
+    titleCell.font = { name: 'Arial', size: 14, bold: true }
+    titleCell.alignment = { horizontal: 'center' }
 
-		worksheet.mergeCells('A2:G2')
-		const dateTimeCell = worksheet.getCell('A2')
-		dateTimeCell.value = `Fecha: ${dateStr}  Hora: ${timeStr}`
-		dateTimeCell.alignment = { horizontal: 'center' }
+    worksheet.mergeCells('A2:G2')
+    const dateTimeCell = worksheet.getCell('A2')
+    dateTimeCell.value = `Fecha: ${dateStr}  Hora: ${timeStr}`
+    dateTimeCell.alignment = { horizontal: 'center' }
 
-		worksheet.columns = [
-			{ key: 'id', width: 10 },
-			{ key: 'titulo', width: 40 },
-			{ key: 'disponibles', width: 10 },
-			{ key: 'prestados', width: 10 },
-			{ key: 'autor', width: 50 },
-			{ key: 'editorial', width: 50 },
-			{ key: 'estado', width: 15 },
-		]
+    worksheet.columns = [
+      { key: 'id', width: 10 },
+      { key: 'titulo', width: 40 },
+      { key: 'disponibles', width: 10 },
+      { key: 'prestados', width: 10 },
+      { key: 'autor', width: 50 },
+      { key: 'editorial', width: 50 },
+      { key: 'estado', width: 15 },
+    ]
 
-		const headerRow = worksheet.getRow(4)
-		headerRow.values = [
-			'Código',
-			'Título',
-			'Ej. disp.',
-			'Ej. prest.',
-			'Autor - Código',
-			'Editorial - Código',
-			'Estado',
-		]
-		headerRow.eachCell((cell) => {
-			cell.font = { bold: true, color: { argb: 'FFFFFF' } }
-			cell.fill = {
-				type: 'pattern',
-				pattern: 'solid',
-				fgColor: { argb: '000000' },
-			}
-			cell.alignment = { horizontal: 'left', vertical: 'middle' }
-			cell.border = {
-				top: { style: 'thin', color: { argb: 'FFFFFF' } },
-				bottom: { style: 'thin', color: { argb: 'FFFFFF' } },
-				left: { style: 'thin', color: { argb: 'FFFFFF' } },
-				right: { style: 'thin', color: { argb: 'FFFFFF' } },
-			}
-		})
+    const headerRow = worksheet.getRow(4)
+    headerRow.values = [
+      'Código',
+      'Título',
+      'Ej. disp.',
+      'Ej. prest.',
+      'Autor - Código',
+      'Editorial - Código',
+      'Estado',
+    ]
+    headerRow.eachCell((cell) => {
+      cell.font = { bold: true, color: { argb: 'FFFFFF' } }
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: '000000' },
+      }
+      cell.alignment = { horizontal: 'left', vertical: 'middle' }
+      cell.border = {
+        top: { style: 'thin', color: { argb: 'FFFFFF' } },
+        bottom: { style: 'thin', color: { argb: 'FFFFFF' } },
+        left: { style: 'thin', color: { argb: 'FFFFFF' } },
+        right: { style: 'thin', color: { argb: 'FFFFFF' } },
+      }
+    })
 
-		const data = dataTable
-			.rows({ search: 'applied' })
-			.nodes()
-			.toArray()
-			.map((row) => {
-				let estado = row.cells[6].innerText.trim()
-				estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
+    const data = dataTable
+      .rows({ search: 'applied' })
+      .nodes()
+      .toArray()
+      .map((row) => {
+        let estado = row.cells[6].innerText.trim()
+        estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
 
-				return {
-					id: row.cells[0].innerText.trim(),
-					titulo: row.cells[1].innerText.trim(),
-					disponibles: row.cells[2].innerText.trim(),
-					prestados: row.cells[3].innerText.trim(),
-					autor: formatStrings(row.cells[4].innerText.trim()),
-					editorial: formatStrings(row.cells[5].innerText.trim()),
-					estado: estado,
-				}
-			})
+        return {
+          id: row.cells[0].innerText.trim(),
+          titulo: row.cells[1].innerText.trim(),
+          disponibles: row.cells[2].innerText.trim(),
+          prestados: row.cells[3].innerText.trim(),
+          autor: formatStrings(row.cells[4].innerText.trim()),
+          editorial: formatStrings(row.cells[5].innerText.trim()),
+          estado: estado,
+        }
+      })
 
-		function applyCellStyle(cell, colorHex, backgroundHex) {
-			cell.font = { color: { argb: colorHex } }
-			cell.fill = {
-				type: 'pattern',
-				pattern: 'solid',
-				fgColor: { argb: backgroundHex },
-			}
-		}
+    function applyCellStyle(cell, colorHex, backgroundHex) {
+      cell.font = { color: { argb: colorHex } }
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: backgroundHex },
+      }
+    }
 
-		data.forEach((item) => {
-			const row = worksheet.addRow(item)
+    data.forEach((item) => {
+      const row = worksheet.addRow(item)
 
-			const estadoCell = row.getCell(7)
-			if (estadoCell.value === 'Activo') {
-				applyCellStyle(estadoCell, '008000', 'E6F2E6')
-			} else {
-				applyCellStyle(estadoCell, 'FF0000', 'FFE6E6')
-			}
+      const estadoCell = row.getCell(7)
+      if (estadoCell.value === 'Activo') {
+        applyCellStyle(estadoCell, '008000', 'E6F2E6')
+      } else {
+        applyCellStyle(estadoCell, 'FF0000', 'FFE6E6')
+      }
 
-			const disponiblesCell = row.getCell(3)
-			applyCellStyle(disponiblesCell, '008000', 'E6F2E6')
+      const disponiblesCell = row.getCell(3)
+      applyCellStyle(disponiblesCell, '008000', 'E6F2E6')
 
-			const prestadosCell = row.getCell(4)
-			applyCellStyle(prestadosCell, 'FFFFC107', 'FFFFF8E1')
-		})
+      const prestadosCell = row.getCell(4)
+      applyCellStyle(prestadosCell, 'FFFFC107', 'FFFFF8E1')
+    })
 
-		const filename = `Lista_de_libros_bookstudio_${dateStr.replace(/\s+/g, '_')}.xlsx`
+    const filename = `Lista_de_libros_bookstudio_${dateStr.replace(/\s+/g, '_')}.xlsx`
 
-		workbook.xlsx
-			.writeBuffer()
-			.then((buffer) => {
-				const blob = new Blob([buffer], {
-					type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-				})
-				const link = document.createElement('a')
-				link.href = URL.createObjectURL(blob)
-				link.download = filename
-				link.click()
+    workbook.xlsx
+      .writeBuffer()
+      .then((buffer) => {
+        const blob = new Blob([buffer], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        })
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = filename
+        link.click()
 
-				showToast('Excel generado exitosamente.', 'success')
-			})
-			.catch((error) => {
-				console.error('Error generating Excel file:', error)
-				showToast('Ocurrió un error al generar el Excel.', 'error')
-			})
-			.finally(() => {
-				toggleButtonLoading(excelBtn, false)
-			})
-	} catch (error) {
-		console.error('General error while generating Excel file:', error)
-		showToast('Ocurrió un error inesperado al generar el Excel.', 'error')
-		toggleButtonLoading(excelBtn, false)
-	}
+        showToast('Excel generado exitosamente.', 'success')
+      })
+      .catch((error) => {
+        console.error('Error generating Excel file:', error)
+        showToast('Ocurrió un error al generar el Excel.', 'error')
+      })
+      .finally(() => {
+        toggleButtonLoading(excelBtn, false)
+      })
+  } catch (error) {
+    console.error('General error while generating Excel file:', error)
+    showToast('Ocurrió un error inesperado al generar el Excel.', 'error')
+    toggleButtonLoading(excelBtn, false)
+  }
 }
 
-/*****************************************
+/** ***************************************
  * INITIALIZATION
  *****************************************/
 
 $(document).ready(function () {
-	loadData()
-	handleAddForm()
-	handleEditForm()
-	loadModalData()
-	loadOptions()
-	$('.selectpicker').selectpicker()
-	setupBootstrapSelectDropdownStyles()
-	placeholderColorSelect()
+  loadData()
+  handleAddForm()
+  handleEditForm()
+  loadModalData()
+  loadOptions()
+  $('.selectpicker').selectpicker()
+  setupBootstrapSelectDropdownStyles()
+  placeholderColorSelect()
 })

@@ -3,31 +3,31 @@
 
 html,
 body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	font-family: 'Poppins', sans-serif;
-	background-color: var(--bg-primary-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-primary-color);
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .link-underline-hover {
-	text-decoration: none;
-	background-image: linear-gradient(currentColor, currentColor);
-	background-size: 0% 1px;
-	background-repeat: no-repeat;
-	background-position: 0 calc(100% - 2px);
-	transition: background-size 0.3s ease;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - 2px);
+  transition: background-size 0.3s ease;
 }
 
 .link-underline-hover:hover {
-	background-size: 100% 1px;
+  background-size: 100% 1px;
 }
 
 .card-header p {
-	font-size: 0.85rem;
+  font-size: 0.85rem;
 }

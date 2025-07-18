@@ -14,34 +14,30 @@
  * @author Jason
  */
 
-import {
-	loadTableData,
-	addRowToTable,
-	updateRowInTable,
-} from '../../shared/utils/tables/index.js'
+import { loadTableData, addRowToTable, updateRowInTable } from '../../shared/utils/tables/index.js'
 
 import {
-	isValidText,
-	isValidBirthDate,
-	isValidImageFile,
-	validateImageFileUI,
-	loadSelectOptions,
-	populateSelect,
+  isValidText,
+  isValidBirthDate,
+  isValidImageFile,
+  validateImageFileUI,
+  loadSelectOptions,
+  populateSelect,
 } from '../../shared/utils/forms/index.js'
 
 import {
-	showToast,
-	toggleButtonLoading,
-	toggleModalLoading,
-	placeholderColorSelect,
-	placeholderColorEditSelect,
-	placeholderColorDateInput,
-	initializeCropper,
-	setupBootstrapSelectDropdownStyles,
-	getCurrentPeruDate,
+  showToast,
+  toggleButtonLoading,
+  toggleModalLoading,
+  placeholderColorSelect,
+  placeholderColorEditSelect,
+  placeholderColorDateInput,
+  initializeCropper,
+  setupBootstrapSelectDropdownStyles,
+  getCurrentPeruDate,
 } from '../../shared/utils/ui/index.js'
 
-/*****************************************
+/** ***************************************
  * GLOBAL VARIABLES AND HELPER FUNCTIONS
  *****************************************/
 
@@ -53,23 +49,23 @@ let literaryGenreList = []
 let deletePhotoFlag = false
 
 function loadOptions() {
-	loadSelectOptions({
-		url: './api/authors/select-options',
-		onSuccess: (data) => {
-			nationalityList = data.nationalities
-			literaryGenreList = data.literaryGenres
-		},
-	})
+  loadSelectOptions({
+    url: './api/authors/select-options',
+    onSuccess: (data) => {
+      nationalityList = data.nationalities
+      literaryGenreList = data.literaryGenres
+    },
+  })
 }
 
-/*****************************************
+/** ***************************************
  * TABLE HANDLING
  *****************************************/
 
 function generateRow(author) {
-	const userRole = sessionStorage.getItem('userRole')
+  const userRole = sessionStorage.getItem('userRole')
 
-	return `
+  return `
 		<tr>
 			<td class="align-middle text-start">
 				<span class="badge bg-body-tertiary text-body-emphasis border">${author.formattedAuthorId}</span>
@@ -84,20 +80,20 @@ function generateRow(author) {
 			<td class="align-middle text-center">${moment(author.birthDate).format('DD MMM YYYY')}</td>
 			<td class="align-middle text-center">
 				${
-					author.status === 'activo'
-						? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-						: '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
-				}
+          author.status === 'activo'
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
+        }
 			</td>
 			<td class="align-middle text-center">
 				${
-					author.photoUrl
-						? `<img src="${author.photoUrl}" alt="Foto del Autor" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
-						: `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+          author.photoUrl
+            ? `<img src="${author.photoUrl}" alt="Foto del Autor" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
 						<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
 						<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
 					</svg>`
-				}
+        }
 			</td>
 			<td class="align-middle text-center">
 				<div class="d-inline-flex gap-2">
@@ -106,13 +102,13 @@ function generateRow(author) {
 						<i class="bi bi-info-circle"></i>
 					</button>
 					${
-						userRole === 'administrador'
-							? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
+            userRole === 'administrador'
+              ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
 							data-bs-toggle="modal" data-bs-target="#editModal" data-id="${author.authorId}" data-formatted-id="${author.formattedAuthorId}">
 							<i class="bi bi-pencil"></i>
 						</button>`
-							: ''
-					}
+              : ''
+          }
 				</div>
 			</td>
 		</tr>
@@ -120,652 +116,616 @@ function generateRow(author) {
 }
 
 function addRow(author) {
-	addRowToTable(author, generateRow)
+  addRowToTable(author, generateRow)
 }
 
 function loadData() {
-	loadTableData({
-		apiUrl: './api/authors',
-		generateRow,
-		generatePDF,
-		generateExcel,
-	})
+  loadTableData({
+    apiUrl: './api/authors',
+    generateRow,
+    generatePDF,
+    generateExcel,
+  })
 }
 
 function updateRow(author) {
-	updateRowInTable({
-		entity: author,
-		getFormattedId: (a) => a.formattedAuthorId.toString(),
-		updateCellsFn: (row, a) => {
-			row.find('td').eq(1).text(a.name)
-			row.find('td').eq(2).find('span').text(a.nationalityName)
-			row.find('td').eq(3).find('span').text(a.literaryGenreName)
-			row.find('td').eq(4).text(moment(a.birthDate).format('DD MMM YYYY'))
-			row
-				.find('td')
-				.eq(5)
-				.html(
-					a.status === 'activo'
-						? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-						: '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-				)
-			row
-				.find('td')
-				.eq(6)
-				.html(
-					a.photoUrl?.trim()
-						? `<img src="${a.photoUrl}" alt="Foto del Autor" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
-						: `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+  updateRowInTable({
+    entity: author,
+    getFormattedId: (a) => a.formattedAuthorId.toString(),
+    updateCellsFn: (row, a) => {
+      row.find('td').eq(1).text(a.name)
+      row.find('td').eq(2).find('span').text(a.nationalityName)
+      row.find('td').eq(3).find('span').text(a.literaryGenreName)
+      row.find('td').eq(4).text(moment(a.birthDate).format('DD MMM YYYY'))
+      row
+        .find('td')
+        .eq(5)
+        .html(
+          a.status === 'activo'
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
+        )
+      row
+        .find('td')
+        .eq(6)
+        .html(
+          a.photoUrl?.trim()
+            ? `<img src="${a.photoUrl}" alt="Foto del Autor" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
 							<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
 							<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
 						</svg>`,
-				)
-		},
-	})
+        )
+    },
+  })
 }
 
-/*****************************************
+/** ***************************************
  * FORM LOGIC
  *****************************************/
 
 function handleAddForm() {
-	let isFirstSubmit = true
+  let isFirstSubmit = true
 
-	$('#addModal').on('hidden.bs.modal', function () {
-		isFirstSubmit = true
-		$('#addForm').data('submitted', false)
-	})
+  $('#addModal').on('hidden.bs.modal', function () {
+    isFirstSubmit = true
+    $('#addForm').data('submitted', false)
+  })
 
-	$('#addForm').on('input change', 'input, select', function () {
-		if (!isFirstSubmit) {
-			validateAddField($(this))
-		}
-	})
+  $('#addForm').on('input change', 'input, select', function () {
+    if (!isFirstSubmit) {
+      validateAddField($(this))
+    }
+  })
 
-	$('#addForm').on('submit', async function (event) {
-		event.preventDefault()
+  $('#addForm').on('submit', async function (event) {
+    event.preventDefault()
 
-		if ($(this).data('submitted') === true) return
-		$(this).data('submitted', true)
+    if ($(this).data('submitted') === true) return
+    $(this).data('submitted', true)
 
-		if (isFirstSubmit) isFirstSubmit = false
+    if (isFirstSubmit) isFirstSubmit = false
 
-		const form = $(this)[0]
-		let isValid = true
+    const form = $(this)[0]
+    let isValid = true
 
-		$(form)
-			.find('input, select')
-			.not('.bootstrap-select input[type="search"]')
-			.each(function () {
-				if (!validateAddField($(this))) isValid = false
-			})
+    $(form)
+      .find('input, select')
+      .not('.bootstrap-select input[type="search"]')
+      .each(function () {
+        if (!validateAddField($(this))) isValid = false
+      })
 
-		if (!isValid) {
-			$(this).data('submitted', false)
-			return
-		}
+    if (!isValid) {
+      $(this).data('submitted', false)
+      return
+    }
 
-		const formData = new FormData(form)
-		const raw = Object.fromEntries(formData.entries())
+    const formData = new FormData(form)
+    const raw = Object.fromEntries(formData.entries())
 
-		const author = {
-			name: raw.name,
-			nationalityId: parseInt(raw.nationality),
-			literaryGenreId: parseInt(raw.literaryGenre),
-			birthDate: raw.birthDate,
-			biography: raw.biography || '',
-			status: raw.status,
-			photoUrl: null, // 🔜 Preparado para Cloudinary
-		}
+    const author = {
+      name: raw.name,
+      nationalityId: parseInt(raw.nationality),
+      literaryGenreId: parseInt(raw.literaryGenre),
+      birthDate: raw.birthDate,
+      biography: raw.biography || '',
+      status: raw.status,
+      photoUrl: null, // 🔜 Preparado para Cloudinary
+    }
 
-		const submitButton = $('#addBtn')
-		toggleButtonLoading(submitButton, true)
+    const submitButton = $('#addBtn')
+    toggleButtonLoading(submitButton, true)
 
-		try {
-			if (cropper) {
-				const photoBlob = await new Promise((resolve) => {
-					cropper
-						.getCroppedCanvas({ width: 460, height: 460 })
-						.toBlob((blob) => resolve(blob), 'image/jpeg', 0.7)
-				})
+    try {
+      if (cropper) {
+        const photoBlob = await new Promise((resolve) => {
+          cropper
+            .getCroppedCanvas({ width: 460, height: 460 })
+            .toBlob((blob) => resolve(blob), 'image/jpeg', 0.7)
+        })
 
-				if (photoBlob) {
-					// 🔜 Preparado para Cloudinary
-				}
-			}
+        if (photoBlob) {
+          // 🔜 Preparado para Cloudinary
+        }
+      }
 
-			const response = await fetch('./api/authors', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-				body: JSON.stringify(author),
-			})
+      const response = await fetch('./api/authors', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(author),
+      })
 
-			const json = await response.json()
+      const json = await response.json()
 
-			if (response.ok && json.success) {
-				addRow(json.data)
-				$('#addModal').modal('hide')
-				showToast('Autor agregado exitosamente.', 'success')
-			} else {
-				console.error(
-					`Backend error (${json.errorType} - ${json.statusCode}):`,
-					json.message,
-				)
-				$('#addModal').modal('hide')
-				showToast('Hubo un error al agregar el autor.', 'error')
-			}
-		} catch (err) {
-			console.error('Unexpected error:', err)
-			showToast('Hubo un error inesperado.', 'error')
-			$('#addModal').modal('hide')
-		} finally {
-			toggleButtonLoading(submitButton, false)
-		}
-	})
+      if (response.ok && json.success) {
+        addRow(json.data)
+        $('#addModal').modal('hide')
+        showToast('Autor agregado exitosamente.', 'success')
+      } else {
+        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
+        $('#addModal').modal('hide')
+        showToast('Hubo un error al agregar el autor.', 'error')
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      showToast('Hubo un error inesperado.', 'error')
+      $('#addModal').modal('hide')
+    } finally {
+      toggleButtonLoading(submitButton, false)
+    }
+  })
 }
 
 function validateAddField(field) {
-	if (field.attr('type') === 'search') {
-		return true
-	}
+  if (field.attr('type') === 'search') {
+    return true
+  }
 
-	let errorMessage = 'Este campo es obligatorio.'
-	let isValid = true
+  let errorMessage = 'Este campo es obligatorio.'
+  let isValid = true
 
-	// Default validation
-	if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage)
-		isValid = false
-	} else {
-		field.removeClass('is-invalid')
-	}
+  // Default validation
+  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage)
+    isValid = false
+  } else {
+    field.removeClass('is-invalid')
+  }
 
-	// Name validation
-	if (field.is('#addName')) {
-		const result = isValidText(field.val(), 'nombre')
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Name validation
+  if (field.is('#addName')) {
+    const result = isValidText(field.val(), 'nombre')
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Birth date validation
-	if (field.is('#addBirthDate')) {
-		const result = isValidBirthDate(field.val())
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Birth date validation
+  if (field.is('#addBirthDate')) {
+    const result = isValidBirthDate(field.val())
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Photo validation
-	if (field.is('#addPhoto')) {
-		const file = field[0].files[0]
-		const result = isValidImageFile(file)
+  // Photo validation
+  if (field.is('#addPhoto')) {
+    const file = field[0].files[0]
+    const result = isValidImageFile(file)
 
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		} else {
-			field.removeClass('is-invalid')
-			return true
-		}
-	}
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    } else {
+      field.removeClass('is-invalid')
+      return true
+    }
+  }
 
-	// Select validation
-	if (field.is('select')) {
-		const container = field.closest('.bootstrap-select')
-		container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-		container.siblings('.invalid-feedback').html(errorMessage)
-	}
+  // Select validation
+  if (field.is('select')) {
+    const container = field.closest('.bootstrap-select')
+    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
+    container.siblings('.invalid-feedback').html(errorMessage)
+  }
 
-	if (!isValid) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage).show()
-	} else {
-		field.removeClass('is-invalid')
-		field.siblings('.invalid-feedback').hide()
-	}
+  if (!isValid) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage).show()
+  } else {
+    field.removeClass('is-invalid')
+    field.siblings('.invalid-feedback').hide()
+  }
 
-	return isValid
+  return isValid
 }
 
 $('#addPhoto, #editPhoto').on('change', function () {
-	validateImageFileUI($(this))
+  validateImageFileUI($(this))
 })
 
 function handleEditForm() {
-	let isFirstSubmit = true
+  let isFirstSubmit = true
 
-	$('#editModal').on('hidden.bs.modal', function () {
-		isFirstSubmit = true
-		$('#editForm').data('submitted', false)
-	})
+  $('#editModal').on('hidden.bs.modal', function () {
+    isFirstSubmit = true
+    $('#editForm').data('submitted', false)
+  })
 
-	$('#editForm').on('input change', 'input, select', function () {
-		if (!isFirstSubmit) {
-			validateEditField($(this))
-		}
-	})
+  $('#editForm').on('input change', 'input, select', function () {
+    if (!isFirstSubmit) {
+      validateEditField($(this))
+    }
+  })
 
-	$('#editForm').on('submit', async function (event) {
-		event.preventDefault()
+  $('#editForm').on('submit', async function (event) {
+    event.preventDefault()
 
-		if ($(this).data('submitted') === true) return
-		$(this).data('submitted', true)
+    if ($(this).data('submitted') === true) return
+    $(this).data('submitted', true)
 
-		if (isFirstSubmit) isFirstSubmit = false
+    if (isFirstSubmit) isFirstSubmit = false
 
-		const form = $(this)[0]
-		let isValid = true
+    const form = $(this)[0]
+    let isValid = true
 
-		$(form)
-			.find('input, select')
-			.not('.bootstrap-select input[type="search"]')
-			.each(function () {
-				if (!validateEditField($(this))) isValid = false
-			})
+    $(form)
+      .find('input, select')
+      .not('.bootstrap-select input[type="search"]')
+      .each(function () {
+        if (!validateEditField($(this))) isValid = false
+      })
 
-		if (!isValid) {
-			$(this).data('submitted', false)
-			return
-		}
+    if (!isValid) {
+      $(this).data('submitted', false)
+      return
+    }
 
-		const authorId = $('#editForm').data('authorId')
-		const formData = new FormData(form)
-		const raw = Object.fromEntries(formData.entries())
+    const authorId = $('#editForm').data('authorId')
+    const formData = new FormData(form)
+    const raw = Object.fromEntries(formData.entries())
 
-		const author = {
-			authorId: parseInt(authorId),
-			name: raw.name,
-			nationalityId: parseInt(raw.nationality),
-			literaryGenreId: parseInt(raw.literaryGenre),
-			birthDate: raw.birthDate,
-			biography: raw.biography || '',
-			status: raw.status,
-			deletePhoto: deletePhotoFlag || false,
-			photoUrl: null, // 🔜 Preparado para Cloudinary
-		}
+    const author = {
+      authorId: parseInt(authorId),
+      name: raw.name,
+      nationalityId: parseInt(raw.nationality),
+      literaryGenreId: parseInt(raw.literaryGenre),
+      birthDate: raw.birthDate,
+      biography: raw.biography || '',
+      status: raw.status,
+      deletePhoto: deletePhotoFlag || false,
+      photoUrl: null, // 🔜 Preparado para Cloudinary
+    }
 
-		const submitButton = $('#updateBtn')
-		toggleButtonLoading(submitButton, true)
+    const submitButton = $('#updateBtn')
+    toggleButtonLoading(submitButton, true)
 
-		try {
-			if (cropper) {
-				const photoBlob = await new Promise((resolve) => {
-					cropper
-						.getCroppedCanvas({ width: 460, height: 460 })
-						.toBlob((blob) => resolve(blob), 'image/jpeg', 0.7)
-				})
+    try {
+      if (cropper) {
+        const photoBlob = await new Promise((resolve) => {
+          cropper
+            .getCroppedCanvas({ width: 460, height: 460 })
+            .toBlob((blob) => resolve(blob), 'image/jpeg', 0.7)
+        })
 
-				if (photoBlob) {
-					// 🔜 Preparado para Cloudinary
-				}
-			}
+        if (photoBlob) {
+          // 🔜 Preparado para Cloudinary
+        }
+      }
 
-			const response = await fetch('./api/authors', {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-				body: JSON.stringify(author),
-			})
+      const response = await fetch('./api/authors', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(author),
+      })
 
-			const json = await response.json()
+      const json = await response.json()
 
-			if (response.ok && json.success) {
-				updateRow(json.data)
-				$('#editModal').modal('hide')
-				showToast('Autor actualizado exitosamente.', 'success')
-			} else {
-				console.error(
-					`Backend error (${json.errorType} - ${json.statusCode}):`,
-					json.message,
-				)
-				showToast(
-					json.message || 'Hubo un error al actualizar el autor.',
-					'error',
-				)
-				$('#editModal').modal('hide')
-			}
-		} catch (err) {
-			console.error('Unexpected error:', err)
-			showToast('Hubo un error inesperado.', 'error')
-			$('#editModal').modal('hide')
-		} finally {
-			toggleButtonLoading(submitButton, false)
-		}
-	})
+      if (response.ok && json.success) {
+        updateRow(json.data)
+        $('#editModal').modal('hide')
+        showToast('Autor actualizado exitosamente.', 'success')
+      } else {
+        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
+        showToast(json.message || 'Hubo un error al actualizar el autor.', 'error')
+        $('#editModal').modal('hide')
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      showToast('Hubo un error inesperado.', 'error')
+      $('#editModal').modal('hide')
+    } finally {
+      toggleButtonLoading(submitButton, false)
+    }
+  })
 }
 
 function validateEditField(field) {
-	if (field.attr('type') === 'search') {
-		return true
-	}
+  if (field.attr('type') === 'search') {
+    return true
+  }
 
-	let errorMessage = 'Este campo es obligatorio.'
-	let isValid = true
+  let errorMessage = 'Este campo es obligatorio.'
+  let isValid = true
 
-	// Default validation
-	if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage)
-		isValid = false
-	} else {
-		field.removeClass('is-invalid')
-	}
+  // Default validation
+  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage)
+    isValid = false
+  } else {
+    field.removeClass('is-invalid')
+  }
 
-	// Name validation
-	if (field.is('#editName')) {
-		const result = isValidText(field.val(), 'nombre')
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Name validation
+  if (field.is('#editName')) {
+    const result = isValidText(field.val(), 'nombre')
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Birth date validation
-	if (field.is('#editBirthDate')) {
-		const result = isValidBirthDate(field.val())
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		}
-	}
+  // Birth date validation
+  if (field.is('#editBirthDate')) {
+    const result = isValidBirthDate(field.val())
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
 
-	// Photo validation
-	if (field.is('#editPhoto')) {
-		const file = field[0].files[0]
-		const result = isValidImageFile(file)
+  // Photo validation
+  if (field.is('#editPhoto')) {
+    const file = field[0].files[0]
+    const result = isValidImageFile(file)
 
-		if (!result.valid) {
-			isValid = false
-			errorMessage = result.message
-		} else {
-			field.removeClass('is-invalid')
-			return true
-		}
-	}
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    } else {
+      field.removeClass('is-invalid')
+      return true
+    }
+  }
 
-	// Select validation
-	if (field.is('select')) {
-		const container = field.closest('.bootstrap-select')
-		container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-		container
-			.siblings('.invalid-feedback')
-			.html('Opción seleccionada inactiva o no existente.')
-	}
+  // Select validation
+  if (field.is('select')) {
+    const container = field.closest('.bootstrap-select')
+    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
+    container.siblings('.invalid-feedback').html('Opción seleccionada inactiva o no existente.')
+  }
 
-	if (!isValid) {
-		field.addClass('is-invalid')
-		field.siblings('.invalid-feedback').html(errorMessage).show()
-	} else {
-		field.removeClass('is-invalid')
-		field.siblings('.invalid-feedback').hide()
-	}
+  if (!isValid) {
+    field.addClass('is-invalid')
+    field.siblings('.invalid-feedback').html(errorMessage).show()
+  } else {
+    field.removeClass('is-invalid')
+    field.siblings('.invalid-feedback').hide()
+  }
 
-	return isValid
+  return isValid
 }
 
-/*****************************************
+/** ***************************************
  * MODAL MANAGEMENT
  *****************************************/
 
 function loadModalData() {
-	// Add Modal
-	$(document).on('click', '[data-bs-target="#addModal"]', function () {
-		populateSelect('#addNationality', nationalityList, 'nationalityId', 'name')
-		$('#addNationality').selectpicker()
+  // Add Modal
+  $(document).on('click', '[data-bs-target="#addModal"]', function () {
+    populateSelect('#addNationality', nationalityList, 'nationalityId', 'name')
+    $('#addNationality').selectpicker()
 
-		populateSelect(
-			'#addLiteraryGenre',
-			literaryGenreList,
-			'literaryGenreId',
-			'name',
-		)
-		$('#addLiteraryGenre').selectpicker()
+    populateSelect('#addLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
+    $('#addLiteraryGenre').selectpicker()
 
-		$('#addStatus')
-			.selectpicker('destroy')
-			.empty()
-			.append(
-				$('<option>', {
-					value: 'activo',
-					text: 'Activo',
-				}),
-				$('<option>', {
-					value: 'inactivo',
-					text: 'Inactivo',
-				}),
-			)
-		$('#addStatus').selectpicker()
+    $('#addStatus')
+      .selectpicker('destroy')
+      .empty()
+      .append(
+        $('<option>', {
+          value: 'activo',
+          text: 'Activo',
+        }),
+        $('<option>', {
+          value: 'inactivo',
+          text: 'Inactivo',
+        }),
+      )
+    $('#addStatus').selectpicker()
 
-		$('#defaultAddPhotoContainer').removeClass('d-none')
-		$('#deleteAddPhotoBtn').addClass('d-none')
+    $('#defaultAddPhotoContainer').removeClass('d-none')
+    $('#deleteAddPhotoBtn').addClass('d-none')
 
-		$('#addForm')[0].reset()
-		$('#addForm .is-invalid').removeClass('is-invalid')
+    $('#addForm')[0].reset()
+    $('#addForm .is-invalid').removeClass('is-invalid')
 
-		const today = getCurrentPeruDate()
-		const maxDate = new Date(
-			today.getFullYear() - 10,
-			today.getMonth(),
-			today.getDate(),
-		)
-		const maxDateStr = maxDate.toISOString().split('T')[0]
-		$('#addBirthDate').attr('max', maxDateStr)
+    const today = getCurrentPeruDate()
+    const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
+    const maxDateStr = maxDate.toISOString().split('T')[0]
+    $('#addBirthDate').attr('max', maxDateStr)
 
-		placeholderColorDateInput()
+    placeholderColorDateInput()
 
-		$('#cropperContainerAdd').addClass('d-none')
-		if (cropper) {
-			cropper.destroy()
-			cropper = null
-		}
-	})
+    $('#cropperContainerAdd').addClass('d-none')
+    if (cropper) {
+      cropper.destroy()
+      cropper = null
+    }
+  })
 
-	// Details Modal
-	$(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-		const authorId = $(this).data('id')
-		$('#detailsModalID').text($(this).data('formatted-id'))
+  // Details Modal
+  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
+    const authorId = $(this).data('id')
+    $('#detailsModalID').text($(this).data('formatted-id'))
 
-		toggleModalLoading(this, true)
+    toggleModalLoading(this, true)
 
-		fetch(`./api/authors/${encodeURIComponent(authorId)}`, {
-			method: 'GET',
-			headers: {
-				Accept: 'application/json',
-			},
-		})
-			.then(async (response) => {
-				if (!response.ok) {
-					const errorData = await response.json()
-					throw { status: response.status, ...errorData }
-				}
-				return response.json()
-			})
-			.then((data) => {
-				$('#detailsID').text(data.formattedAuthorId)
-				$('#detailsName').text(data.name)
-				$('#detailsNationality').text(data.nationalityName)
-				$('#detailsGenre').text(data.literaryGenreName)
-				$('#detailsBirthDate').text(
-					moment(data.birthDate).format('DD MMM YYYY'),
-				)
-				$('#detailsBiography').text(data.biography || '')
+    fetch(`./api/authors/${encodeURIComponent(authorId)}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json()
+          throw { status: response.status, ...errorData }
+        }
+        return response.json()
+      })
+      .then((data) => {
+        $('#detailsID').text(data.formattedAuthorId)
+        $('#detailsName').text(data.name)
+        $('#detailsNationality').text(data.nationalityName)
+        $('#detailsGenre').text(data.literaryGenreName)
+        $('#detailsBirthDate').text(moment(data.birthDate).format('DD MMM YYYY'))
+        $('#detailsBiography').text(data.biography || '')
 
-				$('#detailsStatus').html(
-					data.status === 'activo'
-						? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-						: '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-				)
+        $('#detailsStatus').html(
+          data.status === 'activo'
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
+        )
 
-				if (data.photoUrl) {
-					$('#detailsImg').attr('src', data.photoUrl).removeClass('d-none')
-					$('#detailsSvg').addClass('d-none')
-				} else {
-					$('#detailsImg').addClass('d-none')
-					$('#detailsSvg').removeClass('d-none')
-				}
+        if (data.photoUrl) {
+          $('#detailsImg').attr('src', data.photoUrl).removeClass('d-none')
+          $('#detailsSvg').addClass('d-none')
+        } else {
+          $('#detailsImg').addClass('d-none')
+          $('#detailsSvg').removeClass('d-none')
+        }
 
-				toggleModalLoading(this, false)
-			})
-			.catch((error) => {
-				console.error(
-					`Error loading author details (${error.errorType || 'unknown'} - ${error.status}):`,
-					error.message || error,
-				)
-				showToast('Hubo un error al cargar los detalles del autor.', 'error')
-				$('#detailsModal').modal('hide')
-			})
-	})
+        toggleModalLoading(this, false)
+      })
+      .catch((error) => {
+        console.error(
+          `Error loading author details (${error.errorType || 'unknown'} - ${error.status}):`,
+          error.message || error,
+        )
+        showToast('Hubo un error al cargar los detalles del autor.', 'error')
+        $('#detailsModal').modal('hide')
+      })
+  })
 
-	// Edit Modal
-	$(document).on('click', '[data-bs-target="#editModal"]', function () {
-		const authorId = $(this).data('id')
-		$('#editModalID').text($(this).data('formatted-id'))
+  // Edit Modal
+  $(document).on('click', '[data-bs-target="#editModal"]', function () {
+    const authorId = $(this).data('id')
+    $('#editModalID').text($(this).data('formatted-id'))
 
-		toggleModalLoading(this, true)
+    toggleModalLoading(this, true)
 
-		fetch(`./api/authors/${encodeURIComponent(authorId)}`, {
-			method: 'GET',
-			headers: {
-				Accept: 'application/json',
-			},
-		})
-			.then(async (response) => {
-				if (!response.ok) {
-					const errorData = await response.json()
-					throw { status: response.status, ...errorData }
-				}
-				return response.json()
-			})
-			.then((data) => {
-				$('#editForm').data('authorId', data.authorId)
-				$('#editName').val(data.name)
+    fetch(`./api/authors/${encodeURIComponent(authorId)}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json()
+          throw { status: response.status, ...errorData }
+        }
+        return response.json()
+      })
+      .then((data) => {
+        $('#editForm').data('authorId', data.authorId)
+        $('#editName').val(data.name)
 
-				populateSelect(
-					'#editNationality',
-					nationalityList,
-					'nationalityId',
-					'name',
-				)
-				$('#editNationality').val(data.nationalityId).selectpicker()
+        populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
+        $('#editNationality').val(data.nationalityId).selectpicker()
 
-				populateSelect(
-					'#editLiteraryGenre',
-					literaryGenreList,
-					'literaryGenreId',
-					'name',
-				)
-				$('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
+        populateSelect('#editLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
+        $('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
 
-				$('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
-				const today = getCurrentPeruDate()
-				const maxDate = new Date(
-					today.getFullYear() - 10,
-					today.getMonth(),
-					today.getDate(),
-				)
-				const maxDateStr = maxDate.toISOString().split('T')[0]
-				$('#editBirthDate').attr('max', maxDateStr)
+        $('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
+        const today = getCurrentPeruDate()
+        const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
+        const maxDateStr = maxDate.toISOString().split('T')[0]
+        $('#editBirthDate').attr('max', maxDateStr)
 
-				$('#editBiography').val(data.biography)
+        $('#editBiography').val(data.biography)
 
-				$('#editStatus')
-					.selectpicker('destroy')
-					.empty()
-					.append(
-						$('<option>', { value: 'activo', text: 'Activo' }),
-						$('<option>', { value: 'inactivo', text: 'Inactivo' }),
-					)
-				$('#editStatus').val(data.status).selectpicker()
+        $('#editStatus')
+          .selectpicker('destroy')
+          .empty()
+          .append(
+            $('<option>', { value: 'activo', text: 'Activo' }),
+            $('<option>', { value: 'inactivo', text: 'Inactivo' }),
+          )
+        $('#editStatus').val(data.status).selectpicker()
 
-				updateEditImageContainer(data.photoUrl)
+        updateEditImageContainer(data.photoUrl)
 
-				$('#editForm .is-invalid').removeClass('is-invalid')
-				placeholderColorEditSelect()
-				placeholderColorDateInput()
+        $('#editForm .is-invalid').removeClass('is-invalid')
+        placeholderColorEditSelect()
+        placeholderColorDateInput()
 
-				$('#editForm')
-					.find('select')
-					.each(function () {
-						validateEditField($(this), true)
-					})
+        $('#editForm')
+          .find('select')
+          .each(function () {
+            validateEditField($(this), true)
+          })
 
-				$('#editPhoto').val('')
+        $('#editPhoto').val('')
 
-				toggleModalLoading(this, false)
-			})
-			.catch((error) => {
-				console.error(
-					`Error loading author details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-					error.message || error,
-				)
-				showToast('Hubo un error al cargar los datos del autor.', 'error')
-				$('#editModal').modal('hide')
-			})
+        toggleModalLoading(this, false)
+      })
+      .catch((error) => {
+        console.error(
+          `Error loading author details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
+          error.message || error,
+        )
+        showToast('Hubo un error al cargar los datos del autor.', 'error')
+        $('#editModal').modal('hide')
+      })
 
-		$('#cropperContainerEdit').addClass('d-none')
-		if (cropper) {
-			cropper.destroy()
-			cropper = null
-		}
-	})
+    $('#cropperContainerEdit').addClass('d-none')
+    if (cropper) {
+      cropper.destroy()
+      cropper = null
+    }
+  })
 }
 
 function updateEditImageContainer(photoUrl) {
-	const $editImageContainer = $('#currentEditPhotoContainer')
-	const $deleteEditPhotoBtn = $('#deleteEditPhotoBtn')
+  const $editImageContainer = $('#currentEditPhotoContainer')
+  const $deleteEditPhotoBtn = $('#deleteEditPhotoBtn')
 
-	$editImageContainer.empty()
+  $editImageContainer.empty()
 
-	if (photoUrl) {
-		$editImageContainer.html(
-			`<img src="${photoUrl}" class="img-fluid rounded-circle" alt="Foto del Autor">`,
-		)
-		$deleteEditPhotoBtn.removeClass('d-none')
-	} else {
-		$editImageContainer.html(
-			`<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+  if (photoUrl) {
+    $editImageContainer.html(
+      `<img src="${photoUrl}" class="img-fluid rounded-circle" alt="Foto del Autor">`,
+    )
+    $deleteEditPhotoBtn.removeClass('d-none')
+  } else {
+    $editImageContainer.html(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
 				<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
 				<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
             </svg>`,
-		)
-		$deleteEditPhotoBtn.addClass('d-none')
-	}
-	$editImageContainer.removeClass('d-none')
+    )
+    $deleteEditPhotoBtn.addClass('d-none')
+  }
+  $editImageContainer.removeClass('d-none')
 }
 
 $('#deleteAddPhotoBtn').on('click', function () {
-	$(this).addClass('d-none')
+  $(this).addClass('d-none')
 
-	if (cropper) {
-		cropper.destroy()
-		cropper = null
-	}
-	$('#cropperContainerAdd').addClass('d-none')
-	$('#addPhoto').val('')
-	$('#defaultAddPhotoContainer').removeClass('d-none')
+  if (cropper) {
+    cropper.destroy()
+    cropper = null
+  }
+  $('#cropperContainerAdd').addClass('d-none')
+  $('#addPhoto').val('')
+  $('#defaultAddPhotoContainer').removeClass('d-none')
 })
 
 $('#deleteEditPhotoBtn').on('click', function () {
-	deletePhotoFlag = true
-	updateEditImageContainer(null)
+  deletePhotoFlag = true
+  updateEditImageContainer(null)
 
-	$(this).addClass('d-none')
+  $(this).addClass('d-none')
 
-	if (cropper) {
-		cropper.destroy()
-		cropper = null
-	}
-	$('#cropperContainerEdit').addClass('d-none')
-	$('#editPhoto').val('')
+  if (cropper) {
+    cropper.destroy()
+    cropper = null
+  }
+  $('#cropperContainerEdit').addClass('d-none')
+  $('#editPhoto').val('')
 })
 
 let cropper
@@ -775,329 +735,315 @@ const $cropperContainerEdit = $('#cropperContainerEdit')
 const $imageToCropEdit = $('#imageToCropEdit')
 
 $('#addPhoto, #editPhoto').on('change', function () {
-	const file = this.files[0]
-	deletePhotoFlag = false
+  const file = this.files[0]
+  deletePhotoFlag = false
 
-	$('#deleteAddPhotoBtn').addClass('d-none')
-	$('#deleteEditPhotoBtn').addClass('d-none')
+  $('#deleteAddPhotoBtn').addClass('d-none')
+  $('#deleteEditPhotoBtn').addClass('d-none')
 
-	if (
-		file &&
-		['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)
-	) {
-		$('#defaultAddPhotoContainer').addClass('d-none')
-		$('#currentEditPhotoContainer').addClass('d-none')
+  if (file && ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)) {
+    $('#defaultAddPhotoContainer').addClass('d-none')
+    $('#currentEditPhotoContainer').addClass('d-none')
 
-		$('#deleteAddPhotoBtn').removeClass('d-none')
-		$('#deleteEditPhotoBtn').removeClass('d-none')
+    $('#deleteAddPhotoBtn').removeClass('d-none')
+    $('#deleteEditPhotoBtn').removeClass('d-none')
 
-		let $container, $image
-		if ($(this).is('#addPhoto')) {
-			$container = $cropperContainerAdd
-			$image = $imageToCropAdd
-		} else {
-			$container = $cropperContainerEdit
-			$image = $imageToCropEdit
-		}
-		initializeCropper(file, $container, $image, cropper)
-	} else {
-		if ($(this).is('#addPhoto')) {
-			$cropperContainerAdd.addClass('d-none')
-			if (cropper) {
-				cropper.destroy()
-				cropper = null
-			}
-			$('#defaultAddPhotoContainer').removeClass('d-none')
-		} else {
-			$cropperContainerEdit.addClass('d-none')
-			if (cropper) {
-				cropper.destroy()
-				cropper = null
-			}
-			$('#currentEditPhotoContainer').removeClass('d-none')
-		}
+    let $container, $image
+    if ($(this).is('#addPhoto')) {
+      $container = $cropperContainerAdd
+      $image = $imageToCropAdd
+    } else {
+      $container = $cropperContainerEdit
+      $image = $imageToCropEdit
+    }
+    initializeCropper(file, $container, $image, cropper)
+  } else {
+    if ($(this).is('#addPhoto')) {
+      $cropperContainerAdd.addClass('d-none')
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
+      $('#defaultAddPhotoContainer').removeClass('d-none')
+    } else {
+      $cropperContainerEdit.addClass('d-none')
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
+      $('#currentEditPhotoContainer').removeClass('d-none')
+    }
 
-		if ($('#currentEditPhotoContainer').find('img').length > 0) {
-			$('#deleteEditPhotoBtn').removeClass('d-none')
-		}
-	}
+    if ($('#currentEditPhotoContainer').find('img').length > 0) {
+      $('#deleteEditPhotoBtn').removeClass('d-none')
+    }
+  }
 })
 
 function generatePDF(dataTable) {
-	const pdfBtn = $('#generatePDF')
-	toggleButtonLoading(pdfBtn, true)
+  const pdfBtn = $('#generatePDF')
+  toggleButtonLoading(pdfBtn, true)
 
-	let hasWarnings = false
+  let hasWarnings = false
 
-	try {
-		const { jsPDF } = window.jspdf
-		const doc = new jsPDF('p', 'mm', 'a4')
-		const logoUrl = '/images/bookstudio-logo-no-bg.png'
+  try {
+    const { jsPDF } = window.jspdf
+    const doc = new jsPDF('p', 'mm', 'a4')
+    const logoUrl = '/images/bookstudio-logo-no-bg.png'
 
-		const currentDate = new Date()
-		const fecha = currentDate.toLocaleDateString('es-ES', {
-			day: '2-digit',
-			month: 'long',
-			year: 'numeric',
-		})
-		const hora = currentDate.toLocaleTimeString('en-US', {
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: true,
-		})
+    const currentDate = new Date()
+    const fecha = currentDate.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    })
+    const hora = currentDate.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    })
 
-		const pageWidth = doc.internal.pageSize.getWidth()
-		const margin = 10
-		const topMargin = 5
+    const pageWidth = doc.internal.pageSize.getWidth()
+    const margin = 10
+    const topMargin = 5
 
-		try {
-			doc.addImage(logoUrl, 'PNG', margin, topMargin - 5, 30, 30)
-		} catch (imgError) {
-			console.warn('Logo not available:', imgError)
-			showToast('No se pudo cargar el logo. Se continuará sin él.', 'warning')
-			hasWarnings = true
-		}
+    try {
+      doc.addImage(logoUrl, 'PNG', margin, topMargin - 5, 30, 30)
+    } catch (imgError) {
+      console.warn('Logo not available:', imgError)
+      showToast('No se pudo cargar el logo. Se continuará sin él.', 'warning')
+      hasWarnings = true
+    }
 
-		doc.setFont('helvetica', 'bold')
-		doc.setFontSize(14)
-		doc.text('Lista de autores', pageWidth / 2, topMargin + 13, {
-			align: 'center',
-		})
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(14)
+    doc.text('Lista de autores', pageWidth / 2, topMargin + 13, {
+      align: 'center',
+    })
 
-		doc.setFont('helvetica', 'normal')
-		doc.setFontSize(8)
-		doc.text(`Fecha: ${fecha}`, pageWidth - margin, topMargin + 10, {
-			align: 'right',
-		})
-		doc.text(`Hora: ${hora}`, pageWidth - margin, topMargin + 15, {
-			align: 'right',
-		})
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(8)
+    doc.text(`Fecha: ${fecha}`, pageWidth - margin, topMargin + 10, {
+      align: 'right',
+    })
+    doc.text(`Hora: ${hora}`, pageWidth - margin, topMargin + 15, {
+      align: 'right',
+    })
 
-		const data = dataTable
-			.rows({ search: 'applied' })
-			.nodes()
-			.toArray()
-			.map((row) => {
-				let estado = row.cells[5].innerText.trim()
-				estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
+    const data = dataTable
+      .rows({ search: 'applied' })
+      .nodes()
+      .toArray()
+      .map((row) => {
+        let estado = row.cells[5].innerText.trim()
+        estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
 
-				return [
-					row.cells[0].innerText.trim(),
-					row.cells[1].innerText.trim(),
-					row.cells[2].innerText.trim(),
-					row.cells[3].innerText.trim(),
-					row.cells[4].innerText.trim(),
-					estado,
-				]
-			})
+        return [
+          row.cells[0].innerText.trim(),
+          row.cells[1].innerText.trim(),
+          row.cells[2].innerText.trim(),
+          row.cells[3].innerText.trim(),
+          row.cells[4].innerText.trim(),
+          estado,
+        ]
+      })
 
-		doc.autoTable({
-			startY: topMargin + 25,
-			margin: { left: margin, right: margin },
-			head: [
-				[
-					'Código',
-					'Nombre',
-					'Nacionalidad',
-					'Género literario',
-					'Fecha nacimiento',
-					'Estado',
-				],
-			],
-			body: data,
-			theme: 'grid',
-			headStyles: {
-				fillColor: [0, 0, 0],
-				textColor: 255,
-				fontStyle: 'bold',
-				fontSize: 8,
-				halign: 'left',
-			},
-			bodyStyles: {
-				font: 'helvetica',
-				fontSize: 7,
-				halign: 'left',
-			},
-			didParseCell: function (data) {
-				if (data.section === 'body' && data.column.index === 5) {
-					data.cell.styles.textColor =
-						data.cell.raw === 'Activo' ? [0, 128, 0] : [255, 0, 0]
-				}
-			},
-		})
+    doc.autoTable({
+      startY: topMargin + 25,
+      margin: { left: margin, right: margin },
+      head: [
+        ['Código', 'Nombre', 'Nacionalidad', 'Género literario', 'Fecha nacimiento', 'Estado'],
+      ],
+      body: data,
+      theme: 'grid',
+      headStyles: {
+        fillColor: [0, 0, 0],
+        textColor: 255,
+        fontStyle: 'bold',
+        fontSize: 8,
+        halign: 'left',
+      },
+      bodyStyles: {
+        font: 'helvetica',
+        fontSize: 7,
+        halign: 'left',
+      },
+      didParseCell: function (data) {
+        if (data.section === 'body' && data.column.index === 5) {
+          data.cell.styles.textColor = data.cell.raw === 'Activo' ? [0, 128, 0] : [255, 0, 0]
+        }
+      },
+    })
 
-		const filename = `Lista_de_autores_bookstudio_${fecha.replace(/\s+/g, '_')}.pdf`
+    const filename = `Lista_de_autores_bookstudio_${fecha.replace(/\s+/g, '_')}.pdf`
 
-		const pdfBlob = doc.output('blob')
-		const blobUrl = URL.createObjectURL(pdfBlob)
-		const link = document.createElement('a')
-		link.href = blobUrl
-		link.download = filename
-		document.body.appendChild(link)
-		link.click()
-		document.body.removeChild(link)
+    const pdfBlob = doc.output('blob')
+    const blobUrl = URL.createObjectURL(pdfBlob)
+    const link = document.createElement('a')
+    link.href = blobUrl
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
 
-		if (!hasWarnings) {
-			showToast('PDF generado exitosamente.', 'success')
-		}
-	} catch (error) {
-		console.error('Error generating PDF file:', error)
-		showToast(
-			'Ocurrió un error al generar el PDF. Inténtalo nuevamente.',
-			'error',
-		)
-	} finally {
-		toggleButtonLoading(pdfBtn, false)
-	}
+    if (!hasWarnings) {
+      showToast('PDF generado exitosamente.', 'success')
+    }
+  } catch (error) {
+    console.error('Error generating PDF file:', error)
+    showToast('Ocurrió un error al generar el PDF. Inténtalo nuevamente.', 'error')
+  } finally {
+    toggleButtonLoading(pdfBtn, false)
+  }
 }
 
 function generateExcel(dataTable) {
-	const excelBtn = $('#generateExcel')
-	toggleButtonLoading(excelBtn, true)
+  const excelBtn = $('#generateExcel')
+  toggleButtonLoading(excelBtn, true)
 
-	try {
-		const workbook = new ExcelJS.Workbook()
-		const worksheet = workbook.addWorksheet('Autores')
+  try {
+    const workbook = new ExcelJS.Workbook()
+    const worksheet = workbook.addWorksheet('Autores')
 
-		const currentDate = new Date()
-		const dateStr = currentDate.toLocaleDateString('es-ES', {
-			day: '2-digit',
-			month: 'long',
-			year: 'numeric',
-		})
-		const timeStr = currentDate.toLocaleTimeString('en-US', {
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: true,
-		})
+    const currentDate = new Date()
+    const dateStr = currentDate.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    })
+    const timeStr = currentDate.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    })
 
-		worksheet.mergeCells('A1:F1')
-		const titleCell = worksheet.getCell('A1')
-		titleCell.value = 'Lista de autores - BookStudio'
-		titleCell.font = {
-			name: 'Arial',
-			size: 16,
-			bold: true,
-		}
-		titleCell.alignment = { horizontal: 'center' }
+    worksheet.mergeCells('A1:F1')
+    const titleCell = worksheet.getCell('A1')
+    titleCell.value = 'Lista de autores - BookStudio'
+    titleCell.font = {
+      name: 'Arial',
+      size: 16,
+      bold: true,
+    }
+    titleCell.alignment = { horizontal: 'center' }
 
-		worksheet.mergeCells('A2:F2')
-		const dateTimeCell = worksheet.getCell('A2')
-		dateTimeCell.value = `Fecha: ${dateStr}  Hora: ${timeStr}`
-		dateTimeCell.alignment = { horizontal: 'center' }
+    worksheet.mergeCells('A2:F2')
+    const dateTimeCell = worksheet.getCell('A2')
+    dateTimeCell.value = `Fecha: ${dateStr}  Hora: ${timeStr}`
+    dateTimeCell.alignment = { horizontal: 'center' }
 
-		worksheet.columns = [
-			{ key: 'id', width: 10 },
-			{ key: 'nombre', width: 30 },
-			{ key: 'nacionalidad', width: 30 },
-			{ key: 'genero', width: 30 },
-			{ key: 'nacimiento', width: 25 },
-			{ key: 'estado', width: 15 },
-		]
+    worksheet.columns = [
+      { key: 'id', width: 10 },
+      { key: 'nombre', width: 30 },
+      { key: 'nacionalidad', width: 30 },
+      { key: 'genero', width: 30 },
+      { key: 'nacimiento', width: 25 },
+      { key: 'estado', width: 15 },
+    ]
 
-		const headerRow = worksheet.getRow(4)
-		headerRow.values = [
-			'Código',
-			'Nombre',
-			'Nacionalidad',
-			'Género literario',
-			'Fecha nacimiento',
-			'Estado',
-		]
-		headerRow.eachCell((cell) => {
-			cell.font = { bold: true, color: { argb: 'FFFFFF' } }
-			cell.fill = {
-				type: 'pattern',
-				pattern: 'solid',
-				fgColor: { argb: '000000' },
-			}
-			cell.alignment = { horizontal: 'left', vertical: 'middle' }
-			cell.border = {
-				top: { style: 'thin', color: { argb: 'FFFFFF' } },
-				bottom: { style: 'thin', color: { argb: 'FFFFFF' } },
-				left: { style: 'thin', color: { argb: 'FFFFFF' } },
-				right: { style: 'thin', color: { argb: 'FFFFFF' } },
-			}
-		})
+    const headerRow = worksheet.getRow(4)
+    headerRow.values = [
+      'Código',
+      'Nombre',
+      'Nacionalidad',
+      'Género literario',
+      'Fecha nacimiento',
+      'Estado',
+    ]
+    headerRow.eachCell((cell) => {
+      cell.font = { bold: true, color: { argb: 'FFFFFF' } }
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: '000000' },
+      }
+      cell.alignment = { horizontal: 'left', vertical: 'middle' }
+      cell.border = {
+        top: { style: 'thin', color: { argb: 'FFFFFF' } },
+        bottom: { style: 'thin', color: { argb: 'FFFFFF' } },
+        left: { style: 'thin', color: { argb: 'FFFFFF' } },
+        right: { style: 'thin', color: { argb: 'FFFFFF' } },
+      }
+    })
 
-		const data = dataTable
-			.rows({ search: 'applied' })
-			.nodes()
-			.toArray()
-			.map((row) => {
-				let estado = row.cells[5].innerText.trim()
-				estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
+    const data = dataTable
+      .rows({ search: 'applied' })
+      .nodes()
+      .toArray()
+      .map((row) => {
+        let estado = row.cells[5].innerText.trim()
+        estado = estado.includes('Activo') ? 'Activo' : 'Inactivo'
 
-				return {
-					id: row.cells[0].innerText.trim(),
-					nombre: row.cells[1].innerText.trim(),
-					nacionalidad: row.cells[2].innerText.trim(),
-					genero: row.cells[3].innerText.trim(),
-					nacimiento: row.cells[4].innerText.trim(),
-					estado: estado,
-				}
-			})
+        return {
+          id: row.cells[0].innerText.trim(),
+          nombre: row.cells[1].innerText.trim(),
+          nacionalidad: row.cells[2].innerText.trim(),
+          genero: row.cells[3].innerText.trim(),
+          nacimiento: row.cells[4].innerText.trim(),
+          estado: estado,
+        }
+      })
 
-		data.forEach((item) => {
-			const row = worksheet.addRow(item)
-			const estadoCell = row.getCell(6)
-			if (estadoCell.value === 'Activo') {
-				estadoCell.font = { color: { argb: '008000' } }
-				estadoCell.fill = {
-					type: 'pattern',
-					pattern: 'solid',
-					fgColor: { argb: 'E6F2E6' },
-				}
-			} else {
-				estadoCell.font = { color: { argb: 'FF0000' } }
-				estadoCell.fill = {
-					type: 'pattern',
-					pattern: 'solid',
-					fgColor: { argb: 'FFE6E6' },
-				}
-			}
-		})
+    data.forEach((item) => {
+      const row = worksheet.addRow(item)
+      const estadoCell = row.getCell(6)
+      if (estadoCell.value === 'Activo') {
+        estadoCell.font = { color: { argb: '008000' } }
+        estadoCell.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb: 'E6F2E6' },
+        }
+      } else {
+        estadoCell.font = { color: { argb: 'FF0000' } }
+        estadoCell.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb: 'FFE6E6' },
+        }
+      }
+    })
 
-		const filename = `Lista_de_autores_bookstudio_${dateStr.replace(/\s+/g, '_')}.xlsx`
+    const filename = `Lista_de_autores_bookstudio_${dateStr.replace(/\s+/g, '_')}.xlsx`
 
-		workbook.xlsx
-			.writeBuffer()
-			.then((buffer) => {
-				const blob = new Blob([buffer], {
-					type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-				})
-				const link = document.createElement('a')
-				link.href = URL.createObjectURL(blob)
-				link.download = filename
-				link.click()
+    workbook.xlsx
+      .writeBuffer()
+      .then((buffer) => {
+        const blob = new Blob([buffer], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        })
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = filename
+        link.click()
 
-				showToast('Excel generado exitosamente.', 'success')
-			})
-			.catch((error) => {
-				console.error('Error generating Excel file:', error)
-				showToast('Ocurrió un error al generar el Excel.', 'error')
-			})
-			.finally(() => {
-				toggleButtonLoading(excelBtn, false)
-			})
-	} catch (error) {
-		console.error('General error while generating Excel file:', error)
-		showToast('Ocurrió un error inesperado al generar el Excel.', 'error')
-		toggleButtonLoading(excelBtn, false)
-	}
+        showToast('Excel generado exitosamente.', 'success')
+      })
+      .catch((error) => {
+        console.error('Error generating Excel file:', error)
+        showToast('Ocurrió un error al generar el Excel.', 'error')
+      })
+      .finally(() => {
+        toggleButtonLoading(excelBtn, false)
+      })
+  } catch (error) {
+    console.error('General error while generating Excel file:', error)
+    showToast('Ocurrió un error inesperado al generar el Excel.', 'error')
+    toggleButtonLoading(excelBtn, false)
+  }
 }
 
-/*****************************************
+/** ***************************************
  * INITIALIZATION
  *****************************************/
 
 $(document).ready(function () {
-	loadData()
-	handleAddForm()
-	handleEditForm()
-	loadModalData()
-	loadOptions()
-	$('.selectpicker').selectpicker()
-	setupBootstrapSelectDropdownStyles()
-	placeholderColorSelect()
+  loadData()
+  handleAddForm()
+  handleEditForm()
+  loadModalData()
+  loadOptions()
+  $('.selectpicker').selectpicker()
+  setupBootstrapSelectDropdownStyles()
+  placeholderColorSelect()
 })

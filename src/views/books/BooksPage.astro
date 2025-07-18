@@ -1,11 +1,11 @@
 ---
-import DashboardLayout from '@layouts/DashboardLayout.astro';
-import DataTableCard from '@components/ui/DataTableCard.astro';
-import Modals from '@components/ui/Modals.astro';
+import DashboardLayout from '@layouts/DashboardLayout.astro'
+import DataTableCard from '@components/ui/DataTableCard.astro'
+import Modals from '@components/ui/Modals.astro'
 
 const customScripts = `
   <script type="module" src="/js/modules/books/books.js" defer></script>
-`;
+`
 ---
 
 <DashboardLayout
@@ -15,347 +15,351 @@ const customScripts = `
   username="Jason"
   customScripts={customScripts}
 >
-    <DataTableCard
-      title="Lista de libros"
-      icon="bi-journal-bookmark"
-    >
-        <Fragment slot="thead">
-			<th scope="col" class="text-start">Código</th>
-			<th scope="col" class="text-start">Título</th>
-			<th scope="col" class="text-center">Ej. disp.</th>
-			<th scope="col" class="text-center">Ej. prest.</th>
-			<th scope="col" class="text-start">Autor</th>
-			<th scope="col" class="text-start">Editorial</th>
-			<th scope="col" class="text-center">Estado</th>
-			<th scope="col" class="text-center"></th>
-        </Fragment>
-    </DataTableCard>
-    
-    <Modals
-        slot="modals"
-        addTitle="Agregar un libro"
-        detailsTitle="Detalles del libro"
-        editTitle="Editar libro"
-    >
-        <Fragment slot="add-fields">
-            <!-- Title and Total Copies Section -->
-			<div class="row">
-				<!-- Title Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addTitle" class="form-label">Título <span class="text-danger">*</span></label>
-					<input 
-						type="text" 
-						class="form-control" 
-						id="addTitle" 
-						name="title"
-						placeholder="Ingrese el título del libro" 
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Total Copies Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addTotalCopies" class="form-label">Ejemplares totales <span class="text-danger">*</span></label>
-					<input 
-						type="number" 
-						class="form-control" 
-						id="addTotalCopies" 
-						name="totalCopies"
-						min="1" 
-						max="1000" 
-						placeholder="Ingrese la cantidad de ejemplares" 
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-			
-			<!-- Author and Publisher Section -->
-			<div class="row">
-				<!-- Author Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addAuthor" class="form-label">Autor <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control placeholder-color" 
-						id="addAuthor" 
-						name="author"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						title="Seleccione un autor" 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Publisher Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addPublisher" class="form-label">Editorial <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control placeholder-color" 
-						id="addPublisher" 
-						name="publisher"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						title="Seleccione una editorial" 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-			
-			<!-- Course and Release Date Section -->
-			<div class="row">
-				<!-- Course Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addCourse" class="form-label">Curso <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control placeholder-color" 
-						id="addCourse" 
-						name="course"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						title="Seleccione un curso" 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Release Date Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addReleaseDate" class="form-label">Fecha de lanzamiento <span class="text-danger">*</span></label>
-					<input 
-						type="date" 
-						class="form-control" 
-						id="addReleaseDate" 
-						name="releaseDate"
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div>   
-			</div>
-			
-			<!-- Genre and Status Section -->
-			<div class="row">
-				<!-- Genre Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addGenre" class="form-label">Género <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control placeholder-color" 
-						id="addGenre" 
-						name="genre"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						title="Seleccione un género" 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Status Field -->
-				<div class="col-md-6 mb-3">
-					<label for="addStatus" class="form-label">Estado <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control placeholder-color" 
-						id="addStatus" 
-						name="status"
-						title="Seleccione un estado" 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-        </Fragment>
+  <DataTableCard title="Lista de libros" icon="bi-journal-bookmark">
+    <Fragment slot="thead">
+      <th scope="col" class="text-start">Código</th>
+      <th scope="col" class="text-start">Título</th>
+      <th scope="col" class="text-center">Ej. disp.</th>
+      <th scope="col" class="text-center">Ej. prest.</th>
+      <th scope="col" class="text-start">Autor</th>
+      <th scope="col" class="text-start">Editorial</th>
+      <th scope="col" class="text-center">Estado</th>
+      <th scope="col" class="text-center"></th>
+    </Fragment>
+  </DataTableCard>
 
-        <Fragment slot="details-body">
-            <!-- ID and Title Section -->
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Código</h6>
-					<p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
-				</div>
-				
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Título</h6>
-					<p class="fw-bold" id="detailsTitle"></p>
-				</div>
-			</div>
-			
-			<!-- Avaible and Loaned Copies Section -->
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Ejemplares disponibles</h6>
-					<p class="badge text-success-emphasis bg-success-subtle border border-success-subtle" id="detailsAvaibleCopies"></p>
-				</div>
-				
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Ejemplares prestados</h6>
-					<p class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle" id="detailsLoanedCopies"></p>
-				</div>
-			</div>
-			
-			<!-- Author and Publisher Section -->
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Autor</h6>
-					<p class="fw-bold" id="detailsAuthor"></p>
-				</div>
-				
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Editorial</h6>
-					<p class="fw-bold" id="detailsPublisher"></p>
-				</div>
-			</div>
-			
-			<!-- Course and Release Date Section -->
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Curso</h6>
-					<p class="fw-bold" id="detailsCourse"></p>
-				</div>
-				
-				<div class="col-md-6 mb-3">
-					<h6 class="small text-muted">Fecha de lanzamiento</h6>
-					<p class="fw-bold" id="detailsReleaseDate"></p>
-				</div>
-			</div>
-			
-			<!-- Genre and Status Section -->
-			<div class="row">   
-				<div class="col-md-6">
-					<h6 class="small text-muted">Género</h6>
-					<p class="badge bg-body-secondary text-body-emphasis border" id="detailsGenre"></p>
-				</div>
-				
-				<div class="col-md-6">
-					<h6 class="small text-muted">Estado</h6>
-					<p id="detailsStatus"></p>
-				</div>
-			</div>
-        </Fragment>
+  <Modals
+    slot="modals"
+    addTitle="Agregar un libro"
+    detailsTitle="Detalles del libro"
+    editTitle="Editar libro"
+  >
+    <Fragment slot="add-fields">
+      <!-- Title and Total Copies Section -->
+      <div class="row">
+        <!-- Title Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addTitle" class="form-label">Título <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="addTitle"
+            name="title"
+            placeholder="Ingrese el título del libro"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
 
-        <Fragment slot="edit-fields">
-            <!-- Title and Total Copies Section -->
-			<div class="row">
-				<!-- Title Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editTitle" class="form-label">Título <span class="text-danger">*</span></label>
-					<input 
-						type="text" 
-						class="form-control" 
-						id="editTitle" 
-						name="title"
-						placeholder="Ingrese el título del libro" 
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Total Copies Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editTotalCopies" class="form-label">Ejemplares totales <span class="text-danger">*</span></label>
-					<input 
-						type="number" 
-						class="form-control" 
-						id="editTotalCopies" 
-						name="totalCopies"
-						min="1" 
-						max="1000" 
-						placeholder="Ingrese la cantidad de ejemplares" 
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-			
-			<!-- Author and Publisher Section -->
-			<div class="row">
-				<!-- Author Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editAuthor" class="form-label">Autor <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control" 
-						id="editAuthor" 
-						name="author"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Publisher Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editPublisher" class="form-label">Editorial <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control" 
-						id="editPublisher" 
-						name="publisher"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-			
-			<!-- Course and Release Date Section -->
-			<div class="row">
-				<!-- Course Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editCourse" class="form-label">Curso <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control" 
-						id="editCourse" 
-						name="course"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Release Date Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editReleaseDate" class="form-label">Fecha de lanzamiento <span class="text-danger">*</span></label>
-					<input 
-						type="date" 
-						class="form-control" 
-						id="editReleaseDate" 
-						name="releaseDate"
-						required
-					>
-					<div class="invalid-feedback"></div>
-				</div> 
-			</div>
-			
-			<!-- Genre and Status Section -->
-			<div class="row">
-				<!-- Genre Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editGenre" class="form-label">Género <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control" 
-						id="editGenre" 
-						name="genre"
-						data-live-search="true" 
-						data-live-search-placeholder="Buscar..." 
-						required
-					></select>
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				<!-- Status Field -->
-				<div class="col-md-6 mb-3">
-					<label for="editStatus" class="form-label">Estado <span class="text-danger">*</span></label>
-					<select 
-						class="selectpicker form-control" 
-						id="editStatus" 
-						name="status"
-						required
-					></select>
-				</div>
-			</div>
-        </Fragment>
-    </Modals>
+        <!-- Total Copies Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addTotalCopies" class="form-label"
+            >Ejemplares totales <span class="text-danger">*</span></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="addTotalCopies"
+            name="totalCopies"
+            min="1"
+            max="1000"
+            placeholder="Ingrese la cantidad de ejemplares"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Author and Publisher Section -->
+      <div class="row">
+        <!-- Author Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addAuthor" class="form-label">Autor <span class="text-danger">*</span></label>
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addAuthor"
+            name="author"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            title="Seleccione un autor"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Publisher Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addPublisher" class="form-label"
+            >Editorial <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addPublisher"
+            name="publisher"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            title="Seleccione una editorial"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Course and Release Date Section -->
+      <div class="row">
+        <!-- Course Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addCourse" class="form-label">Curso <span class="text-danger">*</span></label>
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addCourse"
+            name="course"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            title="Seleccione un curso"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Release Date Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addReleaseDate" class="form-label"
+            >Fecha de lanzamiento <span class="text-danger">*</span></label
+          >
+          <input type="date" class="form-control" id="addReleaseDate" name="releaseDate" required />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Genre and Status Section -->
+      <div class="row">
+        <!-- Genre Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addGenre" class="form-label">Género <span class="text-danger">*</span></label>
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addGenre"
+            name="genre"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            title="Seleccione un género"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Status Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addStatus" class="form-label">Estado <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addStatus"
+            name="status"
+            title="Seleccione un estado"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="details-body">
+      <!-- ID and Title Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Código</h6>
+          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Título</h6>
+          <p class="fw-bold" id="detailsTitle"></p>
+        </div>
+      </div>
+
+      <!-- Avaible and Loaned Copies Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Ejemplares disponibles</h6>
+          <p
+            class="badge text-success-emphasis bg-success-subtle border border-success-subtle"
+            id="detailsAvaibleCopies"
+          >
+          </p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Ejemplares prestados</h6>
+          <p
+            class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle"
+            id="detailsLoanedCopies"
+          >
+          </p>
+        </div>
+      </div>
+
+      <!-- Author and Publisher Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Autor</h6>
+          <p class="fw-bold" id="detailsAuthor"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Editorial</h6>
+          <p class="fw-bold" id="detailsPublisher"></p>
+        </div>
+      </div>
+
+      <!-- Course and Release Date Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Curso</h6>
+          <p class="fw-bold" id="detailsCourse"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Fecha de lanzamiento</h6>
+          <p class="fw-bold" id="detailsReleaseDate"></p>
+        </div>
+      </div>
+
+      <!-- Genre and Status Section -->
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="small text-muted">Género</h6>
+          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsGenre"></p>
+        </div>
+
+        <div class="col-md-6">
+          <h6 class="small text-muted">Estado</h6>
+          <p id="detailsStatus"></p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="edit-fields">
+      <!-- Title and Total Copies Section -->
+      <div class="row">
+        <!-- Title Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editTitle" class="form-label">Título <span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="editTitle"
+            name="title"
+            placeholder="Ingrese el título del libro"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Total Copies Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editTotalCopies" class="form-label"
+            >Ejemplares totales <span class="text-danger">*</span></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="editTotalCopies"
+            name="totalCopies"
+            min="1"
+            max="1000"
+            placeholder="Ingrese la cantidad de ejemplares"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Author and Publisher Section -->
+      <div class="row">
+        <!-- Author Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editAuthor" class="form-label">Autor <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control"
+            id="editAuthor"
+            name="author"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Publisher Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editPublisher" class="form-label"
+            >Editorial <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control"
+            id="editPublisher"
+            name="publisher"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Course and Release Date Section -->
+      <div class="row">
+        <!-- Course Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editCourse" class="form-label">Curso <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control"
+            id="editCourse"
+            name="course"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Release Date Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editReleaseDate" class="form-label"
+            >Fecha de lanzamiento <span class="text-danger">*</span></label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="editReleaseDate"
+            name="releaseDate"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Genre and Status Section -->
+      <div class="row">
+        <!-- Genre Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editGenre" class="form-label">Género <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control"
+            id="editGenre"
+            name="genre"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Status Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editStatus" class="form-label"
+            >Estado <span class="text-danger">*</span></label
+          >
+          <select class="selectpicker form-control" id="editStatus" name="status" required></select>
+        </div>
+      </div>
+    </Fragment>
+  </Modals>
 </DashboardLayout>

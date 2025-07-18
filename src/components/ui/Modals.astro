@@ -1,23 +1,32 @@
 ---
 const {
-  addTitle = "Agregar",
-  editTitle = "Editar",
-  detailsTitle = "Detalles",
-  useMultipart = false
-} = Astro.props;
+  addTitle = 'Agregar',
+  editTitle = 'Editar',
+  detailsTitle = 'Detalles',
+  useMultipart = false,
+} = Astro.props
 
-const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined;
+const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined
 ---
 
 <!-- Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true" data-bs-backdrop="static">
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  aria-labelledby="addModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <header class="modal-header">
         <h5 class="modal-title text-body-emphasis" id="addModalLabel">
-          <i class="bi bi-plus-circle me-1"></i> {addTitle}
+          <i class="bi bi-plus-circle me-1"></i>
+          {addTitle}
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"
+        ></button>
       </header>
 
       <div class="modal-body">
@@ -27,10 +36,20 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined;
       </div>
 
       <footer class="modal-footer">
-        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-custom-primary d-flex align-items-center" form="addForm" id="addBtn">
+        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
+          >Cancelar</button
+        >
+        <button
+          type="submit"
+          class="btn btn-custom-primary d-flex align-items-center"
+          form="addForm"
+          id="addBtn"
+        >
           <i class="bi bi-plus-circle me-2"></i>
-          <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+          <span
+            class="spinner-border spinner-border-sm me-2 d-none"
+            role="status"
+            aria-hidden="true"></span>
           Agregar
         </button>
       </footer>
@@ -39,15 +58,24 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined;
 </div>
 
 <!-- Details Modal -->
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="detailsModal"
+  tabindex="-1"
+  aria-labelledby="detailsModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <header class="modal-header">
         <h5 class="modal-title text-body-emphasis" id="detailsModalLabel">
-          <i class="bi bi-info-circle me-1"></i> {detailsTitle}
-          <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="detailsModalID"></span>
+          <i class="bi bi-info-circle me-1"></i>
+          {detailsTitle}
+          <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="detailsModalID"
+          ></span>
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"
+        ></button>
       </header>
 
       <div class="modal-body">
@@ -63,22 +91,34 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined;
       </div>
 
       <footer class="modal-footer">
-        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
+          >Cerrar</button
+        >
       </footer>
     </div>
   </div>
 </div>
 
 <!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" data-bs-backdrop="static">
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="editModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <header class="modal-header">
         <h5 class="modal-title text-body-emphasis" id="editModalLabel">
-          <i class="bi bi-pencil me-1"></i> {editTitle}
-          <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="editModalID"></span>
+          <i class="bi bi-pencil me-1"></i>
+          {editTitle}
+          <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="editModalID"
+          ></span>
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"
+        ></button>
       </header>
 
       <div class="modal-body">
@@ -94,10 +134,20 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined;
       </div>
 
       <footer class="modal-footer">
-        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-custom-primary d-flex align-items-center" form="editForm" id="updateBtn">
+        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
+          >Cancelar</button
+        >
+        <button
+          type="submit"
+          class="btn btn-custom-primary d-flex align-items-center"
+          form="editForm"
+          id="updateBtn"
+        >
           <i class="bi bi-floppy me-2"></i>
-          <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+          <span
+            class="spinner-border spinner-border-sm me-2 d-none"
+            role="status"
+            aria-hidden="true"></span>
           Actualizar
         </button>
       </footer>

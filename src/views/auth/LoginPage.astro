@@ -1,12 +1,16 @@
 ---
-import AuthLayout from '@layouts/AuthLayout.astro';
+import AuthLayout from '@layouts/AuthLayout.astro'
 
 const customScripts = `
   <script type="module" src="/js/modules/auth/login.js" defer></script>
-`;
+`
 ---
 
-<AuthLayout title="Iniciar sesión" description="Empieza a gestionar tus préstamos." customScripts={customScripts}>
+<AuthLayout
+  title="Iniciar sesión"
+  description="Empieza a gestionar tus préstamos."
+  customScripts={customScripts}
+>
   <form id="loginForm" novalidate>
     <!-- Username -->
     <div class="mb-3">
@@ -19,7 +23,8 @@ const customScripts = `
         pattern="[A-Za-zÀ-ÿ0-9_]+"
         oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ0-9_]/g, '')"
         aria-describedby="usernameHelp"
-        autocomplete="username" />
+        autocomplete="username"
+      />
       <div class="invalid-feedback">Por favor introduce tu nombre de usuario.</div>
     </div>
 
@@ -34,7 +39,8 @@ const customScripts = `
           data-toggle-id="1"
           placeholder="Contraseña"
           aria-describedby="passwordHelp"
-          autocomplete="current-password" />
+          autocomplete="current-password"
+        />
         <span class="input-group-text cursor-pointer" data-toggle-id="1">
           <i class="bi bi-eye"></i>
         </span>
@@ -44,7 +50,11 @@ const customScripts = `
 
     <!-- Submit Button -->
     <button type="submit" class="btn btn-custom-primary w-100 mb-3" id="loginBtn">
-      <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+      <span
+        id="spinner"
+        class="spinner-border spinner-border-sm d-none"
+        role="status"
+        aria-hidden="true"></span>
       <span id="loginText">Iniciar sesión</span>
     </button>
 

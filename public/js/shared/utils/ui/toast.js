@@ -1,33 +1,32 @@
 export function showToast(message, type) {
-	const $toastContainer = $('#toast-container')
-	$toastContainer.find('.toast').toast('hide').remove()
+  const $toastContainer = $('#toast-container')
+  $toastContainer.find('.toast').toast('hide').remove()
 
-	let borderClasses = ''
-	let iconClass = ''
-	let btnCloseClass = ''
+  let borderClasses = ''
+  let iconClass = ''
+  let btnCloseClass = ''
 
-	switch (type) {
-		case 'success':
-			borderClasses =
-				'text-success-emphasis bg-success-subtle border border-success-subtle rounded-2'
-			iconClass = 'bi-check2-circle'
-			btnCloseClass = 'btn-close-success'
-			break
-		case 'error':
-			borderClasses =
-				'text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-2'
-			iconClass = 'bi-x-circle'
-			btnCloseClass = 'btn-close-danger'
-			break
-		case 'warning':
-			borderClasses =
-				'text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2'
-			iconClass = 'bi-exclamation-triangle'
-			btnCloseClass = 'btn-close-warning'
-			break
-	}
+  switch (type) {
+    case 'success':
+      borderClasses =
+        'text-success-emphasis bg-success-subtle border border-success-subtle rounded-2'
+      iconClass = 'bi-check2-circle'
+      btnCloseClass = 'btn-close-success'
+      break
+    case 'error':
+      borderClasses = 'text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-2'
+      iconClass = 'bi-x-circle'
+      btnCloseClass = 'btn-close-danger'
+      break
+    case 'warning':
+      borderClasses =
+        'text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2'
+      iconClass = 'bi-exclamation-triangle'
+      btnCloseClass = 'btn-close-warning'
+      break
+  }
 
-	const $toastElement = $(`
+  const $toastElement = $(`
 		<div class="toast align-items-center ${borderClasses}" role="alert" aria-live="assertive" aria-atomic="true">
 			<div class="d-flex">
 				<div class="toast-body d-flex align-items-center">
@@ -38,16 +37,16 @@ export function showToast(message, type) {
 		</div>
 	`)
 
-	$toastContainer.append($toastElement)
+  $toastContainer.append($toastElement)
 
-	const bootstrapToast = new bootstrap.Toast($toastElement[0], {
-		animation: true,
-		autohide: true,
-		delay: 3000,
-	})
-	bootstrapToast.show()
+  const bootstrapToast = new bootstrap.Toast($toastElement[0], {
+    animation: true,
+    autohide: true,
+    delay: 3000,
+  })
+  bootstrapToast.show()
 
-	$toastElement.on('hidden.bs.toast', function () {
-		$(this).remove()
-	})
+  $toastElement.on('hidden.bs.toast', function () {
+    $(this).remove()
+  })
 }

@@ -1,11 +1,11 @@
 ---
-import DashboardLayout from '@layouts/DashboardLayout.astro';
-import DataTableCard from '@components/ui/DataTableCard.astro';
-import Modals from '@components/ui/Modals.astro';
+import DashboardLayout from '@layouts/DashboardLayout.astro'
+import DataTableCard from '@components/ui/DataTableCard.astro'
+import Modals from '@components/ui/Modals.astro'
 
 const customScripts = `
   <script type="module" src="/js/modules/publishers/publishers.js" defer></script>
-`;
+`
 ---
 
 <DashboardLayout
@@ -15,388 +15,413 @@ const customScripts = `
   username="Jason"
   customScripts={customScripts}
 >
-    <DataTableCard
-      title="Lista de editoriales"
-      icon="bi-map"
-    >
-        <Fragment slot="thead">
-            <th scope="col" class="text-start">Código</th>
-            <th scope="col" class="text-start">Nombre</th>
-            <th scope="col" class="text-start">Nacionalidad</th>
-            <th scope="col" class="text-start">Género literario</th>
-            <th scope="col" class="text-start">Página web</th>
-            <th scope="col" class="text-center">Estado</th>
-            <th scope="col" class="text-center">Foto</th>
-            <th scope="col" class="text-center"></th>
-        </Fragment>
-    </DataTableCard>
-    
-    <Modals
-        slot="modals"
-        addTitle="Agregar una editorial"
-        detailsTitle="Detalles de la editorial"
-        editTitle="Editar editorial"
-        useMultipart={true}
-    >
-        <Fragment slot="add-fields">
-            <!-- Information Section -->
-            <div class="row">
-                <!-- Name Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addName" class="form-label">Nombre <span class="text-danger">*</span></label>
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        id="addName" 
-                        name="name"
-                        placeholder="Ingrese el nombre de la editorial" 
-                        required
-                    >
-                    <div class="invalid-feedback"></div>
-                </div>
-                
-                <!-- Nationality Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addNationality" class="form-label">Nacionalidad <span class="text-danger">*</span></label>
-                    <select 
-                        class="selectpicker form-control placeholder-color" 
-                        id="addNationality" 
-                        name="nationality"
-                        data-live-search="true" 
-                        data-live-search-placeholder="Buscar..." 
-                        title="Seleccione una nacionalidad" 
-                        required
-                    ></select>
-                    <div class="invalid-feedback"></div>
-                </div>
-            </div>
-            
-            <!-- Genre and Foundation Year Section -->
-            <div class="row">
-                <!-- Literary Genre Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addLiteraryGenre" class="form-label">Género literario <span class="text-danger">*</span></label>
-                    <select 
-                        class="selectpicker form-control placeholder-color" 
-                        id="addLiteraryGenre" 
-                        name="literaryGenre"
-                        data-live-search="true" 
-                        data-live-search-placeholder="Buscar..." 
-                        title="Seleccione un género literario" 
-                        required
-                    ></select>
-                    <div class="invalid-feedback"></div>
-                </div>
-                
-                <!-- Foundation Year Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addFoundationYear" class="form-label">Año de fundación <span class="text-danger">*</span></label>
-                    <input 
-                        type="number" 
-                        class="form-control" 
-                        id="addFoundationYear" 
-                        name="foundationYear"
-                        min="1000" 
-                        placeholder="Ingrese el año de fundación" 
-                        required
-                    >
-                    <div class="invalid-feedback"></div>
-                </div>
-            </div>
-            
-            <!-- Website and Address Section -->
-            <div class="row">
-                <!-- Website Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addWebsite" class="form-label">Página web</label>
-                    <input 
-                        type="url" 
-                        class="form-control" 
-                        id="addWebsite" 
-                        name="website"
-                        placeholder="https://ejemplo.com"
-                    >
-                </div>
-                
-                <!-- Address Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addAddress" class="form-label">Dirección</label>
-                    <textarea 
-                        class="form-control" 
-                        id="addAddress" 
-                        name="address"
-                        rows="1" 
-                        placeholder="Ingrese la dirección de la editorial"
-                    ></textarea>
-                </div>
-            </div>
-            
-            <!-- Status and Photo Section -->
-            <div class="row">
-                <!-- Status Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addStatus" class="form-label">Estado <span class="text-danger">*</span></label>
-                    <select 
-                        class="selectpicker form-control placeholder-color" 
-                        id="addStatus" 
-                        name="status"
-                        title="Seleccione un estado" 
-                        required
-                    ></select>
-                    <div class="invalid-feedback"></div>
-                </div>
-                
-                <!-- Photo Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="addPhoto" class="form-label">Foto</label>
-                    <input 
-                        type="file" 
-                        class="form-control" 
-                        id="addPhoto" 
-                        accept="image/*"
-                    >
-                    <div class="invalid-feedback"></div>
-                </div>
-            </div>
-            
-            <!-- Default Photo Section -->
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <div id="defaultAddPhotoContainer" class="text-center" style="max-width: 180px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+  <DataTableCard title="Lista de editoriales" icon="bi-map">
+    <Fragment slot="thead">
+      <th scope="col" class="text-start">Código</th>
+      <th scope="col" class="text-start">Nombre</th>
+      <th scope="col" class="text-start">Nacionalidad</th>
+      <th scope="col" class="text-start">Género literario</th>
+      <th scope="col" class="text-start">Página web</th>
+      <th scope="col" class="text-center">Estado</th>
+      <th scope="col" class="text-center">Foto</th>
+      <th scope="col" class="text-center"></th>
+    </Fragment>
+  </DataTableCard>
 
-            <!-- Image Cropper Section -->
-            <div id="cropperContainerAdd" class="d-none">
-                <img id="imageToCropAdd" src="#" alt="Imagen" />
-            </div>
-            
-            <!-- Delete Photo Section -->
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <!-- Delete Photo Button -->
-                    <button type="button" class="btn btn-sm btn-danger d-flex align-items-center mt-2 d-none" id="deleteAddPhotoBtn">
-                        <i class="bi bi-trash me-2"></i>
-                        Eliminar foto
-                    </button>
-                </div>
-            </div>
-        </Fragment>
+  <Modals
+    slot="modals"
+    addTitle="Agregar una editorial"
+    detailsTitle="Detalles de la editorial"
+    editTitle="Editar editorial"
+    useMultipart={true}
+  >
+    <Fragment slot="add-fields">
+      <!-- Information Section -->
+      <div class="row">
+        <!-- Name Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addName" class="form-label">Nombre <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="addName"
+            name="name"
+            placeholder="Ingrese el nombre de la editorial"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
 
-        <Fragment slot="details-body">
-            <!-- ID and Name Section -->
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Código</h6>
-                    <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Nombre</h6>
-                    <p class="fw-bold" id="detailsName"></p>
-                </div>
-            </div>
-            
-            <!-- Nationality and Genre Section -->
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Nacionalidad</h6>
-                    <p class="badge bg-body-secondary text-body-emphasis border" id="detailsNationality"></p>
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Género literario</h6>
-                    <p class="badge bg-body-secondary text-body-emphasis border" id="detailsGenre"></p>
-                </div>
-            </div>
-            
-            <!-- Foundation Year and Website Section -->
-            <div class="row">  
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Año de fundación</h6>
-                    <p class="fw-bold" id="detailsYear"></p>
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Página web</h6>
-                    <p class="fw-bold" id="detailsWebsite"><a href="" target="_blank"></a></p>
-                </div>
-            </div>
-            
-            <!-- Address and Status Section -->
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Dirección</h6>
-                    <p class="fw-bold" id="detailsAddress"></p>
-                </div>
-                
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Estado</h6>
-                    <p id="detailsStatus"></p>
-                </div>
-            </div>
-            
-            <!-- Photo Section -->
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <h6 class="small text-muted">Foto</h6>
-                    <svg id="detailsSvg" xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                    </svg>
-                    <img id="detailsImg" src="" class="img-fluid rounded-circle" style="width: 120px; height: 120px;" alt="Foto de la editorial">
-                </div>
-            </div>
-        </Fragment>
+        <!-- Nationality Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addNationality" class="form-label"
+            >Nacionalidad <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addNationality"
+            name="nationality"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            title="Seleccione una nacionalidad"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
 
-        <Fragment slot="edit-fields">
-            <!-- Information Section -->
-            <div class="row">
-                <!-- Name Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editName" class="form-label">Nombre <span class="text-danger">*</span></label>
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        id="editName" 
-                        name="name"
-                        placeholder="Ingrese el nombre de la editorial" 
-                        required
-                    >
-                    <div class="invalid-feedback"></div>
-                </div>
-                
-                <!-- Nationality Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editNationality" class="form-label">Nacionalidad <span class="text-danger">*</span></label>
-                    <select 
-                        class="selectpicker form-control" 
-                        id="editNationality" 
-                        name="nationality"
-                        data-live-search="true" 
-                        data-live-search-placeholder="Buscar..." 
-                        required
-                    ></select>
-                    <div class="invalid-feedback"></div>
-                </div>
-            </div>
-            
-            <!-- Genre and Foundation Year Section -->
-            <div class="row">
-                <!-- Literary Genre Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editLiteraryGenre" class="form-label">Género literario <span class="text-danger">*</span></label>
-                    <select 
-                        class="selectpicker form-control" 
-                        id="editLiteraryGenre" 
-                        name="literaryGenre"
-                        data-live-search="true" 
-                        data-live-search-placeholder="Buscar..." 
-                        required
-                    ></select>
-                    <div class="invalid-feedback"></div>
-                </div>
-                
-                <!-- Foundation Year Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editFoundationYear" class="form-label">Año de fundación <span class="text-danger">*</span></label>
-                    <input 
-                        type="number" 
-                        class="form-control" 
-                        id="editFoundationYear" 
-                        name="foundationYear"
-                        min="1000" 
-                        placeholder="Ingrese el año de fundación" 
-                        required
-                    >
-                    <div class="invalid-feedback"></div>
-                </div>
-            </div>
-            
-            <!-- Website and Address Section -->
-            <div class="row">
-                <!-- Website Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editWebsite" class="form-label">Página web</label>
-                    <input 
-                        type="url" 
-                        class="form-control" 
-                        id="editWebsite" 
-                        name="website"
-                        placeholder="https://ejemplo.com" 
-                        required
-                    >
-                </div>
-                
-                <!-- Address Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editAddress" class="form-label">Dirección</label>
-                    <textarea 
-                        class="form-control" 
-                        id="editAddress" 
-                        name="address"
-                        rows="1" 
-                        placeholder="Ingrese la dirección de la editorial"
-                    ></textarea>
-                </div>
-            </div>
-            
-            <!-- Status and Photo Section -->
-            <div class="row">
-                <!-- Status Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editStatus" class="form-label">Estado <span class="text-danger">*</span></label>
-                    <select 
-                        class="selectpicker form-control" 
-                        id="editStatus" 
-                        name="status"
-                        required
-                    ></select>
-                    <div class="invalid-feedback"></div>
-                </div>
-                
-                <!-- Photo Field -->
-                <div class="col-md-6 mb-3">
-                    <label for="editPhoto" class="form-label">Foto</label>
-                    <input 
-                        type="file" 
-                        class="form-control" 
-                        id="editPhoto" 
-                        accept="image/*"
-                    >
-                    <div class="invalid-feedback"></div>
-                </div>
-            </div>
+      <!-- Genre and Foundation Year Section -->
+      <div class="row">
+        <!-- Literary Genre Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addLiteraryGenre" class="form-label"
+            >Género literario <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addLiteraryGenre"
+            name="literaryGenre"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            title="Seleccione un género literario"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
 
-            <!-- Current Photo Section -->
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <div id="currentEditPhotoContainer" class="text-center" style="max-width: 180px;">
-                        <!-- The current photo will be displayed here -->
-                    </div>
-                </div>
-            </div>
+        <!-- Foundation Year Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addFoundationYear" class="form-label"
+            >Año de fundación <span class="text-danger">*</span></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="addFoundationYear"
+            name="foundationYear"
+            min="1000"
+            placeholder="Ingrese el año de fundación"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
 
-            <!-- Image Cropper Section -->
-            <div id="cropperContainerEdit" class="d-none">
-                <img id="imageToCropEdit" src="#" alt="Imagen" />
-            </div>
-            
-            <!-- Delete Photo Section -->
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <!-- Delete Photo Button -->
-                    <button type="button" class="btn btn-sm btn-danger d-flex align-items-center mt-2 d-none" id="deleteEditPhotoBtn">
-                        <i class="bi bi-trash me-2"></i>
-                        Eliminar foto
-                    </button>
-                </div>
-            </div>
-        </Fragment>
-    </Modals>
+      <!-- Website and Address Section -->
+      <div class="row">
+        <!-- Website Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addWebsite" class="form-label">Página web</label>
+          <input
+            type="url"
+            class="form-control"
+            id="addWebsite"
+            name="website"
+            placeholder="https://ejemplo.com"
+          />
+        </div>
+
+        <!-- Address Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addAddress" class="form-label">Dirección</label>
+          <textarea
+            class="form-control"
+            id="addAddress"
+            name="address"
+            rows="1"
+            placeholder="Ingrese la dirección de la editorial"></textarea>
+        </div>
+      </div>
+
+      <!-- Status and Photo Section -->
+      <div class="row">
+        <!-- Status Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addStatus" class="form-label">Estado <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control placeholder-color"
+            id="addStatus"
+            name="status"
+            title="Seleccione un estado"
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Photo Field -->
+        <div class="col-md-6 mb-3">
+          <label for="addPhoto" class="form-label">Foto</label>
+          <input type="file" class="form-control" id="addPhoto" accept="image/*" />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Default Photo Section -->
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div id="defaultAddPhotoContainer" class="text-center" style="max-width: 180px;">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="180"
+              height="180"
+              fill="currentColor"
+              class="bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Cropper Section -->
+      <div id="cropperContainerAdd" class="d-none">
+        <img id="imageToCropAdd" src="#" alt="Imagen" />
+      </div>
+
+      <!-- Delete Photo Section -->
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <!-- Delete Photo Button -->
+          <button
+            type="button"
+            class="btn btn-sm btn-danger d-flex align-items-center mt-2 d-none"
+            id="deleteAddPhotoBtn"
+          >
+            <i class="bi bi-trash me-2"></i>
+            Eliminar foto
+          </button>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="details-body">
+      <!-- ID and Name Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Código</h6>
+          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Nombre</h6>
+          <p class="fw-bold" id="detailsName"></p>
+        </div>
+      </div>
+
+      <!-- Nationality and Genre Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Nacionalidad</h6>
+          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsNationality"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Género literario</h6>
+          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsGenre"></p>
+        </div>
+      </div>
+
+      <!-- Foundation Year and Website Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Año de fundación</h6>
+          <p class="fw-bold" id="detailsYear"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Página web</h6>
+          <p class="fw-bold" id="detailsWebsite"><a href="" target="_blank"></a></p>
+        </div>
+      </div>
+
+      <!-- Address and Status Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Dirección</h6>
+          <p class="fw-bold" id="detailsAddress"></p>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Estado</h6>
+          <p id="detailsStatus"></p>
+        </div>
+      </div>
+
+      <!-- Photo Section -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="small text-muted">Foto</h6>
+          <svg
+            id="detailsSvg"
+            xmlns="http://www.w3.org/2000/svg"
+            width="120"
+            height="120"
+            fill="currentColor"
+            class="bi-person-circle"
+            viewBox="0 0 16 16"
+          >
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
+            <path
+              fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+            ></path>
+          </svg>
+          <img
+            id="detailsImg"
+            src=""
+            class="img-fluid rounded-circle"
+            style="width: 120px; height: 120px;"
+            alt="Foto de la editorial"
+          />
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="edit-fields">
+      <!-- Information Section -->
+      <div class="row">
+        <!-- Name Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editName" class="form-label">Nombre <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="editName"
+            name="name"
+            placeholder="Ingrese el nombre de la editorial"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Nationality Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editNationality" class="form-label"
+            >Nacionalidad <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control"
+            id="editNationality"
+            name="nationality"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Genre and Foundation Year Section -->
+      <div class="row">
+        <!-- Literary Genre Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editLiteraryGenre" class="form-label"
+            >Género literario <span class="text-danger">*</span></label
+          >
+          <select
+            class="selectpicker form-control"
+            id="editLiteraryGenre"
+            name="literaryGenre"
+            data-live-search="true"
+            data-live-search-placeholder="Buscar..."
+            required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Foundation Year Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editFoundationYear" class="form-label"
+            >Año de fundación <span class="text-danger">*</span></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="editFoundationYear"
+            name="foundationYear"
+            min="1000"
+            placeholder="Ingrese el año de fundación"
+            required
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Website and Address Section -->
+      <div class="row">
+        <!-- Website Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editWebsite" class="form-label">Página web</label>
+          <input
+            type="url"
+            class="form-control"
+            id="editWebsite"
+            name="website"
+            placeholder="https://ejemplo.com"
+            required
+          />
+        </div>
+
+        <!-- Address Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editAddress" class="form-label">Dirección</label>
+          <textarea
+            class="form-control"
+            id="editAddress"
+            name="address"
+            rows="1"
+            placeholder="Ingrese la dirección de la editorial"></textarea>
+        </div>
+      </div>
+
+      <!-- Status and Photo Section -->
+      <div class="row">
+        <!-- Status Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editStatus" class="form-label"
+            >Estado <span class="text-danger">*</span></label
+          >
+          <select class="selectpicker form-control" id="editStatus" name="status" required></select>
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <!-- Photo Field -->
+        <div class="col-md-6 mb-3">
+          <label for="editPhoto" class="form-label">Foto</label>
+          <input type="file" class="form-control" id="editPhoto" accept="image/*" />
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Current Photo Section -->
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div id="currentEditPhotoContainer" class="text-center" style="max-width: 180px;">
+            <!-- The current photo will be displayed here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Cropper Section -->
+      <div id="cropperContainerEdit" class="d-none">
+        <img id="imageToCropEdit" src="#" alt="Imagen" />
+      </div>
+
+      <!-- Delete Photo Section -->
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <!-- Delete Photo Button -->
+          <button
+            type="button"
+            class="btn btn-sm btn-danger d-flex align-items-center mt-2 d-none"
+            id="deleteEditPhotoBtn"
+          >
+            <i class="bi bi-trash me-2"></i>
+            Eliminar foto
+          </button>
+        </div>
+      </div>
+    </Fragment>
+  </Modals>
 </DashboardLayout>

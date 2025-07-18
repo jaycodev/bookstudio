@@ -1,0 +1,58 @@
+---
+import AuthLayout from '@/layouts/AuthLayout.astro';
+
+const customScripts = `
+  <script type="module" src="/js/modules/auth/login.js" defer></script>
+`;
+---
+
+<AuthLayout title="Iniciar sesión" description="Empieza a gestionar tus préstamos." customScripts={customScripts}>
+  <form id="loginForm" novalidate>
+    <!-- Username -->
+    <div class="mb-3">
+      <label for="username" class="form-label">Nombre de usuario</label>
+      <input
+        id="username"
+        type="text"
+        class="form-control"
+        placeholder="Nombre de usuario"
+        pattern="[A-Za-zÀ-ÿ0-9_]+"
+        oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ0-9_]/g, '')"
+        aria-describedby="usernameHelp"
+        autocomplete="username" />
+      <div class="invalid-feedback">Por favor introduce tu nombre de usuario.</div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <div class="input-group">
+        <input
+          id="password"
+          type="password"
+          class="form-control password-field"
+          data-toggle-id="1"
+          placeholder="Contraseña"
+          aria-describedby="passwordHelp"
+          autocomplete="current-password" />
+        <span class="input-group-text cursor-pointer" data-toggle-id="1">
+          <i class="bi bi-eye"></i>
+        </span>
+        <div class="invalid-feedback">Por favor introduce tu contraseña.</div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-custom-primary w-100 mb-3" id="loginBtn">
+      <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+      <span id="loginText">Iniciar sesión</span>
+    </button>
+
+    <!-- Forgot password -->
+    <div class="text-center">
+      <a href="/forgot-password" class="text-body-emphasis link-underline-hover">
+        <small>¿Olvidaste tu contraseña?</small>
+      </a>
+    </div>
+  </form>
+</AuthLayout>

@@ -1,0 +1,435 @@
+---
+import DashboardLayout from '@/layouts/DashboardLayout.astro';
+import DataTableCard from '@/components/ui/DataTableCard.astro';
+import Modals from '@/components/ui/Modals.astro';
+
+const customScripts = `
+  <script type="module" src="/js/modules/students/students.js" defer></script>
+`;
+---
+
+<DashboardLayout
+  title="Estudiantes"
+  currentPage="/students"
+  role="administrador"
+  username="Jason"
+  customScripts={customScripts}
+>
+    <DataTableCard
+      title="Lista de estudiantes"
+      icon="bi-mortarboard"
+    >
+        <Fragment slot="thead">
+			<th scope="col" class="text-start">Código</th>
+			<th scope="col" class="text-start">DNI</th>
+			<th scope="col" class="text-start">Nombres</th>
+			<th scope="col" class="text-start">Apellidos</th>
+			<th scope="col" class="text-start">Teléfono</th>
+			<th scope="col" class="text-start">Correo electrónico</th>
+			<th scope="col" class="text-center">Estado</th>
+			<th scope="col" class="text-center"></th>
+        </Fragment>
+    </DataTableCard>
+    
+    <Modals
+        slot="modals"
+        addTitle="Agregar un estudiante"
+        detailsTitle="Detalles del estudiante"
+        editTitle="Editar estudiante"
+    >
+        <Fragment slot="add-fields">
+			<!-- Personal Information Section -->
+			<div class="row">
+				<!-- DNI Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addDNI" class="form-label">DNI <span class="text-danger">*</span></label>
+					<input 
+						type="tel" 
+						class="form-control" 
+						id="addDNI" 
+						name="DNI"
+						maxlength="8" 
+						pattern="\d{8}" 
+						oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);" 
+						placeholder="Ingrese el DNI del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- First Name Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addFirstName" class="form-label">Nombres <span class="text-danger">*</span></label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="addFirstName" 
+						name="firstName"
+						pattern="[A-Za-zÀ-ÿ\s]+" 
+						oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');" 
+						placeholder="Ingrese los nombres del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Last Name and Address Section -->
+			<div class="row">
+				<!-- Last Name Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addLastName" class="form-label">Apellidos <span class="text-danger">*</span></label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="addLastName" 
+						name="lastName"
+						pattern="[A-Za-zÀ-ÿ\s]+" 
+						oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');" 
+						placeholder="Ingrese los apellidos del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Address Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addAddress" class="form-label">Dirección <span class="text-danger">*</span></label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="addAddress" 
+						name="address"
+						placeholder="Ingrese la dirección del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Phone and Email Section -->
+			<div class="row">
+				<!-- Phone Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addPhone" class="form-label">Teléfono <span class="text-danger">*</span></label>
+					<input 
+						type="tel" 
+						class="form-control" 
+						id="addPhone" 
+						name="phone"
+						maxlength="9" 
+						pattern="\d{9}" 
+						oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);" 
+						placeholder="Ingrese el teléfono del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Email Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addEmail" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
+					<input 
+						type="email" 
+						class="form-control" 
+						id="addEmail" 
+						name="email"
+						placeholder="ejemplo@correo.com" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Birth Date and Gender Section -->
+			<div class="row">
+				<!-- Birth Date Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addBirthDate" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
+					<input 
+						type="date" 
+						class="form-control" 
+						id="addBirthDate" 
+						name="birthDate"
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Gender Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addGender" class="form-label">Género <span class="text-danger">*</span></label>
+					<select 
+						class="selectpicker form-control placeholder-color" 
+						id="addGender" 
+						name="gender"
+						title="Seleccione un género" 
+						required
+					></select>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Faculty and Status Section -->
+			<div class="row">
+				<!-- Faculty Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addFaculty" class="form-label">Facultad <span class="text-danger">*</span></label>
+					<select 
+						class="selectpicker form-control placeholder-color" 
+						id="addFaculty" 
+						name="faculty"
+						data-live-search="true" 
+						data-live-search-placeholder="Buscar..." 
+						title="Seleccione una facultad" 
+						required
+					></select>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Status Field -->
+				<div class="col-md-6 mb-3">
+					<label for="addStatus" class="form-label">Estado <span class="text-danger">*</span></label>
+					<select 
+						class="selectpicker form-control placeholder-color" 
+						id="addStatus" 
+						name="status"
+						title="Seleccione un estado" 
+						required
+					></select>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+        </Fragment>
+
+        <Fragment slot="details-body">
+            <!-- ID and DNI Section -->
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Código</h6>
+					<p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+				</div>
+				
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">DNI</h6>
+					<p class="badge bg-body-secondary text-body-emphasis border" id="detailsDNI"></p>
+				</div>
+			</div>
+			
+			<!-- First Name and Last Name Section -->
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Nombres</h6>
+					<p class="fw-bold" id="detailsFirstName"></p>
+				</div>
+				
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Apellidos</h6>
+					<p class="fw-bold" id="detailsLastName"></p>
+				</div>
+			</div>
+			
+			<!-- Address and Phone Section -->
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Dirección</h6>
+					<p class="fw-bold" id="detailsAddress"></p>
+				</div>
+				
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Teléfono</h6>
+					<p class="badge bg-body-secondary text-body-emphasis border" id="detailsPhone"></p>
+				</div>
+			</div>
+			
+			<!-- Email and Birth Date Section -->
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Correo electrónico</h6>
+					<p class="fw-bold" id="detailsEmail"></p>
+				</div>
+				
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Fecha de nacimiento</h6>
+					<p class="fw-bold" id="detailsBirthDate"></p>
+				</div>
+			</div>
+			
+			<!-- Gender and Faculty Section -->
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Género</h6>
+					<p class="badge bg-body-secondary text-body-emphasis border" id="detailsGender"></p>
+				</div>
+				
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Facultad</h6>
+					<p class="badge bg-body-secondary text-body-emphasis border" id="detailsFaculty"></p>
+				</div>
+			</div>
+			
+			<!-- Status Section -->
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<h6 class="small text-muted">Estado</h6>
+					<p id="detailsStatus"></p>
+				</div>
+			</div>
+        </Fragment>
+
+        <Fragment slot="edit-fields">
+            <!-- Personal Information Section -->
+			<div class="row">
+				<!-- DNI Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editDNI" class="form-label">DNI</label>
+					<input 
+						type="tel" 
+						class="form-control" 
+						id="editDNI" 
+						disabled
+					>
+				</div>
+				
+				<!-- First Name Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editFirstName" class="form-label">Nombres <span class="text-danger">*</span></label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="editFirstName" 
+						name="firstName"
+						pattern="[A-Za-zÀ-ÿ\s]+" 
+						oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');" 
+						placeholder="Ingrese los nombres del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Last Name and Address Section -->
+			<div class="row">
+				<!-- Last Name Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editLastName" class="form-label">Apellidos <span class="text-danger">*</span></label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="editLastName" 
+						name="lastName"
+						pattern="[A-Za-zÀ-ÿ\s]+" 
+						oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');" 
+						placeholder="Ingrese los apellidos del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Address Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editAddress" class="form-label">Dirección <span class="text-danger">*</span></label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="editAddress" 
+						name="address"
+						placeholder="Ingrese la dirección del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Phone and Email Section -->
+			<div class="row">
+				<!-- Phone Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editPhone" class="form-label">Teléfono <span class="text-danger">*</span></label>
+					<input 
+						type="tel" 
+						class="form-control" 
+						id="editPhone" 
+						name="phone"
+						maxlength="9" 
+						pattern="\d{9}" 
+						oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);" 
+						placeholder="Ingrese el teléfono del estudiante" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Email Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editEmail" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
+					<input 
+						type="email" 
+						class="form-control" 
+						id="editEmail" 
+						name="email"
+						placeholder="ejemplo@correo.com" 
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Birth Date and Gender Section -->
+			<div class="row">
+				<!-- Birth Date Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editBirthDate" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
+					<input 
+						type="date" 
+						class="form-control" 
+						id="editBirthDate" 
+						name="birthDate"
+						required
+					>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Gender Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editGender" class="form-label">Género <span class="text-danger">*</span></label>
+					<select 
+						class="selectpicker form-control" 
+						id="editGender" 
+						name="gender"
+						required
+					></select>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<!-- Faculty and Status Section -->
+			<div class="row">
+				<!-- Faculty Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editFaculty" class="form-label">Facultad <span class="text-danger">*</span></label>
+					<select 
+						class="selectpicker form-control" 
+						id="editFaculty" 
+						name="faculty"
+						data-live-search="true" 
+						data-live-search-placeholder="Buscar..." 
+						required
+					></select>
+					<div class="invalid-feedback"></div>
+				</div>
+				
+				<!-- Status Field -->
+				<div class="col-md-6 mb-3">
+					<label for="editStatus" class="form-label">Estado <span class="text-danger">*</span></label>
+					<select 
+						class="selectpicker form-control" 
+						id="editStatus" 
+						name="status"
+						required
+					></select>
+				</div>
+			</div>
+        </Fragment>
+    </Modals>
+</DashboardLayout>

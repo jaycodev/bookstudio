@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+	--bg-primary-dark: #0a0a0a;
+	--bg-primary-light: #f3f4f6;
+	--bg-primary-color: #f3f4f6;
+
+	--bg-secondary-dark: #0f0f10;
+	--bg-secondary-light: #fff;
+	--bg-secondary-color: #fff;
+
+	--bg-tertiary-dark: #1f1f23;
+	--bg-tertiary-light: #ececee;
+	--bg-tertiary-color: #ececee;
+
+	--text-dark: #000;
+	--text-light: #fff;
+	--text-color: #fff;
+
+	--placeholder-dark: rgba(222, 226, 230, 0.75);
+	--placeholder-light: rgba(33, 37, 41, 0.75);
+	--placeholder-color: rgba(33, 37, 41, 0.75);
+
+	--active-effect-bg: var(--bg-primary-light);
+}
+
+[data-bs-theme='dark'] {
+	--bg-primary-color: var(--bg-primary-dark);
+	--bg-secondary-color: var(--bg-secondary-dark);
+	--bg-tertiary-color: var(--bg-tertiary-dark);
+	--text-color: var(--text-dark);
+	--bs-border-color: #2e2e31;
+	--placeholder-color: var(--placeholder-dark);
+	--bs-body-bg: var(--bg-secondary-dark);
+	--active-effect-bg: var(--bg-primary-light);
+}
+
+[data-bs-theme='light'] {
+	--bg-primary-color: var(--bg-primary-light);
+	--bg-secondary-color: var(--bg-secondary-light);
+	--bg-tertiary-color: var(--bg-tertiary-light);
+	--text-color: var(--text-light);
+	--bs-border-color: #cbd0dd;
+	--placeholder-color: var(--placeholder-light);
+	--active-effect-bg: var(--bg-primary-dark);
+}
+
+.bg-body {
+	background-color: var(--bg-primary-color) !important;
+}
+
+.bg-body-secondary {
+	background-color: var(--bg-secondary-color) !important;
+}
+
+.bg-body-tertiary {
+	background-color: var(--bg-tertiary-color) !important;
+}
+
+.text-logo {
+	font-weight: 600;
+}
+
+.error-code {
+	font-size: 6.5rem;
+}
+
+[data-bs-theme='light'] .logo {
+	filter: brightness(0) invert(0);
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg-secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--bs-border-color);
+	border-radius: 5px;
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--bs-border-color) var(--bg-secondary-color);
+}

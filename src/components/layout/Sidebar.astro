@@ -1,0 +1,74 @@
+---
+const { currentPage = "", role = "", username = "" } = Astro.props;
+
+const now = new Date();
+const hour = now.getHours();
+let greeting = "Buenas noches";
+if (hour >= 5 && hour < 12) greeting = "Buenos días";
+else if (hour >= 12 && hour < 18) greeting = "Buenas tardes";
+
+const links = [
+  { href: "/", icon: "bi-bar-chart", label: "Dashboard" },
+  { href: "/loans", icon: "bi-file-earmark-text", label: "Préstamos" },
+  { href: "/books", icon: "bi-journal-bookmark", label: "Libros" },
+  { href: "/authors", icon: "bi-person-plus", label: "Autores" },
+  { href: "/publishers", icon: "bi-map", label: "Editoriales" },
+  { href: "/courses", icon: "bi-stickies", label: "Cursos" },
+  { href: "/students", icon: "bi-mortarboard", label: "Estudiantes" },
+  ...(role === "administrador" ? [
+    { href: "/users", icon: "bi-people", label: "Usuarios" }
+  ] : [])
+];
+---
+
+<!-- Sidebar (Large Screens) -->
+<aside class="position-fixed d-none d-md-flex flex-column border-end bg-body-secondary" id="sidebar" data-current-page={currentPage}>
+  <!-- Navigation Links -->
+  <ul class="nav flex-column p-3 flex-grow-1">
+    {links.map(link => (
+      <li class="mb-1">
+        <a href={link.href} aria-label={link.label} class="nav-link text-body-emphasis d-flex align-items-center rounded-2 hovered">
+          <i class={`bi pe-none me-2 ${link.icon}`}></i>
+          <span class="sidebar-link">{link.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Footer Sidebar -->
+  <footer class="py-2 d-flex justify-content-center border-top">
+    <!-- Collapse Sidebar Button -->
+    <button type="button" class="btn btn-custom-secondary border-0 text-body-emphasis d-flex align-items-center text-nowrap px-3" id="toggleSidebar" aria-label="Cerrar barra lateral">
+      <i class="bi bi-arrow-bar-left" id="sidebarArrow"></i>
+      <span class="ms-2 sidebar-link">Cerrar barra lateral</span>
+    </button>
+  </footer>
+</aside>
+
+<!-- Sidebar Offcanvas (Mobile) -->
+<aside class="offcanvas offcanvas-start border-end bg-body-secondary" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+  <!-- Offcanvas Header -->
+  <header class="offcanvas-header">
+    <h4 id="offcanvasSidebarLabel">BookStudio</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+  </header>
+
+  <!-- Offcanvas Navigation -->
+  <nav class="offcanvas-body d-flex flex-column p-0">
+    <ul class="nav flex-column p-3 flex-grow-1">
+      {links.map(link => (
+        <li class="mb-1">
+          <a href={link.href} class="nav-link text-body-emphasis d-flex align-items-center rounded-2 hovered">
+            <i class={`bi pe-none me-2 ${link.icon}`}></i>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- User Information Footer -->
+    <footer class="p-4 mt-auto">
+      <p class="text-muted mb-0">{greeting}, <span class="text-body-emphasis">{username}</span></p>
+    </footer>
+  </nav>
+</aside>

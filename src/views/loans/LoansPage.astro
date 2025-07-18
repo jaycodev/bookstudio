@@ -1,0 +1,262 @@
+---
+import DashboardLayout from '@/layouts/DashboardLayout.astro';
+import DataTableCard from '@/components/ui/DataTableCard.astro';
+import Modals from '@/components/ui/Modals.astro';
+
+const customScripts = `
+  <script type="module" src="/js/modules/loans/loans.js" defer></script>
+`;
+---
+
+<DashboardLayout
+  title="Préstamos"
+  currentPage="/loans"
+  role="administrador"
+  username="Jason"
+  customScripts={customScripts}
+>
+    <DataTableCard
+      title="Lista de préstamos"
+      icon="bi-file-earmark-text"
+    >
+        <Fragment slot="thead">
+            <th scope="col" class="text-start">Código</th>
+            <th scope="col" class="text-start">Libro</th>
+            <th scope="col" class="text-start">Estudiante</th>
+            <th scope="col" class="text-center">Fecha préstamo</th>
+            <th scope="col" class="text-center">Fecha devolución</th>
+            <th scope="col" class="text-center">Cantidad</th>
+            <th scope="col" class="text-center">Estado</th>
+            <th scope="col" class="text-center"></th>
+        </Fragment>
+    </DataTableCard>
+    
+    <Modals
+        slot="modals"
+        addTitle="Agregar un préstamo"
+        detailsTitle="Detalles del préstamo"
+        editTitle="Editar préstamo"
+    >
+        <Fragment slot="add-fields">
+            <!-- Book and Student Section -->
+            <div class="row">
+                <!-- Book Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="addBook" class="form-label">Libro <span class="text-danger">*</span></label>
+                    <select 
+                        class="selectpicker form-control placeholder-color" 
+                        id="addBook" 
+                        name="book" 
+                        data-live-search="true" 
+                        data-live-search-placeholder="Buscar..." 
+                        title="Seleccione un libro" 
+                        required
+                    ></select>
+                    <div class="invalid-feedback"></div>
+                </div>
+                
+                <!-- Student Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="addStudent" class="form-label">Estudiante <span class="text-danger">*</span></label>
+                    <select 
+                        class="selectpicker form-control placeholder-color" 
+                        id="addStudent" 
+                        name="student" 
+                        data-live-search="true" 
+                        data-live-search-placeholder="Buscar..." 
+                        title="Seleccione un estudiante" 
+                        required
+                    ></select>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <!-- Dates Section -->
+            <div class="row">
+                <!-- Date Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="addLoanDate" class="form-label">Fecha de préstamo</label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        id="addLoanDate" 
+                        disabled
+                    >
+                </div>
+                
+                <!-- Return Date Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="addReturnDate" class="form-label">Fecha de devolución <span class="text-danger">*</span></label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        id="addReturnDate" 
+                        name="returnDate" 
+                        required
+                    >
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <!-- Quantity and Observation Section -->
+            <div class="row">
+                <!-- Quantity Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="addQuantity" class="form-label">Cantidad <span class="text-danger">*</span></label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="addQuantity" 
+                        name="quantity"
+                        min="1" 
+                        placeholder="Ingrese la cantidad" 
+                        required
+                    >
+                    <div class="invalid-feedback"></div>
+                </div>
+                
+                <!-- Observation Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="addObservation" class="form-label">Observación</label>
+                    <textarea 
+                        class="form-control" 
+                        id="addObservation" 
+                        name="observation"
+                        rows="1" 
+                        placeholder="Ingrese cualquier observación opcional"
+                    ></textarea>
+                </div>
+	        </div>
+        </Fragment>
+
+        <Fragment slot="details-body">
+            <!-- ID and Book Section -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h6 class="small text-muted">Código</h6>
+                    <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h6 class="small text-muted">Libro</h6>
+                    <p class="fw-bold" id="detailsBook"></p>
+                </div>
+            </div>
+            
+            <!-- Student and Loan Date Section -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h6 class="small text-muted">Estudiante</h6>
+                    <p class="fw-bold" id="detailsStudent"></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h6 class="small text-muted">Fecha de préstamo</h6>
+                    <p class="fw-bold" id="detailsLoanDate"></p>
+                </div>
+            </div>
+            
+            <!-- Return Date and Quantity Section -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h6 class="small text-muted">Fecha de devolución</h6>
+                    <p class="fw-bold" id="detailsReturnDate"></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h6 class="small text-muted">Cantidad</h6>
+                    <p class="badge bg-body-secondary text-body-emphasis border" id="detailsQuantity"></p>
+                </div>
+            </div>
+            
+            <!-- Status and Observation Section -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="small text-muted">Estado</h6>
+                    <p id="detailsStatus"></p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="small text-muted">Observación</h6>
+                    <p class="fw-bold" id="detailsObservation"></p>
+                </div>
+            </div>
+        </Fragment>
+
+        <Fragment slot="edit-fields">
+            <!-- Student and Loan Date Section -->
+            <div class="row">
+                <!-- Book Field -->
+                <div class="col-md-6 mb-3">
+                    <div class="form-label mb-2">Libro</div>
+                    <div class="form-control bg-body-tertiary" id="editBook"></div>
+                </div>
+            
+                <!-- Student Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="editStudent" class="form-label">Estudiante <span class="text-danger">*</span></label>
+                    <select 
+                        class="selectpicker form-control" 
+                        id="editStudent" 
+                        name="student"
+                        data-live-search="true" 
+                        data-live-search-placeholder="Buscar..." 
+                        required
+                    ></select>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <!-- Return Date and Quantity Section -->
+            <div class="row">              
+                <!-- Loan Date Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="editLoanDate" class="form-label">Fecha de préstamo</label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        id="editLoanDate" 
+                        value="" 
+                        disabled
+                    >
+                </div>
+                
+                <!-- Return Date Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="editReturnDate" class="form-label">Fecha de devolución <span class="text-danger">*</span></label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        id="editReturnDate" 
+                        name="returnDate"
+                        value="" 
+                        required
+                    >
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            
+            <!-- Quantity and Observation Section -->
+            <div class="row">
+                <!-- Quantity Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="editQuantity" class="form-label">Cantidad</label>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="editQuantity" 
+                        disabled
+                    >
+                </div>
+            
+                <!-- Observation Field -->
+                <div class="col-md-6 mb-3">
+                    <label for="editObservation" class="form-label">Observación</label>
+                    <textarea 
+                        class="form-control" 
+                        id="editObservation" 
+                        name="observation"
+                        rows="1" 
+                        placeholder="Ingrese cualquier observación opcional"
+                    ></textarea>
+                </div>
+            </div>
+        </Fragment>
+    </Modals>
+</DashboardLayout>

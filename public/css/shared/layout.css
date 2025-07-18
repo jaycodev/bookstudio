@@ -1,0 +1,61 @@
+header.position-fixed {
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	z-index: 1030;
+}
+
+aside.position-fixed {
+	top: 60px;
+	left: 0;
+	width: 235px;
+	height: calc(100vh - 60px);
+	overflow-y: auto;
+	overflow-x: hidden;
+	z-index: 1025;
+}
+
+html.collapsed aside.position-fixed {
+	width: 80px;
+}
+
+html.collapsed aside.position-fixed .sidebar-link {
+	display: none;
+}
+
+html.collapsed aside.position-fixed ul.nav li {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+main {
+	position: absolute;
+	top: 60px;
+	left: 235px;
+	right: 0;
+	height: auto;
+	min-height: calc(100vh - 60px);
+	padding: 20px;
+	overflow: hidden;
+}
+
+html.collapsed main {
+	left: 80px;
+}
+
+aside.position-fixed,
+main {
+	transition:
+		width 0.3s ease,
+		left 0.3s ease;
+}
+
+#offcanvasSidebar {
+	width: 235px;
+	z-index: 1029;
+}
+
+.offcanvas-backdrop {
+	z-index: 1028;
+}

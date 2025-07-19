@@ -17,7 +17,7 @@
 import { PUBLIC_API_URL } from 'astro:env/client'
 
 import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
-import { genericAddForm, genericEditForm, isValidText } from '@utils/forms'
+import { genericAddForm, genericEditForm } from '@utils/forms'
 import { validateAddField, validateEditField } from './validations.js'
 
 import {

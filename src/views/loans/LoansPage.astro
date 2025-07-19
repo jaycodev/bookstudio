@@ -236,4 +236,61 @@ import customScript from '@assets/js/modules/loans/loans.js?url'
       </div>
     </Fragment>
   </Modals>
+
+  <!-- Return Modal -->
+  <div
+    class="modal fade"
+    id="returnModal"
+    tabindex="-1"
+    aria-labelledby="returnModalLabel"
+    aria-hidden="true"
+    data-bs-backdrop="static"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title text-body-emphasis" id="returnModalLabel">
+            Confirmación de préstamo
+            <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="returnModalID"
+            ></span>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          ></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <p>
+            ¿Estás seguro de cambiar el estado a <span
+              class="badge text-success-emphasis bg-success-subtle border border-success-subtle p-1"
+              >Devuelto</span
+            >?
+          </p>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <!-- Cancel Button -->
+          <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
+            >Cancelar</button
+          >
+
+          <!-- Confirm Button -->
+          <button
+            type="button"
+            class="btn btn-custom-primary d-flex align-items-center"
+            id="returnBtn"
+          >
+            <i class="bi bi-check2-square me-2"></i>
+            <span
+              class="spinner-border spinner-border-sm me-2 d-none"
+              role="status"
+              aria-hidden="true"></span>
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </DashboardLayout>

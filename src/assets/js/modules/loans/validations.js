@@ -1,9 +1,4 @@
-import {
-  isValidText,
-  isValidTotalCopies,
-  isValidTotalCopiesInRange,
-  isValidReleaseDate,
-} from '@utils/forms'
+import { isValidReturnDate, isValidLoanQuantity } from '@utils/forms'
 
 export function validateAddField(field) {
   return validateGenericField(field, 'add')
@@ -21,11 +16,11 @@ function validateGenericField(field, mode) {
   let isValid = true
   let errorMessage = 'Este campo es obligatorio.'
 
-  const titleId = `${mode}Title`
-  const totalCopiesId = `${mode}TotalCopies`
-  const releaseDateId = `${mode}ReleaseDate`
+  const returnDateId = `${mode}ReturnDate`
+  const loanDateId = `${mode}LoanDate`
+  const quantityId = `addQuantity`
 
-  // Default validation
+  // Default required validation
   if (!field.value || (field.checkValidity && !field.checkValidity())) {
     field.classList.add('is-invalid')
     const feedback = field.parentElement.querySelector('.invalid-feedback')
@@ -35,36 +30,23 @@ function validateGenericField(field, mode) {
     field.classList.remove('is-invalid')
   }
 
-  // Title validation
-  if (field.id === titleId) {
-    const result = isValidText(field.value, 'título')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
+  // Return date validation
+  if (field.id === returnDateId) {
+    const loanDateField = document.getElementById(loanDateId)
+    if (loanDateField?.value) {
+      const result = isValidReturnDate(loanDateField.value, field.value)
+      if (!result.valid) {
+        isValid = false
+        errorMessage = result.message
+      }
     }
   }
 
-  // Total copies validation
-  if (field.id === totalCopiesId) {
+  // Quantity validation (solo en modo add)
+  if (mode === 'add' && field.id === quantityId) {
     const value = parseInt(field.value, 10)
-    let result
-
-    if (mode === 'edit') {
-      const min = parseInt(field.getAttribute('min'), 10)
-      result = isValidTotalCopiesInRange(value, min, 1000)
-    } else {
-      result = isValidTotalCopies(value)
-    }
-
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Release date validation
-  if (field.id === releaseDateId) {
-    const result = isValidReleaseDate(field.value)
+    const max = parseInt(field.getAttribute('max'), 10)
+    const result = isValidLoanQuantity(value, max)
     if (!result.valid) {
       isValid = false
       errorMessage = result.message

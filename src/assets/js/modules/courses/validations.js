@@ -1,14 +1,14 @@
 import { isValidText } from '@utils/forms'
 
 export function validateAddField(field) {
-  return validateNameField(field, 'add')
+  return validateGenericField(field, 'add')
 }
 
 export function validateEditField(field) {
-  return validateNameField(field, 'edit')
+  return validateGenericField(field, 'edit')
 }
 
-function validateNameField(field, mode) {
+function validateGenericField(field, mode) {
   if (!field || !field.classList) return false
 
   if (field.type === 'search') return true

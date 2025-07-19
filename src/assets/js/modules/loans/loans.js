@@ -14,14 +14,11 @@
  * @author Jason
  */
 
-import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { PUBLIC_API_URL } from 'astro:env/client'
 
-import {
-  isValidReturnDate,
-  isValidLoanQuantity,
-  loadSelectOptions,
-  populateSelect,
-} from '@utils/forms'
+import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { genericAddForm, genericEditForm, loadSelectOptions, populateSelect } from '@utils/forms'
+import { validateAddField, validateEditField } from './validations.js'
 
 import {
   showToast,
@@ -50,12 +47,13 @@ function loadOptions() {
       studentList = data.students
 
       document.getElementById('addBook').addEventListener('change', (event) => {
-        const selectedBookId = event.target.value
+        const selectedBookId = parseInt(event.target.value, 10)
         const selectedBook = bookList.find((book) => book.bookId === selectedBookId)
 
         if (selectedBook) {
           const availableCopies = selectedBook.availableCopies
-          document.getElementById('addQuantity').setAttribute('max', availableCopies)
+          const quantityInput = document.getElementById('addQuantity')
+          quantityInput.setAttribute('max', availableCopies)
         }
       })
     },
@@ -135,11 +133,14 @@ function updateRow(loan) {
     entity: loan,
     getFormattedId: (l) => l.formattedLoanId?.toString(),
     updateCellsFn: (row, l) => {
-      row.find('td').eq(2).html(`
-				${l.studentFullName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${l.formattedStudentId}</span>
-			`)
-      row.find('td').eq(4).text(moment(l.returnDate).format('DD MMM YYYY'))
+      const cells = row.querySelectorAll('td')
+
+      cells[2].innerHTML = `
+        ${l.studentFullName}
+        <span class="badge bg-body-tertiary text-body-emphasis border ms-1">${l.formattedStudentId}</span>
+      `
+
+      cells[4].textContent = moment(l.returnDate).format('DD MMM YYYY')
     },
   })
 }
@@ -149,339 +150,118 @@ function updateRow(loan) {
  *****************************************/
 
 function handleAddForm() {
-  let isFirstSubmit = true
-
-  $('#addModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#addForm').data('submitted', false)
-  })
-
-  $('#addForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateAddField($(this))
-    }
-  })
-
-  $('#addForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateAddField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const loan = {
-      bookId: parseInt(raw.book),
-      studentId: parseInt(raw.student),
-      returnDate: raw.returnDate,
-      quantity: parseInt(raw.quantity),
-      observation: raw.observation || '',
-    }
-
-    const submitButton = $('#addBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/loans', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(loan),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        addRow(json.data)
-        $('#addModal').modal('hide')
-        showToast('Préstamo agregado exitosamente.', 'success')
-        generateLoanReceipt(json.data)
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        $('#addModal').modal('hide')
-        showToast('Hubo un error al agregar el préstamo.', 'error')
+  genericAddForm({
+    resource: 'loans',
+    validateFieldFn: validateAddField,
+    addRowFn: addRow,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      return {
+        bookId: parseInt(raw.book),
+        studentId: parseInt(raw.student),
+        returnDate: raw.returnDate,
+        quantity: parseInt(raw.quantity),
+        observation: raw.observation || '',
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#addModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-}
-
-function validateAddField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Return date validation
-  if (field.is('#addReturnDate') && $('#addLoanDate').val()) {
-    const result = isValidReturnDate($('#addLoanDate').val(), field.val())
-    if (!result.valid) {
-      field.addClass('is-invalid')
-      errorMessage = result.message
-      field.siblings('.invalid-feedback').html(errorMessage)
-      isValid = false
-    }
-  }
-
-  // Quantity validation
-  if (field.is('#addQuantity')) {
-    const result = isValidLoanQuantity(parseInt(field.val(), 10), parseInt(field.attr('max'), 10))
-    if (!result.valid) {
-      field.addClass('is-invalid')
-      errorMessage = result.message
-      field.siblings('.invalid-feedback').html(errorMessage)
-      isValid = false
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html(errorMessage)
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 function handleReturn() {
   let isSubmitted = false
 
-  $('#returnBtn').on('click', async function () {
+  const returnBtn = document.getElementById('returnBtn')
+  if (!returnBtn) return
+
+  returnBtn.addEventListener('click', async function () {
     if (isSubmitted) return
     isSubmitted = true
 
-    const loanId = $(this).data('loanId')
-    const formattedLoanId = $(this).data('formattedLoanId')
+    const loanId = this.dataset.loanId
+    const formattedLoanId = this.dataset.formattedLoanId
 
-    toggleButtonLoading($(this), true)
+    toggleButtonLoading(this, true)
 
     try {
-      const response = await fetch(`./api/loans/${encodeURIComponent(loanId)}/return`, {
-        method: 'PATCH',
-        headers: {
-          Accept: 'application/json',
+      const response = await fetch(
+        `${PUBLIC_API_URL}/api/loans/${encodeURIComponent(loanId)}/return`,
+        {
+          method: 'PATCH',
+          headers: {
+            Accept: 'application/json',
+          },
         },
-      })
+      )
 
       const json = await response.json()
 
       if (response.ok && json.success) {
         const table = $('#table').DataTable()
-        const row = table
-          .rows()
-          .nodes()
-          .to$()
-          .filter(function () {
-            return $(this).find('td').eq(0).text().trim() === formattedLoanId.toString()
-          })
+        const rows = table.rows().nodes().toArray()
 
-        if (row.length > 0) {
-          row
-            .find('td:eq(6)')
-            .html(
-              '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Devuelto</span>',
-            )
-          row.find('td:eq(7)').find('.btn[aria-label="Devolver el préstamo"]').remove()
-          row.find('button[data-status]').data('status', 'devuelto')
-          table.row(row).invalidate().draw(false)
+        const matchingRow = rows.find((rowEl) => {
+          const firstCellText = rowEl.querySelector('td')?.textContent.trim()
+          return firstCellText === formattedLoanId.toString()
+        })
+
+        if (matchingRow) {
+          const cells = matchingRow.querySelectorAll('td')
+          if (cells[6]) {
+            cells[6].innerHTML =
+              '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Devuelto</span>'
+          }
+          if (cells[7]) {
+            const returnBtn = cells[7].querySelector('.btn[aria-label="Devolver el préstamo"]')
+            if (returnBtn) returnBtn.remove()
+
+            const statusBtn = cells[7].querySelector('button[data-status]')
+            if (statusBtn) statusBtn.dataset.status = 'devuelto'
+          }
+
+          table.row(matchingRow).invalidate().draw(false)
         }
 
         loadOptions()
 
-        $('#returnModal').modal('hide')
+        const modal = document.getElementById('returnModal')
+        if (modal) bootstrap.Modal.getInstance(modal)?.hide()
+
         showToast('Préstamo devuelto exitosamente.', 'success')
       } else {
         console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        $('#returnModal').modal('hide')
+
+        bootstrap.Modal.getInstance(document.getElementById('returnModal'))?.hide()
         showToast('Hubo un error al devolver el préstamo.', 'error')
       }
     } catch (error) {
       console.error('Unexpected error:', error)
       showToast('Hubo un error inesperado.', 'error')
-      $('#returnModal').modal('hide')
+      bootstrap.Modal.getInstance(document.getElementById('returnModal'))?.hide()
     } finally {
-      toggleButtonLoading($(this), true)
+      toggleButtonLoading(this, true)
     }
   })
 }
 
 function handleEditForm() {
-  let isFirstSubmit = true
+  genericEditForm({
+    resource: 'loans',
+    validateFieldFn: validateEditField,
+    updateRowFn: updateRow,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      const loanId = parseInt(document.getElementById('editForm').dataset.loanId)
+      const bookId = parseInt(document.getElementById('editForm').dataset.bookId)
 
-  $('#editModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#editForm').data('submitted', false)
-  })
-
-  $('#editForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateEditField($(this))
-    }
-  })
-
-  $('#editForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        const field = $(this)
-        if (field.attr('id') !== 'editQuantity') {
-          if (!validateEditField(field)) isValid = false
-        }
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const loanId = $('#editForm').data('loanId')
-    const bookId = $('#editForm').data('bookId')
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const loan = {
-      loanId: parseInt(loanId),
-      bookId: parseInt(bookId),
-      studentId: parseInt(raw.student),
-      returnDate: raw.returnDate,
-      observation: raw.observation || '',
-    }
-
-    const submitButton = $('#updateBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/loans', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(loan),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        updateRow(json.data)
-        $('#editModal').modal('hide')
-        showToast('Préstamo actualizado exitosamente.', 'success')
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        showToast(json.message || 'Hubo un error al actualizar el préstamo.', 'error')
-        $('#editModal').modal('hide')
+      return {
+        loanId: parseInt(loanId),
+        bookId: parseInt(bookId),
+        studentId: parseInt(raw.student),
+        returnDate: raw.returnDate,
+        observation: raw.observation || '',
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#editModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-}
-
-function validateEditField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Return date validation
-  if (field.is('#editReturnDate') && $('#editLoanDate').val()) {
-    const result = isValidReturnDate($('#editLoanDate').val(), field.val())
-    if (!result.valid) {
-      field.addClass('is-invalid')
-      errorMessage = result.message
-      field.siblings('.invalid-feedback').html(errorMessage)
-      isValid = false
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html('Opción seleccionada inactiva o no existente.')
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 /** ***************************************
@@ -520,6 +300,8 @@ function loadModalData() {
     $('#addReturnDate').attr('max', maxDateStr)
 
     placeholderColorDateInput()
+
+    handleAddForm()
   })
 
   // Details Modal
@@ -529,7 +311,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/loans/${encodeURIComponent(loanId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/loans/${encodeURIComponent(loanId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -565,7 +347,7 @@ function loadModalData() {
             : '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Devuelto</span>',
         )
 
-        $('#detailsLoanObservation').text(data.observation)
+        $('#detailsObservation').text(data.observation)
 
         toggleModalLoading(this, false)
       })
@@ -575,29 +357,44 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los detalles del préstamo.', 'error')
-        $('#detailsModal').modal('hide')
+        const detailsModalEl = document.getElementById('detailsModal')
+        const detailsModal =
+          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
+        detailsModal.hide()
       })
   })
 
-  // Return Loan Modal
-  $('#returnModal').on('show.bs.modal', function (event) {
-    const button = $(event.relatedTarget)
-    const loanId = button.data('id')
-    const formattedLoanId = button.data('formatted-id')
+  const returnModal = document.getElementById('returnModal')
 
-    const currentStatus = button.data('status')
+  if (returnModal) {
+    returnModal.addEventListener('show.bs.modal', (event) => {
+      const button = event.relatedTarget
+      if (!button) return
 
-    $('#returnModalID').text(formattedLoanId)
+      const loanId = button.getAttribute('data-id')
+      const formattedLoanId = button.getAttribute('data-formatted-id')
+      const currentStatus = button.getAttribute('data-status')
 
-    if (currentStatus !== 'prestado') {
-      $('#returnModal').modal('hide')
-      showToast('Este préstamo ya ha sido devuelto.', 'error')
-      return
-    }
+      const returnModalID = document.getElementById('returnModalID')
+      if (returnModalID) {
+        returnModalID.textContent = formattedLoanId
+      }
 
-    $('#returnBtn').data('loanId', loanId)
-    $('#returnBtn').data('formattedLoanId', formattedLoanId)
-  })
+      if (currentStatus !== 'prestado') {
+        bootstrap.Modal.getInstance(returnModal)?.hide()
+        showToast('Este préstamo ya ha sido devuelto.', 'error')
+        return
+      }
+
+      const returnBtn = document.getElementById('returnBtn')
+      if (returnBtn) {
+        returnBtn.setAttribute('data-loan-id', loanId)
+        returnBtn.setAttribute('data-formatted-loan-id', formattedLoanId)
+      }
+
+      handleReturn()
+    })
+  }
 
   // Edit Modal
   $(document).on('click', '[data-bs-target="#editModal"]', function () {
@@ -606,7 +403,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/loans/${encodeURIComponent(loanId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/loans/${encodeURIComponent(loanId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -620,8 +417,8 @@ function loadModalData() {
         return response.json()
       })
       .then((data) => {
-        $('#editForm').data('loanId', data.loanId)
-        $('#editForm').data('bookId', data.bookId)
+        document.getElementById('editForm').setAttribute('data-loan-id', data.loanId)
+        document.getElementById('editForm').setAttribute('data-book-id', data.bookId)
 
         $('#editBook').html(`
 				${data.bookTitle}
@@ -662,6 +459,8 @@ function loadModalData() {
           })
 
         toggleModalLoading(this, false)
+
+        handleEditForm()
       })
       .catch((error) => {
         console.error(
@@ -669,7 +468,10 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los datos del préstamo.', 'error')
-        $('#editModal').modal('hide')
+        const editModalEl = document.getElementById('editModal')
+        const editModal =
+          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
+        editModal.hide()
       })
   })
 }
@@ -1058,9 +860,6 @@ function generateExcel(dataTable) {
 
 $(document).ready(function () {
   loadData()
-  handleAddForm()
-  handleReturn()
-  handleEditForm()
   loadModalData()
   loadOptions()
   $('.selectpicker').selectpicker()

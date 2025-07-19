@@ -14,9 +14,11 @@
  * @author Jason
  */
 
-import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { PUBLIC_API_URL } from 'astro:env/client'
 
-import { isValidText } from '@utils/forms'
+import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { genericAddForm, genericEditForm, isValidText } from '@utils/forms'
+import { validateAddField, validateEditField } from './validations.js'
 
 import {
   showToast,
@@ -32,7 +34,7 @@ import {
  *****************************************/
 
 function generateRow(course) {
-  const userRole = sessionStorage.getItem('userRole')
+  const userRole = 'administrador'
 
   return `
 		<tr>
@@ -95,7 +97,9 @@ function updateRow(course) {
     entity: course,
     getFormattedId: (c) => c.formattedCourseId?.toString(),
     updateCellsFn: (row, c) => {
-      row.find('td').eq(1).text(c.name)
+      const cells = row.querySelectorAll('td')
+
+      cells[1].textContent = c.name
 
       const levelBadge =
         {
@@ -107,17 +111,13 @@ function updateRow(course) {
             '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Avanzado</span>',
         }[c.level] || `<span class="badge bg-secondary">${c.level}</span>`
 
-      row.find('td').eq(2).html(levelBadge)
-      row.find('td').eq(3).text(c.description)
+      cells[2].innerHTML = levelBadge
+      cells[3].textContent = c.description
 
-      row
-        .find('td')
-        .eq(4)
-        .html(
-          c.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-        )
+      cells[4].innerHTML =
+        c.status === 'activo'
+          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
     },
   })
 }
@@ -127,256 +127,40 @@ function updateRow(course) {
  *****************************************/
 
 function handleAddForm() {
-  let isFirstSubmit = true
-
-  $('#addModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#addForm').data('submitted', false)
-  })
-
-  $('#addForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateAddField($(this))
-    }
-  })
-
-  $('#addForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateAddField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const course = {
-      name: raw.name,
-      level: raw.level,
-      description: raw.description,
-      status: raw.status,
-    }
-
-    const submitButton = $('#addBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/courses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(course),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        addRow(json.data)
-        $('#addModal').modal('hide')
-        showToast('Curso agregado exitosamente.', 'success')
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        $('#addModal').modal('hide')
-        showToast('Hubo un error al agregar el curso.', 'error')
+  genericAddForm({
+    resource: 'courses',
+    validateFieldFn: validateAddField,
+    addRowFn: addRow,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      return {
+        name: raw.name,
+        level: raw.level,
+        description: raw.description,
+        status: raw.status,
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#addModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-}
-
-function validateAddField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Name validation
-  if (field.is('#addName')) {
-    const result = isValidText(field.val(), 'nombre')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html(errorMessage)
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 function handleEditForm() {
-  let isFirstSubmit = true
+  genericEditForm({
+    resource: 'courses',
+    validateFieldFn: validateEditField,
+    updateRowFn: updateRow,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      const courseId = parseInt(document.getElementById('editForm').dataset.courseId)
 
-  $('#editModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#editForm').data('submitted', false)
-  })
-
-  $('#editForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateEditField($(this))
-    }
-  })
-
-  $('#editForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateEditField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const courseId = $('#editForm').data('courseId')
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const course = {
-      courseId: parseInt(courseId),
-      name: raw.name,
-      level: raw.level,
-      description: raw.description,
-      status: raw.status,
-    }
-
-    const submitButton = $('#updateBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/courses', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(course),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        updateRow(json.data)
-        $('#editModal').modal('hide')
-        showToast('Curso actualizado exitosamente.', 'success')
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        showToast(json.message || 'Hubo un error al actualizar el curso.', 'error')
-        $('#editModal').modal('hide')
+      return {
+        courseId: parseInt(courseId),
+        name: raw.name,
+        level: raw.level,
+        description: raw.description,
+        status: raw.status,
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#editModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-}
-
-function validateEditField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Name validation
-  if (field.is('#editName')) {
-    const result = isValidText(field.val(), 'nombre')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html('Opción seleccionada inactiva o no existente.')
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 /** ***************************************
@@ -422,6 +206,8 @@ function loadModalData() {
 
     $('#addForm')[0].reset()
     $('#addForm .is-invalid').removeClass('is-invalid')
+
+    handleAddForm()
   })
 
   // Details Modal
@@ -432,12 +218,15 @@ function loadModalData() {
     toggleModalLoading(this, true)
 
     try {
-      const response = await fetch(`./api/courses/${encodeURIComponent(courseId)}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
+      const response = await fetch(
+        `${PUBLIC_API_URL}/api/courses/${encodeURIComponent(courseId)}`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+          },
         },
-      })
+      )
 
       if (!response.ok) {
         const errorData = await response.json()
@@ -472,7 +261,10 @@ function loadModalData() {
         error.message || error,
       )
       showToast('Hubo un error al cargar los detalles del curso.', 'error')
-      $('#detailsModal').modal('hide')
+      const detailsModalEl = document.getElementById('detailsModal')
+      const detailsModal =
+        bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
+      detailsModal.hide()
     }
   })
 
@@ -484,12 +276,15 @@ function loadModalData() {
     toggleModalLoading(this, true)
 
     try {
-      const response = await fetch(`./api/courses/${encodeURIComponent(courseId)}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
+      const response = await fetch(
+        `${PUBLIC_API_URL}/api/courses/${encodeURIComponent(courseId)}`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+          },
         },
-      })
+      )
 
       if (!response.ok) {
         const errorData = await response.json()
@@ -498,7 +293,7 @@ function loadModalData() {
 
       const data = await response.json()
 
-      $('#editForm').data('courseId', data.courseId)
+      document.getElementById('editForm').setAttribute('data-course-id', data.courseId)
       $('#editName').val(data.name)
       $('#editDescription').val(data.description)
 
@@ -532,13 +327,17 @@ function loadModalData() {
         })
 
       toggleModalLoading(this, false)
+
+      handleEditForm()
     } catch (error) {
       console.error(
         `Error loading course details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
         error.message || error,
       )
       showToast('Hubo un error al cargar los datos del curso.', 'error')
-      $('#editModal').modal('hide')
+      const editModalEl = document.getElementById('editModal')
+      const editModal = bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
+      editModal.hide()
     }
   })
 }
@@ -793,8 +592,6 @@ function generateExcel(dataTable) {
 
 $(document).ready(function () {
   loadData()
-  handleAddForm()
-  handleEditForm()
   loadModalData()
   $('.selectpicker').selectpicker()
   setupBootstrapSelectDropdownStyles()

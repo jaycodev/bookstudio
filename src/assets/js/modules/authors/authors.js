@@ -177,7 +177,7 @@ function handleAddForm() {
         birthDate: raw.birthDate,
         biography: raw.biography || '',
         status: raw.status,
-        photoUrl: null,
+        photoUrl: null, // 🔜 Preparado para Cloudinary
       }
     },
   })
@@ -208,7 +208,7 @@ function handleEditForm() {
         biography: raw.biography || '',
         status: raw.status,
         deletePhoto: deletePhotoFlag || false,
-        photoUrl: null,
+        photoUrl: null, // 🔜 Preparado para Cloudinary
       }
     },
   })

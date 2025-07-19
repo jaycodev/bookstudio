@@ -14,16 +14,19 @@
  * @author Jason
  */
 
+import { PUBLIC_API_URL } from 'astro:env/client'
+
 import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
 
 import {
-  isValidText,
-  isValidFoundationYear,
-  isValidImageFile,
+  genericAddForm,
+  genericEditForm,
   validateImageFileUI,
   loadSelectOptions,
   populateSelect,
 } from '@utils/forms'
+
+import { validateAddField, validateEditField } from './validations.js'
 
 import {
   showToast,
@@ -61,7 +64,7 @@ let deletePhotoFlag = false
  *****************************************/
 
 function generateRow(publisher) {
-  const userRole = sessionStorage.getItem('userRole')
+  const userRole = 'administrador'
 
   return `
 		<tr>
@@ -133,29 +136,33 @@ function updateRow(publisher) {
     entity: publisher,
     getFormattedId: (p) => p.formattedPublisherId?.toString(),
     updateCellsFn: (row, p) => {
-      row.find('td').eq(1).text(p.name)
-      row.find('td').eq(2).find('span').text(p.nationalityName)
-      row.find('td').eq(3).find('span').text(p.literaryGenreName)
-      row.find('td').eq(4).find('a').attr('href', p.website).text(p.website)
-      row
-        .find('td')
-        .eq(5)
-        .html(
-          p.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-        )
-      row
-        .find('td')
-        .eq(6)
-        .html(
-          p.photoUrl?.trim()
-            ? `<img src="${p.photoUrl}" alt="Foto de la Editorial" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
-            : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
-							<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
-							<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
-						</svg>`,
-        )
+      const cells = row.querySelectorAll('td')
+
+      cells[1].textContent = p.name
+
+      const span2 = cells[2].querySelector('span')
+      if (span2) span2.textContent = p.nationalityName
+
+      const span3 = cells[3].querySelector('span')
+      if (span3) span3.textContent = p.literaryGenreName
+
+      const anchor = cells[4].querySelector('a')
+      if (anchor) {
+        anchor.href = p.website
+        anchor.textContent = p.website
+      }
+
+      cells[5].innerHTML =
+        p.status === 'activo'
+          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
+
+      cells[6].innerHTML = p.photoUrl?.trim()
+        ? `<img src="${p.photoUrl}" alt="Foto de la Editorial" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
+        : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
+             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
+           </svg>`
     },
   })
 }
@@ -165,338 +172,57 @@ function updateRow(publisher) {
  *****************************************/
 
 function handleAddForm() {
-  let isFirstSubmit = true
-
-  $('#addModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#addForm').data('submitted', false)
-  })
-
-  $('#addForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateAddField($(this))
-    }
-  })
-
-  $('#addForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateAddField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const publisher = {
-      name: raw.name,
-      nationalityId: parseInt(raw.nationality),
-      literaryGenreId: parseInt(raw.literaryGenre),
-      foundationYear: parseInt(raw.foundationYear),
-      website: raw.website || '',
-      address: raw.address || '',
-      status: raw.status,
-      photoUrl: null, // 🔜 Preparado para Cloudinary
-    }
-
-    const submitButton = $('#addBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      if (cropper) {
-        const photoBlob = await new Promise((resolve) => {
-          cropper
-            .getCroppedCanvas({ width: 460, height: 460 })
-            .toBlob((blob) => resolve(blob), 'image/jpeg', 0.7)
-        })
-
-        if (photoBlob) {
-          // 🔜 Preparado para Cloudinary
-        }
+  genericAddForm({
+    resource: 'publishers',
+    validateFieldFn: validateAddField,
+    addRowFn: addRow,
+    useCropper: true,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      return {
+        name: raw.name,
+        nationalityId: parseInt(raw.nationality),
+        literaryGenreId: parseInt(raw.literaryGenre),
+        foundationYear: parseInt(raw.foundationYear),
+        website: raw.website || '',
+        address: raw.address || '',
+        status: raw.status,
+        photoUrl: null, // 🔜 Preparado para Cloudinary
       }
-
-      const response = await fetch('./api/publishers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(publisher),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        addRow(json.data)
-        $('#addModal').modal('hide')
-        showToast('Editorial agregada exitosamente.', 'success')
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        $('#addModal').modal('hide')
-        showToast('Hubo un error al agregar la editorial.', 'error')
-      }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#addModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
 }
 
-function validateAddField(field) {
-  if (field.attr('type') === 'search' || field.is('#addWebsite') || field.is('#addAddress')) {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Name validation
-  if (field.is('#addName')) {
-    const result = isValidText(field.val(), 'nombre')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Foundation year validation
-  if (field.is('#addFoundationYear')) {
-    const result = isValidFoundationYear(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Photo validation
-  if (field.is('#addPhoto')) {
-    const file = field[0].files[0]
-    const result = isValidImageFile(file)
-
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    } else {
-      field.removeClass('is-invalid')
-      return true
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html(errorMessage)
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
-}
-
-$('#addPhoto, #editPhoto').on('change', function () {
-  validateImageFileUI($(this))
+document.querySelectorAll('#addPhoto, #editPhoto').forEach((input) => {
+  input.addEventListener('change', function () {
+    validateImageFileUI(this)
+  })
 })
 
 function handleEditForm() {
-  let isFirstSubmit = true
+  genericEditForm({
+    resource: 'publishers',
+    validateFieldFn: validateEditField,
+    updateRowFn: updateRow,
+    useCropper: true,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      const publisherId = parseInt(document.getElementById('editForm').dataset.publisherId)
 
-  $('#editModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#editForm').data('submitted', false)
-  })
-
-  $('#editForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateEditField($(this))
-    }
-  })
-
-  $('#editForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateEditField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const publisherId = $('#editForm').data('publisherId')
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const publisher = {
-      publisherId: parseInt(publisherId),
-      name: raw.name,
-      nationalityId: parseInt(raw.nationality),
-      literaryGenreId: parseInt(raw.literaryGenre),
-      foundationYear: parseInt(raw.foundationYear),
-      website: raw.website || '',
-      address: raw.address || '',
-      status: raw.status,
-      deletePhoto: deletePhotoFlag || false,
-      photoUrl: null, // 🔜 Preparado para Cloudinary
-    }
-
-    const submitButton = $('#updateBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      if (cropper) {
-        const photoBlob = await new Promise((resolve) => {
-          cropper
-            .getCroppedCanvas({ width: 460, height: 460 })
-            .toBlob((blob) => resolve(blob), 'image/jpeg', 0.7)
-        })
-
-        if (photoBlob) {
-          // 🔜 Preparado para Cloudinary
-        }
+      return {
+        publisherId: parseInt(publisherId),
+        name: raw.name,
+        nationalityId: parseInt(raw.nationality),
+        literaryGenreId: parseInt(raw.literaryGenre),
+        foundationYear: parseInt(raw.foundationYear),
+        website: raw.website || '',
+        address: raw.address || '',
+        status: raw.status,
+        deletePhoto: deletePhotoFlag || false,
+        photoUrl: null, // 🔜 Preparado para Cloudinary
       }
-
-      const response = await fetch('./api/publishers', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(publisher),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        updateRow(json.data)
-        $('#editModal').modal('hide')
-        showToast('Editorial actualizada exitosamente.', 'success')
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        showToast(json.message || 'Hubo un error al actualizar la editorial.', 'error')
-        $('#editModal').modal('hide')
-      }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#editModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-}
-
-function validateEditField(field) {
-  if (field.attr('type') === 'search' || field.is('#editWebsite') || field.is('#editAddress')) {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Name validation
-  if (field.is('#editName')) {
-    const result = isValidText(field.val(), 'nombre')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Foundation year validation
-  if (field.is('#editFoundationYear')) {
-    const result = isValidFoundationYear(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Photo validation
-  if (field.is('#editPhoto')) {
-    const file = field[0].files[0]
-    const result = isValidImageFile(file)
-
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    } else {
-      field.removeClass('is-invalid')
-      return true
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html('Opción seleccionada inactiva o no existente.')
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 /** ***************************************
@@ -534,11 +260,12 @@ function loadModalData() {
     $('#addForm .is-invalid').removeClass('is-invalid')
 
     $('#cropperContainerAdd').addClass('d-none')
-
     if (cropper) {
       cropper.destroy()
       cropper = null
     }
+
+    handleAddForm()
   })
 
   // Details Modal
@@ -548,7 +275,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/publishers/${encodeURIComponent(publisherId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/publishers/${encodeURIComponent(publisherId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -592,7 +319,10 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los detalles de la editorial.', 'error')
-        $('#detailsModal').modal('hide')
+        const detailsModalEl = document.getElementById('detailsModal')
+        const detailsModal =
+          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
+        detailsModal.hide()
       })
   })
 
@@ -603,7 +333,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/publishers/${encodeURIComponent(publisherId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/publishers/${encodeURIComponent(publisherId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -617,7 +347,7 @@ function loadModalData() {
         return response.json()
       })
       .then((data) => {
-        $('#editForm').data('publisherId', data.publisherId)
+        document.getElementById('editForm').setAttribute('data-publisher-id', data.publisherId)
         $('#editName').val(data.name)
 
         populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
@@ -653,6 +383,8 @@ function loadModalData() {
         $('#editPhoto').val('')
 
         toggleModalLoading(this, false)
+
+        handleEditForm()
       })
       .catch((error) => {
         console.error(
@@ -660,7 +392,10 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los datos de la editorial.', 'error')
-        $('#editModal').modal('hide')
+        const editModalEl = document.getElementById('editModal')
+        const editModal =
+          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
+        editModal.hide()
       })
 
     // Reset cropper container
@@ -1050,8 +785,6 @@ function generateExcel(dataTable) {
 
 $(document).ready(function () {
   loadData()
-  handleAddForm()
-  handleEditForm()
   loadModalData()
   loadOptions()
   $('.selectpicker').selectpicker()

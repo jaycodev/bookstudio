@@ -14,16 +14,11 @@
  * @author Jason
  */
 
-import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { PUBLIC_API_URL } from 'astro:env/client'
 
-import {
-  isValidText,
-  isValidTotalCopies,
-  isValidTotalCopiesInRange,
-  isValidReleaseDate,
-  loadSelectOptions,
-  populateSelect,
-} from '@utils/forms'
+import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { genericAddForm, genericEditForm, loadSelectOptions, populateSelect } from '@utils/forms'
+import { validateAddField, validateEditField } from './validations.js'
 
 import {
   showToast,
@@ -63,7 +58,7 @@ function loadOptions() {
  *****************************************/
 
 function generateRow(book) {
-  const userRole = sessionStorage.getItem('userRole')
+  const userRole = 'administrador'
 
   return `
 		<tr>
@@ -130,38 +125,31 @@ function updateRow(book) {
     entity: book,
     getFormattedId: (b) => b.formattedBookId?.toString(),
     updateCellsFn: (row, b) => {
-      row.find('td').eq(1).text(b.title)
+      const cells = row.querySelectorAll('td')
 
-      row.find('td').eq(2).html(`
-				<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
-					${b.availableCopies}
-				</span>
-			`)
-
-      row.find('td').eq(3).html(`
-				<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">
-					${b.loanedCopies}
-				</span>
-			`)
-
-      row.find('td').eq(4).html(`
-				${b.authorName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedAuthorId}</span>
-			`)
-
-      row.find('td').eq(5).html(`
-				${b.publisherName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedPublisherId}</span>
-			`)
-
-      row
-        .find('td')
-        .eq(6)
-        .html(
-          b.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-        )
+      cells[1].textContent = b.title
+      cells[2].innerHTML = `
+        <span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
+          ${b.availableCopies}
+        </span>
+      `
+      cells[3].innerHTML = `
+        <span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">
+          ${b.loanedCopies}
+        </span>
+      `
+      cells[4].innerHTML = `
+        ${b.authorName}
+        <span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedAuthorId}</span>
+      `
+      cells[5].innerHTML = `
+        ${b.publisherName}
+        <span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedPublisherId}</span>
+      `
+      cells[6].innerHTML =
+        b.status === 'activo'
+          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
     },
   })
 }
@@ -171,302 +159,48 @@ function updateRow(book) {
  *****************************************/
 
 function handleAddForm() {
-  let isFirstSubmit = true
-
-  $('#addModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#addForm').data('submitted', false)
-  })
-
-  $('#addForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateAddField($(this))
-    }
-  })
-
-  $('#addForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateAddField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const book = {
-      title: raw.title,
-      totalCopies: parseInt(raw.totalCopies),
-      authorId: parseInt(raw.author),
-      publisherId: parseInt(raw.publisher),
-      courseId: parseInt(raw.course),
-      releaseDate: raw.releaseDate,
-      genreId: parseInt(raw.genre),
-      status: raw.status,
-    }
-
-    const submitButton = $('#addBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/books', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(book),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        addRow(json.data)
-        $('#addModal').modal('hide')
-        showToast('Libro agregado exitosamente.', 'success')
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        $('#addModal').modal('hide')
-        showToast('Hubo un error al agregar el libro.', 'error')
+  genericAddForm({
+    resource: 'books',
+    validateFieldFn: validateAddField,
+    addRowFn: addRow,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      return {
+        title: raw.title,
+        totalCopies: parseInt(raw.totalCopies),
+        authorId: parseInt(raw.author),
+        publisherId: parseInt(raw.publisher),
+        courseId: parseInt(raw.course),
+        releaseDate: raw.releaseDate,
+        genreId: parseInt(raw.genre),
+        status: raw.status,
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#addModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-}
-
-function validateAddField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Title validation
-  if (field.is('#addTitle')) {
-    const result = isValidText(field.val(), 'título')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Total copies validation
-  if (field.is('#addTotalCopies')) {
-    const result = isValidTotalCopies(parseInt(field.val(), 10))
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Release date validation
-  if (field.is('#addReleaseDate')) {
-    const result = isValidReleaseDate(field.val())
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html(errorMessage)
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 function handleEditForm() {
-  let isFirstSubmit = true
+  genericEditForm({
+    resource: 'books',
+    validateFieldFn: validateEditField,
+    updateRowFn: updateRow,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      const bookId = parseInt(document.getElementById('editForm').dataset.bookId)
 
-  $('#editModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#editForm').data('submitted', false)
-  })
-
-  $('#editForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateEditField($(this))
-    }
-  })
-
-  $('#editForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = $(this)[0]
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateEditField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const bookId = $('#editForm').data('bookId')
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const book = {
-      bookId: parseInt(bookId),
-      title: raw.title,
-      totalCopies: parseInt(raw.totalCopies),
-      authorId: parseInt(raw.author),
-      publisherId: parseInt(raw.publisher),
-      courseId: parseInt(raw.course),
-      releaseDate: raw.releaseDate,
-      genreId: parseInt(raw.genre),
-      status: raw.status,
-    }
-
-    const submitButton = $('#updateBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/books', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(book),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        updateRow(json.data)
-        $('#editModal').modal('hide')
-        showToast('Libro actualizado exitosamente.', 'success')
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        showToast(json.message || 'Hubo un error al actualizar el libro.', 'error')
-        $('#editModal').modal('hide')
+      return {
+        bookId: parseInt(bookId),
+        title: raw.title,
+        totalCopies: parseInt(raw.totalCopies),
+        authorId: parseInt(raw.author),
+        publisherId: parseInt(raw.publisher),
+        courseId: parseInt(raw.course),
+        releaseDate: raw.releaseDate,
+        genreId: parseInt(raw.genre),
+        status: raw.status,
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#editModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-}
-
-function validateEditField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Title validation
-  if (field.is('#editTitle')) {
-    const result = isValidText(field.val(), 'título')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Total copies validation
-  if (field.is('#editTotalCopies')) {
-    const copies = parseInt(field.val(), 10)
-    const minCopies = parseInt(field.attr('min'), 10)
-    const result = isValidTotalCopiesInRange(copies, minCopies, 1000)
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Release date validation
-  if (field.is('#editReleaseDate')) {
-    const result = isValidReleaseDate(field.val())
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html('Opción seleccionada inactiva o no existente.')
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 /** ***************************************
@@ -511,6 +245,8 @@ function loadModalData() {
     $('#addForm .is-invalid').removeClass('is-invalid')
 
     placeholderColorDateInput()
+
+    handleAddForm()
   })
 
   // Details Modal
@@ -520,7 +256,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/books/${encodeURIComponent(bookId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/books/${encodeURIComponent(bookId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -568,7 +304,10 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los detalles del libro.', 'error')
-        $('#detailsModal').modal('hide')
+        const detailsModalEl = document.getElementById('detailsModal')
+        const detailsModal =
+          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
+        detailsModal.hide()
       })
   })
 
@@ -579,7 +318,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/books/${encodeURIComponent(bookId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/books/${encodeURIComponent(bookId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -593,7 +332,7 @@ function loadModalData() {
         return response.json()
       })
       .then((data) => {
-        $('#editForm').data('bookId', data.bookId)
+        document.getElementById('editForm').setAttribute('data-book-id', data.bookId)
         $('#editTitle').val(data.title)
         $('#editTotalCopies').val(data.totalCopies)
         $('#editTotalCopies').attr('min', Math.max(1, data.loanedCopies))
@@ -641,6 +380,8 @@ function loadModalData() {
           })
 
         toggleModalLoading(this, false)
+
+        handleEditForm()
       })
       .catch((error) => {
         console.error(
@@ -648,7 +389,10 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los datos del libro.', 'error')
-        $('#editModal').modal('hide')
+        const editModalEl = document.getElementById('editModal')
+        const editModal =
+          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
+        editModal.hide()
       })
   })
 }
@@ -946,8 +690,6 @@ function generateExcel(dataTable) {
 
 $(document).ready(function () {
   loadData()
-  handleAddForm()
-  handleEditForm()
   loadModalData()
   loadOptions()
   $('.selectpicker').selectpicker()

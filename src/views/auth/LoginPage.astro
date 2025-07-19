@@ -1,15 +1,12 @@
 ---
 import AuthLayout from '@layouts/AuthLayout.astro'
-
-const customScripts = `
-  <script type="module" src="/js/modules/auth/login.js" defer></script>
-`
+import customScript from '@assets/js/modules/auth/login.js?url'
 ---
 
 <AuthLayout
   title="Iniciar sesión"
   description="Empieza a gestionar tus préstamos."
-  customScripts={customScripts}
+  customScriptPath={customScript}
 >
   <form id="loginForm" novalidate>
     <!-- Username -->

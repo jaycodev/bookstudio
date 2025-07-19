@@ -8,7 +8,7 @@ const {
   role = '',
   username = '',
   userProfileImage = '',
-  customScripts,
+  customScriptPath,
 } = Astro.props
 ---
 
@@ -100,10 +100,6 @@ const {
     ></script>
 
     <!-- Custom Scripts -->
-    <script src="/js/shared/layout/header.js" defer></script>
-    <script src="/js/shared/layout/sidebar.js" defer></script>
-    <script src="/js/shared/setup/theme-toggle.js" defer></script>
-
-    {customScripts && <Fragment set:html={customScripts} />}
+    {customScriptPath && <script type="module" src={customScriptPath} defer />}
   </body>
 </html>

@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from '@components/ui/ThemeToggle.astro'
+import sessionScriptUrl from '@assets/js/shared/layout/session-control.js?url'
 
 const { userProfileImage = '' } = Astro.props
 ---
@@ -193,3 +194,7 @@ const { userProfileImage = '' } = Astro.props
     </div>
   </div>
 </div>
+
+<script type="module" src="/js/shared/layout/header.js"></script>
+<script type="module" src={sessionScriptUrl}></script>
+

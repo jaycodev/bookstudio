@@ -1,6 +1,7 @@
 ---
 import Header from '@components/layout/Header.astro'
 import Sidebar from '@components/layout/Sidebar.astro'
+import customScript from '@assets/js/modules/dashboard/dashboard.js?url'
 
 const { role = 'administrador', username = 'Jason', userProfileImage = '' } = Astro.props
 ---
@@ -188,9 +189,6 @@ const { role = 'administrador', username = 'Jason', userProfileImage = '' } = As
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Custom Scripts -->
-    <script src="/js/shared/layout/header.js" defer></script>
-    <script src="/js/shared/layout/sidebar.js" defer></script>
-    <script src="/js/shared/setup/theme-toggle.js" defer></script>
-    <script src="/js/modules/dashboard/dashboard.js" defer></script>
+    <script type="module" src={customScript}></script>
   </body>
 </html>

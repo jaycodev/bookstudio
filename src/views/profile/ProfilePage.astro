@@ -1,6 +1,7 @@
 ---
 import Header from '@components/layout/Header.astro'
 import Sidebar from '@components/layout/Sidebar.astro'
+import customScript from '@assets/js/modules/profile/profile.js?url'
 
 const { role = 'administrador', username = 'Jason', userProfileImage = '' } = Astro.props
 ---
@@ -350,12 +351,9 @@ const { role = 'administrador', username = 'Jason', userProfileImage = '' } = As
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.js"></script>
 
     <!-- Custom Scripts -->
-    <script src="/js/shared/layout/header.js" defer></script>
-    <script src="/js/shared/layout/sidebar.js" defer></script>
-    <script src="/js/shared/setup/theme-toggle.js" defer></script>
-    <script type="module" src="/js/modules/profile/profile.js" defer></script>
+    <script type="module" src={customScript}></script>
   </body>
 </html>

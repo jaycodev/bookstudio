@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from '@components/ui/ThemeToggle.astro'
-const { title, description, customScripts } = Astro.props
+
+const { title, description, customScriptPath } = Astro.props
 ---
 
 <!doctype html>
@@ -77,7 +78,6 @@ const { title, description, customScripts } = Astro.props
     ></script>
 
     <!-- Custom Scripts -->
-    <script src="/js/shared/setup/theme-toggle.js" defer></script>
-    {customScripts && <Fragment set:html={customScripts} />}
+    {customScriptPath && <script type="module" src={customScriptPath} />}
   </body>
 </html>

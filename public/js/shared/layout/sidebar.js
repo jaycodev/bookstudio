@@ -1,35 +1,36 @@
-$(document).ready(function () {
-  const currentPage = $('#sidebar').attr('data-current-page')
+document.addEventListener('DOMContentLoaded', function () {
+  const currentPage = document.getElementById('sidebar').getAttribute('data-current-page')
 
-  $('.nav-link').each(function () {
-    const $link = $(this)
-    const $icon = $link.find('i')
+  document.querySelectorAll('.nav-link').forEach(function (link) {
+    const icon = link.querySelector('i')
 
-    if ($link.attr('href') === currentPage) {
-      $link.addClass('active-effect')
-      if ($icon.length) {
-        const iconClass = $icon.attr('class').split(' ').pop()
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active-effect')
+      if (icon) {
+        const iconClasses = icon.className.split(' ')
+        const iconClass = iconClasses[iconClasses.length - 1]
         if (!iconClass.endsWith('-fill')) {
-          $icon.removeClass(iconClass).addClass(iconClass + '-fill')
+          icon.classList.remove(iconClass)
+          icon.classList.add(iconClass + '-fill')
         }
       }
     } else {
-      $link.removeClass('active-effect')
+      link.classList.remove('active-effect')
     }
   })
 
   function initNavTooltips() {
-    $('#sidebar .nav-link').each(function () {
-      const instance = bootstrap.Tooltip.getInstance(this)
+    document.querySelectorAll('#sidebar .nav-link').forEach(function (link) {
+      const instance = bootstrap.Tooltip.getInstance(link)
       if (instance) instance.dispose()
     })
-    $('#sidebar .nav-link').each(function () {
-      const tooltipText = $(this).find('.sidebar-link').text().trim()
+    document.querySelectorAll('#sidebar .nav-link').forEach(function (link) {
+      const tooltipText = link.querySelector('.sidebar-link').textContent.trim()
       if (tooltipText !== '') {
-        if (!$(this).attr('title')) {
-          $(this).attr('title', tooltipText)
+        if (!link.getAttribute('title')) {
+          link.setAttribute('title', tooltipText)
         }
-        new bootstrap.Tooltip(this, {
+        new bootstrap.Tooltip(link, {
           trigger: 'hover',
           placement: 'right',
         })
@@ -38,17 +39,17 @@ $(document).ready(function () {
   }
 
   function disposeNavTooltips() {
-    $('#sidebar .nav-link').each(function () {
-      const instance = bootstrap.Tooltip.getInstance(this)
+    document.querySelectorAll('#sidebar .nav-link').forEach(function (link) {
+      const instance = bootstrap.Tooltip.getInstance(link)
       if (instance) instance.dispose()
     })
   }
 
   function initButtonTooltip() {
-    const btn = $('#toggleSidebar')[0]
+    const btn = document.getElementById('toggleSidebar')
     const instance = bootstrap.Tooltip.getInstance(btn)
     if (instance) instance.dispose()
-    $('#toggleSidebar').attr('title', 'Abrir barra lateral')
+    btn.setAttribute('title', 'Abrir barra lateral')
     new bootstrap.Tooltip(btn, {
       trigger: 'hover',
       placement: 'right',
@@ -56,41 +57,45 @@ $(document).ready(function () {
   }
 
   function disposeButtonTooltip() {
-    const btn = $('#toggleSidebar')[0]
+    const btn = document.getElementById('toggleSidebar')
     const instance = bootstrap.Tooltip.getInstance(btn)
     if (instance) instance.dispose()
-    $('#toggleSidebar').removeAttr('title')
+    btn.removeAttribute('title')
   }
 
-  if ($('html').hasClass('collapsed')) {
-    $('#sidebarArrow').removeClass('bi-arrow-bar-left').addClass('bi-arrow-bar-right')
-    $('#toggleSidebar').attr('aria-label', 'Abrir barra lateral')
+  if (document.documentElement.classList.contains('collapsed')) {
+    const sidebarArrow = document.getElementById('sidebarArrow')
+    sidebarArrow.classList.remove('bi-arrow-bar-left')
+    sidebarArrow.classList.add('bi-arrow-bar-right')
+    document.getElementById('toggleSidebar').setAttribute('aria-label', 'Abrir barra lateral')
     initNavTooltips()
     initButtonTooltip()
   } else {
-    $('#toggleSidebar').attr('aria-label', 'Cerrar barra lateral')
+    document.getElementById('toggleSidebar').setAttribute('aria-label', 'Cerrar barra lateral')
   }
 
-  $('#toggleSidebar').click(function () {
-    $('html').toggleClass('collapsed')
+  document.getElementById('toggleSidebar').addEventListener('click', function () {
+    document.documentElement.classList.toggle('collapsed')
 
-    const isCollapsed = $('html').hasClass('collapsed')
+    const isCollapsed = document.documentElement.classList.contains('collapsed')
     localStorage.setItem('sidebarCollapsed', isCollapsed ? 'true' : 'false')
 
-    const $icon = $('#sidebarArrow')
+    const icon = document.getElementById('sidebarArrow')
 
     if (isCollapsed) {
-      $icon.removeClass('bi-arrow-bar-left').addClass('bi-arrow-bar-right')
+      icon.classList.remove('bi-arrow-bar-left')
+      icon.classList.add('bi-arrow-bar-right')
       initNavTooltips()
       initButtonTooltip()
-      $('#toggleSidebar').attr('aria-label', 'Abrir barra lateral')
-      $('#toggleSidebar .sidebar-link').text('Abrir barra lateral')
+      document.getElementById('toggleSidebar').setAttribute('aria-label', 'Abrir barra lateral')
+      document.querySelector('#toggleSidebar .sidebar-link').textContent = 'Abrir barra lateral'
     } else {
-      $icon.removeClass('bi-arrow-bar-right').addClass('bi-arrow-bar-left')
+      icon.classList.remove('bi-arrow-bar-right')
+      icon.classList.add('bi-arrow-bar-left')
       disposeNavTooltips()
       disposeButtonTooltip()
-      $('#toggleSidebar').attr('aria-label', 'Cerrar barra lateral')
-      $('#toggleSidebar .sidebar-link').text('Cerrar barra lateral')
+      document.getElementById('toggleSidebar').setAttribute('aria-label', 'Cerrar barra lateral')
+      document.querySelector('#toggleSidebar .sidebar-link').textContent = 'Cerrar barra lateral'
     }
   })
 })

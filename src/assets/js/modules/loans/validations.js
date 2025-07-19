@@ -42,7 +42,7 @@ function validateGenericField(field, mode) {
     }
   }
 
-  // Quantity validation (solo en modo add)
+  // Quantity validation
   if (mode === 'add' && field.id === quantityId) {
     const value = parseInt(field.value, 10)
     const max = parseInt(field.getAttribute('max'), 10)

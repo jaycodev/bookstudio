@@ -6,6 +6,7 @@ export function genericAddForm({
   validateFieldFn,
   addRowFn,
   useCropper = false,
+  useCustomFieldError = false,
   buildPayloadFn,
 }) {
   const apiUrl = `${PUBLIC_API_URL}/api/${resource}`
@@ -28,6 +29,18 @@ export function genericAddForm({
   function handleLiveValidation(e) {
     if (!isFirstSubmit && ['INPUT', 'SELECT'].includes(e.target.tagName)) {
       validateFieldFn(e.target)
+    }
+  }
+
+  function setFieldError(fieldId, message) {
+    if (!useCustomFieldError) return
+    const field = document.getElementById(fieldId)
+    if (field) {
+      field.classList.add('is-invalid')
+      const feedback = field.parentElement.querySelector('.invalid-feedback')
+      if (feedback) {
+        feedback.textContent = message
+      }
     }
   }
 
@@ -85,10 +98,19 @@ export function genericAddForm({
         bootstrap.Modal.getInstance(modal)?.hide()
         showToast('Registro agregado exitosamente.', 'success')
         addRowFn(json.data)
+      } else if (response.status === 400 && json.errorType === 'validation_error') {
+        if (json.errors && Array.isArray(json.errors)) {
+          json.errors.forEach((err) => {
+            setFieldError(err.field, err.message)
+          })
+        } else {
+          console.warn('Validation error sin detalles de campos:', json)
+        }
+        form.dataset.submitted = 'false'
       } else {
         console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
         bootstrap.Modal.getInstance(modal)?.hide()
-        showToast('Hubo un error al registrar.', 'error')
+        showToast(json.message || 'Hubo un error al registrar.', 'error')
       }
     } catch (err) {
       console.error('Unexpected error:', err)
@@ -105,6 +127,7 @@ export function genericEditForm({
   validateFieldFn,
   updateRowFn,
   useCropper = false,
+  useCustomFieldError = false,
   buildPayloadFn,
 }) {
   const apiUrl = `${PUBLIC_API_URL}/api/${resource}`
@@ -127,6 +150,18 @@ export function genericEditForm({
   function handleLiveValidation(e) {
     if (!isFirstSubmit && ['INPUT', 'SELECT'].includes(e.target.tagName)) {
       validateFieldFn(e.target)
+    }
+  }
+
+  function setFieldError(fieldId, message) {
+    if (!useCustomFieldError) return
+    const field = document.getElementById(fieldId)
+    if (field) {
+      field.classList.add('is-invalid')
+      const feedback = field.parentElement.querySelector('.invalid-feedback')
+      if (feedback) {
+        feedback.textContent = message
+      }
     }
   }
 
@@ -184,10 +219,19 @@ export function genericEditForm({
         bootstrap.Modal.getInstance(modal)?.hide()
         showToast('Registro actualizado exitosamente.', 'success')
         updateRowFn(json.data)
+      } else if (response.status === 400 && json.errorType === 'validation_error') {
+        if (json.errors && Array.isArray(json.errors)) {
+          json.errors.forEach((err) => {
+            setFieldError(err.field, err.message)
+          })
+        } else {
+          console.warn('Validation error sin detalles de campos:', json)
+        }
+        form.dataset.submitted = 'false'
       } else {
         console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
         bootstrap.Modal.getInstance(modal)?.hide()
-        showToast('Hubo un error al actualizar.', 'error')
+        showToast(json.message || 'Hubo un error al actualizar.', 'error')
       }
     } catch (err) {
       console.error('Unexpected error:', err)

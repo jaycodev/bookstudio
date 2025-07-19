@@ -14,18 +14,11 @@
  * @author Jason
  */
 
-import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { PUBLIC_API_URL } from 'astro:env/client'
 
-import {
-  isValidDNI,
-  isValidText,
-  isValidAddress,
-  isValidPhone,
-  isValidEmail,
-  isValidBirthDate,
-  loadSelectOptions,
-  populateSelect,
-} from '@utils/forms'
+import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
+import { genericAddForm, genericEditForm, loadSelectOptions, populateSelect } from '@utils/forms'
+import { validateAddField, validateEditField } from './validations.js'
 
 import {
   showToast,
@@ -114,18 +107,20 @@ function updateRow(student) {
     entity: student,
     getFormattedId: (s) => s.formattedStudentId?.toString(),
     updateCellsFn: (row, s) => {
-      row.find('td').eq(2).text(s.firstName)
-      row.find('td').eq(3).text(s.lastName)
-      row.find('td').eq(4).find('span').text(s.phone)
-      row.find('td').eq(5).text(s.email)
-      row
-        .find('td')
-        .eq(6)
-        .html(
-          s.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
-        )
+      const cells = row.querySelectorAll('td')
+
+      cells[2].textContent = s.firstName
+      cells[3].textContent = s.lastName
+
+      const phoneSpan = cells[4].querySelector('span')
+      if (phoneSpan) phoneSpan.textContent = s.phone
+
+      cells[5].textContent = s.email
+
+      cells[6].innerHTML =
+        s.status === 'activo'
+          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
+          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
     },
   })
 }
@@ -135,395 +130,53 @@ function updateRow(student) {
  *****************************************/
 
 function handleAddForm() {
-  let isFirstSubmit = true
-
-  $('#addModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#addForm').data('submitted', false)
-  })
-
-  $('#addForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateAddField($(this))
-    }
-  })
-
-  $('#addForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = this
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateAddField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(form).data('submitted', false)
-      return
-    }
-
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const student = {
-      dni: raw.DNI,
-      firstName: raw.firstName,
-      lastName: raw.lastName,
-      address: raw.address,
-      phone: raw.phone,
-      email: raw.email,
-      birthDate: raw.birthDate,
-      gender: raw.gender,
-      facultyId: parseInt(raw.faculty),
-      status: raw.status,
-    }
-
-    const submitButton = $('#addBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/students', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(student),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        addRow(json.data)
-        $('#addModal').modal('hide')
-        showToast('Estudiante agregado exitosamente.', 'success')
-      } else if (response.status === 400 && json.errorType === 'validation_error') {
-        if (json.errors && Array.isArray(json.errors)) {
-          json.errors.forEach((err) => {
-            setFieldError(err.field, err.message)
-          })
-        } else {
-          console.warn('Validation error sin detalles de campos:', json)
-        }
-        $('#addForm').data('submitted', false)
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        showToast(json.message || 'Hubo un error al agregar el estudiante.', 'error')
-        $('#addModal').modal('hide')
+  genericAddForm({
+    resource: 'students',
+    validateFieldFn: validateAddField,
+    addRowFn: addRow,
+    useCustomFieldError: true,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      return {
+        dni: raw.DNI,
+        firstName: raw.firstName,
+        lastName: raw.lastName,
+        address: raw.address,
+        phone: raw.phone,
+        email: raw.email,
+        birthDate: raw.birthDate,
+        gender: raw.gender,
+        facultyId: parseInt(raw.faculty),
+        status: raw.status,
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#addModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-
-  function setFieldError(fieldId, message) {
-    const field = $('#' + fieldId)
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(message).show()
-  }
-}
-
-function validateAddField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // DNI validation
-  if (field.is('#addDNI')) {
-    const result = isValidDNI(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Name validation
-  if (field.is('#addFirstName')) {
-    const result = isValidText(field.val(), 'nombre')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Last name validation
-  if (field.is('#addLastName')) {
-    const result = isValidText(field.val(), 'apellido')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Address validation
-  if (field.is('#addAddress')) {
-    const result = isValidAddress(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Phone validation
-  if (field.is('#addPhone')) {
-    const result = isValidPhone(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Email validation
-  if (field.is('#addEmail')) {
-    const result = isValidEmail(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Birthdate validation
-  if (field.is('#addBirthDate')) {
-    const result = isValidBirthDate(field.val())
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html(errorMessage)
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 function handleEditForm() {
-  let isFirstSubmit = true
+  genericEditForm({
+    resource: 'students',
+    validateFieldFn: validateEditField,
+    updateRowFn: updateRow,
+    useCustomFieldError: true,
+    buildPayloadFn: async (formData) => {
+      const raw = Object.fromEntries(formData.entries())
+      const studentId = parseInt(document.getElementById('editForm').dataset.studentId)
 
-  $('#editModal').on('hidden.bs.modal', function () {
-    isFirstSubmit = true
-    $('#editForm').data('submitted', false)
-  })
-
-  $('#editForm').on('input change', 'input, select', function () {
-    if (!isFirstSubmit) {
-      validateEditField($(this))
-    }
-  })
-
-  $('#editForm').on('submit', async function (event) {
-    event.preventDefault()
-
-    if ($(this).data('submitted') === true) return
-    $(this).data('submitted', true)
-
-    if (isFirstSubmit) isFirstSubmit = false
-
-    const form = this
-    let isValid = true
-
-    $(form)
-      .find('input, select')
-      .not('.bootstrap-select input[type="search"]')
-      .each(function () {
-        if (!validateEditField($(this))) isValid = false
-      })
-
-    if (!isValid) {
-      $(this).data('submitted', false)
-      return
-    }
-
-    const studentId = $('#editForm').data('studentId')
-    const formData = new FormData(form)
-    const raw = Object.fromEntries(formData.entries())
-
-    const student = {
-      studentId: parseInt(studentId),
-      firstName: raw.firstName,
-      lastName: raw.lastName,
-      address: raw.address,
-      phone: raw.phone,
-      email: raw.email,
-      birthDate: raw.birthDate,
-      gender: raw.gender,
-      facultyId: parseInt(raw.faculty),
-      status: raw.status,
-    }
-
-    const submitButton = $('#editBtn')
-    toggleButtonLoading(submitButton, true)
-
-    try {
-      const response = await fetch('./api/students', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(student),
-      })
-
-      const json = await response.json()
-
-      if (response.ok && json.success) {
-        updateRow(json.data)
-        $('#editModal').modal('hide')
-        showToast('Estudiante actualizado exitosamente.', 'success')
-      } else if (response.status === 400 && json.errorType === 'validation_error') {
-        if (json.errors && Array.isArray(json.errors)) {
-          json.errors.forEach((err) => {
-            setFieldError(err.field, err.message)
-          })
-        } else {
-          console.warn('Validation error sin detalles de campos:', json)
-        }
-        $('#editForm').data('submitted', false)
-      } else {
-        console.error(`Backend error (${json.errorType} - ${json.statusCode}):`, json.message)
-        showToast(json.message || 'Hubo un error al actualizar el estudiante.', 'error')
-        $('#editModal').modal('hide')
+      return {
+        studentId: parseInt(studentId),
+        firstName: raw.firstName,
+        lastName: raw.lastName,
+        address: raw.address,
+        phone: raw.phone,
+        email: raw.email,
+        birthDate: raw.birthDate,
+        gender: raw.gender,
+        facultyId: parseInt(raw.faculty),
+        status: raw.status,
       }
-    } catch (err) {
-      console.error('Unexpected error:', err)
-      showToast('Hubo un error inesperado.', 'error')
-      $('#editModal').modal('hide')
-    } finally {
-      toggleButtonLoading(submitButton, false)
-    }
+    },
   })
-
-  function setFieldError(fieldId, message) {
-    const field = $('#' + fieldId)
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(message).show()
-  }
-}
-
-function validateEditField(field) {
-  if (field.attr('type') === 'search') {
-    return true
-  }
-
-  let errorMessage = 'Este campo es obligatorio.'
-  let isValid = true
-
-  // Default validation
-  if (!field.val() || (field[0].checkValidity && !field[0].checkValidity())) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage)
-    isValid = false
-  } else {
-    field.removeClass('is-invalid')
-  }
-
-  // Name validation
-  if (field.is('#editFirstName')) {
-    const result = isValidText(field.val(), 'nombre')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Last name validation
-  if (field.is('#editLastName')) {
-    const result = isValidText(field.val(), 'apellido')
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Address validation
-  if (field.is('#editAddress')) {
-    const result = isValidAddress(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Phone validation
-  if (field.is('#editPhone')) {
-    const result = isValidPhone(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Email validation
-  if (field.is('#editEmail')) {
-    const result = isValidEmail(field.val())
-    if (!result.valid) {
-      errorMessage = result.message
-      isValid = false
-    }
-  }
-
-  // Birthdate validation
-  if (field.is('#editBirthDate')) {
-    const result = isValidBirthDate(field.val())
-    if (!result.valid) {
-      isValid = false
-      errorMessage = result.message
-    }
-  }
-
-  // Select validation
-  if (field.is('select')) {
-    const container = field.closest('.bootstrap-select')
-    container.toggleClass('is-invalid', field.hasClass('is-invalid'))
-    container.siblings('.invalid-feedback').html('Opción seleccionada inactiva o no existente.')
-  }
-
-  if (!isValid) {
-    field.addClass('is-invalid')
-    field.siblings('.invalid-feedback').html(errorMessage).show()
-  } else {
-    field.removeClass('is-invalid')
-    field.siblings('.invalid-feedback').hide()
-  }
-
-  return isValid
 }
 
 /** ***************************************
@@ -574,6 +227,8 @@ function loadModalData() {
     $('#addBirthDate').attr('max', maxDateStr)
 
     placeholderColorDateInput()
+
+    handleAddForm()
   })
 
   // Details Modal
@@ -583,7 +238,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/students/${encodeURIComponent(studentId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/students/${encodeURIComponent(studentId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -622,7 +277,10 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los detalles del estudiante.', 'error')
-        $('#detailsModal').modal('hide')
+        const detailsModalEl = document.getElementById('detailsModal')
+        const detailsModal =
+          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
+        detailsModal.hide()
       })
   })
 
@@ -633,7 +291,7 @@ function loadModalData() {
 
     toggleModalLoading(this, true)
 
-    fetch(`./api/students/${encodeURIComponent(studentId)}`, {
+    fetch(`${PUBLIC_API_URL}/api/students/${encodeURIComponent(studentId)}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -647,7 +305,7 @@ function loadModalData() {
         return response.json()
       })
       .then((data) => {
-        $('#editForm').data('studentId', data.studentId)
+        document.getElementById('editForm').setAttribute('data-student-id', data.studentId)
         $('#editDNI').val(data.dni)
         $('#editFirstName').val(data.firstName)
         $('#editLastName').val(data.lastName)
@@ -695,6 +353,8 @@ function loadModalData() {
           })
 
         toggleModalLoading(this, false)
+
+        handleEditForm()
       })
       .catch((error) => {
         console.error(
@@ -702,7 +362,10 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los datos del estudiante.', 'error')
-        $('#editModal').modal('hide')
+        const editModalEl = document.getElementById('editModal')
+        const editModal =
+          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
+        editModal.hide()
       })
   })
 }
@@ -964,8 +627,6 @@ function generateExcel(dataTable) {
 
 $(document).ready(function () {
   loadData()
-  handleAddForm()
-  handleEditForm()
   loadModalData()
   loadOptions()
   $('.selectpicker').selectpicker()

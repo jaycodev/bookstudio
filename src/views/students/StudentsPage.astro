@@ -43,7 +43,6 @@ import customScript from '@assets/js/modules/students/students.js?url'
             id="addDNI"
             name="DNI"
             maxlength="8"
-            pattern="\d{8}"
             oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);"
             placeholder="Ingrese el DNI del estudiante"
             required
@@ -120,7 +119,6 @@ import customScript from '@assets/js/modules/students/students.js?url'
             id="addPhone"
             name="phone"
             maxlength="9"
-            pattern="\d{9}"
             oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);"
             placeholder="Ingrese el teléfono del estudiante"
             required
@@ -356,7 +354,6 @@ import customScript from '@assets/js/modules/students/students.js?url'
             id="editPhone"
             name="phone"
             maxlength="9"
-            pattern="\d{9}"
             oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 9);"
             placeholder="Ingrese el teléfono del estudiante"
             required

@@ -1,4 +1,11 @@
-import { isValidText, isValidFoundationYear, isValidImageFile } from '@utils/forms'
+import {
+  isValidDNI,
+  isValidText,
+  isValidAddress,
+  isValidPhone,
+  isValidEmail,
+  isValidBirthDate,
+} from '@utils/forms'
 
 export function validateAddField(field) {
   return validateGenericField(field, 'add')
@@ -11,19 +18,20 @@ export function validateEditField(field) {
 function validateGenericField(field, mode) {
   if (!field || !field.classList) return false
 
-  const ignoredIds = [`${mode}Website`, `${mode}Address`]
-  if (field.type === 'search' || ignoredIds.includes(field.id)) {
-    return true
-  }
+  if (field.type === 'search') return true
 
   let isValid = true
   let errorMessage = 'Este campo es obligatorio.'
 
-  const nameId = `${mode}Name`
-  const foundationYearId = `${mode}FoundationYear`
-  const photoId = `${mode}Photo`
+  const dniId = `addDNI`
+  const firstNameId = `${mode}FirstName`
+  const lastNameId = `${mode}LastName`
+  const addressId = `${mode}Address`
+  const phoneId = `${mode}Phone`
+  const emailId = `${mode}Email`
+  const birthDateId = `${mode}BirthDate`
 
-  // Default validation
+  // Default required validation
   if (!field.value || (field.checkValidity && !field.checkValidity())) {
     field.classList.add('is-invalid')
     const feedback = field.parentElement.querySelector('.invalid-feedback')
@@ -33,8 +41,15 @@ function validateGenericField(field, mode) {
     field.classList.remove('is-invalid')
   }
 
-  // Name validation
-  if (field.id === nameId) {
+  if (mode === 'add' && field.id === dniId) {
+    const result = isValidDNI(field.value)
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
+
+  if (field.id === firstNameId) {
     const result = isValidText(field.value, 'nombre')
     if (!result.valid) {
       isValid = false
@@ -42,25 +57,43 @@ function validateGenericField(field, mode) {
     }
   }
 
-  // Foundation year validation
-  if (field.id === foundationYearId) {
-    const result = isValidFoundationYear(field.value)
+  if (field.id === lastNameId) {
+    const result = isValidText(field.value, 'apellido')
     if (!result.valid) {
       isValid = false
       errorMessage = result.message
     }
   }
 
-  // Photo validation
-  if (field.id === photoId) {
-    const file = field.files?.[0]
-    const result = isValidImageFile(file)
+  if (field.id === addressId) {
+    const result = isValidAddress(field.value)
     if (!result.valid) {
       isValid = false
       errorMessage = result.message
-    } else {
-      field.classList.remove('is-invalid')
-      return true
+    }
+  }
+
+  if (field.id === phoneId) {
+    const result = isValidPhone(field.value)
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
+
+  if (field.id === emailId) {
+    const result = isValidEmail(field.value)
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
+    }
+  }
+
+  if (field.id === birthDateId) {
+    const result = isValidBirthDate(field.value)
+    if (!result.valid) {
+      isValid = false
+      errorMessage = result.message
     }
   }
 
@@ -68,7 +101,7 @@ function validateGenericField(field, mode) {
   if (field.tagName.toLowerCase() === 'select') {
     const container = field.closest('.bootstrap-select')
     if (container) {
-      container.classList.toggle('is-invalid', field.classList.contains('is-invalid'))
+      container.classList.toggle('is-invalid', !isValid)
       const feedback = container.parentElement.querySelector('.invalid-feedback')
       if (feedback) {
         feedback.innerHTML =

@@ -8,7 +8,7 @@
  * @author Jason
  */
 
-import { PUBLIC_API_URL } from 'astro:env/client'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
 
 $(document).ready(function () {
   const borrowedBooksChart = new Chart($('#borrowedBooksChart'), {

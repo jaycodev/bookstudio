@@ -1,4 +1,4 @@
-import { initializeTooltips } from '@utils/ui'
+import { initializeTooltips } from '../ui/index.js'
 
 export function addRowToTable(entity, generateRowFn) {
   if (typeof generateRowFn !== 'function') {

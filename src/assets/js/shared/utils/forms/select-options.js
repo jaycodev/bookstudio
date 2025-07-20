@@ -1,4 +1,4 @@
-import { PUBLIC_API_URL } from 'astro:env/client'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
 
 export async function loadSelectOptions({ resource, onSuccess }) {
   const url = `${PUBLIC_API_URL}/api/${resource}/select-options`

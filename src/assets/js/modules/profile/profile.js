@@ -8,10 +8,10 @@
  * @author Jason
  */
 
-import { PUBLIC_API_URL } from 'astro:env/client'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
 
-import { isValidText, isValidPassword } from '@utils/forms'
-import { showToast, togglePasswordVisibility } from '@utils/ui'
+import { isValidText, isValidPassword } from '../../shared/utils/tables/index.js'
+import { showToast, togglePasswordVisibility } from '../../shared/utils/ui/index.js'
 
 $(document).ready(function () {
   /** ************ Logic for Profile Photo **************/

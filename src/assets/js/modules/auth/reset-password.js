@@ -7,7 +7,9 @@
  * @author Jason
  */
 
-import { showToast, togglePasswordVisibility } from '@utils/ui'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
+
+import { showToast, togglePasswordVisibility } from '../../shared/utils/ui/index.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   let isFirstSubmit = false
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return
   }
 
-  fetch('/api/auth/validate-token', {
+  fetch(`${PUBLIC_API_URL}/api/auth/validate-token`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ token }),
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resetText.classList.add('d-none')
 
     try {
-      const response = await fetch('/api/auth/reset-password', {
+      const response = await fetch(`${PUBLIC_API_URL}/api/auth/reset-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({

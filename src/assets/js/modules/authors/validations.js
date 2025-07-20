@@ -1,4 +1,4 @@
-import { isValidText, isValidBirthDate, isValidImageFile } from '@utils/forms'
+import { isValidText, isValidBirthDate, isValidImageFile } from '../../shared/utils/forms/index.js'
 
 export function validateAddField(field) {
   return validateGenericField(field, 'add')

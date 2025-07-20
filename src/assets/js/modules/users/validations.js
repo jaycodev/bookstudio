@@ -5,7 +5,7 @@ import {
   isValidPassword,
   isValidImageFile,
   doPasswordsMatch,
-} from '@utils/forms'
+} from '../../shared/utils/forms/index.js'
 
 export function validateAddField(field) {
   return validateGenericField(field, 'add')

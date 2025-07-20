@@ -1,5 +1,5 @@
-import { PUBLIC_API_URL } from 'astro:env/client'
-import { showToast, toggleButtonLoading } from '@utils/ui'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
+import { showToast, toggleButtonLoading } from '../ui/index.js'
 
 export function genericAddForm({
   resource,

@@ -1,4 +1,4 @@
-import { isValidText } from '@utils/forms'
+import { isValidText } from '../../shared/utils/forms/index.js'
 
 export function validateAddField(field) {
   return validateGenericField(field, 'add')

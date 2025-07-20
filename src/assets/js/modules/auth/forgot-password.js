@@ -7,7 +7,9 @@
  * @author Jason
  */
 
-import { showToast } from '@utils/ui'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
+
+import { showToast } from '../../shared/utils/ui/index.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   let isFirstSubmit = false
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendText.classList.add('d-none')
 
     try {
-      const response = await fetch('/api/auth/forgot-password', {
+      const response = await fetch(`${PUBLIC_API_URL}/api/auth/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ email }),

@@ -1,4 +1,4 @@
-import { getCurrentPeruDate } from '@utils/ui'
+import { getCurrentPeruDate } from '../ui/index.js'
 
 export function isValidText(value, label = 'Texto', minLength = 3) {
   const clean = value?.trim() || ''

@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from '@components/ui/ThemeToggle.astro'
+import { PUBLIC_API_URL } from 'astro:env/client'
 
 const { title, description, customScriptPath } = Astro.props
 ---
@@ -76,6 +77,10 @@ const { title, description, customScriptPath } = Astro.props
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     ></script>
+
+    <script is:inline>
+      window.PUBLIC_API_URL = '{PUBLIC_API_URL}'
+    </script>
 
     <!-- Custom Scripts -->
     {customScriptPath && <script type="module" src={customScriptPath} />}

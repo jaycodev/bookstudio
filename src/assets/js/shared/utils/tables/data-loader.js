@@ -1,6 +1,6 @@
-import { PUBLIC_API_URL } from 'astro:env/client'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
 import { toggleTableLoadingState, setupDataTable } from './datatable-setup.js'
-import { showToast, initializeTooltips } from '@utils/ui'
+import { showToast, initializeTooltips } from '../ui/index.js'
 
 export async function loadTableData({ resource, generateRow, generatePDF, generateExcel }) {
   const apiUrl = `${PUBLIC_API_URL}/api/${resource}`

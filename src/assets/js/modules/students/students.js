@@ -14,10 +14,17 @@
  * @author Jason
  */
 
-import { PUBLIC_API_URL } from 'astro:env/client'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
 
-import { loadTableData, addRowToTable, updateRowInTable } from '@utils/tables'
-import { genericAddForm, genericEditForm, loadSelectOptions, populateSelect } from '@utils/forms'
+import { loadTableData, addRowToTable, updateRowInTable } from '../../shared/utils/tables/index.js'
+
+import {
+  genericAddForm,
+  genericEditForm,
+  loadSelectOptions,
+  populateSelect,
+} from '../../shared/utils/tables/index.js'
+
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
@@ -29,7 +36,7 @@ import {
   placeholderColorDateInput,
   setupBootstrapSelectDropdownStyles,
   getCurrentPeruDate,
-} from '@utils/ui'
+} from '../../shared/utils/ui/index.js'
 
 /** ***************************************
  * GLOBAL VARIABLES AND HELPER FUNCTIONS

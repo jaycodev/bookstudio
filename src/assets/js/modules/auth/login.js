@@ -10,7 +10,9 @@
  * @author Jason
  */
 
-import { showToast, togglePasswordVisibility } from '@utils/ui'
+const PUBLIC_API_URL = window.PUBLIC_API_URL
+
+import { showToast, togglePasswordVisibility } from '../../shared/utils/ui/index.js'
 
 $(document).ready(function () {
   let formSubmitted = false
@@ -79,7 +81,7 @@ $(document).ready(function () {
     formData.append('password', $('#password').val().trim())
 
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${PUBLIC_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

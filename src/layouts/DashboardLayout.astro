@@ -1,7 +1,6 @@
 ---
 import Header from '@components/layout/Header.astro'
 import Sidebar from '@components/layout/Sidebar.astro'
-
 import { PUBLIC_API_URL } from 'astro:env/client'
 
 const {
@@ -101,9 +100,14 @@ const {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js" defer
     ></script>
 
-    <script is:inline>
-      window.PUBLIC_API_URL = '{PUBLIC_API_URL}'
-    </script>
+    <script
+      is:inline
+      set:html={`
+      window.APP_CONFIG = {
+        PUBLIC_API_URL: "${PUBLIC_API_URL}"
+      };
+    `}
+    />
 
     <!-- Custom Scripts -->
     {customScriptPath && <script type="module" src={customScriptPath} defer />}

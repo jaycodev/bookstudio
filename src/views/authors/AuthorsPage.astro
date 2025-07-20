@@ -2,7 +2,6 @@
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
 import Modals from '@components/ui/Modals.astro'
-import customScript from '@assets/js/modules/authors/authors.js?url'
 ---
 
 <DashboardLayout
@@ -10,7 +9,7 @@ import customScript from '@assets/js/modules/authors/authors.js?url'
   currentPage="/authors"
   role="administrador"
   username="Jason"
-  customScriptPath={customScript}
+  customScriptPath='/js/modules/authors/authors.js'
 >
   <DataTableCard title="Lista de autores" icon="bi-person-plus">
     <Fragment slot="thead">

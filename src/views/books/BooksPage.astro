@@ -2,7 +2,6 @@
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
 import Modals from '@components/ui/Modals.astro'
-import customScript from '@assets/js/modules/books/books.js?url'
 ---
 
 <DashboardLayout
@@ -10,7 +9,7 @@ import customScript from '@assets/js/modules/books/books.js?url'
   currentPage="/books"
   role="administrador"
   username="Jason"
-  customScriptPath={customScript}
+  customScriptPath='/js/modules/books/books.js'
 >
   <DataTableCard title="Lista de libros" icon="bi-journal-bookmark">
     <Fragment slot="thead">

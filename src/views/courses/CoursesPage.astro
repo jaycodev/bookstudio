@@ -2,7 +2,6 @@
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
 import Modals from '@components/ui/Modals.astro'
-import customScript from '@assets/js/modules/courses/courses.js?url'
 ---
 
 <DashboardLayout
@@ -10,7 +9,7 @@ import customScript from '@assets/js/modules/courses/courses.js?url'
   currentPage="/courses"
   role="administrador"
   username="Jason"
-  customScriptPath={customScript}
+  customScriptPath='/js/modules/courses/courses.js'
 >
   <DataTableCard title="Tabla de cursos" icon="bi-stickies">
     <Fragment slot="thead">

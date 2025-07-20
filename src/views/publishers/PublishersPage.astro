@@ -2,7 +2,6 @@
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
 import Modals from '@components/ui/Modals.astro'
-import customScript from '@assets/js/modules/publishers/publishers.js?url'
 ---
 
 <DashboardLayout
@@ -10,7 +9,7 @@ import customScript from '@assets/js/modules/publishers/publishers.js?url'
   currentPage="/publishers"
   role="administrador"
   username="Jason"
-  customScriptPath={customScript}
+  customScriptPath='/js/modules/publishers/publishers.js'
 >
   <DataTableCard title="Lista de editoriales" icon="bi-map">
     <Fragment slot="thead">

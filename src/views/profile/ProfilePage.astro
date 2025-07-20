@@ -1,7 +1,7 @@
 ---
 import Header from '@components/layout/Header.astro'
 import Sidebar from '@components/layout/Sidebar.astro'
-import customScript from '@assets/js/modules/profile/profile.js?url'
+import { PUBLIC_API_URL } from 'astro:env/client'
 
 const { role = 'administrador', username = 'Jason', userProfileImage = '' } = Astro.props
 ---
@@ -353,7 +353,16 @@ const { role = 'administrador', username = 'Jason', userProfileImage = '' } = As
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.12/dist/cropper.min.js"></script>
 
+    <script
+      is:inline
+      set:html={`
+      window.APP_CONFIG = {
+        PUBLIC_API_URL: "${PUBLIC_API_URL}"
+      };
+    `}
+    />
+
     <!-- Custom Scripts -->
-    <script type="module" src={customScript}></script>
+    <script type="module" src="/js/modules/profile/profile.js"></script>
   </body>
 </html>

@@ -1,18 +1,32 @@
 export function toggleTableLoadingState(action) {
-  const buttons = document.querySelectorAll('#buttonGroupHeader button')
   const skeletonTable = document.getElementById('skeletonTable')
   const realTable = document.getElementById('table')
+
+  const exportButtons = document.querySelectorAll('#generatePDF, #generateExcel')
+  const addButton = document.querySelector('#buttonGroupHeader button[data-bs-target="#addModal"]')
 
   if (action === 'loading') {
     skeletonTable.classList.remove('d-none')
     realTable.classList.add('d-none')
-    buttons.forEach((btn) => (btn.disabled = true))
+
+    exportButtons.forEach((btn) => (btn.disabled = true))
+    if (addButton) addButton.disabled = true
   }
 
   if (action === 'loaded') {
     skeletonTable.classList.add('d-none')
     realTable.classList.remove('d-none')
-    buttons.forEach((btn) => (btn.disabled = false))
+
+    if (!$.fn.DataTable.isDataTable('#table')) return
+
+    const table = $('#table').DataTable()
+    const hasVisibleRows = table.rows({ search: 'applied' }).count() > 0
+
+    exportButtons.forEach((btn) => {
+      btn.disabled = !hasVisibleRows
+    })
+
+    if (addButton) addButton.disabled = false
   }
 }
 

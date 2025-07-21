@@ -26,6 +26,7 @@ $(document).ready(function () {
       ],
     },
     options: {
+      maintainAspectRatio: false,
       scales: { y: { beginAtZero: true } },
     },
   })
@@ -113,12 +114,15 @@ $(document).ready(function () {
 
       borrowedBooksChart.data.datasets[0].data = loansData
       borrowedBooksChart.update()
+      showChart('borrowedBooksChart')
 
       returnedBooksChart.data.datasets[0].data = returnsData
       returnedBooksChart.update()
+      showChart('returnedBooksChart')
 
       avgLoanTimeChart.data.datasets[0].data = avgDurationData
       avgLoanTimeChart.update()
+      showChart('avgLoanTimeChart')
 
       const comparison = data.monthlyLoanComparison
       comparison.sort((a, b) => a.month - b.month)
@@ -140,15 +144,40 @@ $(document).ready(function () {
       loanComparisonChart.data.datasets[0].data = year1Data
       loanComparisonChart.data.datasets[1].data = year2Data
       loanComparisonChart.update()
+      showChart('loanComparisonChart')
 
-      $('#totalBooks').text(data.totalActiveBooks + ' Libros activos')
-      $('#totalAuthors').text(data.totalActiveAuthors + ' Autores activos')
-      $('#totalPublishers').text(data.totalActivePublishers + ' Editoriales activas')
-      $('#totalCourses').text(data.totalActiveCourses + ' Cursos activos')
-      $('#totalStudents').text(data.totalActiveStudents + ' Estudiantes activos')
-      $('#totalLoans').text(data.totalActiveLoans + ' Préstamos activos')
+      updateStatCardValue('#totalBooks', `${data.totalActiveBooks} Libros activos`)
+      updateStatCardValue('#totalAuthors', `${data.totalActiveAuthors} Autores activos`)
+      updateStatCardValue('#totalPublishers', `${data.totalActivePublishers} Editoriales activas`)
+      updateStatCardValue('#totalCourses', `${data.totalActiveCourses} Cursos activos`)
+      updateStatCardValue('#totalStudents', `${data.totalActiveStudents} Estudiantes activos`)
+      updateStatCardValue('#totalLoans', `${data.totalActiveLoans} Préstamos activos`)
     })
     .catch((error) => {
       console.error('Error al obtener datos del dashboard:', error)
     })
 })
+
+function hidePlaceholderFor(el) {
+  const placeholder = el?.previousElementSibling
+  if (placeholder?.classList.contains('placeholder-glow')) {
+    placeholder.classList.add('d-none')
+  }
+}
+
+function updateStatCardValue(selector, text) {
+  const valueEl = document.querySelector(selector)
+  if (!valueEl) return
+
+  hidePlaceholderFor(valueEl)
+  valueEl.textContent = text
+  valueEl.classList.remove('d-none')
+}
+
+function showChart(canvasId) {
+  const canvas = document.getElementById(canvasId)
+  if (!canvas) return
+
+  hidePlaceholderFor(canvas)
+  canvas.classList.remove('d-none')
+}

@@ -1,7 +1,9 @@
 ---
+import { PUBLIC_API_URL } from 'astro:env/client'
 import Header from '@components/layout/Header.astro'
 import Sidebar from '@components/layout/Sidebar.astro'
-import { PUBLIC_API_URL } from 'astro:env/client'
+import StatCard from '@components/ui/StatCard.astro'
+import ChartCard from '@components/ui/ChartCard.astro'
 
 const { role = 'administrador', username = 'Jason', userProfileImage = '' } = Astro.props
 ---
@@ -44,138 +46,63 @@ const { role = 'administrador', username = 'Jason', userProfileImage = '' } = As
     <main class="p-4 d-flex flex-column min-vh-100 bg-body">
       <!-- First Row -->
       <section class="row">
-        <!-- Total Books -->
-        <article class="col-md-4">
-          <div class="card border-start-primary bg-body-secondary border mb-3">
-            <div class="card-body">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-journal-bookmark text-primary"></i>
-                Libros
-              </h5>
-              <p class="card-text text-body-emphasis" id="totalBooks">Libros</p>
-            </div>
-          </div>
-        </article>
+        <StatCard
+          title="Libros"
+          iconClass="bi-journal-bookmark"
+          iconColor="primary"
+          id="totalBooks"
+        />
 
-        <!-- Total Authors -->
-        <article class="col-md-4">
-          <div class="card border-start-success bg-body-secondary border mb-3">
-            <div class="card-body">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-person-plus text-success"></i>
-                Autores
-              </h5>
-              <p class="card-text text-body-emphasis" id="totalAuthors">Autores</p>
-            </div>
-          </div>
-        </article>
+        <StatCard
+          title="Autores"
+          iconClass="bi-person-plus"
+          iconColor="success"
+          id="totalAuthors"
+        />
 
-        <!-- Total Publishers -->
-        <article class="col-md-4">
-          <div class="card border-start-warning bg-body-secondary border mb-3">
-            <div class="card-body sombra">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-map text-warning"></i> Editoriales
-              </h5>
-              <p class="card-text text-body-emphasis" id="totalPublishers">Editoriales</p>
-            </div>
-          </div>
-        </article>
+        <StatCard title="Editoriales" iconClass="bi-map" iconColor="warning" id="totalPublishers" />
       </section>
 
       <!-- Second Row -->
       <section class="row">
-        <!-- Courses -->
-        <article class="col-md-4">
-          <div class="card border-start-info bg-body-secondary border mb-3">
-            <div class="card-body sombra">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-stickies text-info"></i> Cursos
-              </h5>
-              <p class="card-text text-body-emphasis" id="totalCourses">Cursos</p>
-            </div>
-          </div>
-        </article>
+        <StatCard title="Cursos" iconClass="bi-stickies" iconColor="info" id="totalCourses" />
 
-        <!-- Students -->
-        <article class="col-md-4">
-          <div class="card border-start-secondary bg-body-secondary border mb-3">
-            <div class="card-body sombra">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-mortarboard text-secondary"></i>
-                Estudiantes
-              </h5>
-              <p class="card-text text-body-emphasis" id="totalStudents">Estudiantes</p>
-            </div>
-          </div>
-        </article>
+        <StatCard
+          title="Estudiantes"
+          iconClass="bi-mortarboard"
+          iconColor="secondary"
+          id="totalStudents"
+        />
 
-        <!-- Active Loans -->
-        <article class="col-md-4">
-          <div class="card border-start-danger bg-body-secondary border mb-3">
-            <div class="card-body sombra">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-file-earmark-text text-danger"></i>
-                Préstamos
-              </h5>
-              <p class="card-text text-body-emphasis" id="totalLoans">Préstamos</p>
-            </div>
-          </div>
-        </article>
+        <StatCard
+          title="Préstamos"
+          iconClass="bi-file-earmark-text"
+          iconColor="danger"
+          id="totalLoans"
+        />
       </section>
 
       <section class="row mt-2">
-        <!-- Borrowed Books by Month Chart -->
-        <article class="col-md-6">
-          <div class="card mb-3 border">
-            <div class="card-body">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-journal-plus"></i>
-                Libros prestados por mes
-              </h5>
-              <canvas id="borrowedBooksChart" width="400" height="200"></canvas>
-            </div>
-          </div>
-        </article>
-
-        <!-- Returned Books by Month Chart -->
-        <article class="col-md-6">
-          <div class="card mb-3 border">
-            <div class="card-body">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-arrow-clockwise"></i>
-                Libros devueltos por mes
-              </h5>
-              <canvas id="returnedBooksChart" width="400" height="200"></canvas>
-            </div>
-          </div>
-        </article>
-
-        <!-- Average Loan Time Chart -->
-        <article class="col-md-6">
-          <div class="card penultimate-chart border">
-            <div class="card-body">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-clock"></i>
-                Tiempo promedio de préstamo
-              </h5>
-              <canvas id="avgLoanTimeChart" width="400" height="200"></canvas>
-            </div>
-          </div>
-        </article>
-
-        <!-- Loan Comparison by Year Chart -->
-        <article class="col-md-6">
-          <div class="card border">
-            <div class="card-body">
-              <h5 class="card-title d-flex align-items-center text-body-emphasis">
-                <i class="bi pe-none me-2 bi-bar-chart-line"></i>
-                Comparación de préstamos por año
-              </h5>
-              <canvas id="loanComparisonChart" width="400" height="200"></canvas>
-            </div>
-          </div>
-        </article>
+        <ChartCard
+          title="Libros prestados por mes"
+          iconClass="bi-journal-plus"
+          chartId="borrowedBooksChart"
+        />
+        <ChartCard
+          title="Libros devueltos por mes"
+          iconClass="bi-arrow-clockwise"
+          chartId="returnedBooksChart"
+        />
+        <ChartCard
+          title="Tiempo promedio de préstamo"
+          iconClass="bi-clock"
+          chartId="avgLoanTimeChart"
+        />
+        <ChartCard
+          title="Comparación de préstamos por año"
+          iconClass="bi-bar-chart-line"
+          chartId="loanComparisonChart"
+        />
       </section>
     </main>
 

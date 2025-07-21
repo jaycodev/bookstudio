@@ -406,3 +406,9 @@ textarea {
     rgba(222, 226, 230, 0.16) 100%
   );
 }
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+}

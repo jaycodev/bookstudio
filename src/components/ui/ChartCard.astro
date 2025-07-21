@@ -1,0 +1,26 @@
+---
+const { title, iconClass, chartId } = Astro.props
+---
+
+<article class="col-md-6">
+  <div class="card mb-3 border">
+    <div class="card-body">
+      <h5 class="card-title d-flex align-items-center text-body-emphasis">
+        <i class={`bi pe-none me-2 ${iconClass}`}></i>
+        {title}
+      </h5>
+      <div class="chart-container">
+        <div class="placeholder-glow d-flex align-items-end gap-1 h-100 w-100">
+          {
+            Array.from({ length: 10 }).map((_, i) => {
+              const heights = [55, 75, 90, 60, 80]
+              const height = heights[i % heights.length]
+              return <div class="placeholder rounded" style={`width: 10%; height: ${height}%;`} />
+            })
+          }
+        </div>
+        <canvas id={chartId} class="d-none position-absolute top-0 start-0 w-100 h-100"></canvas>
+      </div>
+    </div>
+  </div>
+</article>

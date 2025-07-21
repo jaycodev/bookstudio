@@ -76,8 +76,8 @@ function generateRow(student) {
 			<td class="align-middle text-center">
 				${
           student.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
         }
 			</td>
 			<td class="align-middle text-center">
@@ -126,8 +126,8 @@ function updateRow(student) {
 
       cells[6].innerHTML =
         s.status === 'activo'
-          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>'
+          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
+          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
     },
   })
 }
@@ -272,8 +272,8 @@ function loadModalData() {
 
         $('#detailsStatus').html(
           data.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Inactivo</span>',
+            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
+            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>',
         )
 
         toggleModalLoading(this, false)

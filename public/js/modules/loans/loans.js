@@ -93,8 +93,8 @@ function generateRow(loan) {
 			<td class="align-middle text-center">
 				${
           loan.status === 'prestado'
-            ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">Prestado</span>'
-            : '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Devuelto</span>'
+            ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle"><i class="bi bi-hourglass-split me-1"></i>Prestado</span>'
+            : '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Devuelto</span>'
         }
 			</td>
 			<td class="align-middle text-center">
@@ -215,7 +215,7 @@ function handleReturn() {
           const cells = matchingRow.querySelectorAll('td')
           if (cells[6]) {
             cells[6].innerHTML =
-              '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Devuelto</span>'
+              '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Devuelto</span>'
           }
           if (cells[7]) {
             const returnBtn = cells[7].querySelector('.btn[aria-label="Devolver el préstamo"]')
@@ -350,8 +350,8 @@ function loadModalData() {
 
         $('#detailsStatus').html(
           data.status === 'prestado'
-            ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">Prestado</span>'
-            : '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">Devuelto</span>',
+            ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle"><i class="bi bi-hourglass-split me-1"></i>Prestado</span>'
+            : '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Devuelto</span>',
         )
 
         $('#detailsObservation').text(data.observation)

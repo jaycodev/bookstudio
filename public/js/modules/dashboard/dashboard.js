@@ -12,7 +12,13 @@ const PUBLIC_API_URL = window.APP_CONFIG?.PUBLIC_API_URL || 'http://localhost:80
 
 import { showToast } from '/js/shared/utils/ui/index.js'
 
+function getThemeBorderColor() {
+  return getComputedStyle(document.documentElement).getPropertyValue('--bs-border-color').trim()
+}
+
 $(document).ready(function () {
+  const charts = []
+
   const borrowedBooksChart = new Chart($('#borrowedBooksChart'), {
     type: 'bar',
     data: {
@@ -29,9 +35,18 @@ $(document).ready(function () {
     },
     options: {
       maintainAspectRatio: false,
-      scales: { y: { beginAtZero: true } },
+      scales: {
+        x: {
+          grid: { color: getThemeBorderColor() },
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: getThemeBorderColor() },
+        },
+      },
     },
   })
+  charts.push(borrowedBooksChart)
 
   const returnedBooksChart = new Chart($('#returnedBooksChart'), {
     type: 'bar',
@@ -48,9 +63,18 @@ $(document).ready(function () {
       ],
     },
     options: {
-      scales: { y: { beginAtZero: true } },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: getThemeBorderColor() },
+        },
+        x: {
+          grid: { color: getThemeBorderColor() },
+        },
+      },
     },
   })
+  charts.push(returnedBooksChart)
 
   const avgLoanTimeChart = new Chart($('#avgLoanTimeChart'), {
     type: 'line',
@@ -60,17 +84,26 @@ $(document).ready(function () {
         {
           label: 'Duración promedio de préstamo (días)',
           data: [],
-          borderColor: 'rgba(255, 99, 132, 1)',
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
           borderWidth: 2,
           tension: 0.4,
         },
       ],
     },
     options: {
-      scales: { y: { beginAtZero: true } },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: getThemeBorderColor() },
+        },
+        x: {
+          grid: { color: getThemeBorderColor() },
+        },
+      },
     },
   })
+  charts.push(avgLoanTimeChart)
 
   const loanComparisonChart = new Chart($('#loanComparisonChart'), {
     type: 'bar',
@@ -80,20 +113,51 @@ $(document).ready(function () {
         {
           label: 'Año anterior',
           data: [],
-          backgroundColor: 'rgba(54, 162, 235, 0.7)',
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 1,
         },
         {
           label: 'Año actual',
           data: [],
-          backgroundColor: 'rgba(255, 99, 132, 0.7)',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1,
         },
       ],
     },
     options: {
       responsive: true,
-      scales: { y: { beginAtZero: true } },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: getThemeBorderColor() },
+        },
+        x: {
+          grid: { color: getThemeBorderColor() },
+        },
+      },
     },
   })
+  charts.push(loanComparisonChart)
+
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
+        const borderColor = getThemeBorderColor()
+        charts.forEach((chart) => {
+          if (chart.options.scales?.x?.grid) {
+            chart.options.scales.x.grid.color = borderColor
+          }
+          if (chart.options.scales?.y?.grid) {
+            chart.options.scales.y.grid.color = borderColor
+          }
+          chart.update()
+        })
+      }
+    }
+  })
+  observer.observe(document.documentElement, { attributes: true })
 
   const currentYear = new Date().getFullYear()
   const lastYear = currentYear - 1

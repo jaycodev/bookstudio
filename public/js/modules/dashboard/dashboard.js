@@ -10,6 +10,8 @@
 
 const PUBLIC_API_URL = window.APP_CONFIG?.PUBLIC_API_URL || 'http://localhost:8080'
 
+import { showToast } from '/js/shared/utils/ui/index.js'
+
 $(document).ready(function () {
   const borrowedBooksChart = new Chart($('#borrowedBooksChart'), {
     type: 'bar',
@@ -98,7 +100,7 @@ $(document).ready(function () {
 
   fetch(`${PUBLIC_API_URL}/api/dashboard?year1=${currentYear}&year2=${lastYear}`)
     .then((response) => {
-      if (!response.ok) throw new Error('Error al obtener datos del dashboard')
+      if (!response.ok) throw new Error('Failed to fetch dashboard data')
       return response.json()
     })
     .then((data) => {
@@ -153,8 +155,9 @@ $(document).ready(function () {
       updateStatCardValue('#totalStudents', `${data.totalActiveStudents} Estudiantes activos`)
       updateStatCardValue('#totalLoans', `${data.totalActiveLoans} Préstamos activos`)
     })
-    .catch((error) => {
-      console.error('Error al obtener datos del dashboard:', error)
+    .catch((err) => {
+      console.error('Error fetching dashboard data:', err)
+      showToast('Hubo un error al listar los datos del dashboard.', 'error')
     })
 })
 

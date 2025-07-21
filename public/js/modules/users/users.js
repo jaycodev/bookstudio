@@ -578,7 +578,7 @@ $('#addProfilePhoto, #editProfilePhoto').on('change', function () {
 })
 
 function generatePDF(dataTable) {
-  const pdfBtn = $('#generatePDF')
+  const pdfBtn = document.getElementById('generatePDF')
   toggleButtonLoading(pdfBtn, true)
 
   let hasWarnings = false
@@ -690,7 +690,7 @@ function generatePDF(dataTable) {
 }
 
 function generateExcel(dataTable) {
-  const excelBtn = $('#generateExcel')
+  const excelBtn = document.getElementById('generateExcel')
   toggleButtonLoading(excelBtn, true)
 
   try {

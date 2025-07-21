@@ -1,5 +1,5 @@
 ---
-const { title = 'Lista', icon = 'bi-table' } = Astro.props
+const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
 ---
 
 <!-- Card Container -->
@@ -55,22 +55,61 @@ const { title = 'Lista', icon = 'bi-table' } = Astro.props
 
   <!-- Card Body -->
   <div class="card-body">
-    <!-- Loading Spinner -->
-    <div id="spinnerLoad" class="d-flex justify-content-center align-items-center my-5">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Cargando...</span>
-      </div>
-    </div>
+    <section id="tableContainer" class="small">
+      <!-- Tabla Skeleton -->
+      <div id="skeletonTable">
+        <div class="row align-items-center mb-3 mt-2">
+          <!-- Placeholder on the left corner -->
+          <div class="col-12 col-md-4 text-center text-md-start mb-2 mb-md-0">
+            <div class="placeholder-glow">
+              <span class="placeholder col-4 rounded" style="height: 1.5rem;"></span>
+            </div>
+          </div>
 
-    <!-- Table Container -->
-    <section id="tableContainer" class="d-none small">
-      <table id="table" class="table table-sm">
+          <!-- Spacer in the middle -->
+          <div class="col d-none d-md-block"></div>
+
+          <!-- Placeholder on the right corner -->
+          <div class="col-12 col-md-4 text-end">
+            <div class="placeholder-glow">
+              <span class="placeholder col-12 col-md-6 rounded" style="height: 1.5rem;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla simulada -->
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <slot name="thead" />
+              </tr>
+            </thead>
+            <tbody>
+              {
+                Array.from({ length: 20 }).map(() => (
+                  <tr class="placeholder-glow">
+                    {Array.from({ length: columnCount }).map(() => (
+                      <td>
+                        <span class="placeholder col-11 rounded" />
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tabla real -->
+      <table id="table" class="table table-sm d-none">
         <thead>
           <tr>
             <slot name="thead" />
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody data-body></tbody>
       </table>
     </section>
   </div>

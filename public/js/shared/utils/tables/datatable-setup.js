@@ -1,12 +1,17 @@
 export function toggleTableLoadingState(action) {
   const buttons = document.querySelectorAll('#buttonGroupHeader button')
-  const spinner = document.getElementById('spinnerLoad')
+  const skeletonTable = document.getElementById('skeletonTable')
+  const realTable = document.getElementById('table')
 
   if (action === 'loading') {
-    spinner.classList.remove('d-none')
+    skeletonTable.classList.remove('d-none')
+    realTable.classList.add('d-none')
     buttons.forEach((btn) => (btn.disabled = true))
-  } else if (action === 'loaded') {
-    spinner.classList.add('d-none')
+  }
+
+  if (action === 'loaded') {
+    skeletonTable.classList.add('d-none')
+    realTable.classList.remove('d-none')
     buttons.forEach((btn) => (btn.disabled = false))
   }
 }
@@ -37,7 +42,6 @@ export function setupDataTable(tableId) {
     },
     initComplete: function () {
       toggleTableLoadingState('loaded')
-      document.getElementById('tableContainer').classList.remove('d-none')
 
       const dtSearch = document.querySelector('.dt-search')
       const label = dtSearch.querySelector('label')
@@ -50,14 +54,6 @@ export function setupDataTable(tableId) {
       )
     },
   })
-
-  setTimeout(function () {
-    const spinner = document.getElementById('spinnerLoad')
-    if (!spinner.classList.contains('d-none')) {
-      toggleTableLoadingState('loaded')
-      document.getElementById('tableContainer').classList.remove('d-none')
-    }
-  }, 3000)
 
   return table
 }

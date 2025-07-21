@@ -9,9 +9,9 @@ import Modals from '@components/ui/Modals.astro'
   currentPage="/loans"
   role="administrador"
   username="Jason"
-  customScriptPath='/js/modules/loans/loans.js'
+  customScriptPath="/js/modules/loans/loans.js"
 >
-  <DataTableCard title="Lista de préstamos" icon="bi-file-earmark-text">
+  <DataTableCard title="Lista de préstamos" icon="bi-file-earmark-text" columnCount={8}>
     <Fragment slot="thead">
       <th scope="col" class="text-start">Código</th>
       <th scope="col" class="text-start">Libro</th>

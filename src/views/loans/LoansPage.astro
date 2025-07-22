@@ -1,7 +1,9 @@
 ---
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
-import Modals from '@components/ui/Modals.astro'
+import AddModal from '@components/ui/modals/AddModal.astro'
+import DetailsOffcanvas from '@components/ui/modals/DetailsOffcanvas.astro'
+import EditModal from '@components/ui/modals/EditModal.astro'
 ---
 
 <DashboardLayout
@@ -24,13 +26,8 @@ import Modals from '@components/ui/Modals.astro'
     </Fragment>
   </DataTableCard>
 
-  <Modals
-    slot="modals"
-    addTitle="Agregar un préstamo"
-    detailsTitle="Detalles del préstamo"
-    editTitle="Editar préstamo"
-  >
-    <Fragment slot="add-fields">
+  <Fragment slot="modals">
+    <AddModal title="Agregar un préstamo">
       <!-- Book and Student Section -->
       <div class="row">
         <!-- Book Field -->
@@ -112,9 +109,9 @@ import Modals from '@components/ui/Modals.astro'
             placeholder="Ingrese cualquier observación opcional"></textarea>
         </div>
       </div>
-    </Fragment>
+    </AddModal>
 
-    <Fragment slot="details-body">
+    <DetailsOffcanvas title="Detalles del préstamo">
       <!-- ID and Book Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -214,9 +211,9 @@ import Modals from '@components/ui/Modals.astro'
           </div>
         </div>
       </div>
-    </Fragment>
+    </DetailsOffcanvas>
 
-    <Fragment slot="edit-fields">
+    <EditModal title="Editar préstamo">
       <!-- Student and Loan Date Section -->
       <div class="row">
         <!-- Book Field -->
@@ -285,63 +282,63 @@ import Modals from '@components/ui/Modals.astro'
             placeholder="Ingrese cualquier observación opcional"></textarea>
         </div>
       </div>
-    </Fragment>
-  </Modals>
+    </EditModal>
 
-  <!-- Return Modal -->
-  <div
-    class="modal fade"
-    id="returnModal"
-    tabindex="-1"
-    aria-labelledby="returnModalLabel"
-    aria-hidden="true"
-    data-bs-backdrop="static"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title text-body-emphasis" id="returnModalLabel">
-            Confirmación de préstamo
-            <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="returnModalID"
-            ></span>
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-          ></button>
-        </div>
+    <!-- Return Modal -->
+    <div
+      class="modal fade"
+      id="returnModal"
+      tabindex="-1"
+      aria-labelledby="returnModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h5 class="modal-title text-body-emphasis" id="returnModalLabel">
+              Confirmación de préstamo
+              <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="returnModalID"
+              ></span>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            ></button>
+          </div>
 
-        <!-- Modal Body -->
-        <div class="modal-body">
-          <p>
-            ¿Estás seguro de cambiar el estado a <span
-              class="badge text-success-emphasis bg-success-subtle border border-success-subtle"
-              ><i class="bi bi-check-circle me-1"></i>Devuelto</span
-            >?
-          </p>
-        </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <p>
+              ¿Estás seguro de cambiar el estado a <span
+                class="badge text-success-emphasis bg-success-subtle border border-success-subtle"
+                ><i class="bi bi-check-circle me-1"></i>Devuelto</span
+              >?
+            </p>
+          </div>
 
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-          <!-- Cancel Button -->
-          <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
-            >Cancelar</button
-          >
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <!-- Cancel Button -->
+            <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
+              >Cancelar</button
+            >
 
-          <!-- Confirm Button -->
-          <button
-            type="button"
-            class="btn btn-custom-primary d-flex align-items-center"
-            id="returnBtn"
-          >
-            <i class="bi bi-check2-square me-2"></i>
-            <span
-              class="spinner-border spinner-border-sm me-2 d-none"
-              role="status"
-              aria-hidden="true"></span>
-            Confirmar
-          </button>
+            <!-- Confirm Button -->
+            <button
+              type="button"
+              class="btn btn-custom-primary d-flex align-items-center"
+              id="returnBtn"
+            >
+              <i class="bi bi-check2-square me-2"></i>
+              <span
+                class="spinner-border spinner-border-sm me-2 d-none"
+                role="status"
+                aria-hidden="true"></span>
+              Confirmar
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Fragment>
 </DashboardLayout>

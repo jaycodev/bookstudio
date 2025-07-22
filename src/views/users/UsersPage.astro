@@ -1,7 +1,9 @@
 ---
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
-import Modals from '@components/ui/Modals.astro'
+import AddModal from '@components/ui/modals/AddModal.astro'
+import DetailsOffcanvas from '@components/ui/modals/DetailsOffcanvas.astro'
+import EditModal from '@components/ui/modals/EditModal.astro'
 ---
 
 <DashboardLayout
@@ -24,14 +26,8 @@ import Modals from '@components/ui/Modals.astro'
     </Fragment>
   </DataTableCard>
 
-  <Modals
-    slot="modals"
-    addTitle="Agregar un usuario"
-    detailsTitle="Detalles del usuario"
-    editTitle="Editar usuario"
-    useMultipart={true}
-  >
-    <Fragment slot="add-fields">
+  <Fragment slot="modals">
+    <AddModal title="Agregar un usuario" useMultipart={true}>
       <!-- Username and Email Section -->
       <div class="row">
         <!-- Username Field -->
@@ -220,9 +216,9 @@ import Modals from '@components/ui/Modals.astro'
           </button>
         </div>
       </div>
-    </Fragment>
+    </AddModal>
 
-    <Fragment slot="details-body">
+    <DetailsOffcanvas title="Detalles del usuario">
       <!-- ID and Username Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -338,9 +334,9 @@ import Modals from '@components/ui/Modals.astro'
           </div>
         </div>
       </div>
-    </Fragment>
+    </DetailsOffcanvas>
 
-    <Fragment slot="edit-fields">
+    <EditModal title="Editar usuario" useMultipart={true}>
       <!-- Username and Email Section -->
       <div class="row">
         <!-- Username Field -->
@@ -440,57 +436,58 @@ import Modals from '@components/ui/Modals.astro'
           </button>
         </div>
       </div>
-    </Fragment>
-  </Modals>
-</DashboardLayout>
+    </EditModal>
 
-<!-- Delete Modal -->
-<div
-  class="modal fade"
-  id="deleteModal"
-  tabindex="-1"
-  aria-labelledby="deleteModalLabel"
-  aria-hidden="true"
-  data-bs-backdrop="static"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h5 class="modal-title text-body-emphasis" id="deleteModalLabel">
-          Confirmación de usuario
-          <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="deleteModalID"
-          ></span>
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+    <!-- Delete -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h5 class="modal-title text-body-emphasis" id="deleteModalLabel">
+              Confirmación de usuario
+              <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="deleteModalID"
+              ></span>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            ></button>
+          </div>
 
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <p>¿Estás seguro de que deseas eliminar este usuario?</p>
-      </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+          </div>
 
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <!-- Cancel Button -->
-        <button
-          type="button"
-          class="btn btn-custom-secondary d-flex align-items-center"
-          data-bs-dismiss="modal"
-        >
-          Cancelar
-        </button>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <!-- Cancel Button -->
+            <button
+              type="button"
+              class="btn btn-custom-secondary d-flex align-items-center"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
 
-        <!-- Delete Button -->
-        <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
-          <i class="bi bi-trash me-2"></i>
-          <span
-            class="spinner-border spinner-border-sm me-2 d-none"
-            role="status"
-            aria-hidden="true"></span>
-          Eliminar
-        </button>
+            <!-- Delete Button -->
+            <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
+              <i class="bi bi-trash me-2"></i>
+              <span
+                class="spinner-border spinner-border-sm me-2 d-none"
+                role="status"
+                aria-hidden="true"></span>
+              Eliminar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </Fragment>
+</DashboardLayout>

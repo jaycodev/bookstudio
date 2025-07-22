@@ -1,7 +1,9 @@
 ---
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
-import Modals from '@components/ui/Modals.astro'
+import AddModal from '@components/ui/modals/AddModal.astro'
+import DetailsOffcanvas from '@components/ui/modals/DetailsOffcanvas.astro'
+import EditModal from '@components/ui/modals/EditModal.astro'
 ---
 
 <DashboardLayout
@@ -23,13 +25,8 @@ import Modals from '@components/ui/Modals.astro'
     </Fragment>
   </DataTableCard>
 
-  <Modals
-    slot="modals"
-    addTitle="Agregar un estudiante"
-    detailsTitle="Detalles del estudiante"
-    editTitle="Editar estudiante"
-  >
-    <Fragment slot="add-fields">
+  <Fragment slot="modals">
+    <AddModal title="Agregar un estudiante">
       <!-- Personal Information Section -->
       <div class="row">
         <!-- DNI Field -->
@@ -197,9 +194,9 @@ import Modals from '@components/ui/Modals.astro'
           <div class="invalid-feedback"></div>
         </div>
       </div>
-    </Fragment>
+    </AddModal>
 
-    <Fragment slot="details-body">
+    <DetailsOffcanvas title="Detalles del estudiante">
       <!-- ID and DNI Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -338,9 +335,9 @@ import Modals from '@components/ui/Modals.astro'
           </div>
         </div>
       </div>
-    </Fragment>
+    </DetailsOffcanvas>
 
-    <Fragment slot="edit-fields">
+    <EditModal title="Editar estudiante">
       <!-- Personal Information Section -->
       <div class="row">
         <!-- DNI Field -->
@@ -488,6 +485,6 @@ import Modals from '@components/ui/Modals.astro'
           <select class="selectpicker form-control" id="editStatus" name="status" required></select>
         </div>
       </div>
-    </Fragment>
-  </Modals>
+    </EditModal>
+  </Fragment>
 </DashboardLayout>

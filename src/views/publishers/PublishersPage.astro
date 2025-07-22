@@ -1,7 +1,9 @@
 ---
 import DashboardLayout from '@layouts/DashboardLayout.astro'
 import DataTableCard from '@components/ui/DataTableCard.astro'
-import Modals from '@components/ui/Modals.astro'
+import AddModal from '@components/ui/modals/AddModal.astro'
+import DetailsOffcanvas from '@components/ui/modals/DetailsOffcanvas.astro'
+import EditModal from '@components/ui/modals/EditModal.astro'
 ---
 
 <DashboardLayout
@@ -23,14 +25,8 @@ import Modals from '@components/ui/Modals.astro'
     </Fragment>
   </DataTableCard>
 
-  <Modals
-    slot="modals"
-    addTitle="Agregar una editorial"
-    detailsTitle="Detalles de la editorial"
-    editTitle="Editar editorial"
-    useMultipart={true}
-  >
-    <Fragment slot="add-fields">
+  <Fragment slot="modals">
+    <AddModal title="Agregar una editorial" useMultipart={true}>
       <!-- Information Section -->
       <div class="row">
         <!-- Name Field -->
@@ -190,9 +186,9 @@ import Modals from '@components/ui/Modals.astro'
           </button>
         </div>
       </div>
-    </Fragment>
+    </AddModal>
 
-    <Fragment slot="details-body">
+    <DetailsOffcanvas title="Detalles de la editorial">
       <!-- ID and Name Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -334,9 +330,9 @@ import Modals from '@components/ui/Modals.astro'
           </div>
         </div>
       </div>
-    </Fragment>
+    </DetailsOffcanvas>
 
-    <Fragment slot="edit-fields">
+    <EditModal title="Editar editorial" useMultipart={true}>
       <!-- Information Section -->
       <div class="row">
         <!-- Name Field -->
@@ -478,6 +474,6 @@ import Modals from '@components/ui/Modals.astro'
           </button>
         </div>
       </div>
-    </Fragment>
-  </Modals>
+    </EditModal>
+  </Fragment>
 </DashboardLayout>

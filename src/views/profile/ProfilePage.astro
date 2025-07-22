@@ -4,6 +4,8 @@ import { PUBLIC_API_URL } from 'astro:env/client'
 import Header from '@components/layout/Header.astro'
 import Sidebar from '@components/layout/Sidebar.astro'
 
+import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
+
 const { role = 'administrador', username = 'Jason', userProfileImage = '' } = Astro.props
 ---
 
@@ -293,52 +295,29 @@ const { role = 'administrador', username = 'Jason', userProfileImage = '' } = As
       </div>
     </div>
 
-    <!-- Delete Photo Modal -->
-    <div
-      class="modal fade"
-      id="deletePhotoModal"
-      tabindex="-1"
-      aria-labelledby="deletePhotoModalLabel"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h5 class="modal-title" id="deletePhotoModalLabel">Confirmar eliminación</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"
-            ></button>
-          </div>
+    <ConfirmationModal id="deletePhotoModal" title="Confirmar eliminación">
+      <Fragment slot="body">
+        <p>¿Estás seguro de que deseas eliminar tu foto de perfil?</p>
+      </Fragment>
 
-          <!-- Modal Body -->
-          <div class="modal-body">
-            <p>¿Estás seguro de que deseas eliminar tu foto de perfil?</p>
-          </div>
+      <Fragment slot="footer">
+        <button
+          type="button"
+          class="btn btn-custom-secondary d-flex align-items-center"
+          data-bs-dismiss="modal">Cancelar</button
+        >
 
-          <!-- Modal Footer -->
-          <div class="modal-footer">
-            <!-- Cancel Button -->
-            <button
-              type="button"
-              class="btn btn-custom-secondary d-flex align-items-center"
-              data-bs-dismiss="modal">Cancelar</button
-            >
-
-            <!-- Delete Button -->
-            <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
-              <span id="deleteIcon" class="me-2"><i class="bi bi-trash"></i></span>
-              <span
-                id="deleteSpinner"
-                class="spinner-border spinner-border-sm me-2 d-none"
-                role="status"
-                aria-hidden="true"></span>
-              Eliminar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
+          <span id="deleteIcon" class="me-2"><i class="bi bi-trash"></i></span>
+          <span
+            id="deleteSpinner"
+            class="spinner-border spinner-border-sm me-2 d-none"
+            role="status"
+            aria-hidden="true"></span>
+          Eliminar
+        </button>
+      </Fragment>
+    </ConfirmationModal>
 
     <!-- Toast Container -->
     <div class="toast-container" id="toast-container"></div>

@@ -6,6 +6,7 @@ import DataTableCard from '@components/datatable/DataTableCard.astro'
 import AddModal from '@components/modals/AddModal.astro'
 import DetailsOffcanvas from '@components/modals/DetailsOffcanvas.astro'
 import EditModal from '@components/modals/EditModal.astro'
+import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
 ---
 
 <DashboardLayout
@@ -440,56 +441,29 @@ import EditModal from '@components/modals/EditModal.astro'
       </div>
     </EditModal>
 
-    <!-- Delete -->
-    <div
-      class="modal fade"
-      id="deleteModal"
-      tabindex="-1"
-      aria-labelledby="deleteModalLabel"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h5 class="modal-title text-body-emphasis" id="deleteModalLabel">
-              Confirmación de usuario
-              <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="deleteModalID"
-              ></span>
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            ></button>
-          </div>
+    <ConfirmationModal id="deleteModal" title="Confirmación de usuario" badgeId="deleteModalID">
+      <Fragment slot="body">
+        <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+      </Fragment>
 
-          <!-- Modal Body -->
-          <div class="modal-body">
-            <p>¿Estás seguro de que deseas eliminar este usuario?</p>
-          </div>
+      <Fragment slot="footer">
+        <button
+          type="button"
+          class="btn btn-custom-secondary d-flex align-items-center"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
 
-          <!-- Modal Footer -->
-          <div class="modal-footer">
-            <!-- Cancel Button -->
-            <button
-              type="button"
-              class="btn btn-custom-secondary d-flex align-items-center"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-
-            <!-- Delete Button -->
-            <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
-              <i class="bi bi-trash me-2"></i>
-              <span
-                class="spinner-border spinner-border-sm me-2 d-none"
-                role="status"
-                aria-hidden="true"></span>
-              Eliminar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
+          <i class="bi bi-trash me-2"></i>
+          <span
+            class="spinner-border spinner-border-sm me-2 d-none"
+            role="status"
+            aria-hidden="true"></span>
+          Eliminar
+        </button>
+      </Fragment>
+    </ConfirmationModal>
   </Fragment>
 </DashboardLayout>

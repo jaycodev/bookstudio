@@ -6,6 +6,7 @@ import DataTableCard from '@components/datatable/DataTableCard.astro'
 import AddModal from '@components/modals/AddModal.astro'
 import DetailsOffcanvas from '@components/modals/DetailsOffcanvas.astro'
 import EditModal from '@components/modals/EditModal.astro'
+import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
 ---
 
 <DashboardLayout
@@ -286,61 +287,35 @@ import EditModal from '@components/modals/EditModal.astro'
       </div>
     </EditModal>
 
-    <!-- Return Modal -->
-    <div
-      class="modal fade"
-      id="returnModal"
-      tabindex="-1"
-      aria-labelledby="returnModalLabel"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h5 class="modal-title text-body-emphasis" id="returnModalLabel">
-              Confirmación de préstamo
-              <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="returnModalID"
-              ></span>
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            ></button>
-          </div>
+    <ConfirmationModal id="returnModal" title="Confirmación de préstamo" badgeId="returnModalID">
+      <Fragment slot="body">
+        <p>
+          ¿Estás seguro de cambiar el estado a 
+          <span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
+            <i class="bi bi-check-circle me-1"></i>Devuelto
+          </span>
+          ?
+        </p>
+      </Fragment>
 
-          <!-- Modal Body -->
-          <div class="modal-body">
-            <p>
-              ¿Estás seguro de cambiar el estado a <span
-                class="badge text-success-emphasis bg-success-subtle border border-success-subtle"
-                ><i class="bi bi-check-circle me-1"></i>Devuelto</span
-              >?
-            </p>
-          </div>
+      <Fragment slot="footer">
+        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
 
-          <!-- Modal Footer -->
-          <div class="modal-footer">
-            <!-- Cancel Button -->
-            <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
-              >Cancelar</button
-            >
-
-            <!-- Confirm Button -->
-            <button
-              type="button"
-              class="btn btn-custom-primary d-flex align-items-center"
-              id="returnBtn"
-            >
-              <i class="bi bi-check2-square me-2"></i>
-              <span
-                class="spinner-border spinner-border-sm me-2 d-none"
-                role="status"
-                aria-hidden="true"></span>
-              Confirmar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        <button
+          type="button"
+          class="btn btn-custom-primary d-flex align-items-center"
+          id="returnBtn"
+        >
+          <i class="bi bi-check2-square me-2"></i>
+          <span
+            class="spinner-border spinner-border-sm me-2 d-none"
+            role="status"
+            aria-hidden="true"></span>
+          Confirmar
+        </button>
+      </Fragment>
+    </ConfirmationModal>
   </Fragment>
 </DashboardLayout>

@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from '@components/layout/ThemeToggle.astro'
+import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
 
 const { userProfileImage = '' } = Astro.props
 ---
@@ -95,105 +96,54 @@ const { userProfileImage = '' } = Astro.props
   </div>
 </header>
 
-<!-- Logout Confirmation Modal -->
-<div
-  class="modal fade"
-  id="logoutModal"
-  tabindex="-1"
-  aria-labelledby="logoutModalLabel"
-  aria-hidden="true"
-  data-bs-backdrop="static"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h5 class="modal-title text-body-emphasis" id="logoutModalLabel">
-          Confirmar cierre de sesión
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar Sesión"
-        ></button>
-      </div>
+<ConfirmationModal id="logoutModal" title="Confirmar cierre de sesión">
+  <Fragment slot="body">
+    <p>¿Estás seguro de que deseas cerrar tu sesión?</p>
+  </Fragment>
 
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <p>¿Estás seguro de que deseas cerrar tu sesión?</p>
-      </div>
+  <Fragment slot="footer">
+    <button
+      type="button"
+      class="btn btn-custom-secondary d-flex align-items-center"
+      data-bs-dismiss="modal"
+    >
+      Cancelar
+    </button>
 
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <!-- Cancel Button -->
-        <button
-          type="button"
-          class="btn btn-custom-secondary d-flex align-items-center"
-          data-bs-dismiss="modal"
-        >
-          Cancelar
-        </button>
+    <button id="confirmLogoutBtn" type="button" class="btn btn-danger d-flex align-items-center">
+      <i class="bi bi-box-arrow-right me-2"></i>
+      Cerrar sesión
+    </button>
+  </Fragment>
+</ConfirmationModal>
 
-        <!-- Logout Button -->
-        <button
-          id="confirmLogoutBtn"
-          type="button"
-          class="btn btn-danger d-flex align-items-center"
-        >
-          <i class="bi bi-box-arrow-right me-2"></i>
-          Cerrar sesión
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+<ConfirmationModal id="sessionExpiredModal" title="Sesión por expirar">
+  <Fragment slot="body">
+    <p>Tu sesión está a punto de expirar. ¿Deseas continuar con tu sesión?</p>
+  </Fragment>
 
-<!-- Session Expired Modal -->
-<div
-  class="modal fade"
-  id="sessionExpiredModal"
-  tabindex="-1"
-  aria-labelledby="sessionExpiredModalLabel"
-  aria-hidden="true"
-  data-bs-backdrop="static"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h5 class="modal-title" id="sessionExpiredModalLabel">Sesión por expirar</h5>
-      </div>
+  <Fragment slot="footer">
+    <button type="button" class="btn btn-danger d-flex align-items-center" id="logoutBtn">
+      <span id="logoutIcon" class="me-2"><i class="bi bi-box-arrow-right"></i></span>
+      <span
+        id="logoutSpinner"
+        class="spinner-border spinner-border-sm me-2 d-none"
+        role="status"
+        aria-hidden="true"></span>
+      Cerrar sesión
+    </button>
 
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <p>Tu sesión está a punto de expirar. ¿Deseas continuar con tu sesión?</p>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <!-- Close Session Button -->
-        <button type="button" class="btn btn-danger d-flex align-items-center" id="logoutBtn">
-          <span id="logoutIcon" class="me-2"><i class="bi bi-box-arrow-right"></i></span>
-          <span
-            id="logoutSpinner"
-            class="spinner-border spinner-border-sm me-2 d-none"
-            role="status"
-            aria-hidden="true"></span>
-          Cerrar sesión
-        </button>
-
-        <!-- Continue Session Button -->
-        <button
-          type="button"
-          class="btn btn-custom-secondary d-flex align-items-center"
-          id="extendSessionBtn"
-          data-bs-dismiss="modal"
-        >
-          <i class="bi bi-arrow-clockwise me-2"></i>
-          Continuar sesión
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+    <button
+      type="button"
+      class="btn btn-custom-secondary d-flex align-items-center"
+      id="extendSessionBtn"
+      data-bs-dismiss="modal"
+    >
+      <i class="bi bi-arrow-clockwise me-2"></i>
+      Continuar sesión
+    </button>
+  </Fragment>
+</ConfirmationModal>
 
 <script type="module" src="/js/shared/layout/header.js"></script>
-<script type="module" src='/js/shared/layout/session-control.js'></script>
-
+<script type="module" src="/js/shared/layout/session-control.js"></script>

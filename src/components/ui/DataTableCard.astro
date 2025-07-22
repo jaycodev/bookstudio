@@ -60,9 +60,9 @@ const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
       <div id="skeletonTable">
         <div class="row align-items-center mb-3 mt-2">
           <!-- Placeholder on the left corner -->
-          <div class="col-12 col-md-4 text-center text-md-start mb-2 mb-md-0 mt-4 mt-md-0">
+          <div class="col-12 col-md-4 text-center text-md-start mb-2 mb-md-0 mt-2 mt-md-0">
             <div class="placeholder-glow">
-              <span class="placeholder col-4 rounded" style="height: 1.5rem;"></span>
+              <span class="placeholder col-4 rounded" style="height: 30px;"></span>
             </div>
           </div>
 
@@ -70,16 +70,16 @@ const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
           <div class="col d-none d-md-block"></div>
 
           <!-- Placeholder on the right corner -->
-          <div class="col-12 col-md-4 text-end">
+          <div class="col-12 col-md-4 text-end mb-2 mb-md-0">
             <div class="placeholder-glow">
-              <span class="placeholder col-12 col-md-6 rounded" style="height: 1.5rem;"></span>
+              <span class="placeholder col-12 col-md-6 rounded" style="height: 30px;"></span>
             </div>
           </div>
         </div>
 
         <!-- Loading Table -->
         <div class="table-responsive">
-          <table class="table table-sm nowrap w-100">
+          <table class="table table-sm nowrap w-100 mb-2">
             <thead>
               <tr>
                 <slot name="thead" />
@@ -87,11 +87,11 @@ const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
             </thead>
             <tbody>
               {
-                Array.from({ length: 20 }).map(() => (
+                Array.from({ length: 15 }).map(() => (
                   <tr class="placeholder-glow">
                     {Array.from({ length: columnCount }).map(() => (
                       <td>
-                        <span class="placeholder col-11 rounded" />
+                        <span class="placeholder col-11 rounded my-1" style="height: 22px;" />
                       </td>
                     ))}
                   </tr>
@@ -99,6 +99,25 @@ const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
               }
             </tbody>
           </table>
+        </div>
+
+        <div class="row align-items-center mb-0">
+          <!-- Placeholder on the left corner -->
+          <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0 mt-2 mt-md-0">
+            <div class="placeholder-glow">
+              <span class="placeholder col-8 col-md-4 rounded" style="height: 40px;"></span>
+            </div>
+          </div>
+
+          <!-- Spacer in the middle -->
+          <div class="col d-none d-md-block"></div>
+
+          <!-- Placeholder on the right corner -->
+          <div class="col-12 col-md-3 text-center text-md-end">
+            <div class="placeholder-glow">
+              <span class="placeholder col-6 col-md-6 rounded" style="height: 40px;"></span>
+            </div>
+          </div>
         </div>
       </div>
 

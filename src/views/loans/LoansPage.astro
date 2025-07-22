@@ -119,11 +119,23 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Código</h6>
-          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-tertiary text-body-emphasis border d-none" id="detailsID"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsID"
+              style="height: 25px;"></span>
+          </div>
         </div>
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Libro</h6>
-          <p class="fw-bold" id="detailsBook"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsBook"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsBook"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -131,11 +143,23 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Estudiante</h6>
-          <p class="fw-bold" id="detailsStudent"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsStudent"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsStudent"
+              style="height: 25px;"></span>
+          </div>
         </div>
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Fecha de préstamo</h6>
-          <p class="fw-bold" id="detailsLoanDate"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsLoanDate"></p>
+            <span
+              class="placeholder placeholder-sm col-8 rounded mb-3"
+              data-placeholder-for="detailsLoanDate"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -143,11 +167,27 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Fecha de devolución</h6>
-          <p class="fw-bold" id="detailsReturnDate"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsReturnDate"></p>
+            <span
+              class="placeholder placeholder-sm col-8 rounded mb-3"
+              data-placeholder-for="detailsReturnDate"
+              style="height: 25px;"></span>
+          </div>
         </div>
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Cantidad</h6>
-          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsQuantity"></p>
+          <div class="placeholder-glow">
+            <p
+              class="badge bg-body-secondary text-body-emphasis border d-none"
+              id="detailsQuantity"
+            >
+            </p>
+            <span
+              class="placeholder placeholder-sm col-4 rounded mb-3"
+              data-placeholder-for="detailsQuantity"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -155,11 +195,23 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6">
           <h6 class="small text-muted">Estado</h6>
-          <p id="detailsStatus"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsStatus"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsStatus"
+              style="height: 25px;"></span>
+          </div>
         </div>
         <div class="col-md-6">
           <h6 class="small text-muted">Observación</h6>
-          <p class="fw-bold" id="detailsObservation"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsObservation"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsObservation"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
     </Fragment>

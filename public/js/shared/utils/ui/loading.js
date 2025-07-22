@@ -15,11 +15,16 @@ export function toggleModalLoading(modalSelectorOrElement, loading = true) {
 
   if (!modal) return
 
-  const spinner = modal.querySelector('[id$="Spinner"]')
-  const content = modal.querySelector('[id$="Form"], [id$="Content"]')
-  const button = modal.querySelector('button[id$="Btn"]')
+  const paragraphs = modal.querySelectorAll('p[id^="details"]')
+  paragraphs.forEach((p) => {
+    p.classList.toggle('d-none', loading)
+  })
 
-  if (spinner) spinner.classList.toggle('d-none', !loading)
-  if (content) content.classList.toggle('d-none', loading)
+  const placeholders = modal.querySelectorAll('span[data-placeholder-for]')
+  placeholders.forEach((ph) => {
+    ph.classList.toggle('d-none', !loading)
+  })
+
+  const button = modal.querySelector('button[id$="Btn"]')
   if (button) button.disabled = loading
 }

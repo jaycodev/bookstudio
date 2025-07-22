@@ -6,14 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (link.getAttribute('href') === currentPage) {
       link.classList.add('active-effect')
-      if (icon) {
-        const iconClasses = icon.className.split(' ')
-        const iconClass = iconClasses[iconClasses.length - 1]
-        if (!iconClass.endsWith('-fill')) {
-          icon.classList.remove(iconClass)
-          icon.classList.add(iconClass + '-fill')
-        }
-      }
     } else {
       link.classList.remove('active-effect')
     }

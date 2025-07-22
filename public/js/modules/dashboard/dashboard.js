@@ -221,7 +221,7 @@ $(document).ready(function () {
     })
     .catch((err) => {
       console.error('Error fetching dashboard data:', err)
-      showToast('Hubo un error al listar los datos del dashboard.', 'error')
+      showToast('Hubo un error al cargar los datos.', 'error')
     })
 })
 

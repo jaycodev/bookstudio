@@ -31,6 +31,17 @@ export async function loadTableData({ resource, generateRow, generatePDF, genera
           const row = generateRow(item)
           tableBody.insertAdjacentHTML('beforeend', row)
         })
+
+        const rows = tableBody.querySelectorAll('tr')
+        rows.forEach((row, i) => {
+          const cells = row.querySelectorAll('td')
+          cells.forEach((cell) => {
+            cell.classList.remove('fade-in-cell')
+            void cell.offsetWidth
+            cell.classList.add('fade-in-cell')
+            cell.style.animationDelay = `${i * 20}ms`
+          })
+        })
         initializeTooltips(tableBody)
       }
 
@@ -61,6 +72,19 @@ export async function loadTableData({ resource, generateRow, generatePDF, genera
     toggleTableLoadingState('loaded')
 
     dataTable.on('draw', function () {
+      const tableBody = document.querySelector('#table tbody')
+      const rows = tableBody.querySelectorAll('tr')
+
+      rows.forEach((row, i) => {
+        const cells = row.querySelectorAll('td')
+        cells.forEach((cell) => {
+          cell.classList.remove('fade-in-cell')
+          void cell.offsetWidth
+          cell.classList.add('fade-in-cell')
+          cell.style.animationDelay = `${i * 20}ms`
+        })
+      })
+
       const filteredCount = dataTable.rows({ search: 'applied' }).count()
       const noDataMessage = document.querySelector('#table td.dataTables_empty') !== null
       const generateButtons = document.querySelectorAll('#generatePDF, #generateExcel')

@@ -52,6 +52,8 @@ let literaryGenreList = []
 // Global variable to handle photo deletion in edit modal
 let deletePhotoFlag = false
 
+let currentAuthorData = null
+
 function loadOptions() {
   loadSelectOptions({
     resource: 'authors',
@@ -67,10 +69,8 @@ function loadOptions() {
  *****************************************/
 
 function generateRow(author) {
-  const userRole = 'administrador'
-
   return `
-		<tr>
+		<tr data-id="${author.authorId}" data-formatted-id="${author.formattedAuthorId}">
 			<td class="align-middle text-start">
         ${generateBadge(author.formattedAuthorId, 'secondary')}
 			</td>
@@ -98,22 +98,6 @@ function generateRow(author) {
 						<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
 					</svg>`
         }
-			</td>
-			<td class="align-middle text-center">
-				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Detalles"
-						data-bs-toggle="modal" data-bs-target="#detailsModal" data-id="${author.authorId}" data-formatted-id="${author.formattedAuthorId}">
-						<i class="bi bi-info-circle"></i>
-					</button>
-					${
-            userRole === 'administrador'
-              ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
-							data-bs-toggle="modal" data-bs-target="#editModal" data-id="${author.authorId}" data-formatted-id="${author.formattedAuthorId}">
-							<i class="bi bi-pencil"></i>
-						</button>`
-              : ''
-          }
-				</div>
 			</td>
 		</tr>
 	`
@@ -268,11 +252,21 @@ function loadModalData() {
   })
 
   // Details Modal
-  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-    const authorId = $(this).data('id')
-    $('#detailsModalID').text($(this).data('formatted-id'))
+  $(document).on('click', '#table tbody tr', function () {
+    const $row = $(this)
+    const modal = document.getElementById('detailsModal')
+    const authorId = $row.data('id')
+    const formattedId = $row.data('formatted-id')
 
-    toggleModalLoading(this, true)
+    if (!authorId) return
+
+    $('#detailsModalID').text(formattedId)
+    toggleModalLoading(modal, true)
+
+    const detailsModalEl = document.getElementById('detailsModal')
+    const detailsModal =
+      bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
+    detailsModal.show()
 
     fetch(`${PUBLIC_API_URL}/api/authors/${encodeURIComponent(authorId)}`, {
       method: 'GET',
@@ -288,6 +282,8 @@ function loadModalData() {
         return response.json()
       })
       .then((data) => {
+        currentAuthorData = data
+
         $('#detailsID').text(data.formattedAuthorId)
         $('#detailsName').text(data.name)
         $('#detailsNationality').html(
@@ -319,7 +315,9 @@ function loadModalData() {
           $('#detailsSvg').removeClass('d-none')
         }
 
-        toggleModalLoading(this, false)
+        toggleModalLoading(modal, false)
+
+        $('#detailsEditBtn').attr('data-formatted-id', data.formattedAuthorId)
       })
       .catch((error) => {
         console.error(
@@ -336,90 +334,75 @@ function loadModalData() {
 
   // Edit Modal
   $(document).on('click', '[data-bs-target="#editModal"]', function () {
-    const authorId = $(this).data('id')
-    $('#editModalID').text($(this).data('formatted-id'))
+    const modal = document.getElementById('editModal')
+    const formattedId = $(this).data('formatted-id')
 
-    toggleModalLoading(this, true)
+    const detailsModalEl = document.getElementById('detailsModal')
+    const detailsModal = bootstrap.Modal.getInstance(detailsModalEl)
+    if (detailsModal) detailsModal.hide()
 
-    fetch(`${PUBLIC_API_URL}/api/authors/${encodeURIComponent(authorId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
+    if (!currentAuthorData) {
+      showToast('No se pudo cargar los datos del autor.', 'error')
+      return
+    }
+
+    const data = currentAuthorData
+
+    $('#editModalID').text(data.formattedAuthorId)
+    toggleModalLoading(modal, true)
+
+    document.getElementById('editForm').setAttribute('data-author-id', data.authorId)
+    $('#editName').val(data.name)
+
+    populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
+    $('#editNationality').val(data.nationalityId).selectpicker()
+
+    populateSelect('#editLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
+    $('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
+
+    $('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
+    const today = getCurrentPeruDate()
+    const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
+    const maxDateStr = maxDate.toISOString().split('T')[0]
+    $('#editBirthDate').attr('max', maxDateStr)
+
+    $('#editBiography').val(data.biography)
+
+    $('#editStatus')
+      .selectpicker('destroy')
+      .empty()
+      .append(
+        $('<option>', {
+          value: 'activo',
+        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+        $('<option>', {
+          value: 'inactivo',
+        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+      )
+    $('#editStatus').val(data.status).selectpicker()
+
+    updateEditImageContainer(data.photoUrl)
+
+    $('#editForm .is-invalid').removeClass('is-invalid')
+    placeholderColorEditSelect()
+    placeholderColorDateInput()
+
+    $('#editForm')
+      .find('select')
+      .each(function () {
+        validateEditField($(this), true)
       })
-      .then((data) => {
-        document.getElementById('editForm').setAttribute('data-author-id', data.authorId)
-        $('#editName').val(data.name)
 
-        populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
-        $('#editNationality').val(data.nationalityId).selectpicker()
-
-        populateSelect('#editLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
-        $('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
-
-        $('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
-        const today = getCurrentPeruDate()
-        const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
-        const maxDateStr = maxDate.toISOString().split('T')[0]
-        $('#editBirthDate').attr('max', maxDateStr)
-
-        $('#editBiography').val(data.biography)
-
-        $('#editStatus')
-          .selectpicker('destroy')
-          .empty()
-          .append(
-            $('<option>', {
-              value: 'activo',
-            }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-            $('<option>', {
-              value: 'inactivo',
-            }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-          )
-        $('#editStatus').val(data.status).selectpicker()
-
-        updateEditImageContainer(data.photoUrl)
-
-        $('#editForm .is-invalid').removeClass('is-invalid')
-        placeholderColorEditSelect()
-        placeholderColorDateInput()
-
-        $('#editForm')
-          .find('select')
-          .each(function () {
-            validateEditField($(this), true)
-          })
-
-        $('#editPhoto').val('')
-
-        toggleModalLoading(this, false)
-
-        handleEditForm()
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading author details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los datos del autor.', 'error')
-        const editModalEl = document.getElementById('editModal')
-        const editModal =
-          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
-        editModal.hide()
-      })
+    $('#editPhoto').val('')
 
     $('#cropperContainerEdit').addClass('d-none')
     if (cropper) {
       cropper.destroy()
       cropper = null
     }
+
+    toggleModalLoading(modal, false)
+    handleEditForm()
   })
 }
 

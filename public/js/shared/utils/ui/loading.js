@@ -7,9 +7,11 @@ export function toggleButtonLoading(button, loading = true) {
   if (spinner) spinner.classList.toggle('d-none', !loading)
 }
 
-export function toggleModalLoading(triggerElement, loading = true) {
-  const modalSelector = triggerElement.getAttribute('data-bs-target')
-  const modal = document.querySelector(modalSelector)
+export function toggleModalLoading(modalSelectorOrElement, loading = true) {
+  const modal =
+    typeof modalSelectorOrElement === 'string'
+      ? document.querySelector(modalSelectorOrElement)
+      : modalSelectorOrElement
 
   if (!modal) return
 

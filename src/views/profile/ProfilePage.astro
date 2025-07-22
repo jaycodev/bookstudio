@@ -1,7 +1,8 @@
 ---
+import { PUBLIC_API_URL } from 'astro:env/client'
+
 import Header from '@components/layout/Header.astro'
 import Sidebar from '@components/layout/Sidebar.astro'
-import { PUBLIC_API_URL } from 'astro:env/client'
 
 const { role = 'administrador', username = 'Jason', userProfileImage = '' } = Astro.props
 ---

@@ -14,8 +14,6 @@
  * @author Jason
  */
 
-const PUBLIC_API_URL = window.APP_CONFIG?.PUBLIC_API_URL || 'http://localhost:8080'
-
 import { loadTableData, addRowToTable, updateRowInTable } from '/js/shared/utils/tables/index.js'
 
 import {
@@ -28,9 +26,11 @@ import {
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
+  initAddModal,
+  initDetailsModal,
+  initEditModal,
   showToast,
   toggleButtonLoading,
-  toggleModalLoading,
   placeholderColorSelect,
   placeholderColorEditSelect,
   placeholderColorDateInput,
@@ -45,6 +45,9 @@ import {
 
 // Global list of faculties for the selectpickers
 let facultyList = []
+
+// Global variable used to store detail data and reuse it in the edit modal
+let currentDetailData = null
 
 function loadOptions() {
   loadSelectOptions({
@@ -61,7 +64,7 @@ function loadOptions() {
 
 function generateRow(student) {
   return `
-		<tr>
+		<tr data-id="${student.studentId}" data-formatted-id="${student.formattedStudentId}">
 			<td class="align-middle text-start">
         ${generateBadge(student.formattedStudentId, 'secondary')}
 			</td>
@@ -84,18 +87,6 @@ function generateRow(student) {
             ? generateBadge('Activo', 'success', 'bi-check-circle')
             : generateBadge('Inactivo', 'danger', 'bi-x-circle')
         }
-			</td>
-			<td class="align-middle text-center">
-				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Detalles"
-						data-bs-toggle="modal" data-bs-target="#detailsModal" data-id="${student.studentId}" data-formatted-id="${student.formattedStudentId}">
-						<i class="bi bi-info-circle"></i>
-					</button>
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
-						data-bs-toggle="modal" data-bs-target="#editModal" data-id="${student.studentId}" data-formatted-id="${student.formattedStudentId}">
-						<i class="bi bi-pencil"></i>
-					</button>
-				</div>
 			</td>
 		</tr>
 	`
@@ -197,209 +188,156 @@ function handleEditForm() {
 
 function loadModalData() {
   // Add Modal
-  $(document).on('click', '[data-bs-target="#addModal"]', function () {
-    $('#addGender')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'Masculino',
-        }).attr('data-content', generateBadge('Masculino', 'primary', 'bi-gender-male')),
-        $('<option>', {
-          value: 'Femenino',
-        }).attr('data-content', generateBadge('Femenino', 'pink', 'bi-gender-female')),
-      )
-    $('#addGender').selectpicker()
+  initAddModal({
+    onOpen: () => {
+      $('#addGender')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'Masculino',
+          }).attr('data-content', generateBadge('Masculino', 'primary', 'bi-gender-male')),
+          $('<option>', {
+            value: 'Femenino',
+          }).attr('data-content', generateBadge('Femenino', 'pink', 'bi-gender-female')),
+        )
+      $('#addGender').selectpicker()
 
-    populateSelect('#addFaculty', facultyList, 'facultyId', 'name')
-    $('#addFaculty').selectpicker()
+      populateSelect('#addFaculty', facultyList, 'facultyId', 'name')
+      $('#addFaculty').selectpicker()
 
-    $('#addStatus')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'activo',
-        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-        $('<option>', {
-          value: 'inactivo',
-        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-      )
-    $('#addStatus').selectpicker()
+      $('#addStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+        )
+      $('#addStatus').selectpicker()
 
-    $('#addForm')[0].reset()
-    $('#addForm .is-invalid').removeClass('is-invalid')
+      $('#addForm')[0].reset()
+      $('#addForm .is-invalid').removeClass('is-invalid')
 
-    const todayPeru = getCurrentPeruDate()
-    const maxDateStr = todayPeru.toISOString().split('T')[0]
-    $('#addBirthDate').attr('max', maxDateStr)
+      const todayPeru = getCurrentPeruDate()
+      const maxDateStr = todayPeru.toISOString().split('T')[0]
+      $('#addBirthDate').attr('max', maxDateStr)
 
-    placeholderColorDateInput()
+      placeholderColorDateInput()
 
-    handleAddForm()
+      handleAddForm()
+    },
   })
 
   // Details Modal
-  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-    const studentId = $(this).data('id')
-    $('#detailsModalID').text($(this).data('formatted-id'))
+  initDetailsModal({
+    resource: 'students',
+    onSuccess: (data) => {
+      currentDetailData = data
 
-    toggleModalLoading(this, true)
-
-    fetch(`${PUBLIC_API_URL}/api/students/${encodeURIComponent(studentId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        $('#detailsID').text(data.formattedStudentId)
-        $('#detailsDNI').html(generateBadge(data.dni, 'default', 'bi-credit-card'))
-        $('#detailsFirstName').text(data.firstName)
-        $('#detailsLastName').text(data.lastName)
-        $('#detailsAddress').html(generateBadge(data.address, 'default', 'bi-geo-alt'))
-        $('#detailsPhone').html(generateBadge(data.phone, 'default', 'bi-telephone'))
-        $('#detailsEmail').html(`
+      $('#detailsID').text(data.formattedStudentId)
+      $('#detailsDNI').html(generateBadge(data.dni, 'default', 'bi-credit-card'))
+      $('#detailsFirstName').text(data.firstName)
+      $('#detailsLastName').text(data.lastName)
+      $('#detailsAddress').html(generateBadge(data.address, 'default', 'bi-geo-alt'))
+      $('#detailsPhone').html(generateBadge(data.phone, 'default', 'bi-telephone'))
+      $('#detailsEmail').html(`
           <a href="mailto:${data.email}" target="_blank" rel="noopener">
             ${data.email}
           </a>
         `)
 
-        $('#detailsBirthDate').html(
-          generateBadge(
-            moment(data.birthDate).format('DD MMM YYYY'),
-            'default',
-            'bi-calendar-event',
-          ),
-        )
+      $('#detailsBirthDate').html(
+        generateBadge(moment(data.birthDate).format('DD MMM YYYY'), 'default', 'bi-calendar-event'),
+      )
 
-        $('#detailsGender').html(
-          data.gender === 'Masculino'
-            ? generateBadge('Masculino', 'primary', 'bi-gender-male')
-            : generateBadge('Femenino', 'pink', 'bi-gender-female'),
-        )
+      $('#detailsGender').html(
+        data.gender === 'Masculino'
+          ? generateBadge('Masculino', 'primary', 'bi-gender-male')
+          : generateBadge('Femenino', 'pink', 'bi-gender-female'),
+      )
 
-        $('#detailsFaculty').html(generateBadge(data.facultyName, 'default', 'bi-journal-text'))
+      $('#detailsFaculty').html(generateBadge(data.facultyName, 'default', 'bi-journal-text'))
 
-        $('#detailsStatus').html(
-          data.status === 'activo'
-            ? generateBadge('Activo', 'success', 'bi-check-circle')
-            : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
-        )
-
-        toggleModalLoading(this, false)
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading student details (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los detalles del estudiante.', 'error')
-        const detailsModalEl = document.getElementById('detailsModal')
-        const detailsModal =
-          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-        detailsModal.hide()
-      })
+      $('#detailsStatus').html(
+        data.status === 'activo'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
+      )
+    },
   })
 
   // Edit Modal
-  $(document).on('click', '[data-bs-target="#editModal"]', function () {
-    const studentId = $(this).data('id')
-    $('#editModalID').text($(this).data('formatted-id'))
+  initEditModal({
+    getData: () => currentDetailData,
+    onOpen: (data) => {
+      $('#editModalID').text(data.formattedStudentId)
 
-    toggleModalLoading(this, true)
+      document.getElementById('editForm').setAttribute('data-student-id', data.studentId)
+      $('#editDNI').val(data.dni)
+      $('#editFirstName').val(data.firstName)
+      $('#editLastName').val(data.lastName)
+      $('#editAddress').val(data.address)
+      $('#editPhone').val(data.phone)
+      $('#editEmail').val(data.email)
+      $('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
 
-    fetch(`${PUBLIC_API_URL}/api/students/${encodeURIComponent(studentId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        document.getElementById('editForm').setAttribute('data-student-id', data.studentId)
-        $('#editDNI').val(data.dni)
-        $('#editFirstName').val(data.firstName)
-        $('#editLastName').val(data.lastName)
-        $('#editAddress').val(data.address)
-        $('#editPhone').val(data.phone)
-        $('#editEmail').val(data.email)
-        $('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
+      const todayPeru = getCurrentPeruDate()
+      const maxDateStr = todayPeru.toISOString().split('T')[0]
+      $('#editBirthDate').attr('max', maxDateStr)
 
-        const todayPeru = getCurrentPeruDate()
-        const maxDateStr = todayPeru.toISOString().split('T')[0]
-        $('#editBirthDate').attr('max', maxDateStr)
-
-        $('#editGender')
-          .selectpicker('destroy')
-          .empty()
-          .append(
-            $('<option>', {
-              value: 'Masculino',
-            }).attr('data-content', generateBadge('Masculino', 'primary', 'bi-gender-male')),
-            $('<option>', {
-              value: 'Femenino',
-            }).attr('data-content', generateBadge('Femenino', 'pink', 'bi-gender-female')),
-          )
-        $('#editGender').val(data.gender)
-        $('#editGender').selectpicker()
-
-        populateSelect('#editFaculty', facultyList, 'facultyId', 'name')
-        $('#editFaculty').val(data.facultyId)
-        $('#editFaculty').selectpicker()
-
-        $('#editStatus')
-          .selectpicker('destroy')
-          .empty()
-          .append(
-            $('<option>', {
-              value: 'activo',
-            }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-            $('<option>', {
-              value: 'inactivo',
-            }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-          )
-        $('#editStatus').val(data.status)
-        $('#editStatus').selectpicker()
-
-        $('#editForm .is-invalid').removeClass('is-invalid')
-        placeholderColorEditSelect()
-        placeholderColorDateInput()
-
-        $('#editForm')
-          .find('select')
-          .each(function () {
-            validateEditField($(this), true)
-          })
-
-        toggleModalLoading(this, false)
-
-        handleEditForm()
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading student details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
+      $('#editGender')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'Masculino',
+          }).attr('data-content', generateBadge('Masculino', 'primary', 'bi-gender-male')),
+          $('<option>', {
+            value: 'Femenino',
+          }).attr('data-content', generateBadge('Femenino', 'pink', 'bi-gender-female')),
         )
-        showToast('Hubo un error al cargar los datos del estudiante.', 'error')
-        const editModalEl = document.getElementById('editModal')
-        const editModal =
-          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
-        editModal.hide()
-      })
+      $('#editGender').val(data.gender)
+      $('#editGender').selectpicker()
+
+      populateSelect('#editFaculty', facultyList, 'facultyId', 'name')
+      $('#editFaculty').val(data.facultyId)
+      $('#editFaculty').selectpicker()
+
+      $('#editStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+        )
+      $('#editStatus').val(data.status)
+      $('#editStatus').selectpicker()
+
+      $('#editForm .is-invalid').removeClass('is-invalid')
+      placeholderColorEditSelect()
+      placeholderColorDateInput()
+
+      $('#editForm')
+        .find('select')
+        .each(function () {
+          validateEditField($(this), true)
+        })
+
+      handleEditForm()
+    },
+  })
+
+  const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+  detailsOffcanvasEl?.addEventListener('hidden.bs.offcanvas', () => {
+    document.body.classList.remove('details-open')
   })
 }
 

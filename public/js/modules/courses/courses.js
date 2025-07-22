@@ -14,16 +14,16 @@
  * @author Jason
  */
 
-const PUBLIC_API_URL = window.APP_CONFIG?.PUBLIC_API_URL || 'http://localhost:8080'
-
 import { loadTableData, addRowToTable, updateRowInTable } from '/js/shared/utils/tables/index.js'
 import { genericAddForm, genericEditForm } from '/js/shared/utils/forms/index.js'
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
+  initAddModal,
+  initDetailsModal,
+  initEditModal,
   showToast,
   toggleButtonLoading,
-  toggleModalLoading,
   placeholderColorSelect,
   placeholderColorEditSelect,
   setupBootstrapSelectDropdownStyles,
@@ -31,14 +31,19 @@ import {
 } from '/js/shared/utils/ui/index.js'
 
 /** ***************************************
+ * GLOBAL VARIABLES AND HELPER FUNCTIONS
+ *****************************************/
+
+// Global variable used to store detail data and reuse it in the edit modal
+let currentDetailData = null
+
+/** ***************************************
  * TABLE HANDLING
  *****************************************/
 
 function generateRow(course) {
-  const userRole = 'administrador'
-
   return `
-		<tr>
+		<tr data-id="${course.courseId}" data-formatted-id="${course.formattedCourseId}">
 			<td class="align-middle text-start">
         ${generateBadge(course.formattedCourseId, 'secondary')}
 			</td>
@@ -59,22 +64,6 @@ function generateRow(course) {
             ? generateBadge('Activo', 'success', 'bi-check-circle')
             : generateBadge('Inactivo', 'danger', 'bi-x-circle')
         }
-			</td>
-			<td class="align-middle text-center">
-				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Detalles"
-						data-bs-toggle="modal" data-bs-target="#detailsModal" data-id="${course.courseId}" data-formatted-id="${course.formattedCourseId}">
-						<i class="bi bi-info-circle"></i>
-					</button>
-					${
-            userRole === 'administrador'
-              ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
-							data-bs-toggle="modal" data-bs-target="#editModal" data-id="${course.courseId}" data-formatted-id="${course.formattedCourseId}">
-							<i class="bi bi-pencil"></i>
-						</button>`
-              : ''
-          }
-				</div>
 			</td>
 		</tr>
 	`
@@ -167,66 +156,49 @@ function handleEditForm() {
 
 function loadModalData() {
   // Add Modal
-  $(document).on('click', '[data-bs-target="#addModal"]', function () {
-    $('#addLevel')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'Básico',
-        }).attr('data-content', generateBadge('Básico', 'primary', 'bi-stars')),
-        $('<option>', {
-          value: 'Intermedio',
-        }).attr('data-content', generateBadge('Intermedio', 'warning', 'bi-graph-up-arrow')),
-        $('<option>', {
-          value: 'Avanzado',
-        }).attr('data-content', generateBadge('Avanzado', 'danger', 'bi-award')),
-      )
-    $('#addLevel').selectpicker()
+  initAddModal({
+    onOpen: () => {
+      $('#addLevel')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'Básico',
+          }).attr('data-content', generateBadge('Básico', 'primary', 'bi-stars')),
+          $('<option>', {
+            value: 'Intermedio',
+          }).attr('data-content', generateBadge('Intermedio', 'warning', 'bi-graph-up-arrow')),
+          $('<option>', {
+            value: 'Avanzado',
+          }).attr('data-content', generateBadge('Avanzado', 'danger', 'bi-award')),
+        )
+      $('#addLevel').selectpicker()
 
-    $('#addStatus')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'activo',
-        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-        $('<option>', {
-          value: 'inactivo',
-        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-      )
-    $('#addStatus').selectpicker()
+      $('#addStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+        )
+      $('#addStatus').selectpicker()
 
-    $('#addForm')[0].reset()
-    $('#addForm .is-invalid').removeClass('is-invalid')
+      $('#addForm')[0].reset()
+      $('#addForm .is-invalid').removeClass('is-invalid')
 
-    handleAddForm()
+      handleAddForm()
+    },
   })
 
   // Details Modal
-  $(document).on('click', '[data-bs-target="#detailsModal"]', async function () {
-    const courseId = $(this).data('id')
-    $('#detailsModalID').text($(this).data('formatted-id'))
-
-    toggleModalLoading(this, true)
-
-    try {
-      const response = await fetch(
-        `${PUBLIC_API_URL}/api/courses/${encodeURIComponent(courseId)}`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-          },
-        },
-      )
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw { status: response.status, ...errorData }
-      }
-
-      const data = await response.json()
+  initDetailsModal({
+    resource: 'courses',
+    onSuccess: (data) => {
+      currentDetailData = data
 
       $('#detailsID').text(data.formattedCourseId)
       $('#detailsName').text(data.name)
@@ -246,45 +218,48 @@ function loadModalData() {
       )
 
       $('#detailsDescription').text(data.description)
-
-      toggleModalLoading(this, false)
-    } catch (error) {
-      console.error(
-        `Error loading course details (${error.errorType || 'unknown'} - ${error.status}):`,
-        error.message || error,
-      )
-      showToast('Hubo un error al cargar los detalles del curso.', 'error')
-      const detailsModalEl = document.getElementById('detailsModal')
-      const detailsModal =
-        bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-      detailsModal.hide()
-    }
+    },
   })
 
   // Edit Modal
-  $(document).on('click', '[data-bs-target="#editModal"]', async function () {
-    const courseId = $(this).data('id')
-    $('#editModalID').text($(this).data('formatted-id'))
+  initDetailsModal({
+    resource: 'courses',
+    onSuccess: (data) => {
+      currentDetailData = data
 
-    toggleModalLoading(this, true)
+      $('#detailsID').text(data.formattedBookId)
+      $('#detailsTitle').text(data.title)
+      $('#detailsAvaibleCopies').text(data.availableCopies)
+      $('#detailsLoanedCopies').text(data.loanedCopies)
 
-    try {
-      const response = await fetch(
-        `${PUBLIC_API_URL}/api/courses/${encodeURIComponent(courseId)}`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-          },
-        },
+      $('#detailsAuthor').html(`
+          ${data.authorName}
+          ${generateBadge(data.formattedAuthorId, 'secondary')}
+        `)
+      $('#detailsPublisher').html(`
+          ${data.publisherName}
+          ${generateBadge(data.formattedPublisherId, 'secondary')}
+        `)
+      $('#detailsCourse').html(`
+          ${data.courseName}
+          ${generateBadge(data.formattedCourseId, 'secondary')}
+        `)
+
+      $('#detailsReleaseDate').text(moment(data.releaseDate).format('DD MMM YYYY'))
+      $('#detailsGenre').text(data.genreName)
+      $('#detailsStatus').html(
+        data.status === 'activo'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
       )
+    },
+  })
 
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw { status: response.status, ...errorData }
-      }
-
-      const data = await response.json()
+  // Edit Modal
+  initEditModal({
+    getData: () => currentDetailData,
+    onOpen: (data) => {
+      $('#editModalID').text(data.formattedCourseId)
 
       document.getElementById('editForm').setAttribute('data-course-id', data.courseId)
       $('#editName').val(data.name)
@@ -329,19 +304,13 @@ function loadModalData() {
           validateEditField($(this), true)
         })
 
-      toggleModalLoading(this, false)
-
       handleEditForm()
-    } catch (error) {
-      console.error(
-        `Error loading course details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-        error.message || error,
-      )
-      showToast('Hubo un error al cargar los datos del curso.', 'error')
-      const editModalEl = document.getElementById('editModal')
-      const editModal = bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
-      editModal.hide()
-    }
+    },
+  })
+
+  const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+  detailsOffcanvasEl?.addEventListener('hidden.bs.offcanvas', () => {
+    document.body.classList.remove('details-open')
   })
 }
 

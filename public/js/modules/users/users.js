@@ -27,9 +27,11 @@ import {
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
+  initAddModal,
+  initDetailsModal,
+  initEditModal,
   showToast,
   toggleButtonLoading,
-  toggleModalLoading,
   placeholderColorSelect,
   placeholderColorEditSelect,
   initializeCropper,
@@ -45,13 +47,16 @@ import {
 // Global variable to handle profile photo deletion in edit modal
 let deletePhotoFlag = false
 
+// Global variable used to store detail data and reuse it in the edit modal
+let currentDetailData = null
+
 /** ***************************************
  * TABLE HANDLING
  *****************************************/
 
 function generateRow(user) {
   return `
-		<tr>
+		<tr data-id="${user.userId}" data-formatted-id="${user.formattedUserId}">
 			<td class="align-middle text-start">
         ${generateBadge(user.formattedUserId, 'secondary')}
 			</td>
@@ -73,8 +78,8 @@ function generateRow(user) {
 			<td class="align-middle text-center">
 				${
           user.profilePhotoUrl
-            ? `<img src="${user.profilePhotoUrl}" alt="Foto del Usuario" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
-            : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+            ? `<img src="${user.profilePhotoUrl}" alt="Foto del Usuario" class="img-fluid rounded-circle" style="width: 20px; height: 20px;">`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
 						<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
 						<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
 					</svg>`
@@ -82,14 +87,6 @@ function generateRow(user) {
 			</td>
 			<td class="align-middle text-center">
 				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Detalles"
-						data-bs-toggle="modal" data-bs-target="#detailsModal" data-id="${user.userId}" data-formatted-id="${user.formattedUserId}">
-						<i class="bi bi-info-circle"></i>
-					</button>
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
-						data-bs-toggle="modal" data-bs-target="#editModal" data-id="${user.userId}" data-formatted-id="${user.formattedUserId}">
-						<i class="bi bi-pencil"></i>
-					</button>
 					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Eliminar"
 						data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${user.userId}" data-formatted-id="${user.formattedUserId}">
 						<i class="bi bi-trash"></i>
@@ -129,8 +126,8 @@ function updateRow(user) {
           : generateBadge('Bibliotecario', 'default', 'bi-person-workspace')
 
       const avatarHtml = u.profilePhotoUrl?.trim()
-        ? `<img src="${u.profilePhotoUrl}" alt="Foto del Usuario" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
-        : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+        ? `<img src="${u.profilePhotoUrl}" alt="Foto del Usuario" class="img-fluid rounded-circle" style="width: 20px; height: 20px;">`
+        : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
            </svg>`
@@ -264,179 +261,127 @@ function handleDelete() {
 
 function loadModalData() {
   // Add Modal
-  $(document).on('click', '[data-bs-target="#addModal"]', function () {
-    $('#addRole')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'administrador',
-        }).attr('data-content', generateBadge('Administrador', 'default', 'bi-shield-lock')),
-        $('<option>', {
-          value: 'bibliotecario',
-        }).attr('data-content', generateBadge('Bibliotecario', 'default', 'bi-person-workspace')),
-      )
-    $('#addRole').selectpicker()
+  initAddModal({
+    onOpen: () => {
+      $('#addRole')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'administrador',
+          }).attr('data-content', generateBadge('Administrador', 'default', 'bi-shield-lock')),
+          $('<option>', {
+            value: 'bibliotecario',
+          }).attr('data-content', generateBadge('Bibliotecario', 'default', 'bi-person-workspace')),
+        )
+      $('#addRole').selectpicker()
 
-    $('#defaultAddPhotoContainer').removeClass('d-none')
-    $('#deleteAddPhotoBtn').addClass('d-none')
+      $('#defaultAddPhotoContainer').removeClass('d-none')
+      $('#deleteAddPhotoBtn').addClass('d-none')
 
-    $('#addForm')[0].reset()
-    $('#addForm .is-invalid').removeClass('is-invalid')
+      $('#addForm')[0].reset()
+      $('#addForm .is-invalid').removeClass('is-invalid')
 
-    $('#cropperContainerAdd').addClass('d-none')
+      $('#cropperContainerAdd').addClass('d-none')
 
-    if (cropper) {
-      cropper.destroy()
-      cropper = null
-    }
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
 
-    $('#addForm .password-field').attr('type', 'password')
-    $('#addForm .input-group-text').find('i').removeClass('bi-eye-slash').addClass('bi-eye')
+      $('#addForm .password-field').attr('type', 'password')
+      $('#addForm .input-group-text').find('i').removeClass('bi-eye-slash').addClass('bi-eye')
 
-    preventSpacesInPasswordField('#addPassword, #addConfirmPassword')
+      preventSpacesInPasswordField('#addPassword, #addConfirmPassword')
 
-    handleAddForm()
+      handleAddForm()
+    },
   })
 
   // Details Modal
-  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-    const userId = $(this).data('id')
-    $('#detailsModalID').text($(this).data('formatted-id'))
+  initDetailsModal({
+    resource: 'users',
+    onSuccess: (data) => {
+      currentDetailData = data
 
-    toggleModalLoading(this, true)
-
-    fetch(`${PUBLIC_API_URL}/api/users/${encodeURIComponent(userId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        $('#detailsID').text(data.formattedUserId)
-        $('#detailsUsername').text(data.username)
-        $('#detailsEmail').html(`
+      $('#detailsID').text(data.formattedUserId)
+      $('#detailsUsername').text(data.username)
+      $('#detailsEmail').html(`
           <a href="mailto:${data.email}" target="_blank" rel="noopener">
             ${data.email}
           </a>
         `)
-        $('#detailsFirstName').text(data.firstName)
-        $('#detailsLastName').text(data.lastName)
+      $('#detailsFirstName').text(data.firstName)
+      $('#detailsLastName').text(data.lastName)
 
-        $('#detailsRole').html(
-          data.role === 'administrador'
-            ? '<i class="bi bi-shield-lock me-1"></i> Administrador'
-            : '<i class="bi bi-person-workspace me-1"></i> Bibliotecario',
-        )
+      $('#detailsRole').html(
+        data.role === 'administrador'
+          ? '<i class="bi bi-shield-lock me-1"></i> Administrador'
+          : '<i class="bi bi-person-workspace me-1"></i> Bibliotecario',
+      )
 
-        if (data.profilePhotoUrl) {
-          $('#detailsImg').attr('src', data.profilePhotoUrl).removeClass('d-none')
-          $('#detailsSvg').addClass('d-none')
-        } else {
-          $('#detailsImg').addClass('d-none')
-          $('#detailsSvg').removeClass('d-none')
-        }
-
-        toggleModalLoading(this, false)
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading user details (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los detalles del usuario.', 'error')
-        const detailsModalEl = document.getElementById('detailsModal')
-        const detailsModal =
-          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-        detailsModal.hide()
-      })
+      if (data.profilePhotoUrl) {
+        $('#detailsImg').attr('src', data.profilePhotoUrl).removeClass('d-none')
+        $('#detailsSvg').addClass('d-none')
+      } else {
+        $('#detailsImg').addClass('d-none')
+        $('#detailsSvg').removeClass('d-none')
+      }
+    },
   })
 
   // Edit Modal
-  $(document).on('click', '[data-bs-target="#editModal"]', function () {
-    const userId = $(this).data('id')
-    $('#editModalID').text($(this).data('formatted-id'))
+  initEditModal({
+    getData: () => currentDetailData,
+    onOpen: (data) => {
+      $('#editModalID').text(data.formattedUserId)
 
-    toggleModalLoading(this, true)
+      document.getElementById('editForm').setAttribute('data-user-id', data.userId)
+      $('#editUsername').val(data.username)
+      $('#editEmail').val(data.email)
+      $('#editFirstName').val(data.firstName)
+      $('#editLastName').val(data.lastName)
 
-    fetch(`${PUBLIC_API_URL}/api/users/${encodeURIComponent(userId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        document.getElementById('editForm').setAttribute('data-user-id', data.userId)
-        $('#editUsername').val(data.username)
-        $('#editEmail').val(data.email)
-        $('#editFirstName').val(data.firstName)
-        $('#editLastName').val(data.lastName)
-
-        $('#editRole')
-          .selectpicker('destroy')
-          .empty()
-          .append(
-            $('<option>', {
-              value: 'administrador',
-            }).attr('data-content', generateBadge('Administrador', 'default', 'bi-shield-lock')),
-            $('<option>', {
-              value: 'bibliotecario',
-            }).attr(
-              'data-content',
-              generateBadge('Bibliotecario', 'default', 'bi-person-workspace'),
-            ),
-          )
-        $('#editRole').val(data.role)
-        $('#editRole').selectpicker()
-
-        updateEditImageContainer(data.profilePhotoUrl)
-
-        $('#editForm .is-invalid').removeClass('is-invalid')
-        placeholderColorEditSelect()
-
-        $('#editForm')
-          .find('select')
-          .each(function () {
-            validateEditField($(this), true)
-          })
-
-        $('#editProfilePhoto').val('')
-
-        toggleModalLoading(this, false)
-
-        handleEditForm()
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading user details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
+      $('#editRole')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'administrador',
+          }).attr('data-content', generateBadge('Administrador', 'default', 'bi-shield-lock')),
+          $('<option>', {
+            value: 'bibliotecario',
+          }).attr('data-content', generateBadge('Bibliotecario', 'default', 'bi-person-workspace')),
         )
-        showToast('Hubo un error al cargar los datos del usuario.', 'error')
-        const editModalEl = document.getElementById('editModal')
-        const editModal =
-          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
-        editModal.hide()
-      })
+      $('#editRole').val(data.role)
+      $('#editRole').selectpicker()
 
-    $('#cropperContainerEdit').addClass('d-none')
-    if (cropper) {
-      cropper.destroy()
-      cropper = null
-    }
+      updateEditImageContainer(data.profilePhotoUrl)
+
+      $('#editForm .is-invalid').removeClass('is-invalid')
+      placeholderColorEditSelect()
+
+      $('#editForm')
+        .find('select')
+        .each(function () {
+          validateEditField($(this), true)
+        })
+
+      $('#editProfilePhoto').val('')
+
+      $('#cropperContainerEdit').addClass('d-none')
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
+
+      handleEditForm()
+    },
+  })
+
+  const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+  detailsOffcanvasEl?.addEventListener('hidden.bs.offcanvas', () => {
+    document.body.classList.remove('details-open')
   })
 
   const deleteModal = document.getElementById('deleteModal')

@@ -28,9 +28,11 @@ import {
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
+  initAddModal,
+  initDetailsModal,
+  initEditModal,
   showToast,
   toggleButtonLoading,
-  toggleModalLoading,
   placeholderColorSelect,
   placeholderColorEditSelect,
   placeholderColorDateInput,
@@ -46,6 +48,9 @@ import {
 // Global list of books and students for the selectpickers
 let bookList = []
 let studentList = []
+
+// Global variable used to store detail data and reuse it in the edit modal
+let currentDetailData = null
 
 function loadOptions() {
   loadSelectOptions({
@@ -74,7 +79,7 @@ function loadOptions() {
 
 function generateRow(loan) {
   return `
-		<tr>
+		<tr data-id="${loan.loanId}" data-formatted-id="${loan.formattedLoanId}">
 			<td class="align-middle text-start">
         ${generateBadge(loan.formattedLoanId, 'secondary')}
 			</td>
@@ -102,10 +107,6 @@ function generateRow(loan) {
 			</td>
 			<td class="align-middle text-center">
 				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Detalles"
-						data-bs-toggle="modal" data-bs-target="#detailsModal" data-id="${loan.loanId}" data-formatted-id="${loan.formattedLoanId}">
-						<i class="bi bi-info-circle"></i>
-					</button>
 					${
             loan.status === 'prestado'
               ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Devolver" 
@@ -115,10 +116,6 @@ function generateRow(loan) {
 						</button>`
               : ''
           }
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
-						data-bs-toggle="modal" data-bs-target="#editModal" data-id="${loan.loanId}" data-formatted-id="${loan.formattedLoanId}">
-						<i class="bi bi-pencil"></i>
-					</button>
 				</div>
 			</td>
 		</tr>
@@ -284,110 +281,80 @@ function handleEditForm() {
 
 function loadModalData() {
   // Add Modal
-  $(document).on('click', '[data-bs-target="#addModal"]', function () {
-    populateSelect('#addBook', bookList, 'bookId', 'title')
-    $('#addBook').selectpicker()
+  initAddModal({
+    onOpen: () => {
+      populateSelect('#addBook', bookList, 'bookId', 'title')
+      $('#addBook').selectpicker()
 
-    populateSelect('#addStudent', studentList, 'studentId', 'fullName')
-    $('#addStudent').selectpicker()
+      populateSelect('#addStudent', studentList, 'studentId', 'fullName')
+      $('#addStudent').selectpicker()
 
-    $('#addForm')[0].reset()
-    $('#addForm .is-invalid').removeClass('is-invalid')
+      $('#addForm')[0].reset()
+      $('#addForm .is-invalid').removeClass('is-invalid')
 
-    const today = getCurrentPeruDate()
-    const peruDateStr = today.toISOString().split('T')[0]
+      const today = getCurrentPeruDate()
+      const peruDateStr = today.toISOString().split('T')[0]
 
-    $('#addLoanDate').val(peruDateStr)
+      $('#addLoanDate').val(peruDateStr)
 
-    const baseDate = new Date(peruDateStr + 'T00:00:00')
+      const baseDate = new Date(peruDateStr + 'T00:00:00')
 
-    const minReturnDate = new Date(baseDate)
-    minReturnDate.setDate(minReturnDate.getDate() + 1)
+      const minReturnDate = new Date(baseDate)
+      minReturnDate.setDate(minReturnDate.getDate() + 1)
 
-    const maxReturnDate = new Date(baseDate)
-    maxReturnDate.setDate(maxReturnDate.getDate() + 14)
+      const maxReturnDate = new Date(baseDate)
+      maxReturnDate.setDate(maxReturnDate.getDate() + 14)
 
-    const minDateStr = minReturnDate.toISOString().split('T')[0]
-    const maxDateStr = maxReturnDate.toISOString().split('T')[0]
+      const minDateStr = minReturnDate.toISOString().split('T')[0]
+      const maxDateStr = maxReturnDate.toISOString().split('T')[0]
 
-    $('#addReturnDate').attr('min', minDateStr)
-    $('#addReturnDate').attr('max', maxDateStr)
+      $('#addReturnDate').attr('min', minDateStr)
+      $('#addReturnDate').attr('max', maxDateStr)
 
-    placeholderColorDateInput()
+      placeholderColorDateInput()
 
-    handleAddForm()
+      handleAddForm()
+    },
   })
 
   // Details Modal
-  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-    const loanId = $(this).data('id')
-    $('#detailsModalID').text($(this).data('formatted-id'))
+  initDetailsModal({
+    resource: 'loans',
+    onSuccess: (data) => {
+      currentDetailData = data
 
-    toggleModalLoading(this, true)
+      $('#detailsID').text(data.formattedLoanId)
 
-    fetch(`${PUBLIC_API_URL}/api/loans/${encodeURIComponent(loanId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        $('#detailsID').text(data.formattedLoanId)
-
-        $('#detailsBook').html(`
+      $('#detailsBook').html(`
 				${data.bookTitle}
         ${generateBadge(data.formattedBookId, 'secondary')}
 			`)
 
-        $('#detailsStudent').html(`
+      $('#detailsStudent').html(`
 				${data.studentFullName}
         ${generateBadge(data.formattedStudentId, 'secondary')}
 			`)
 
-        $('#detailsLoanDate').html(
-          generateBadge(
-            moment(data.loanDate).format('DD MMM YYYY'),
-            'default',
-            'bi-calendar-event',
-          ),
-        )
-        $('#detailsReturnDate').html(
-          generateBadge(
-            moment(data.returnDate).format('DD MMM YYYY'),
-            'default',
-            'bi-calendar-check',
-          ),
-        )
-        $('#detailsQuantity').text(data.quantity)
+      $('#detailsLoanDate').html(
+        generateBadge(moment(data.loanDate).format('DD MMM YYYY'), 'default', 'bi-calendar-event'),
+      )
+      $('#detailsReturnDate').html(
+        generateBadge(
+          moment(data.returnDate).format('DD MMM YYYY'),
+          'default',
+          'bi-calendar-check',
+        ),
+      )
+      $('#detailsQuantity').text(data.quantity)
 
-        $('#detailsStatus').html(
-          data.status === 'prestado'
-            ? generateBadge('Prestado', 'warning', 'bi-hourglass-split')
-            : generateBadge('Devuelto', 'success', 'bi-check-circle'),
-        )
+      $('#detailsStatus').html(
+        data.status === 'prestado'
+          ? generateBadge('Prestado', 'warning', 'bi-hourglass-split')
+          : generateBadge('Devuelto', 'success', 'bi-check-circle'),
+      )
 
-        $('#detailsObservation').text(data.observation)
-
-        toggleModalLoading(this, false)
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading loan details (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los detalles del préstamo.', 'error')
-        const detailsModalEl = document.getElementById('detailsModal')
-        const detailsModal =
-          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-        detailsModal.hide()
-      })
+      $('#detailsObservation').text(data.observation)
+    },
   })
 
   const returnModal = document.getElementById('returnModal')
@@ -423,82 +390,59 @@ function loadModalData() {
   }
 
   // Edit Modal
-  $(document).on('click', '[data-bs-target="#editModal"]', function () {
-    const loanId = $(this).data('id')
-    $('#editModalID').text($(this).data('formatted-id'))
+  initEditModal({
+    getData: () => currentDetailData,
+    onOpen: (data) => {
+      $('#editModalID').text(data.formattedLoanId)
 
-    toggleModalLoading(this, true)
+      document.getElementById('editForm').setAttribute('data-loan-id', data.loanId)
+      document.getElementById('editForm').setAttribute('data-book-id', data.bookId)
 
-    fetch(`${PUBLIC_API_URL}/api/loans/${encodeURIComponent(loanId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        document.getElementById('editForm').setAttribute('data-loan-id', data.loanId)
-        document.getElementById('editForm').setAttribute('data-book-id', data.bookId)
-
-        $('#editBook').html(`
+      $('#editBook').html(`
 				${data.bookTitle}
         ${generateBadge(data.formattedBookId, 'secondary')}
 			`)
 
-        populateSelect('#editStudent', studentList, 'studentId', 'fullName')
-        $('#editStudent').val(data.studentId)
-        $('#editStudent').selectpicker()
+      populateSelect('#editStudent', studentList, 'studentId', 'fullName')
+      $('#editStudent').val(data.studentId)
+      $('#editStudent').selectpicker()
 
-        $('#editLoanDate').val(moment(data.loanDate).format('YYYY-MM-DD'))
-        $('#editReturnDate').val(moment(data.returnDate).format('YYYY-MM-DD'))
-        $('#editQuantity').val(data.quantity)
-        $('#editObservation').val(data.observation)
+      $('#editLoanDate').val(moment(data.loanDate).format('YYYY-MM-DD'))
+      $('#editReturnDate').val(moment(data.returnDate).format('YYYY-MM-DD'))
+      $('#editQuantity').val(data.quantity)
+      $('#editObservation').val(data.observation)
 
-        $('#editForm .is-invalid').removeClass('is-invalid')
+      $('#editForm .is-invalid').removeClass('is-invalid')
 
-        const loanDate = new Date(data.loanDate)
-        const minReturnDate = new Date(loanDate)
-        minReturnDate.setDate(loanDate.getDate() + 1)
+      const loanDate = new Date(data.loanDate)
+      const minReturnDate = new Date(loanDate)
+      minReturnDate.setDate(loanDate.getDate() + 1)
 
-        const maxReturnDate = new Date(loanDate)
-        maxReturnDate.setDate(loanDate.getDate() + 14)
+      const maxReturnDate = new Date(loanDate)
+      maxReturnDate.setDate(loanDate.getDate() + 14)
 
-        const minDateStr = minReturnDate.toISOString().split('T')[0]
-        const maxDateStr = maxReturnDate.toISOString().split('T')[0]
+      const minDateStr = minReturnDate.toISOString().split('T')[0]
+      const maxDateStr = maxReturnDate.toISOString().split('T')[0]
 
-        $('#editReturnDate').attr('min', minDateStr)
-        $('#editReturnDate').attr('max', maxDateStr)
+      $('#editReturnDate').attr('min', minDateStr)
+      $('#editReturnDate').attr('max', maxDateStr)
 
-        placeholderColorEditSelect()
-        placeholderColorDateInput()
+      placeholderColorEditSelect()
+      placeholderColorDateInput()
 
-        $('#editForm')
-          .find('select')
-          .each(function () {
-            validateEditField($(this), true)
-          })
+      $('#editForm')
+        .find('select')
+        .each(function () {
+          validateEditField($(this), true)
+        })
 
-        toggleModalLoading(this, false)
+      handleEditForm()
+    },
+  })
 
-        handleEditForm()
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading loan details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los datos del préstamo.', 'error')
-        const editModalEl = document.getElementById('editModal')
-        const editModal =
-          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
-        editModal.hide()
-      })
+  const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+  detailsOffcanvasEl?.addEventListener('hidden.bs.offcanvas', () => {
+    document.body.classList.remove('details-open')
   })
 }
 

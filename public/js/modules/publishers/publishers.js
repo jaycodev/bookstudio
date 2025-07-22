@@ -14,8 +14,6 @@
  * @author Jason
  */
 
-const PUBLIC_API_URL = window.APP_CONFIG?.PUBLIC_API_URL || 'http://localhost:8080'
-
 import { loadTableData, addRowToTable, updateRowInTable } from '/js/shared/utils/tables/index.js'
 
 import {
@@ -29,9 +27,11 @@ import {
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
+  initAddModal,
+  initDetailsModal,
+  initEditModal,
   showToast,
   toggleButtonLoading,
-  toggleModalLoading,
   placeholderColorSelect,
   placeholderColorEditSelect,
   initializeCropper,
@@ -47,6 +47,12 @@ import {
 let nationalityList = []
 let literaryGenreList = []
 
+// Global variable to handle photo deletion in edit modal
+let deletePhotoFlag = false
+
+// Global variable used to store detail data and reuse it in the edit modal
+let currentDetailData = null
+
 function loadOptions() {
   loadSelectOptions({
     resource: 'publishers',
@@ -57,18 +63,13 @@ function loadOptions() {
   })
 }
 
-// Global variable to handle photo deletion in edit modal
-let deletePhotoFlag = false
-
 /** ***************************************
  * TABLE HANDLING
  *****************************************/
 
 function generateRow(publisher) {
-  const userRole = 'administrador'
-
   return `
-		<tr>
+		<tr data-id="${publisher.publisherId}" data-formatted-id="${publisher.formattedPublisherId}">
 			<td class="align-middle text-start">
         ${generateBadge(publisher.formattedPublisherId, 'secondary')}
 			</td>
@@ -92,28 +93,12 @@ function generateRow(publisher) {
 			<td class="align-middle text-center">
 				${
           publisher.photoUrl
-            ? `<img src="${publisher.photoUrl}" alt="Foto de la Editorial" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
-            : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+            ? `<img src="${publisher.photoUrl}" alt="Foto de la Editorial" class="img-fluid rounded-circle" style="width: 20px; height: 20px;">`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
 						<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
 						<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
 					</svg>`
         }
-			</td>
-            <td class="align-middle text-center">
-				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Detalles"
-						data-bs-toggle="modal" data-bs-target="#detailsModal" data-id="${publisher.publisherId}" data-formatted-id="${publisher.formattedPublisherId}">
-						<i class="bi bi-info-circle"></i>
-					</button>
-					${
-            userRole === 'administrador'
-              ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
-							data-bs-toggle="modal" data-bs-target="#editModal" data-id="${publisher.publisherId}" data-formatted-id="${publisher.formattedPublisherId}">
-							<i class="bi bi-pencil"></i>
-						</button>`
-              : ''
-          }
-				</div>
 			</td>
 		</tr>
 	`
@@ -155,8 +140,8 @@ function updateRow(publisher) {
           : generateBadge('Inactivo', 'danger', 'bi-x-circle')
 
       cells[6].innerHTML = p.photoUrl?.trim()
-        ? `<img src="${p.photoUrl}" alt="Foto de la Editorial" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
-        : `<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
+        ? `<img src="${p.photoUrl}" alt="Foto de la Editorial" class="img-fluid rounded-circle" style="width: 20px; height: 20px;">`
+        : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi-person-circle" viewBox="0 0 16 16">
              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
            </svg>`
@@ -228,185 +213,135 @@ function handleEditForm() {
 
 function loadModalData() {
   // Add Modal
-  $(document).on('click', '[data-bs-target="#addModal"]', function () {
-    populateSelect('#addNationality', nationalityList, 'nationalityId', 'name')
-    $('#addNationality').selectpicker()
+  initAddModal({
+    onOpen: () => {
+      populateSelect('#addNationality', nationalityList, 'nationalityId', 'name')
+      $('#addNationality').selectpicker()
 
-    populateSelect('#addLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
-    $('#addLiteraryGenre').selectpicker()
+      populateSelect('#addLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
+      $('#addLiteraryGenre').selectpicker()
 
-    $('#addStatus')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'activo',
-        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-        $('<option>', {
-          value: 'inactivo',
-        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-      )
-    $('#addStatus').selectpicker()
+      $('#addStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+        )
+      $('#addStatus').selectpicker()
 
-    $('#defaultAddPhotoContainer').removeClass('d-none')
-    $('#deleteAddPhotoBtn').addClass('d-none')
+      $('#defaultAddPhotoContainer').removeClass('d-none')
+      $('#deleteAddPhotoBtn').addClass('d-none')
 
-    $('#addForm')[0].reset()
-    $('#addForm .is-invalid').removeClass('is-invalid')
+      $('#addForm')[0].reset()
+      $('#addForm .is-invalid').removeClass('is-invalid')
 
-    $('#cropperContainerAdd').addClass('d-none')
-    if (cropper) {
-      cropper.destroy()
-      cropper = null
-    }
+      $('#cropperContainerAdd').addClass('d-none')
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
 
-    handleAddForm()
+      handleAddForm()
+    },
   })
 
   // Details Modal
-  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-    const publisherId = $(this).data('id')
-    $('#detailsModalID').text($(this).data('formatted-id'))
+  initDetailsModal({
+    resource: 'publishers',
+    onSuccess: (data) => {
+      currentDetailData = data
 
-    toggleModalLoading(this, true)
+      $('#detailsID').text(data.formattedPublisherId)
+      $('#detailsName').text(data.name)
+      $('#detailsNationality').html(
+        generateBadge(data.nationalityName, 'default', 'bi-globe-americas'),
+      )
+      $('#detailsLiteraryGenre').html(
+        generateBadge(data.literaryGenreName, 'default', 'bi-journals'),
+      )
+      $('#detailsYear').html(generateBadge(data.foundationYear, 'default', 'bi-bank'))
+      $('#detailsWebsite a').attr('href', data.website).text(data.website)
+      $('#detailsAddress').html(generateBadge(data.address, 'default', 'bi-geo-alt'))
 
-    fetch(`${PUBLIC_API_URL}/api/publishers/${encodeURIComponent(publisherId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        $('#detailsID').text(data.formattedPublisherId)
-        $('#detailsName').text(data.name)
-        $('#detailsNationality').html(
-          generateBadge(data.nationalityName, 'default', 'bi-globe-americas'),
-        )
-        $('#detailsLiteraryGenre').html(
-          generateBadge(data.literaryGenreName, 'default', 'bi-journals'),
-        )
-        $('#detailsYear').html(generateBadge(data.foundationYear, 'default', 'bi-bank'))
-        $('#detailsWebsite a').attr('href', data.website).text(data.website)
-        $('#detailsAddress').html(generateBadge(data.address, 'default', 'bi-geo-alt'))
+      $('#detailsStatus').html(
+        data.status === 'activo'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
+      )
 
-        $('#detailsStatus').html(
-          data.status === 'activo'
-            ? generateBadge('Activo', 'success', 'bi-check-circle')
-            : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
-        )
-
-        if (data.photoUrl) {
-          $('#detailsImg').attr('src', data.photoUrl).removeClass('d-none')
-          $('#detailsSvg').addClass('d-none')
-        } else {
-          $('#detailsImg').addClass('d-none')
-          $('#detailsSvg').removeClass('d-none')
-        }
-
-        toggleModalLoading(this, false)
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading publisher details (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los detalles de la editorial.', 'error')
-        const detailsModalEl = document.getElementById('detailsModal')
-        const detailsModal =
-          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-        detailsModal.hide()
-      })
+      if (data.photoUrl) {
+        $('#detailsImg').attr('src', data.photoUrl).removeClass('d-none')
+        $('#detailsSvg').addClass('d-none')
+      } else {
+        $('#detailsImg').addClass('d-none')
+        $('#detailsSvg').removeClass('d-none')
+      }
+    },
   })
 
   // Edit Modal
-  $(document).on('click', '[data-bs-target="#editModal"]', function () {
-    const publisherId = $(this).data('id')
-    $('#editModalID').text($(this).data('formatted-id'))
+  initEditModal({
+    getData: () => currentDetailData,
+    onOpen: (data) => {
+      $('#editModalID').text(data.formattedPublisherId)
 
-    toggleModalLoading(this, true)
+      document.getElementById('editForm').setAttribute('data-publisher-id', data.publisherId)
+      $('#editName').val(data.name)
 
-    fetch(`${PUBLIC_API_URL}/api/publishers/${encodeURIComponent(publisherId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        document.getElementById('editForm').setAttribute('data-publisher-id', data.publisherId)
-        $('#editName').val(data.name)
+      populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
+      $('#editNationality').val(data.nationalityId).selectpicker()
 
-        populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
-        $('#editNationality').val(data.nationalityId).selectpicker()
+      populateSelect('#editLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
+      $('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
 
-        populateSelect('#editLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
-        $('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
+      $('#editFoundationYear').val(data.foundationYear)
+      $('#editWebsite').val(data.website)
+      $('#editAddress').val(data.address)
 
-        $('#editFoundationYear').val(data.foundationYear)
-        $('#editWebsite').val(data.website)
-        $('#editAddress').val(data.address)
-
-        $('#editStatus')
-          .selectpicker('destroy')
-          .empty()
-          .append(
-            $('<option>', {
-              value: 'activo',
-            }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-            $('<option>', {
-              value: 'inactivo',
-            }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-          )
-        $('#editStatus').val(data.status).selectpicker()
-
-        updateEditImageContainer(data.photoUrl)
-
-        $('#editForm .is-invalid').removeClass('is-invalid')
-        placeholderColorEditSelect()
-
-        $('#editForm')
-          .find('select')
-          .each(function () {
-            validateEditField($(this), true)
-          })
-
-        $('#editPhoto').val('')
-
-        toggleModalLoading(this, false)
-
-        handleEditForm()
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading publisher details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
+      $('#editStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
         )
-        showToast('Hubo un error al cargar los datos de la editorial.', 'error')
-        const editModalEl = document.getElementById('editModal')
-        const editModal =
-          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
-        editModal.hide()
-      })
+      $('#editStatus').val(data.status).selectpicker()
 
-    // Reset cropper container
-    $('#cropperContainerEdit').addClass('d-none')
-    if (cropper) {
-      cropper.destroy()
-      cropper = null
-    }
+      updateEditImageContainer(data.photoUrl)
+
+      $('#editForm .is-invalid').removeClass('is-invalid')
+      placeholderColorEditSelect()
+
+      $('#editForm')
+        .find('select')
+        .each(function () {
+          validateEditField($(this), true)
+        })
+
+      $('#editPhoto').val('')
+
+      $('#cropperContainerEdit').addClass('d-none')
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
+
+      handleEditForm()
+    },
+  })
+
+  const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+  detailsOffcanvasEl?.addEventListener('hidden.bs.offcanvas', () => {
+    document.body.classList.remove('details-open')
   })
 }
 

@@ -35,6 +35,7 @@ import {
   initializeCropper,
   setupBootstrapSelectDropdownStyles,
   togglePasswordVisibility,
+  generateBadge,
 } from '/js/shared/utils/ui/index.js'
 
 /** ***************************************
@@ -52,20 +53,22 @@ function generateRow(user) {
   return `
 		<tr>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-tertiary text-body-emphasis border">${user.formattedUserId}</span>
+        ${generateBadge(user.formattedUserId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">${user.username}</td>
-			<td class="align-middle text-start">${user.email}</td>
+      <td class="align-middle text-start">
+        <a href="mailto:${user.email}" target="_blank" rel="noopener">
+          ${user.email}
+        </a>
+      </td>
 			<td class="align-middle text-start">${user.firstName}</td>
 			<td class="align-middle text-start">${user.lastName}</td>
 			<td class="align-middle text-start">
-			  <span class="badge bg-body-secondary text-body-emphasis border">
-			    ${
-            user.role === 'administrador'
-              ? '<i class="bi bi-shield-lock me-1"></i> Administrador'
-              : '<i class="bi bi-person-workspace me-1"></i> Bibliotecario'
-          }
-			  </span>
+        ${
+          user.role === 'administrador'
+            ? generateBadge('Administrador', 'default', 'bi-shield-lock')
+            : generateBadge('Bibliotecario', 'default', 'bi-person-workspace')
+        }
 			</td>
 			<td class="align-middle text-center">
 				${
@@ -120,13 +123,10 @@ function updateRow(user) {
       cells[3].textContent = u.firstName
       cells[4].textContent = u.lastName
 
-      const roleSpan = cells[5].querySelector('span')
-      if (roleSpan) {
-        roleSpan.innerHTML =
-          u.role === 'administrador'
-            ? '<i class="bi bi-shield-lock me-1"></i> Administrador'
-            : '<i class="bi bi-person-workspace me-1"></i> Bibliotecario'
-      }
+      cells[5].innerHTML =
+        u.role === 'administrador'
+          ? generateBadge('Administrador', 'default', 'bi-shield-lock')
+          : generateBadge('Bibliotecario', 'default', 'bi-person-workspace')
 
       const avatarHtml = u.profilePhotoUrl?.trim()
         ? `<img src="${u.profilePhotoUrl}" alt="Foto del Usuario" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
@@ -271,12 +271,10 @@ function loadModalData() {
       .append(
         $('<option>', {
           value: 'administrador',
-          text: 'Administrador',
-        }),
+        }).attr('data-content', generateBadge('Administrador', 'default', 'bi-shield-lock')),
         $('<option>', {
           value: 'bibliotecario',
-          text: 'Bibliotecario',
-        }),
+        }).attr('data-content', generateBadge('Bibliotecario', 'default', 'bi-person-workspace')),
       )
     $('#addRole').selectpicker()
 
@@ -324,7 +322,11 @@ function loadModalData() {
       .then((data) => {
         $('#detailsID').text(data.formattedUserId)
         $('#detailsUsername').text(data.username)
-        $('#detailsEmail').text(data.email)
+        $('#detailsEmail').html(`
+          <a href="mailto:${data.email}" target="_blank" rel="noopener">
+            ${data.email}
+          </a>
+        `)
         $('#detailsFirstName').text(data.firstName)
         $('#detailsLastName').text(data.lastName)
 
@@ -388,8 +390,15 @@ function loadModalData() {
           .selectpicker('destroy')
           .empty()
           .append(
-            $('<option>', { value: 'administrador', text: 'Administrador' }),
-            $('<option>', { value: 'bibliotecario', text: 'Bibliotecario' }),
+            $('<option>', {
+              value: 'administrador',
+            }).attr('data-content', generateBadge('Administrador', 'default', 'bi-shield-lock')),
+            $('<option>', {
+              value: 'bibliotecario',
+            }).attr(
+              'data-content',
+              generateBadge('Bibliotecario', 'default', 'bi-person-workspace'),
+            ),
           )
         $('#editRole').val(data.role)
         $('#editRole').selectpicker()

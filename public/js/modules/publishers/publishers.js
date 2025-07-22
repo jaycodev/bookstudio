@@ -36,6 +36,7 @@ import {
   placeholderColorEditSelect,
   initializeCropper,
   setupBootstrapSelectDropdownStyles,
+  generateBadge,
 } from '/js/shared/utils/ui/index.js'
 
 /** ***************************************
@@ -69,14 +70,14 @@ function generateRow(publisher) {
   return `
 		<tr>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-tertiary text-body-emphasis border">${publisher.formattedPublisherId}</span>
+        ${generateBadge(publisher.formattedPublisherId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">${publisher.name}</td>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-secondary text-body-emphasis border">${publisher.nationalityName}</span>
+        ${generateBadge(publisher.nationalityName, 'default', 'bi-globe-americas')}
 			</td>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-secondary text-body-emphasis border">${publisher.literaryGenreName}</span>
+        ${generateBadge(publisher.literaryGenreName, 'default', 'bi-journals')}
 			</td>
 			<td class="align-middle text-start">
 				<a href="${publisher.website}" target="_blank">${publisher.website}</a>
@@ -84,8 +85,8 @@ function generateRow(publisher) {
 			<td class="align-middle text-center">
 				${
           publisher.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+            ? generateBadge('Activo', 'success', 'bi-check-circle')
+            : generateBadge('Inactivo', 'danger', 'bi-x-circle')
         }
 			</td>
 			<td class="align-middle text-center">
@@ -139,12 +140,8 @@ function updateRow(publisher) {
       const cells = row.querySelectorAll('td')
 
       cells[1].textContent = p.name
-
-      const span2 = cells[2].querySelector('span')
-      if (span2) span2.textContent = p.nationalityName
-
-      const span3 = cells[3].querySelector('span')
-      if (span3) span3.textContent = p.literaryGenreName
+      cells[2].innerHTML = generateBadge(p.nationalityName, 'default', 'bi-globe-americas')
+      cells[3].innerHTML = generateBadge(p.literaryGenreName, 'default', 'bi-journals')
 
       const anchor = cells[4].querySelector('a')
       if (anchor) {
@@ -154,8 +151,8 @@ function updateRow(publisher) {
 
       cells[5].innerHTML =
         p.status === 'activo'
-          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle')
 
       cells[6].innerHTML = p.photoUrl?.trim()
         ? `<img src="${p.photoUrl}" alt="Foto de la Editorial" class="img-fluid rounded-circle" style="width: 23px; height: 23px;">`
@@ -244,12 +241,10 @@ function loadModalData() {
       .append(
         $('<option>', {
           value: 'activo',
-          text: 'Activo',
-        }),
+        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
         $('<option>', {
           value: 'inactivo',
-          text: 'Inactivo',
-        }),
+        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
       )
     $('#addStatus').selectpicker()
 
@@ -291,16 +286,20 @@ function loadModalData() {
       .then((data) => {
         $('#detailsID').text(data.formattedPublisherId)
         $('#detailsName').text(data.name)
-        $('#detailsNationality').text(data.nationalityName)
-        $('#detailsGenre').text(data.literaryGenreName)
-        $('#detailsYear').text(data.foundationYear)
+        $('#detailsNationality').html(
+          generateBadge(data.nationalityName, 'default', 'bi-globe-americas'),
+        )
+        $('#detailsLiteraryGenre').html(
+          generateBadge(data.literaryGenreName, 'default', 'bi-journals'),
+        )
+        $('#detailsYear').html(generateBadge(data.foundationYear, 'default', 'bi-bank'))
         $('#detailsWebsite a').attr('href', data.website).text(data.website)
-        $('#detailsAddress').text(data.address)
+        $('#detailsAddress').html(generateBadge(data.address, 'default', 'bi-geo-alt'))
 
         $('#detailsStatus').html(
           data.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>',
+            ? generateBadge('Activo', 'success', 'bi-check-circle')
+            : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
         )
 
         if (data.photoUrl) {
@@ -364,8 +363,12 @@ function loadModalData() {
           .selectpicker('destroy')
           .empty()
           .append(
-            $('<option>', { value: 'activo', text: 'Activo' }),
-            $('<option>', { value: 'inactivo', text: 'Inactivo' }),
+            $('<option>', {
+              value: 'activo',
+            }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+            $('<option>', {
+              value: 'inactivo',
+            }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
           )
         $('#editStatus').val(data.status).selectpicker()
 

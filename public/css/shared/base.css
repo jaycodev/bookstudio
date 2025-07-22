@@ -33,6 +33,10 @@
   --placeholder-color: var(--placeholder-dark);
   --bs-body-bg: var(--bg-secondary-dark);
   --active-effect-bg: var(--bg-primary-light);
+
+  --bs-pink-subtle-bg: #3a1120;
+  --bs-pink-subtle-text: #ff8fb3;
+  --bs-pink-subtle-border: #a83261;
 }
 
 [data-bs-theme='light'] {
@@ -43,6 +47,10 @@
   --bs-border-color: #cbd0dd;
   --placeholder-color: var(--placeholder-light);
   --active-effect-bg: var(--bg-primary-dark);
+
+  --bs-pink-subtle-bg: #fce4ec;
+  --bs-pink-subtle-text: #a83261;
+  --bs-pink-subtle-border: #f8bbd0;
 }
 
 .bg-body {
@@ -85,4 +93,16 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--bs-border-color) var(--bg-secondary-color);
+}
+
+.bg-pink-subtle {
+  background-color: var(--bs-pink-subtle-bg) !important;
+}
+
+.text-pink-emphasis {
+  color: var(--bs-pink-subtle-text) !important;
+}
+
+.border-pink-subtle {
+  border-color: var(--bs-pink-subtle-border) !important;
 }

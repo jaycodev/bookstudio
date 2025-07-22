@@ -36,6 +36,7 @@ import {
   placeholderColorDateInput,
   setupBootstrapSelectDropdownStyles,
   getCurrentPeruDate,
+  generateBadge,
 } from '/js/shared/utils/ui/index.js'
 
 /** ***************************************
@@ -70,28 +71,30 @@ function generateRow(book) {
   return `
 		<tr>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-tertiary text-body-emphasis border">${book.formattedBookId}</span>
+        ${generateBadge(book.formattedBookId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">${book.title}</td>
 			<td class="align-middle text-center">
-				<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">${book.availableCopies}</span>
+        ${generateBadge(book.availableCopies, 'success')}
 			</td>
 			<td class="align-middle text-center">
-				<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">${book.loanedCopies}</span>
+        ${generateBadge(book.loanedCopies, 'warning')}
 			</td>
 			<td class="align-middle text-start">
+        <i class="bi bi-person me-1"></i>
 				${book.authorName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${book.formattedAuthorId}</span>
+        ${generateBadge(book.formattedAuthorId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">
+        <i class="bi bi-map me-1"></i>
 				${book.publisherName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${book.formattedPublisherId}</span>
+        ${generateBadge(book.formattedPublisherId, 'secondary')}
 			</td>
 			<td class="align-middle text-center">
 				${
           book.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+            ? generateBadge('Activo', 'success', 'bi-check-circle')
+            : generateBadge('Inactivo', 'danger', 'bi-x-circle')
         }
 			</td>
 			<td class="align-middle text-center">
@@ -136,27 +139,25 @@ function updateRow(book) {
 
       cells[1].textContent = b.title
       cells[2].innerHTML = `
-        <span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
-          ${b.availableCopies}
-        </span>
+        ${generateBadge(b.availableCopies, 'success')}
       `
       cells[3].innerHTML = `
-        <span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">
-          ${b.loanedCopies}
-        </span>
+        ${generateBadge(b.loanedCopies, 'warning')}
       `
       cells[4].innerHTML = `
+        <i class="bi bi-person me-1"></i>
         ${b.authorName}
-        <span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedAuthorId}</span>
+        ${generateBadge(b.formattedAuthorId, 'secondary')}
       `
       cells[5].innerHTML = `
+        <i class="bi bi-map me-1"></i>
         ${b.publisherName}
-        <span class="badge bg-body-tertiary text-body-emphasis border ms-1">${b.formattedPublisherId}</span>
+        ${generateBadge(b.formattedPublisherId, 'secondary')}
       `
       cells[6].innerHTML =
         b.status === 'activo'
-          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle')
     },
   })
 }
@@ -239,12 +240,10 @@ function loadModalData() {
       .append(
         $('<option>', {
           value: 'activo',
-          text: 'Activo',
-        }),
+        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
         $('<option>', {
           value: 'inactivo',
-          text: 'Inactivo',
-        }),
+        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
       )
     $('#addStatus').selectpicker()
 
@@ -284,23 +283,23 @@ function loadModalData() {
 
         $('#detailsAuthor').html(`
 				${data.authorName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedAuthorId}</span>
+        ${generateBadge(data.formattedAuthorId, 'secondary')}
 			`)
         $('#detailsPublisher').html(`
 				${data.publisherName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedPublisherId}</span>
+        ${generateBadge(data.formattedPublisherId, 'secondary')}
 			`)
         $('#detailsCourse').html(`
 				${data.courseName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedCourseId}</span>
+        ${generateBadge(data.formattedCourseId, 'secondary')}
 			`)
 
         $('#detailsReleaseDate').text(moment(data.releaseDate).format('DD MMM YYYY'))
         $('#detailsGenre').text(data.genreName)
         $('#detailsStatus').html(
           data.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>',
+            ? generateBadge('Activo', 'success', 'bi-check-circle')
+            : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
         )
 
         toggleModalLoading(this, false)
@@ -370,8 +369,12 @@ function loadModalData() {
           .selectpicker('destroy')
           .empty()
           .append(
-            $('<option>', { value: 'activo', text: 'Activo' }),
-            $('<option>', { value: 'inactivo', text: 'Inactivo' }),
+            $('<option>', {
+              value: 'activo',
+            }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+            $('<option>', {
+              value: 'inactivo',
+            }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
           )
         $('#editStatus').val(data.status)
         $('#editStatus').selectpicker()

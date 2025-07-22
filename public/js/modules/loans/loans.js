@@ -36,6 +36,7 @@ import {
   placeholderColorDateInput,
   setupBootstrapSelectDropdownStyles,
   getCurrentPeruDate,
+  generateBadge,
 } from '/js/shared/utils/ui/index.js'
 
 /** ***************************************
@@ -75,26 +76,28 @@ function generateRow(loan) {
   return `
 		<tr>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-tertiary text-body-emphasis border">${loan.formattedLoanId}</span>
+        ${generateBadge(loan.formattedLoanId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">
+        <i class="bi bi-journal-bookmark me-1"></i>
 				${loan.bookTitle}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${loan.formattedBookId}</span>
+        ${generateBadge(loan.formattedBookId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">
+        <i class="bi bi-mortarboard me-1"></i>
 				${loan.studentFullName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${loan.formattedStudentId}</span>
+        ${generateBadge(loan.formattedStudentId, 'secondary')}
 			</td>
-			<td class="align-middle text-center">${moment(loan.loanDate).format('DD MMM YYYY')}</td>
-			<td class="align-middle text-center">${moment(loan.returnDate).format('DD MMM YYYY')}</td>
+        <td class="align-middle text-center">${generateBadge(moment(loan.loanDate).format('DD MMM YYYY'), 'default', 'bi-calendar-event')}</td>
+        <td class="align-middle text-center">${generateBadge(moment(loan.returnDate).format('DD MMM YYYY'), 'default', 'bi-calendar-check')}</td>
 			<td class="align-middle text-center">
-				<span class="badge bg-body-secondary text-body-emphasis border">${loan.quantity}</span>
+        ${generateBadge(loan.quantity)}
 			</td>
 			<td class="align-middle text-center">
 				${
           loan.status === 'prestado'
-            ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle"><i class="bi bi-hourglass-split me-1"></i>Prestado</span>'
-            : '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Devuelto</span>'
+            ? generateBadge('Prestado', 'warning', 'bi-hourglass-split')
+            : generateBadge('Devuelto', 'success', 'bi-check-circle')
         }
 			</td>
 			<td class="align-middle text-center">
@@ -143,11 +146,16 @@ function updateRow(loan) {
       const cells = row.querySelectorAll('td')
 
       cells[2].innerHTML = `
+        <i class="bi bi-mortarboard me-1"></i>
         ${l.studentFullName}
-        <span class="badge bg-body-tertiary text-body-emphasis border ms-1">${l.formattedStudentId}</span>
+        ${generateBadge(l.formattedStudentId, 'secondary')}
       `
 
-      cells[4].textContent = moment(l.returnDate).format('DD MMM YYYY')
+      cells[4].innerHTML = generateBadge(
+        moment(l.returnDate).format('DD MMM YYYY'),
+        'default',
+        'bi-calendar-check',
+      )
     },
   })
 }
@@ -214,8 +222,7 @@ function handleReturn() {
         if (matchingRow) {
           const cells = matchingRow.querySelectorAll('td')
           if (cells[6]) {
-            cells[6].innerHTML =
-              '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Devuelto</span>'
+            cells[6].innerHTML = generateBadge('Devuelto', 'success', 'bi-check-circle')
           }
           if (cells[7]) {
             const returnBtn = cells[7].querySelector('.btn[aria-label="Devolver el préstamo"]')
@@ -336,22 +343,34 @@ function loadModalData() {
 
         $('#detailsBook').html(`
 				${data.bookTitle}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedBookId}</span>
+        ${generateBadge(data.formattedBookId, 'secondary')}
 			`)
 
         $('#detailsStudent').html(`
 				${data.studentFullName}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedStudentId}</span>
+        ${generateBadge(data.formattedStudentId, 'secondary')}
 			`)
 
-        $('#detailsLoanDate').text(moment(data.loanDate).format('DD MMM YYYY'))
-        $('#detailsReturnDate').text(moment(data.returnDate).format('DD MMM YYYY'))
+        $('#detailsLoanDate').html(
+          generateBadge(
+            moment(data.loanDate).format('DD MMM YYYY'),
+            'default',
+            'bi-calendar-event',
+          ),
+        )
+        $('#detailsReturnDate').html(
+          generateBadge(
+            moment(data.returnDate).format('DD MMM YYYY'),
+            'default',
+            'bi-calendar-check',
+          ),
+        )
         $('#detailsQuantity').text(data.quantity)
 
         $('#detailsStatus').html(
           data.status === 'prestado'
-            ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle"><i class="bi bi-hourglass-split me-1"></i>Prestado</span>'
-            : '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Devuelto</span>',
+            ? generateBadge('Prestado', 'warning', 'bi-hourglass-split')
+            : generateBadge('Devuelto', 'success', 'bi-check-circle'),
         )
 
         $('#detailsObservation').text(data.observation)
@@ -429,7 +448,7 @@ function loadModalData() {
 
         $('#editBook').html(`
 				${data.bookTitle}
-				<span class="badge bg-body-tertiary text-body-emphasis border ms-1">${data.formattedBookId}</span>
+        ${generateBadge(data.formattedBookId, 'secondary')}
 			`)
 
         populateSelect('#editStudent', studentList, 'studentId', 'fullName')

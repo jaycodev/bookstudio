@@ -36,6 +36,7 @@ import {
   placeholderColorDateInput,
   setupBootstrapSelectDropdownStyles,
   getCurrentPeruDate,
+  generateBadge,
 } from '/js/shared/utils/ui/index.js'
 
 /** ***************************************
@@ -62,22 +63,26 @@ function generateRow(student) {
   return `
 		<tr>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-tertiary text-body-emphasis border">${student.formattedStudentId}</span>
+        ${generateBadge(student.formattedStudentId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-secondary text-body-emphasis border">${student.dni}</span>
+        ${generateBadge(student.dni, 'default', 'bi-credit-card')}
 			</td>
 			<td class="align-middle text-start">${student.firstName}</td>
 			<td class="align-middle text-start">${student.lastName}</td>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-secondary text-body-emphasis border">${student.phone}</span>
+        ${generateBadge(student.phone, 'default', 'bi-telephone')}
 			</td>
-			<td class="align-middle text-start">${student.email}</td>
+      <td class="align-middle text-start">
+        <a href="mailto:${student.email}" target="_blank" rel="noopener">
+          ${student.email}
+        </a>
+      </td>
 			<td class="align-middle text-center">
 				${
           student.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+            ? generateBadge('Activo', 'success', 'bi-check-circle')
+            : generateBadge('Inactivo', 'danger', 'bi-x-circle')
         }
 			</td>
 			<td class="align-middle text-center">
@@ -118,16 +123,16 @@ function updateRow(student) {
 
       cells[2].textContent = s.firstName
       cells[3].textContent = s.lastName
-
-      const phoneSpan = cells[4].querySelector('span')
-      if (phoneSpan) phoneSpan.textContent = s.phone
-
-      cells[5].textContent = s.email
-
+      cells[4].innerHTML = generateBadge(s.phone, 'default', 'bi-telephone')
+      cells[5].innerHTML = `
+        <a href="mailto:${s.email}" target="_blank" rel="noopener">
+          ${s.email}
+        </a>
+      `
       cells[6].innerHTML =
         s.status === 'activo'
-          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle')
     },
   })
 }
@@ -199,12 +204,10 @@ function loadModalData() {
       .append(
         $('<option>', {
           value: 'Masculino',
-          text: 'Masculino',
-        }),
+        }).attr('data-content', generateBadge('Masculino', 'primary', 'bi-gender-male')),
         $('<option>', {
           value: 'Femenino',
-          text: 'Femenino',
-        }),
+        }).attr('data-content', generateBadge('Femenino', 'pink', 'bi-gender-female')),
       )
     $('#addGender').selectpicker()
 
@@ -217,12 +220,10 @@ function loadModalData() {
       .append(
         $('<option>', {
           value: 'activo',
-          text: 'Activo',
-        }),
+        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
         $('<option>', {
           value: 'inactivo',
-          text: 'Inactivo',
-        }),
+        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
       )
     $('#addStatus').selectpicker()
 
@@ -260,20 +261,37 @@ function loadModalData() {
       })
       .then((data) => {
         $('#detailsID').text(data.formattedStudentId)
-        $('#detailsDNI').text(data.dni)
+        $('#detailsDNI').html(generateBadge(data.dni, 'default', 'bi-credit-card'))
         $('#detailsFirstName').text(data.firstName)
         $('#detailsLastName').text(data.lastName)
-        $('#detailsAddress').text(data.address)
-        $('#detailsPhone').text(data.phone)
-        $('#detailsEmail').text(data.email)
-        $('#detailsBirthDate').text(moment(data.birthDate).format('DD MMM YYYY'))
-        $('#detailsGender').text(data.gender)
-        $('#detailsFaculty').text(data.facultyName)
+        $('#detailsAddress').html(generateBadge(data.address, 'default', 'bi-geo-alt'))
+        $('#detailsPhone').html(generateBadge(data.phone, 'default', 'bi-telephone'))
+        $('#detailsEmail').html(`
+          <a href="mailto:${data.email}" target="_blank" rel="noopener">
+            ${data.email}
+          </a>
+        `)
+
+        $('#detailsBirthDate').html(
+          generateBadge(
+            moment(data.birthDate).format('DD MMM YYYY'),
+            'default',
+            'bi-calendar-event',
+          ),
+        )
+
+        $('#detailsGender').html(
+          data.gender === 'Masculino'
+            ? generateBadge('Masculino', 'primary', 'bi-gender-male')
+            : generateBadge('Femenino', 'pink', 'bi-gender-female'),
+        )
+
+        $('#detailsFaculty').html(generateBadge(data.facultyName, 'default', 'bi-journal-text'))
 
         $('#detailsStatus').html(
           data.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>',
+            ? generateBadge('Activo', 'success', 'bi-check-circle')
+            : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
         )
 
         toggleModalLoading(this, false)
@@ -329,8 +347,12 @@ function loadModalData() {
           .selectpicker('destroy')
           .empty()
           .append(
-            $('<option>', { value: 'Masculino', text: 'Masculino' }),
-            $('<option>', { value: 'Femenino', text: 'Femenino' }),
+            $('<option>', {
+              value: 'Masculino',
+            }).attr('data-content', generateBadge('Masculino', 'primary', 'bi-gender-male')),
+            $('<option>', {
+              value: 'Femenino',
+            }).attr('data-content', generateBadge('Femenino', 'pink', 'bi-gender-female')),
           )
         $('#editGender').val(data.gender)
         $('#editGender').selectpicker()
@@ -343,8 +365,12 @@ function loadModalData() {
           .selectpicker('destroy')
           .empty()
           .append(
-            $('<option>', { value: 'activo', text: 'Activo' }),
-            $('<option>', { value: 'inactivo', text: 'Inactivo' }),
+            $('<option>', {
+              value: 'activo',
+            }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+            $('<option>', {
+              value: 'inactivo',
+            }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
           )
         $('#editStatus').val(data.status)
         $('#editStatus').selectpicker()

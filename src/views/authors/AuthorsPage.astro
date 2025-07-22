@@ -11,7 +11,7 @@ import Modals from '@components/ui/Modals.astro'
   username="Jason"
   customScriptPath='/js/modules/authors/authors.js'
 >
-  <DataTableCard title="Lista de autores" icon="bi-person-plus" columnCount={8}>
+  <DataTableCard title="Lista de autores" icon="bi-person" columnCount={8}>
     <Fragment slot="thead">
       <th scope="col" class="text-start">Código</th>
       <th scope="col" class="text-start">Nombre</th>
@@ -188,16 +188,16 @@ import Modals from '@components/ui/Modals.astro'
         </div>
       </div>
 
-      <!-- Nationality and Genre Section -->
+      <!-- Nationality and Literary Genre Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nacionalidad</h6>
-          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsNationality"></p>
+          <p id="detailsNationality"></p>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Género literario</h6>
-          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsGenre"></p>
+          <p id="detailsLiteraryGenre"></p>
         </div>
       </div>
 

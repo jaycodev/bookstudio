@@ -27,6 +27,7 @@ import {
   placeholderColorSelect,
   placeholderColorEditSelect,
   setupBootstrapSelectDropdownStyles,
+  generateBadge,
 } from '/js/shared/utils/ui/index.js'
 
 /** ***************************************
@@ -39,24 +40,24 @@ function generateRow(course) {
   return `
 		<tr>
 			<td class="align-middle text-start">
-				<span class="badge bg-body-tertiary text-body-emphasis border">${course.formattedCourseId}</span>
+        ${generateBadge(course.formattedCourseId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">${course.name}</td>
 			<td class="align-middle text-start">
 			  ${
           course.level === 'Básico'
-            ? '<span class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">Básico</span>'
+            ? generateBadge(course.level, 'primary', 'bi-stars')
             : course.level === 'Intermedio'
-              ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">Intermedio</span>'
-              : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Avanzado</span>'
+              ? generateBadge(course.level, 'warning', 'bi-graph-up-arrow')
+              : generateBadge(course.level, 'danger', 'bi-award')
         }
 			</td>
 			<td class="align-middle text-start">${course.description}</td>
 			<td class="align-middle text-center">
 				${
           course.status === 'activo'
-            ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+            ? generateBadge('Activo', 'success', 'bi-check-circle')
+            : generateBadge('Inactivo', 'danger', 'bi-x-circle')
         }
 			</td>
 			<td class="align-middle text-center">
@@ -103,21 +104,18 @@ function updateRow(course) {
 
       const levelBadge =
         {
-          Básico:
-            '<span class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">Básico</span>',
-          Intermedio:
-            '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">Intermedio</span>',
-          Avanzado:
-            '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Avanzado</span>',
-        }[c.level] || `<span class="badge bg-secondary">${c.level}</span>`
+          Básico: generateBadge(c.level, 'primary', 'bi-stars'),
+          Intermedio: generateBadge(c.level, 'warning', 'bi-graph-up-arrow'),
+          Avanzado: generateBadge(c.level, 'danger', 'bi-award'),
+        }[c.level] || generateBadge(c.level)
 
       cells[2].innerHTML = levelBadge
       cells[3].textContent = c.description
 
       cells[4].innerHTML =
         c.status === 'activo'
-          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle')
     },
   })
 }
@@ -176,16 +174,13 @@ function loadModalData() {
       .append(
         $('<option>', {
           value: 'Básico',
-          text: 'Básico',
-        }),
+        }).attr('data-content', generateBadge('Básico', 'primary', 'bi-stars')),
         $('<option>', {
           value: 'Intermedio',
-          text: 'Intermedio',
-        }),
+        }).attr('data-content', generateBadge('Intermedio', 'warning', 'bi-graph-up-arrow')),
         $('<option>', {
           value: 'Avanzado',
-          text: 'Avanzado',
-        }),
+        }).attr('data-content', generateBadge('Avanzado', 'danger', 'bi-award')),
       )
     $('#addLevel').selectpicker()
 
@@ -195,12 +190,10 @@ function loadModalData() {
       .append(
         $('<option>', {
           value: 'activo',
-          text: 'Activo',
-        }),
+        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
         $('<option>', {
           value: 'inactivo',
-          text: 'Inactivo',
-        }),
+        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
       )
     $('#addStatus').selectpicker()
 
@@ -240,16 +233,16 @@ function loadModalData() {
 
       $('#detailsLevel').html(
         data.level === 'Básico'
-          ? '<span class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">Básico</span>'
+          ? generateBadge(data.level, 'primary', 'bi-stars')
           : data.level === 'Intermedio'
-            ? '<span class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">Intermedio</span>'
-            : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">Avanzado</span>',
+            ? generateBadge(data.level, 'warning', 'bi-graph-up-arrow')
+            : generateBadge(data.level, 'danger', 'bi-award'),
       )
 
       $('#detailsStatus').html(
         data.status === 'activo'
-          ? '<span class="badge text-success-emphasis bg-success-subtle border border-success-subtle"><i class="bi bi-check-circle me-1"></i>Activo</span>'
-          : '<span class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle"><i class="bi bi-x-circle me-1"></i>Inactivo</span>',
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
       )
 
       $('#detailsDescription').text(data.description)
@@ -301,9 +294,15 @@ function loadModalData() {
         .selectpicker('destroy')
         .empty()
         .append(
-          $('<option>', { value: 'Básico', text: 'Básico' }),
-          $('<option>', { value: 'Intermedio', text: 'Intermedio' }),
-          $('<option>', { value: 'Avanzado', text: 'Avanzado' }),
+          $('<option>', {
+            value: 'Básico',
+          }).attr('data-content', generateBadge('Básico', 'primary', 'bi-stars')),
+          $('<option>', {
+            value: 'Intermedio',
+          }).attr('data-content', generateBadge('Intermedio', 'warning', 'bi-graph-up-arrow')),
+          $('<option>', {
+            value: 'Avanzado',
+          }).attr('data-content', generateBadge('Avanzado', 'danger', 'bi-award')),
         )
       $('#editLevel').val(data.level).selectpicker()
 
@@ -311,8 +310,12 @@ function loadModalData() {
         .selectpicker('destroy')
         .empty()
         .append(
-          $('<option>', { value: 'activo', text: 'Activo' }),
-          $('<option>', { value: 'inactivo', text: 'Inactivo' }),
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
         )
       $('#editStatus').val(data.status).selectpicker()
 

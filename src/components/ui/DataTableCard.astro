@@ -60,7 +60,7 @@ const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
       <div id="skeletonTable">
         <div class="row align-items-center mb-3 mt-2">
           <!-- Placeholder on the left corner -->
-          <div class="col-12 col-md-4 text-center text-md-start mb-2 mb-md-0">
+          <div class="col-12 col-md-4 text-center text-md-start mb-2 mb-md-0 mt-4 mt-md-0">
             <div class="placeholder-glow">
               <span class="placeholder col-4 rounded" style="height: 1.5rem;"></span>
             </div>
@@ -77,9 +77,9 @@ const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
           </div>
         </div>
 
-        <!-- Tabla simulada -->
+        <!-- Loading Table -->
         <div class="table-responsive">
-          <table class="table table-sm">
+          <table class="table table-sm nowrap w-100">
             <thead>
               <tr>
                 <slot name="thead" />
@@ -102,8 +102,8 @@ const { title = 'Lista', icon = 'bi-table', columnCount = 8 } = Astro.props
         </div>
       </div>
 
-      <!-- Tabla real -->
-      <table id="table" class="table table-sm d-none">
+      <!-- Actual Table -->
+      <table id="table" class="table table-sm d-none nowrap w-100">
         <thead>
           <tr>
             <slot name="thead" />

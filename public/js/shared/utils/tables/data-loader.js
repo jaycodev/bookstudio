@@ -58,6 +58,8 @@ export async function loadTableData({ resource, generateRow, generatePDF, genera
 
     const dataTable = setupDataTable('#table')
 
+    toggleTableLoadingState('loaded')
+
     dataTable.on('draw', function () {
       const filteredCount = dataTable.rows({ search: 'applied' }).count()
       const noDataMessage = document.querySelector('#table td.dataTables_empty') !== null

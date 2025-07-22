@@ -412,3 +412,7 @@ textarea {
   width: 100%;
   aspect-ratio: 2 / 1;
 }
+
+table th {
+  white-space: nowrap;
+}

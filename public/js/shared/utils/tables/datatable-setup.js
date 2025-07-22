@@ -31,8 +31,10 @@ export function toggleTableLoadingState(action) {
 }
 
 export function setupDataTable(tableId) {
+  toggleTableLoadingState('loaded')
+
   const table = $(tableId).DataTable({
-    responsive: true,
+    scrollX: true,
     searching: true,
     lengthChange: true,
     paging: true,
@@ -55,8 +57,6 @@ export function setupDataTable(tableId) {
       emptyTable: 'No hay datos disponibles en la tabla',
     },
     initComplete: function () {
-      toggleTableLoadingState('loaded')
-
       const dtSearch = document.querySelector('.dt-search')
       const label = dtSearch.querySelector('label')
       if (label) label.remove()
@@ -68,6 +68,8 @@ export function setupDataTable(tableId) {
       )
     },
   })
+
+  table.columns.adjust().draw()
 
   return table
 }

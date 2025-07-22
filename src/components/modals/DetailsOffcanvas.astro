@@ -1,5 +1,8 @@
 ---
-const { title = 'Detalles' } = Astro.props
+const {
+  title = 'Detalles',
+  secondaryButton = null, // { label, icon, id, hidden: true/false }
+} = Astro.props
 ---
 
 <div
@@ -24,10 +27,19 @@ const { title = 'Detalles' } = Astro.props
     <slot />
   </div>
 
-  <div class="offcanvas-footer border-top d-flex flex-column gap-2 p-3 pb-3">
-    <button type="button" class="btn btn-custom-secondary w-100" data-bs-dismiss="offcanvas">
-      Cerrar
-    </button>
+  <div class="offcanvas-footer border-top d-flex gap-2 p-3 pb-3">
+    {
+      secondaryButton && (
+        <button
+          type="button"
+          id={secondaryButton.id}
+          class={`btn btn-custom-secondary w-100 ${secondaryButton.hidden ? 'd-none' : ''}`}
+        >
+          {secondaryButton.icon && <i class={`bi ${secondaryButton.icon} me-1`} />}
+          {secondaryButton.label}
+        </button>
+      )
+    }
 
     <button
       type="button"

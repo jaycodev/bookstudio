@@ -105,19 +105,6 @@ function generateRow(loan) {
             : generateBadge('Devuelto', 'success', 'bi-check-circle')
         }
 			</td>
-			<td class="align-middle text-center">
-				<div class="d-inline-flex gap-2">
-					${
-            loan.status === 'prestado'
-              ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Devolver" 
-							data-bs-toggle="modal" data-bs-target="#returnModal" aria-label="Devolver el préstamo"
-							data-id="${loan.loanId}" data-formatted-id="${loan.formattedLoanId}" data-status="${loan.status}">
-							<i class="bi bi-check2-square"></i>
-						</button>`
-              : ''
-          }
-				</div>
-			</td>
 		</tr>
 	`
 }
@@ -279,7 +266,7 @@ function handleEditForm() {
  * MODAL MANAGEMENT
  *****************************************/
 
-function loadModalData() {
+function initModals() {
   // Add Modal
   initAddModal({
     onOpen: () => {
@@ -354,6 +341,20 @@ function loadModalData() {
       )
 
       $('#detailsObservation').text(data.observation)
+
+      const returnBtn = document.getElementById('returnLoanBtn')
+      if (returnBtn) {
+        if (data.status === 'prestado') {
+          returnBtn.classList.remove('d-none')
+          returnBtn.setAttribute('data-id', data.loanId)
+          returnBtn.setAttribute('data-formatted-id', data.formattedLoanId)
+          returnBtn.setAttribute('data-status', data.status)
+          returnBtn.setAttribute('data-bs-toggle', 'modal')
+          returnBtn.setAttribute('data-bs-target', '#returnModal')
+        } else {
+          returnBtn.classList.add('d-none')
+        }
+      }
     },
   })
 
@@ -363,6 +364,11 @@ function loadModalData() {
     returnModal.addEventListener('show.bs.modal', (event) => {
       const button = event.relatedTarget
       if (!button) return
+
+      const detailsOffcanvas = bootstrap.Offcanvas.getInstance(
+        document.getElementById('detailsOffcanvas'),
+      )
+      detailsOffcanvas?.hide()
 
       const loanId = button.getAttribute('data-id')
       const formattedLoanId = button.getAttribute('data-formatted-id')
@@ -830,7 +836,7 @@ function generateExcel(dataTable) {
 
 $(document).ready(function () {
   loadData()
-  loadModalData()
+  initModals()
   loadOptions()
   $('.selectpicker').selectpicker()
   setupBootstrapSelectDropdownStyles()

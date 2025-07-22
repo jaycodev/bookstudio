@@ -16,7 +16,7 @@ import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
   username="Jason"
   customScriptPath="/js/modules/loans/loans.js"
 >
-  <DataTableCard title="Lista de préstamos" icon="bi-file-earmark-text" columnCount={8}>
+  <DataTableCard title="Lista de préstamos" icon="bi-file-earmark-text" columnCount={7}>
     <Fragment slot="thead">
       <th scope="col" class="text-start">Código</th>
       <th scope="col" class="text-start">Libro</th>
@@ -25,7 +25,6 @@ import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
       <th scope="col" class="text-center">Fecha devolución</th>
       <th scope="col" class="text-center">Cantidad</th>
       <th scope="col" class="text-center">Estado</th>
-      <th scope="col" class="text-center"></th>
     </Fragment>
   </DataTableCard>
 
@@ -114,7 +113,15 @@ import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
       </div>
     </AddModal>
 
-    <DetailsOffcanvas title="Detalles del préstamo">
+    <DetailsOffcanvas
+      title="Detalles del préstamo"
+      secondaryButton={{
+        label: 'Devolver',
+        icon: 'bi-arrow-return-left',
+        id: 'returnLoanBtn',
+        hidden: true,
+      }}
+    >
       <!-- ID and Book Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -290,7 +297,7 @@ import ConfirmationModal from '@components/modals/ConfirmationModal.astro'
     <ConfirmationModal id="returnModal" title="Confirmación de préstamo" badgeId="returnModalID">
       <Fragment slot="body">
         <p>
-          ¿Estás seguro de cambiar el estado a 
+          ¿Estás seguro de cambiar el estado a
           <span class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
             <i class="bi bi-check-circle me-1"></i>Devuelto
           </span>

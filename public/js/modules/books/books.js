@@ -82,12 +82,12 @@ function generateRow(book) {
         ${generateBadge(book.loanedCopies, 'warning')}
 			</td>
 			<td class="align-middle text-start">
-        <i class="bi bi-person me-1"></i>
+        <i class="bi bi-people me-1"></i>
 				${book.authorName}
         ${generateBadge(book.formattedAuthorId, 'secondary')}
 			</td>
 			<td class="align-middle text-start">
-        <i class="bi bi-map me-1"></i>
+        <i class="bi bi-building me-1"></i>
 				${book.publisherName}
         ${generateBadge(book.formattedPublisherId, 'secondary')}
 			</td>
@@ -130,12 +130,12 @@ function updateRow(book) {
         ${generateBadge(b.loanedCopies, 'warning')}
       `
       cells[4].innerHTML = `
-        <i class="bi bi-person me-1"></i>
+        <i class="bi bi-people me-1"></i>
         ${b.authorName}
         ${generateBadge(b.formattedAuthorId, 'secondary')}
       `
       cells[5].innerHTML = `
-        <i class="bi bi-map me-1"></i>
+        <i class="bi bi-building me-1"></i>
         ${b.publisherName}
         ${generateBadge(b.formattedPublisherId, 'secondary')}
       `

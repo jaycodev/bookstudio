@@ -8,14 +8,17 @@ if (hour >= 5 && hour < 12) greeting = 'Buenos días'
 else if (hour >= 12 && hour < 18) greeting = 'Buenas tardes'
 
 const links = [
-  { href: '/', icon: 'bi-bar-chart', label: 'Dashboard' },
+  { href: '/', icon: 'bi-columns-gap', label: 'Dashboard' },
   { href: '/loans', icon: 'bi-file-earmark-text', label: 'Préstamos' },
   { href: '/books', icon: 'bi-journal-bookmark', label: 'Libros' },
-  { href: '/authors', icon: 'bi-person', label: 'Autores' },
-  { href: '/publishers', icon: 'bi-map', label: 'Editoriales' },
-  { href: '/courses', icon: 'bi-stickies', label: 'Cursos' },
+  { href: '/authors', icon: 'bi-people', label: 'Autores' },
+  { href: '/publishers', icon: 'bi-building', label: 'Editoriales' },
   { href: '/students', icon: 'bi-mortarboard', label: 'Estudiantes' },
-  ...(role === 'administrador' ? [{ href: '/users', icon: 'bi-people', label: 'Usuarios' }] : []),
+  { href: '/courses', icon: 'bi-easel2', label: 'Cursos' },
+
+  ...(role === 'administrador'
+    ? [{ href: '/users', icon: 'bi-person-gear', label: 'Usuarios' }]
+    : []),
 ]
 ---
 
@@ -35,7 +38,7 @@ const links = [
             aria-label={link.label}
             class="nav-link text-body-emphasis d-flex align-items-center rounded-2 hovered"
           >
-            <i class={`bi pe-none me-2 ${link.icon}`} />
+            <i class={`bi ${link.icon} pe-none me-2`} />
             <span class="sidebar-link">{link.label}</span>
           </a>
         </li>
@@ -81,7 +84,7 @@ const links = [
               href={link.href}
               class="nav-link text-body-emphasis d-flex align-items-center rounded-2 hovered"
             >
-              <i class={`bi pe-none me-2 ${link.icon}`} />
+              <i class={`bi ${link.icon} pe-none me-2`} />
               {link.label}
             </a>
           </li>

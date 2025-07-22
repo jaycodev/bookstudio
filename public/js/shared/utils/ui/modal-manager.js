@@ -47,7 +47,7 @@ export function initDetailsModal({ resource, onSuccess }) {
       })
       .catch((err) => {
         console.error(`Error loading ${resource} details (${err.status}):`, err.message || err)
-        showToast(`Hubo un error al cargar los detalles del ${resource}.`, 'error')
+        showToast('Hubo un error al cargar los detalles.', 'error')
         document.body.classList.remove('details-open')
         detailsOffcanvas.hide()
       })

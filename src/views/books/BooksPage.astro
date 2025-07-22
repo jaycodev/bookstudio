@@ -9,7 +9,7 @@ import Modals from '@components/ui/Modals.astro'
   currentPage="/books"
   role="administrador"
   username="Jason"
-  customScriptPath='/js/modules/books/books.js'
+  customScriptPath="/js/modules/books/books.js"
 >
   <DataTableCard title="Lista de libros" icon="bi-journal-bookmark" columnCount={7}>
     <Fragment slot="thead">
@@ -160,12 +160,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Código</h6>
-          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-tertiary text-body-emphasis border d-none" id="detailsID"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsID"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Título</h6>
-          <p class="fw-bold" id="detailsTitle"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsTitle"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsTitle"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -173,20 +185,32 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Ejemplares disponibles</h6>
-          <p
-            class="badge text-success-emphasis bg-success-subtle border border-success-subtle"
-            id="detailsAvaibleCopies"
-          >
-          </p>
+          <div class="placeholder-glow">
+            <p
+              class="badge text-success-emphasis bg-success-subtle border border-success-subtle d-none"
+              id="detailsAvaibleCopies"
+            >
+            </p>
+            <span
+              class="placeholder placeholder-sm col-4 rounded mb-3"
+              data-placeholder-for="detailsAvaibleCopies"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Ejemplares prestados</h6>
-          <p
-            class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle"
-            id="detailsLoanedCopies"
-          >
-          </p>
+          <div class="placeholder-glow">
+            <p
+              class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle d-none"
+              id="detailsLoanedCopies"
+            >
+            </p>
+            <span
+              class="placeholder placeholder-sm col-4 rounded mb-3"
+              data-placeholder-for="detailsLoanedCopies"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -194,12 +218,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Autor</h6>
-          <p class="fw-bold" id="detailsAuthor"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsAuthor"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsAuthor"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Editorial</h6>
-          <p class="fw-bold" id="detailsPublisher"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsPublisher"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsPublisher"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -207,12 +243,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Curso</h6>
-          <p class="fw-bold" id="detailsCourse"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsCourse"></p>
+            <span
+              class="placeholder placeholder-sm col-8 rounded mb-3"
+              data-placeholder-for="detailsCourse"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Fecha de lanzamiento</h6>
-          <p class="fw-bold" id="detailsReleaseDate"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsReleaseDate"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsReleaseDate"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -220,12 +268,25 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6">
           <h6 class="small text-muted">Género</h6>
-          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsGenre"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-secondary text-body-emphasis border d-none" id="detailsGenre">
+            </p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsGenre"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6">
           <h6 class="small text-muted">Estado</h6>
-          <p id="detailsStatus"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsStatus"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsStatus"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
     </Fragment>

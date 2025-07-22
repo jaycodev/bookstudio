@@ -76,10 +76,8 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined
     ></button>
   </div>
 
-  <div class="offcanvas-body border-top p-4 overflow-auto">
-    <div id="detailsContent" class="text-break">
+  <div class="offcanvas-body border-top p-4 overflow-auto text-break">
       <slot name="details-body" />
-    </div>
   </div>
 
   <div class="offcanvas-footer border-top d-flex flex-column gap-2 p-3 pb-3">
@@ -122,13 +120,7 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined
       </header>
 
       <div class="modal-body">
-        <div id="editSpinner" class="text-center my-5">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Cargando...</span>
-          </div>
-        </div>
-
-        <form id="editForm" enctype={enctypeAttr} class="d-none" novalidate>
+        <form id="editForm" enctype={enctypeAttr} novalidate>
           <slot name="edit-fields" />
         </form>
       </div>

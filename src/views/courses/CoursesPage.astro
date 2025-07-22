@@ -9,7 +9,7 @@ import Modals from '@components/ui/Modals.astro'
   currentPage="/courses"
   role="administrador"
   username="Jason"
-  customScriptPath='/js/modules/courses/courses.js'
+  customScriptPath="/js/modules/courses/courses.js"
 >
   <DataTableCard title="Tabla de cursos" icon="bi-stickies" columnCount={5}>
     <Fragment slot="thead">
@@ -88,12 +88,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Código</h6>
-          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-tertiary text-body-emphasis border d-none" id="detailsID"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsID"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nombre</h6>
-          <p class="fw-bold" id="detailsName"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsName"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsName"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -101,12 +113,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nivel</h6>
-          <p class="fw-bold" id="detailsLevel"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsLevel"></p>
+            <span
+              class="placeholder placeholder-sm col-8 rounded mb-3"
+              data-placeholder-for="detailsLevel"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Estado</h6>
-          <p id="detailsStatus"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsStatus"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsStatus"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -114,7 +138,13 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-12 mb-3">
           <h6 class="small text-muted">Descripción</h6>
-          <p class="fw-bold" id="detailsDescription"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsDescription"></p>
+            <span
+              class="placeholder placeholder-sm col-12 rounded mb-3"
+              data-placeholder-for="detailsDescription"
+              style="height: 60px;"></span>
+          </div>
         </div>
       </div>
     </Fragment>

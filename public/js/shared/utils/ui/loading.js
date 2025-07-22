@@ -15,12 +15,13 @@ export function toggleModalLoading(modalSelectorOrElement, loading = true) {
 
   if (!modal) return
 
-  const paragraphs = modal.querySelectorAll('p[id^="details"]')
+  const paragraphs = modal.querySelectorAll('p[id^="details"], div[id^="details"]')
+
   paragraphs.forEach((p) => {
     p.classList.toggle('d-none', loading)
   })
 
-  const placeholders = modal.querySelectorAll('span[data-placeholder-for]')
+  const placeholders = modal.querySelectorAll('[data-placeholder-for]')
   placeholders.forEach((ph) => {
     ph.classList.toggle('d-none', !loading)
   })

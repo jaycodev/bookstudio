@@ -9,7 +9,7 @@ import Modals from '@components/ui/Modals.astro'
   currentPage="/users"
   role="administrador"
   username="Jason"
-  customScriptPath='/js/modules/users/users.js'
+  customScriptPath="/js/modules/users/users.js"
 >
   <DataTableCard title="Lista de usuarios" icon="bi-people" columnCount={8}>
     <Fragment slot="thead">
@@ -227,12 +227,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Código</h6>
-          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-tertiary text-body-emphasis border d-none" id="detailsID"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsID"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nombre de usuario</h6>
-          <p class="fw-bold" id="detailsUsername"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsUsername"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsUsername"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -240,54 +252,90 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Correo electrónico</h6>
-          <p class="fw-bold" id="detailsEmail"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsEmail"></p>
+            <span
+              class="placeholder placeholder-sm col-12 rounded mb-3"
+              data-placeholder-for="detailsEmail"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nombres</h6>
-          <p class="fw-bold" id="detailsFirstName"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsFirstName"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsFirstName"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
-      <!-- Last Name and Password Section -->
+      <!-- Last Name and Role Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Apellidos</h6>
-          <p class="fw-bold" id="detailsLastName"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsLastName"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsLastName"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Rol</h6>
-          <p class="badge bg-body-secondary text-body-emphasis border" id="detailsRole"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-secondary text-body-emphasis border d-none" id="detailsRole">
+            </p>
+            <span
+              class="placeholder placeholder-sm col-5 rounded mb-3"
+              data-placeholder-for="detailsRole"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
-      <!-- Role and Profile Photo Section -->
+      <!-- Profile Photo Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Foto de perfil</h6>
-          <svg
-            id="detailsSvg"
-            xmlns="http://www.w3.org/2000/svg"
-            width="120"
-            height="120"
-            fill="currentColor"
-            class="bi-person-circle"
-            viewBox="0 0 16 16"
-          >
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
-            <path
-              fill-rule="evenodd"
-              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-            ></path>
-          </svg>
-          <img
-            id="detailsImg"
-            src=""
-            class="img-fluid rounded-circle"
-            style="width: 120px; height: 120px;"
-            alt="Foto del usuario"
-          />
+          <div id="detailsPhoto" class="d-none">
+            <svg
+              id="detailsSvg"
+              xmlns="http://www.w3.org/2000/svg"
+              width="120"
+              height="120"
+              fill="currentColor"
+              class="bi-person-circle d-none"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              ></path>
+            </svg>
+            <img
+              id="detailsImg"
+              src=""
+              class="img-fluid rounded-circle d-none"
+              style="width: 120px; height: 120px;"
+              alt="Foto del usuario"
+            />
+          </div>
+
+          <div class="placeholder-glow" style="height: 120px;">
+            <div
+              class="placeholder rounded-circle"
+              style="width: 120px; height: 120px;"
+              data-placeholder-for="detailsImg"
+            >
+            </div>
+          </div>
         </div>
       </div>
     </Fragment>
@@ -394,56 +442,55 @@ import Modals from '@components/ui/Modals.astro'
       </div>
     </Fragment>
   </Modals>
+</DashboardLayout>
 
-  <!-- Delete Modal -->
-  <div
-    class="modal fade"
-    id="deleteModal"
-    tabindex="-1"
-    aria-labelledby="deleteModalLabel"
-    aria-hidden="true"
-    data-bs-backdrop="static"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title text-body-emphasis" id="deleteModalLabel">
-            Confirmación de usuario
-            <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="deleteModalID"
-            ></span>
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-          ></button>
-        </div>
+<!-- Delete Modal -->
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="deleteModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title text-body-emphasis" id="deleteModalLabel">
+          Confirmación de usuario
+          <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="deleteModalID"
+          ></span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-        <!-- Modal Body -->
-        <div class="modal-body">
-          <p>¿Estás seguro de que deseas eliminar este usuario?</p>
-        </div>
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+      </div>
 
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-          <!-- Cancel Button -->
-          <button
-            type="button"
-            class="btn btn-custom-secondary d-flex align-items-center"
-            data-bs-dismiss="modal"
-          >
-            Cancelar
-          </button>
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <!-- Cancel Button -->
+        <button
+          type="button"
+          class="btn btn-custom-secondary d-flex align-items-center"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
 
-          <!-- Delete Button -->
-          <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
-            <i class="bi bi-trash me-2"></i>
-            <span
-              class="spinner-border spinner-border-sm me-2 d-none"
-              role="status"
-              aria-hidden="true"></span>
-            Eliminar
-          </button>
-        </div>
+        <!-- Delete Button -->
+        <button type="button" class="btn btn-danger d-flex align-items-center" id="deleteBtn">
+          <i class="bi bi-trash me-2"></i>
+          <span
+            class="spinner-border spinner-border-sm me-2 d-none"
+            role="status"
+            aria-hidden="true"></span>
+          Eliminar
+        </button>
       </div>
     </div>
   </div>
-</DashboardLayout>
+</div>

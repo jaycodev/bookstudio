@@ -9,7 +9,7 @@ import Modals from '@components/ui/Modals.astro'
   currentPage="/students"
   role="administrador"
   username="Jason"
-  customScriptPath='/js/modules/students/students.js'
+  customScriptPath="/js/modules/students/students.js"
 >
   <DataTableCard title="Lista de estudiantes" icon="bi-mortarboard" columnCount={7}>
     <Fragment slot="thead">
@@ -204,12 +204,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Código</h6>
-          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-tertiary text-body-emphasis border d-none" id="detailsID"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsID"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">DNI</h6>
-          <p id="detailsDNI"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsDNI"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsDNI"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -217,12 +229,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nombres</h6>
-          <p class="fw-bold" id="detailsFirstName"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsFirstName"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsFirstName"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Apellidos</h6>
-          <p class="fw-bold" id="detailsLastName"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsLastName"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsLastName"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -230,12 +254,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Dirección</h6>
-          <p class="fw-bold" id="detailsAddress"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsAddress"></p>
+            <span
+              class="placeholder placeholder-sm col-12 rounded mb-3"
+              data-placeholder-for="detailsAddress"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Teléfono</h6>
-          <p id="detailsPhone"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsPhone"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsPhone"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -243,12 +279,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Correo electrónico</h6>
-          <p class="fw-bold" id="detailsEmail"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsEmail"></p>
+            <span
+              class="placeholder placeholder-sm col-12 rounded mb-3"
+              data-placeholder-for="detailsEmail"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Fecha de nacimiento</h6>
-          <p class="fw-bold" id="detailsBirthDate"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsBirthDate"></p>
+            <span
+              class="placeholder placeholder-sm col-8 rounded mb-3"
+              data-placeholder-for="detailsBirthDate"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -256,12 +304,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Género</h6>
-          <p id="detailsGender"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsGender"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsGender"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Facultad</h6>
-          <p id="detailsFaculty"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsFaculty"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsFaculty"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -269,7 +329,13 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Estado</h6>
-          <p id="detailsStatus"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsStatus"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsStatus"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
     </Fragment>

@@ -178,12 +178,24 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Código</h6>
-          <p class="badge bg-body-tertiary text-body-emphasis border" id="detailsID"></p>
+          <div class="placeholder-glow">
+            <p class="badge bg-body-tertiary text-body-emphasis border d-none" id="detailsID"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsID"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nombre</h6>
-          <p class="fw-bold" id="detailsName"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsName"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsName"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
@@ -191,59 +203,100 @@ import Modals from '@components/ui/Modals.astro'
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Nacionalidad</h6>
-          <p id="detailsNationality"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsNationality"></p>
+            <span
+              class="placeholder placeholder-sm col-8 rounded mb-3"
+              data-placeholder-for="detailsNationality"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Género literario</h6>
-          <p id="detailsLiteraryGenre"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsLiteraryGenre"></p>
+            <span
+              class="placeholder placeholder-sm col-10 rounded mb-3"
+              data-placeholder-for="detailsLiteraryGenre"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
-      <!-- Birth Date and Biography Section -->
+      <!-- Birth Date and Status Section -->
       <div class="row">
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Fecha de nacimiento</h6>
-          <p class="fw-bold" id="detailsBirthDate"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsBirthDate"></p>
+            <span
+              class="placeholder placeholder-sm col-8 rounded mb-3"
+              data-placeholder-for="detailsBirthDate"
+              style="height: 25px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Estado</h6>
-          <p id="detailsStatus"></p>
+          <div class="placeholder-glow">
+            <p class="d-none" id="detailsStatus"></p>
+            <span
+              class="placeholder placeholder-sm col-6 rounded mb-3"
+              data-placeholder-for="detailsStatus"
+              style="height: 25px;"></span>
+          </div>
         </div>
       </div>
 
-      <!-- Status and Photo Section -->
+      <!-- Biography and Photo Section -->
       <div class="row">
         <div class="col-md-12 mb-3">
           <h6 class="small text-muted">Biografía</h6>
-          <p class="fw-bold" id="detailsBiography"></p>
+          <div class="placeholder-glow">
+            <p class="fw-bold d-none" id="detailsBiography"></p>
+            <span
+              class="placeholder placeholder-sm col-12 rounded mb-3"
+              data-placeholder-for="detailsBiography"
+              style="height: 60px;"></span>
+          </div>
         </div>
 
         <div class="col-md-6 mb-3">
           <h6 class="small text-muted">Foto</h6>
-          <svg
-            id="detailsSvg"
-            xmlns="http://www.w3.org/2000/svg"
-            width="120"
-            height="120"
-            fill="currentColor"
-            class="bi-person-circle"
-            viewBox="0 0 16 16"
-          >
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
-            <path
-              fill-rule="evenodd"
-              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-            ></path>
-          </svg>
-          <img
-            id="detailsImg"
-            src=""
-            class="img-fluid rounded-circle"
-            style="width: 120px; height: 120px;"
-            alt="Foto del autor"
-          />
+          <div id="detailsPhoto" class="d-none">
+            <svg
+              id="detailsSvg"
+              xmlns="http://www.w3.org/2000/svg"
+              width="120"
+              height="120"
+              fill="currentColor"
+              class="bi-person-circle d-none"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              ></path>
+            </svg>
+            <img
+              id="detailsImg"
+              src=""
+              class="img-fluid rounded-circle d-none"
+              style="width: 120px; height: 120px;"
+              alt="Foto del usuario"
+            />
+          </div>
+
+          <div class="placeholder-glow" style="height: 120px;">
+            <div
+              class="placeholder rounded-circle"
+              style="width: 120px; height: 120px;"
+              data-placeholder-for="detailsImg"
+            >
+            </div>
+          </div>
         </div>
       </div>
     </Fragment>

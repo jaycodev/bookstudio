@@ -59,3 +59,7 @@ main {
 .offcanvas-backdrop {
   z-index: 1028;
 }
+
+body.details-open .offcanvas-backdrop {
+  z-index: 1031;
+}

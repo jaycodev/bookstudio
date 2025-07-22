@@ -254,19 +254,22 @@ function loadModalData() {
   // Details Modal
   $(document).on('click', '#table tbody tr', function () {
     const $row = $(this)
-    const modal = document.getElementById('detailsModal')
+    const modal = document.getElementById('detailsOffcanvas')
     const authorId = $row.data('id')
     const formattedId = $row.data('formatted-id')
 
     if (!authorId) return
 
-    $('#detailsModalID').text(formattedId)
+    $('#detailsOffcanvasID').text(formattedId)
     toggleModalLoading(modal, true)
 
-    const detailsModalEl = document.getElementById('detailsModal')
-    const detailsModal =
-      bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-    detailsModal.show()
+    const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+    const detailsOffcanvas =
+      bootstrap.Offcanvas.getInstance(detailsOffcanvasEl) ||
+      new bootstrap.Offcanvas(detailsOffcanvasEl)
+
+    document.body.classList.add('details-open')
+    detailsOffcanvas.show()
 
     fetch(`${PUBLIC_API_URL}/api/authors/${encodeURIComponent(authorId)}`, {
       method: 'GET',
@@ -325,21 +328,24 @@ function loadModalData() {
           error.message || error,
         )
         showToast('Hubo un error al cargar los detalles del autor.', 'error')
-        const detailsModalEl = document.getElementById('detailsModal')
-        const detailsModal =
-          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-        detailsModal.hide()
+        const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+        const detailsOffcanvas =
+          bootstrap.Offcanvas.getInstance(detailsOffcanvasEl) ||
+          new bootstrap.Offcanvas(detailsOffcanvasEl)
+        document.body.classList.remove('details-open')
+        detailsOffcanvas.hide()
       })
   })
 
   // Edit Modal
   $(document).on('click', '[data-bs-target="#editModal"]', function () {
     const modal = document.getElementById('editModal')
-    const formattedId = $(this).data('formatted-id')
 
-    const detailsModalEl = document.getElementById('detailsModal')
-    const detailsModal = bootstrap.Modal.getInstance(detailsModalEl)
-    if (detailsModal) detailsModal.hide()
+    const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+    const detailsOffcanvas = bootstrap.Offcanvas.getInstance(detailsOffcanvasEl)
+    if (detailsOffcanvas) {
+      detailsOffcanvas.hide()
+    }
 
     if (!currentAuthorData) {
       showToast('No se pudo cargar los datos del autor.', 'error')
@@ -403,6 +409,11 @@ function loadModalData() {
 
     toggleModalLoading(modal, false)
     handleEditForm()
+  })
+
+  const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+  detailsOffcanvasEl?.addEventListener('hidden.bs.offcanvas', () => {
+    document.body.classList.remove('details-open')
   })
 }
 

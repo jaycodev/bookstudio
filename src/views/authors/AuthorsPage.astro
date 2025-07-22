@@ -9,7 +9,7 @@ import Modals from '@components/ui/Modals.astro'
   currentPage="/authors"
   role="administrador"
   username="Jason"
-  customScriptPath='/js/modules/authors/authors.js'
+  customScriptPath="/js/modules/authors/authors.js"
 >
   <DataTableCard title="Lista de autores" icon="bi-person" columnCount={8}>
     <Fragment slot="thead">
@@ -208,20 +208,20 @@ import Modals from '@components/ui/Modals.astro'
         </div>
 
         <div class="col-md-6 mb-3">
-          <h6 class="small text-muted">Biografía</h6>
-          <p class="fw-bold" id="detailsBiography"></p>
+          <h6 class="small text-muted">Estado</h6>
+          <p id="detailsStatus"></p>
         </div>
       </div>
 
       <!-- Status and Photo Section -->
       <div class="row">
-        <div class="col-md-6 mb-3">
-          <h6 class="small text-muted">Estado</h6>
-          <p id="detailsStatus"></p>
+        <div class="col-md-12 mb-3">
+          <h6 class="small text-muted">Biografía</h6>
+          <p class="fw-bold" id="detailsBiography"></p>
         </div>
 
         <div class="col-md-6 mb-3">
-          <h6 class="fw-bold">Foto</h6>
+          <h6 class="small text-muted">Foto</h6>
           <svg
             id="detailsSvg"
             xmlns="http://www.w3.org/2000/svg"

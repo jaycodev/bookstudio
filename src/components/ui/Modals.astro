@@ -9,7 +9,7 @@ const {
 const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined
 ---
 
-<!-- Add Modal -->
+<!-- Add -->
 <div
   class="modal fade"
   id="addModal"
@@ -57,59 +57,55 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined
   </div>
 </div>
 
-<!-- Details Modal -->
+<!-- Details -->
 <div
-  class="modal fade"
-  id="detailsModal"
+  class="offcanvas offcanvas-end flex-column overflow-hidden"
+  style="width: 430px;"
   tabindex="-1"
-  aria-labelledby="detailsModalLabel"
-  aria-hidden="true"
+  id="detailsOffcanvas"
+  aria-labelledby="detailsOffcanvasLabel"
 >
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <header class="modal-header">
-        <h5 class="modal-title text-body-emphasis" id="detailsModalLabel">
-          <i class="bi bi-info-circle me-1"></i>
-          {detailsTitle}
-          <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="detailsModalID"
-          ></span>
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"
-        ></button>
-      </header>
+  <div class="offcanvas-header">
+    <h5 id="detailsOffcanvasLabel" class="mb-0 d-flex align-items-center gap-1">
+      <i class="bi bi-info-circle me-1"></i>
+      {detailsTitle}
+      <span class="badge bg-body-tertiary text-body-emphasis border ms-1" id="detailsOffcanvasID"
+      ></span>
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"
+    ></button>
+  </div>
 
-      <div class="modal-body">
-        <div id="detailsSpinner" class="text-center my-5">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Cargando...</span>
-          </div>
-        </div>
-
-        <div id="detailsContent" class="d-none">
-          <slot name="details-body" />
-        </div>
+  <div class="offcanvas-body border-top p-4 overflow-auto">
+    <div id="detailsSpinner" class="text-center my-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
       </div>
-
-      <footer class="modal-footer">
-        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
-          >Cerrar</button
-        >
-        <button
-          type="button"
-          id="detailsEditBtn"
-          class="btn btn-custom-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#editModal"
-        >
-          <i class="bi bi-pencil me-1"></i>
-          Editar
-        </button>
-      </footer>
     </div>
+
+    <div id="detailsContent" class="d-none text-break">
+      <slot name="details-body" />
+    </div>
+  </div>
+
+  <div class="offcanvas-footer border-top d-flex flex-column gap-2 p-3 pb-3">
+    <button type="button" class="btn btn-custom-secondary w-100" data-bs-dismiss="offcanvas">
+      Cerrar
+    </button>
+
+    <button
+      type="button"
+      id="detailsEditBtn"
+      class="btn btn-custom-primary w-100"
+      data-bs-toggle="modal"
+      data-bs-target="#editModal"
+    >
+      <i class="bi bi-pencil me-1"></i> Editar
+    </button>
   </div>
 </div>
 
-<!-- Edit Modal -->
+<!-- Edit -->
 <div
   class="modal fade"
   id="editModal"

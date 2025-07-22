@@ -14,8 +14,6 @@
  * @author Jason
  */
 
-const PUBLIC_API_URL = window.APP_CONFIG?.PUBLIC_API_URL || 'http://localhost:8080'
-
 import { loadTableData, addRowToTable, updateRowInTable } from '/js/shared/utils/tables/index.js'
 
 import {
@@ -28,9 +26,11 @@ import {
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
+  initAddModal,
+  initDetailsModal,
+  initEditModal,
   showToast,
   toggleButtonLoading,
-  toggleModalLoading,
   placeholderColorSelect,
   placeholderColorEditSelect,
   placeholderColorDateInput,
@@ -49,6 +49,9 @@ let publisherList = []
 let courseList = []
 let genreList = []
 
+// Global variable used to store detail data and reuse it in the edit modal
+let currentDetailData = null
+
 function loadOptions() {
   loadSelectOptions({
     resource: 'books',
@@ -66,10 +69,8 @@ function loadOptions() {
  *****************************************/
 
 function generateRow(book) {
-  const userRole = 'administrador'
-
   return `
-		<tr>
+		<tr data-id="${book.bookId}" data-formatted-id="${book.formattedBookId}">
 			<td class="align-middle text-start">
         ${generateBadge(book.formattedBookId, 'secondary')}
 			</td>
@@ -96,22 +97,6 @@ function generateRow(book) {
             ? generateBadge('Activo', 'success', 'bi-check-circle')
             : generateBadge('Inactivo', 'danger', 'bi-x-circle')
         }
-			</td>
-			<td class="align-middle text-center">
-				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Detalles"
-						data-bs-toggle="modal" data-bs-target="#detailsModal" data-id="${book.bookId}" data-formatted-id="${book.formattedBookId}">
-						<i class="bi bi-info-circle"></i>
-					</button>
-					${
-            userRole === 'administrador'
-              ? `<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Editar"
-							data-bs-toggle="modal" data-bs-target="#editModal" data-id="${book.bookId}" data-formatted-id="${book.formattedBookId}">
-							<i class="bi bi-pencil"></i>
-						</button>`
-              : ''
-          }
-				</div>
 			</td>
 		</tr>
 	`
@@ -217,193 +202,144 @@ function handleEditForm() {
 
 function loadModalData() {
   // Add Modal
-  $(document).on('click', '[data-bs-target="#addModal"]', function () {
-    populateSelect('#addAuthor', authorList, 'authorId', 'name')
-    $('#addAuthor').selectpicker()
+  initAddModal({
+    onOpen: () => {
+      populateSelect('#addAuthor', authorList, 'authorId', 'name')
+      $('#addAuthor').selectpicker()
 
-    populateSelect('#addPublisher', publisherList, 'publisherId', 'name')
-    $('#addPublisher').selectpicker()
+      populateSelect('#addPublisher', publisherList, 'publisherId', 'name')
+      $('#addPublisher').selectpicker()
 
-    populateSelect('#addCourse', courseList, 'courseId', 'name')
-    $('#addCourse').selectpicker()
+      populateSelect('#addCourse', courseList, 'courseId', 'name')
+      $('#addCourse').selectpicker()
 
-    const today = getCurrentPeruDate()
-    const peruDateStr = today.toISOString().split('T')[0]
-    $('#addReleaseDate').attr('max', peruDateStr)
+      const today = getCurrentPeruDate()
+      const peruDateStr = today.toISOString().split('T')[0]
+      $('#addReleaseDate').attr('max', peruDateStr)
 
-    populateSelect('#addGenre', genreList, 'genreId', 'name')
-    $('#addGenre').selectpicker()
+      populateSelect('#addGenre', genreList, 'genreId', 'name')
+      $('#addGenre').selectpicker()
 
-    $('#addStatus')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'activo',
-        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-        $('<option>', {
-          value: 'inactivo',
-        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-      )
-    $('#addStatus').selectpicker()
+      $('#addStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+        )
+      $('#addStatus').selectpicker()
 
-    $('#addForm')[0].reset()
-    $('#addForm .is-invalid').removeClass('is-invalid')
+      $('#addForm')[0].reset()
+      $('#addForm .is-invalid').removeClass('is-invalid')
 
-    placeholderColorDateInput()
+      placeholderColorDateInput()
 
-    handleAddForm()
+      handleAddForm()
+    },
   })
 
   // Details Modal
-  $(document).on('click', '[data-bs-target="#detailsModal"]', function () {
-    const bookId = $(this).data('id')
-    $('#detailsModalID').text($(this).data('formatted-id'))
+  initDetailsModal({
+    resource: 'books',
+    onSuccess: (data) => {
+      currentDetailData = data
 
-    toggleModalLoading(this, true)
+      $('#detailsID').text(data.formattedBookId)
+      $('#detailsTitle').text(data.title)
+      $('#detailsAvaibleCopies').text(data.availableCopies)
+      $('#detailsLoanedCopies').text(data.loanedCopies)
 
-    fetch(`${PUBLIC_API_URL}/api/books/${encodeURIComponent(bookId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        $('#detailsID').text(data.formattedBookId)
-        $('#detailsTitle').text(data.title)
-        $('#detailsAvaibleCopies').text(data.availableCopies)
-        $('#detailsLoanedCopies').text(data.loanedCopies)
-
-        $('#detailsAuthor').html(`
+      $('#detailsAuthor').html(`
 				${data.authorName}
         ${generateBadge(data.formattedAuthorId, 'secondary')}
 			`)
-        $('#detailsPublisher').html(`
+      $('#detailsPublisher').html(`
 				${data.publisherName}
         ${generateBadge(data.formattedPublisherId, 'secondary')}
 			`)
-        $('#detailsCourse').html(`
+      $('#detailsCourse').html(`
 				${data.courseName}
         ${generateBadge(data.formattedCourseId, 'secondary')}
 			`)
 
-        $('#detailsReleaseDate').text(moment(data.releaseDate).format('DD MMM YYYY'))
-        $('#detailsGenre').text(data.genreName)
-        $('#detailsStatus').html(
-          data.status === 'activo'
-            ? generateBadge('Activo', 'success', 'bi-check-circle')
-            : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
-        )
-
-        toggleModalLoading(this, false)
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading book details (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los detalles del libro.', 'error')
-        const detailsModalEl = document.getElementById('detailsModal')
-        const detailsModal =
-          bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl)
-        detailsModal.hide()
-      })
+      $('#detailsReleaseDate').text(moment(data.releaseDate).format('DD MMM YYYY'))
+      $('#detailsGenre').text(data.genreName)
+      $('#detailsStatus').html(
+        data.status === 'activo'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
+      )
+    },
   })
 
   // Edit Modal
-  $(document).on('click', '[data-bs-target="#editModal"]', function () {
-    const bookId = $(this).data('id')
-    $('#editModalID').text($(this).data('formatted-id'))
+  initEditModal({
+    getData: () => currentDetailData,
+    onOpen: (data) => {
+      $('#editModalID').text(data.formattedBookId)
 
-    toggleModalLoading(this, true)
+      document.getElementById('editForm').setAttribute('data-book-id', data.bookId)
+      $('#editTitle').val(data.title)
+      $('#editTotalCopies').val(data.totalCopies)
+      $('#editTotalCopies').attr('min', Math.max(1, data.loanedCopies))
 
-    fetch(`${PUBLIC_API_URL}/api/books/${encodeURIComponent(bookId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        document.getElementById('editForm').setAttribute('data-book-id', data.bookId)
-        $('#editTitle').val(data.title)
-        $('#editTotalCopies').val(data.totalCopies)
-        $('#editTotalCopies').attr('min', Math.max(1, data.loanedCopies))
+      populateSelect('#editAuthor', authorList, 'authorId', 'name')
+      $('#editAuthor').val(data.authorId)
+      $('#editAuthor').selectpicker()
 
-        populateSelect('#editAuthor', authorList, 'authorId', 'name')
-        $('#editAuthor').val(data.authorId)
-        $('#editAuthor').selectpicker()
+      populateSelect('#editPublisher', publisherList, 'publisherId', 'name')
+      $('#editPublisher').val(data.publisherId)
+      $('#editPublisher').selectpicker()
 
-        populateSelect('#editPublisher', publisherList, 'publisherId', 'name')
-        $('#editPublisher').val(data.publisherId)
-        $('#editPublisher').selectpicker()
+      populateSelect('#editCourse', courseList, 'courseId', 'name')
+      $('#editCourse').val(data.courseId)
+      $('#editCourse').selectpicker()
 
-        populateSelect('#editCourse', courseList, 'courseId', 'name')
-        $('#editCourse').val(data.courseId)
-        $('#editCourse').selectpicker()
+      populateSelect('#editGenre', genreList, 'genreId', 'name')
+      $('#editGenre').val(data.genreId)
+      $('#editGenre').selectpicker()
 
-        populateSelect('#editGenre', genreList, 'genreId', 'name')
-        $('#editGenre').val(data.genreId)
-        $('#editGenre').selectpicker()
+      $('#editReleaseDate').val(moment(data.releaseDate).format('YYYY-MM-DD'))
 
-        $('#editReleaseDate').val(moment(data.releaseDate).format('YYYY-MM-DD'))
+      const today = getCurrentPeruDate()
+      const peruDateStr = today.toISOString().split('T')[0]
+      $('#editReleaseDate').attr('max', peruDateStr)
 
-        const today = getCurrentPeruDate()
-        const peruDateStr = today.toISOString().split('T')[0]
-        $('#editReleaseDate').attr('max', peruDateStr)
-
-        $('#editStatus')
-          .selectpicker('destroy')
-          .empty()
-          .append(
-            $('<option>', {
-              value: 'activo',
-            }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-            $('<option>', {
-              value: 'inactivo',
-            }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-          )
-        $('#editStatus').val(data.status)
-        $('#editStatus').selectpicker()
-
-        $('#editForm .is-invalid').removeClass('is-invalid')
-        placeholderColorEditSelect()
-        placeholderColorDateInput()
-
-        $('#editForm')
-          .find('select')
-          .each(function () {
-            validateEditField($(this), true)
-          })
-
-        toggleModalLoading(this, false)
-
-        handleEditForm()
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading book details for editing (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
+      $('#editStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
         )
-        showToast('Hubo un error al cargar los datos del libro.', 'error')
-        const editModalEl = document.getElementById('editModal')
-        const editModal =
-          bootstrap.Modal.getInstance(editModalEl) || new bootstrap.Modal(editModalEl)
-        editModal.hide()
-      })
+      $('#editStatus').val(data.status)
+      $('#editStatus').selectpicker()
+
+      $('#editForm .is-invalid').removeClass('is-invalid')
+      placeholderColorEditSelect()
+      placeholderColorDateInput()
+
+      $('#editForm')
+        .find('select')
+        .each(function () {
+          validateEditField($(this), true)
+        })
+
+      handleEditForm()
+    },
+  })
+
+  const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
+  detailsOffcanvasEl?.addEventListener('hidden.bs.offcanvas', () => {
+    document.body.classList.remove('details-open')
   })
 }
 

@@ -14,8 +14,6 @@
  * @author Jason
  */
 
-const PUBLIC_API_URL = window.APP_CONFIG?.PUBLIC_API_URL || 'http://localhost:8080'
-
 import { loadTableData, addRowToTable, updateRowInTable } from '/js/shared/utils/tables/index.js'
 
 import {
@@ -29,9 +27,11 @@ import {
 import { validateAddField, validateEditField } from './validations.js'
 
 import {
+  initAddModal,
+  initDetailsModal,
+  initEditModal,
   showToast,
   toggleButtonLoading,
-  toggleModalLoading,
   placeholderColorSelect,
   placeholderColorEditSelect,
   placeholderColorDateInput,
@@ -52,7 +52,8 @@ let literaryGenreList = []
 // Global variable to handle photo deletion in edit modal
 let deletePhotoFlag = false
 
-let currentAuthorData = null
+// Global variable used to store detail data and reuse it in the edit modal
+let currentDetailData = null
 
 function loadOptions() {
   loadSelectOptions({
@@ -209,206 +210,143 @@ function handleEditForm() {
 
 function loadModalData() {
   // Add Modal
-  $(document).on('click', '[data-bs-target="#addModal"]', function () {
-    populateSelect('#addNationality', nationalityList, 'nationalityId', 'name')
-    $('#addNationality').selectpicker()
+  initAddModal({
+    onOpen: () => {
+      populateSelect('#addNationality', nationalityList, 'nationalityId', 'name')
+      $('#addNationality').selectpicker()
 
-    populateSelect('#addLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
-    $('#addLiteraryGenre').selectpicker()
+      populateSelect('#addLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
+      $('#addLiteraryGenre').selectpicker()
 
-    $('#addStatus')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'activo',
-        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-        $('<option>', {
-          value: 'inactivo',
-        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-      )
-    $('#addStatus').selectpicker()
+      $('#addStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+        )
+      $('#addStatus').selectpicker()
 
-    $('#defaultAddPhotoContainer').removeClass('d-none')
-    $('#deleteAddPhotoBtn').addClass('d-none')
+      $('#defaultAddPhotoContainer').removeClass('d-none')
+      $('#deleteAddPhotoBtn').addClass('d-none')
 
-    $('#addForm')[0].reset()
-    $('#addForm .is-invalid').removeClass('is-invalid')
+      $('#addForm')[0].reset()
+      $('#addForm .is-invalid').removeClass('is-invalid')
 
-    const today = getCurrentPeruDate()
-    const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
-    const maxDateStr = maxDate.toISOString().split('T')[0]
-    $('#addBirthDate').attr('max', maxDateStr)
+      const today = getCurrentPeruDate()
+      const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
+      const maxDateStr = maxDate.toISOString().split('T')[0]
+      $('#addBirthDate').attr('max', maxDateStr)
 
-    placeholderColorDateInput()
+      placeholderColorDateInput()
 
-    $('#cropperContainerAdd').addClass('d-none')
-    if (cropper) {
-      cropper.destroy()
-      cropper = null
-    }
+      $('#cropperContainerAdd').addClass('d-none')
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
 
-    handleAddForm()
+      handleAddForm()
+    },
   })
 
   // Details Modal
-  $(document).on('click', '#table tbody tr', function () {
-    const $row = $(this)
-    const modal = document.getElementById('detailsOffcanvas')
-    const authorId = $row.data('id')
-    const formattedId = $row.data('formatted-id')
+  initDetailsModal({
+    resource: 'authors',
+    onSuccess: (data) => {
+      currentDetailData = data
 
-    if (!authorId) return
+      $('#detailsID').text(data.formattedAuthorId)
+      $('#detailsName').text(data.name)
+      $('#detailsNationality').html(
+        generateBadge(data.nationalityName, 'default', 'bi-globe-americas'),
+      )
+      $('#detailsLiteraryGenre').html(
+        generateBadge(data.literaryGenreName, 'default', 'bi-journals'),
+      )
+      $('#detailsBirthDate').html(
+        generateBadge(moment(data.birthDate).format('DD MMM YYYY'), 'default', 'bi-calendar-event'),
+      )
+      $('#detailsBiography').text(data.biography || '')
 
-    $('#detailsOffcanvasID').text(formattedId)
-    toggleModalLoading(modal, true)
+      $('#detailsStatus').html(
+        data.status === 'activo'
+          ? generateBadge('Activo', 'success', 'bi-check-circle')
+          : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
+      )
 
-    const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
-    const detailsOffcanvas =
-      bootstrap.Offcanvas.getInstance(detailsOffcanvasEl) ||
-      new bootstrap.Offcanvas(detailsOffcanvasEl)
-
-    document.body.classList.add('details-open')
-    detailsOffcanvas.show()
-
-    fetch(`${PUBLIC_API_URL}/api/authors/${encodeURIComponent(authorId)}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const errorData = await response.json()
-          throw { status: response.status, ...errorData }
-        }
-        return response.json()
-      })
-      .then((data) => {
-        currentAuthorData = data
-
-        $('#detailsID').text(data.formattedAuthorId)
-        $('#detailsName').text(data.name)
-        $('#detailsNationality').html(
-          generateBadge(data.nationalityName, 'default', 'bi-globe-americas'),
-        )
-        $('#detailsLiteraryGenre').html(
-          generateBadge(data.literaryGenreName, 'default', 'bi-journals'),
-        )
-        $('#detailsBirthDate').html(
-          generateBadge(
-            moment(data.birthDate).format('DD MMM YYYY'),
-            'default',
-            'bi-calendar-event',
-          ),
-        )
-        $('#detailsBiography').text(data.biography || '')
-
-        $('#detailsStatus').html(
-          data.status === 'activo'
-            ? generateBadge('Activo', 'success', 'bi-check-circle')
-            : generateBadge('Inactivo', 'danger', 'bi-x-circle'),
-        )
-
-        if (data.photoUrl) {
-          $('#detailsImg').attr('src', data.photoUrl).removeClass('d-none')
-          $('#detailsSvg').addClass('d-none')
-        } else {
-          $('#detailsImg').addClass('d-none')
-          $('#detailsSvg').removeClass('d-none')
-        }
-
-        toggleModalLoading(modal, false)
-
-        $('#detailsEditBtn').attr('data-formatted-id', data.formattedAuthorId)
-      })
-      .catch((error) => {
-        console.error(
-          `Error loading author details (${error.errorType || 'unknown'} - ${error.status}):`,
-          error.message || error,
-        )
-        showToast('Hubo un error al cargar los detalles del autor.', 'error')
-        const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
-        const detailsOffcanvas =
-          bootstrap.Offcanvas.getInstance(detailsOffcanvasEl) ||
-          new bootstrap.Offcanvas(detailsOffcanvasEl)
-        document.body.classList.remove('details-open')
-        detailsOffcanvas.hide()
-      })
+      if (data.photoUrl) {
+        $('#detailsImg').attr('src', data.photoUrl).removeClass('d-none')
+        $('#detailsSvg').addClass('d-none')
+      } else {
+        $('#detailsImg').addClass('d-none')
+        $('#detailsSvg').removeClass('d-none')
+      }
+    },
   })
 
   // Edit Modal
-  $(document).on('click', '[data-bs-target="#editModal"]', function () {
-    const modal = document.getElementById('editModal')
+  initEditModal({
+    getData: () => currentDetailData,
+    onOpen: (data) => {
+      $('#editModalID').text(data.formattedAuthorId)
 
-    const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')
-    const detailsOffcanvas = bootstrap.Offcanvas.getInstance(detailsOffcanvasEl)
-    if (detailsOffcanvas) {
-      detailsOffcanvas.hide()
-    }
+      document.getElementById('editForm').setAttribute('data-author-id', data.authorId)
+      $('#editName').val(data.name)
 
-    if (!currentAuthorData) {
-      showToast('No se pudo cargar los datos del autor.', 'error')
-      return
-    }
+      populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
+      $('#editNationality').val(data.nationalityId).selectpicker()
 
-    const data = currentAuthorData
+      populateSelect('#editLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
+      $('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
 
-    $('#editModalID').text(data.formattedAuthorId)
-    toggleModalLoading(modal, true)
+      $('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
+      const today = getCurrentPeruDate()
+      const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
+      const maxDateStr = maxDate.toISOString().split('T')[0]
+      $('#editBirthDate').attr('max', maxDateStr)
 
-    document.getElementById('editForm').setAttribute('data-author-id', data.authorId)
-    $('#editName').val(data.name)
+      $('#editBiography').val(data.biography)
 
-    populateSelect('#editNationality', nationalityList, 'nationalityId', 'name')
-    $('#editNationality').val(data.nationalityId).selectpicker()
+      $('#editStatus')
+        .selectpicker('destroy')
+        .empty()
+        .append(
+          $('<option>', {
+            value: 'activo',
+          }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
+          $('<option>', {
+            value: 'inactivo',
+          }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
+        )
+      $('#editStatus').val(data.status).selectpicker()
 
-    populateSelect('#editLiteraryGenre', literaryGenreList, 'literaryGenreId', 'name')
-    $('#editLiteraryGenre').val(data.literaryGenreId).selectpicker()
+      updateEditImageContainer(data.photoUrl)
 
-    $('#editBirthDate').val(moment(data.birthDate).format('YYYY-MM-DD'))
-    const today = getCurrentPeruDate()
-    const maxDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate())
-    const maxDateStr = maxDate.toISOString().split('T')[0]
-    $('#editBirthDate').attr('max', maxDateStr)
+      $('#editForm .is-invalid').removeClass('is-invalid')
+      placeholderColorEditSelect()
+      placeholderColorDateInput()
 
-    $('#editBiography').val(data.biography)
+      $('#editForm')
+        .find('select')
+        .each(function () {
+          validateEditField($(this), true)
+        })
 
-    $('#editStatus')
-      .selectpicker('destroy')
-      .empty()
-      .append(
-        $('<option>', {
-          value: 'activo',
-        }).attr('data-content', generateBadge('Activo', 'success', 'bi-check-circle')),
-        $('<option>', {
-          value: 'inactivo',
-        }).attr('data-content', generateBadge('Inactivo', 'danger', 'bi-x-circle')),
-      )
-    $('#editStatus').val(data.status).selectpicker()
+      $('#editPhoto').val('')
 
-    updateEditImageContainer(data.photoUrl)
+      $('#cropperContainerEdit').addClass('d-none')
+      if (cropper) {
+        cropper.destroy()
+        cropper = null
+      }
 
-    $('#editForm .is-invalid').removeClass('is-invalid')
-    placeholderColorEditSelect()
-    placeholderColorDateInput()
-
-    $('#editForm')
-      .find('select')
-      .each(function () {
-        validateEditField($(this), true)
-      })
-
-    $('#editPhoto').val('')
-
-    $('#cropperContainerEdit').addClass('d-none')
-    if (cropper) {
-      cropper.destroy()
-      cropper = null
-    }
-
-    toggleModalLoading(modal, false)
-    handleEditForm()
+      handleEditForm()
+    },
   })
 
   const detailsOffcanvasEl = document.getElementById('detailsOffcanvas')

@@ -416,3 +416,9 @@ textarea {
 table th {
   white-space: nowrap;
 }
+
+#table > tbody > tr:hover > td,
+#table > tbody > tr:hover > th {
+  cursor: pointer;
+  background-color: var(--bg-tertiary-color);
+}

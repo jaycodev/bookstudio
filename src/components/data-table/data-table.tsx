@@ -57,6 +57,10 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
       columnFilters,
+      pagination: {
+        pageIndex: 0,
+        pageSize: 15,
+      }
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,

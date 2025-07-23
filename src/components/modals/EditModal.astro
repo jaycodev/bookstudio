@@ -11,7 +11,7 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined
   aria-hidden="true"
   data-bs-backdrop="static"
 >
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg modal-fullscreen-sm-down">
     <div class="modal-content">
       <header class="modal-header">
         <h5 class="modal-title text-body-emphasis" id="editModalLabel">
@@ -31,22 +31,34 @@ const enctypeAttr = useMultipart ? 'multipart/form-data' : undefined
       </div>
 
       <footer class="modal-footer">
-        <button type="button" class="btn btn-custom-secondary" data-bs-dismiss="modal"
-          >Cancelar</button
-        >
-        <button
-          type="submit"
-          class="btn btn-custom-primary d-flex align-items-center"
-          form="editForm"
-          id="updateBtn"
-        >
-          <i class="bi bi-floppy me-2"></i>
-          <span
-            class="spinner-border spinner-border-sm me-2 d-none"
-            role="status"
-            aria-hidden="true"></span>
-          Actualizar
-        </button>
+        <div class="container-fluid px-0">
+          <div class="row gx-0 w-100">
+            <!-- Espacio izquierdo en pantallas grandes -->
+            <div class="d-none d-md-block col-md-6 px-0"></div>
+
+            <!-- Botones -->
+            <div class="col-12 col-md-6 px-0">
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-custom-secondary w-50" data-bs-dismiss="modal">
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-custom-primary d-flex align-items-center justify-content-center w-50"
+                  form="editForm"
+                  id="updateBtn"
+                >
+                  <i class="bi bi-floppy me-2"></i>
+                  <span
+                    class="spinner-border spinner-border-sm me-2 d-none"
+                    role="status"
+                    aria-hidden="true"></span>
+                  Actualizar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   </div>

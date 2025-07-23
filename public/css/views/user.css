@@ -454,3 +454,13 @@ div.dt-scroll-body {
 #skeletonTable tbody tr td:first-child .placeholder {
   margin-left: 0.25rem;
 }
+
+.offcanvas-body::-webkit-scrollbar {
+  display: none;
+}
+
+.offcanvas-body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-y: auto;
+}

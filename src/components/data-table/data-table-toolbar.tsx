@@ -59,7 +59,7 @@ export function DataTableToolbar<TData>({
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between space-x-2">
+    <div className="flex flex-wrap items-center justify-between space-x-2 gap-2">
       <div className="flex flex-wrap items-center gap-2">
         {searchCol && (
           <div className="relative">

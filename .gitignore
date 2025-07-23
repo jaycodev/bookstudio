@@ -1,46 +1,45 @@
 # Node modules
 /node_modules/
 
-# Distribution or build directories
+# Build output
 /dist/
-/build/
+build/
 
-# Yarn, PnP and SWC related files
-.pnp/
-.pnp.js
-.swc/
+# Lock files
+package-lock.json
+yarn.lock
 
-# Log files
+# IDE settings
+.vscode/
+.idea/
+
+# Logs
 *.log
-npm-debug.log
-yarn-debug.log
-yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Environment files
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
 
-# IDE configuration files
-/.vscode/
-/.idea/
-
-# System files
+# Misc
 .DS_Store
 Thumbs.db
 .swp
 
-# Cache and temporary files
+# Tool-specific caches
 /.turbo/
 /.eslintcache/
 /.vite/
 /.parcel-cache/
 
-# Lock files for different package managers (if using only npm, you can remove the others)
-yarn.lock
-pnpm-lock.yaml
+# PnP
+.pnp/
+.pnp.js
 
-# Jest or other test coverage reports
+# SWC
+.swc/
+
+# Coverage
 /coverage/

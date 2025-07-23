@@ -66,6 +66,11 @@ export function setupDataTable(tableId) {
         'afterbegin',
         '<span class="input-group-text bg-body-secondary"><i class="bi bi-search text-muted"></i></span>',
       )
+
+      const scrollWrapper = document.querySelector('#table_wrapper .dt-scroll')
+      if (scrollWrapper) {
+        scrollWrapper.classList.add('border', 'rounded', 'overflow-hidden')
+      }
     },
   })
 

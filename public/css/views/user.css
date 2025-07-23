@@ -438,3 +438,7 @@ table th {
   opacity: 0;
   animation: fadeInUpCell 0.4s ease-out forwards;
 }
+
+div.dt-scroll-body {
+  border-bottom: none !important;
+}

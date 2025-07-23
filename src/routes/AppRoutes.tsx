@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { LibraryBig } from "lucide-react";
 
+import NavigationProgress from "@/components/navigation-progress";
+
 import DashboardLayout from "../layouts/DashboardLayout";
 import AuthLayout from "../layouts/AuthLayout";
 
@@ -11,7 +13,9 @@ const Books = lazy(() => import("../pages/dashboard/Books/BooksPage"));
 const Authors = lazy(() => import("../pages/dashboard/Authors/AuthorsPage"));
 const Courses = lazy(() => import("../pages/dashboard/Courses/CoursesPage"));
 const Loans = lazy(() => import("../pages/dashboard/Loans/LoansPage"));
-const Publishers = lazy(() => import("../pages/dashboard/Publishers/PublishersPage"));
+const Publishers = lazy(
+  () => import("../pages/dashboard/Publishers/PublishersPage")
+);
 const Students = lazy(() => import("../pages/dashboard/Students/StudentsPage"));
 const Profile = lazy(() => import("../pages/dashboard/Profile/Profile"));
 const Login = lazy(() => import("../pages/auth/Login"));
@@ -32,6 +36,7 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Suspense fallback={<LoadingScreen />}>
+        <NavigationProgress />
         <Routes>
           <Route element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />

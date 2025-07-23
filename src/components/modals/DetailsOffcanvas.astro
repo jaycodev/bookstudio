@@ -28,12 +28,16 @@ const {
   </div>
 
   <div class="offcanvas-footer border-top d-flex gap-2 p-3 pb-3">
+    <button type="button" class="btn btn-custom-secondary w-50" data-bs-dismiss="offcanvas">
+      Cerrar
+    </button>
+
     {
       secondaryButton && (
         <button
           type="button"
           id={secondaryButton.id}
-          class={`btn btn-custom-secondary w-100 ${secondaryButton.hidden ? 'd-none' : ''}`}
+          class={`btn btn-custom-secondary w-50 ${secondaryButton.hidden ? 'd-none' : ''}`}
         >
           {secondaryButton.icon && <i class={`bi ${secondaryButton.icon} me-1`} />}
           {secondaryButton.label}
@@ -44,7 +48,7 @@ const {
     <button
       type="button"
       id="detailsEditBtn"
-      class="btn btn-custom-primary w-100"
+      class="btn btn-custom-primary ms-auto w-50"
       data-bs-toggle="modal"
       data-bs-target="#editModal"
     >

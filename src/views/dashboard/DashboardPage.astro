@@ -53,27 +53,42 @@ const { role = 'administrador', username = 'Jason', userProfileImage = '' } = As
           iconClass="bi-journal-bookmark"
           iconColor="primary"
           id="totalBooks"
+          href="/books"
         />
 
-        <StatCard title="Autores" iconClass="bi-people" iconColor="success" id="totalAuthors" />
+        <StatCard
+          title="Autores"
+          iconClass="bi-people"
+          iconColor="success"
+          id="totalAuthors"
+          href="/authors"
+        />
 
         <StatCard
           title="Editoriales"
           iconClass="bi-building"
           iconColor="warning"
           id="totalPublishers"
+          href="/publishers"
         />
       </section>
 
       <!-- Second Row -->
       <section class="row">
-        <StatCard title="Cursos" iconClass="bi-easel2" iconColor="info" id="totalCourses" />
+        <StatCard
+          title="Cursos"
+          iconClass="bi-easel2"
+          iconColor="info"
+          id="totalCourses"
+          href="/courses"
+        />
 
         <StatCard
           title="Estudiantes"
           iconClass="bi-mortarboard"
           iconColor="secondary"
           id="totalStudents"
+          href="/students"
         />
 
         <StatCard
@@ -81,6 +96,7 @@ const { role = 'administrador', username = 'Jason', userProfileImage = '' } = As
           iconClass="bi-file-earmark-text"
           iconColor="danger"
           id="totalLoans"
+          href="/loans"
         />
       </section>
 

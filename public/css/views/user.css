@@ -464,3 +464,13 @@ div.dt-scroll-body {
   -ms-overflow-style: none;
   overflow-y: auto;
 }
+
+.card-hover {
+  transition: transform 0.2s ease;
+  transform: scale(1);
+}
+
+.card-hover:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}

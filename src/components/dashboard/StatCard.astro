@@ -1,18 +1,20 @@
 ---
-const { title, iconClass, iconColor, id } = Astro.props
+const { title, iconClass, iconColor, id, href } = Astro.props
 ---
 
 <article class="col-md-4">
-  <div class={`card border-start-${iconColor} bg-body-secondary border mb-3`}>
-    <div class="card-body sombra">
-      <h5 class="card-title d-flex align-items-center text-body-emphasis">
-        <i class={`bi pe-none me-2 ${iconClass} text-${iconColor}`}></i>
-        {title}
-      </h5>
-      <p class="card-text placeholder-glow mb-0">
-        <span class="placeholder col-6 rounded"></span>
-      </p>
-      <p id={id} class="card-text text-body-emphasis d-none"></p>
+  <a href={href} class="text-decoration-none">
+    <div class={`card card-hover border-start-${iconColor} bg-body-secondary border mb-3`}>
+      <div class="card-body sombra">
+        <h5 class="card-title d-flex align-items-center text-body-emphasis">
+          <i class={`bi pe-none me-2 ${iconClass} text-${iconColor}`}></i>
+          {title}
+        </h5>
+        <p class="card-text placeholder-glow mb-0">
+          <span class="placeholder col-6 rounded"></span>
+        </p>
+        <p id={id} class="card-text text-body-emphasis d-none"></p>
+      </div>
     </div>
-  </div>
+  </a>
 </article>

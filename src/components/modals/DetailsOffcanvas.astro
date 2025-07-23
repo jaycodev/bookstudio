@@ -1,7 +1,7 @@
 ---
 const {
   title = 'Detalles',
-  secondaryButton = null, // { label, icon, id, hidden: true/false }
+  extraButton = null, // { label, icon, id, class: 'btn-danger', hidden: true/false }
 } = Astro.props
 ---
 
@@ -33,14 +33,14 @@ const {
     </button>
 
     {
-      secondaryButton && (
+      extraButton && (
         <button
           type="button"
-          id={secondaryButton.id}
-          class={`btn btn-custom-secondary w-50 ${secondaryButton.hidden ? 'd-none' : ''}`}
+          id={extraButton.id}
+          class={`btn w-50 ${extraButton.class || 'btn-custom-secondary'} ${extraButton.hidden ? 'd-none' : ''}`}
         >
-          {secondaryButton.icon && <i class={`bi ${secondaryButton.icon} me-1`} />}
-          {secondaryButton.label}
+          {extraButton.icon && <i class={`bi ${extraButton.icon} me-1`} />}
+          {extraButton.label}
         </button>
       )
     }

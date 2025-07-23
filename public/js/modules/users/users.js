@@ -85,14 +85,6 @@ function generateRow(user) {
 					</svg>`
         }
 			</td>
-			<td class="align-middle text-center">
-				<div class="d-inline-flex gap-2">
-					<button class="btn btn-sm btn-icon-hover" data-tooltip="tooltip" data-bs-placement="top" title="Eliminar"
-						data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="${user.userId}" data-formatted-id="${user.formattedUserId}">
-						<i class="bi bi-trash"></i>
-					</button>
-				</div>
-			</td>
 		</tr>
 	`
 }
@@ -327,6 +319,14 @@ function loadModalData() {
         $('#detailsImg').addClass('d-none')
         $('#detailsSvg').removeClass('d-none')
       }
+
+      const deleteModalBtn = document.getElementById('deleteModalBtn')
+      if (deleteModalBtn) {
+        deleteModalBtn.setAttribute('data-id', data.userId)
+        deleteModalBtn.setAttribute('data-formatted-id', data.formattedUserId)
+        deleteModalBtn.setAttribute('data-bs-toggle', 'modal')
+        deleteModalBtn.setAttribute('data-bs-target', '#deleteModal')
+      }
     },
   })
 
@@ -390,6 +390,11 @@ function loadModalData() {
     deleteModal.addEventListener('show.bs.modal', (event) => {
       const button = event.relatedTarget
       if (!button) return
+
+      const detailsOffcanvas = bootstrap.Offcanvas.getInstance(
+        document.getElementById('detailsOffcanvas'),
+      )
+      detailsOffcanvas?.hide()
 
       const userId = button.getAttribute('data-id')
       const formattedUserId = button.getAttribute('data-formatted-id')

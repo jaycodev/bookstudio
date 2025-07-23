@@ -342,17 +342,17 @@ function initModals() {
 
       $('#detailsObservation').text(data.observation)
 
-      const returnBtn = document.getElementById('returnLoanBtn')
-      if (returnBtn) {
+      const returnModalBtn = document.getElementById('returnModalBtn')
+      if (returnModalBtn) {
         if (data.status === 'prestado') {
-          returnBtn.classList.remove('d-none')
-          returnBtn.setAttribute('data-id', data.loanId)
-          returnBtn.setAttribute('data-formatted-id', data.formattedLoanId)
-          returnBtn.setAttribute('data-status', data.status)
-          returnBtn.setAttribute('data-bs-toggle', 'modal')
-          returnBtn.setAttribute('data-bs-target', '#returnModal')
+          returnModalBtn.classList.remove('d-none')
+          returnModalBtn.setAttribute('data-id', data.loanId)
+          returnModalBtn.setAttribute('data-formatted-id', data.formattedLoanId)
+          returnModalBtn.setAttribute('data-status', data.status)
+          returnModalBtn.setAttribute('data-bs-toggle', 'modal')
+          returnModalBtn.setAttribute('data-bs-target', '#returnModal')
         } else {
-          returnBtn.classList.add('d-none')
+          returnModalBtn.classList.add('d-none')
         }
       }
     },

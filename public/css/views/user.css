@@ -442,3 +442,15 @@ table th {
 div.dt-scroll-body {
   border-bottom: none !important;
 }
+
+#skeletonTable thead th {
+  padding: 0.5rem !important;
+}
+
+#skeletonTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#skeletonTable tbody tr td:first-child .placeholder {
+  margin-left: 0.25rem;
+}

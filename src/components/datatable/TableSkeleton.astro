@@ -5,25 +5,25 @@ const { columnCount = 8 } = Astro.props
 <!-- Skeleton Table -->
 <div id="skeletonTable">
   <!-- Header Placeholders -->
-  <div class="row align-items-center mb-3 mt-2">
+  <div class="row align-items-center mb-2 mt-2">
     <div class="col-12 col-md-4 text-center text-md-start mb-2 mb-md-0 mt-2 mt-md-0">
       <div class="placeholder-glow">
-        <span class="placeholder col-4 rounded" style="height: 30px;"></span>
+        <span class="placeholder col-4 rounded" style="height: 31.5px;"></span>
       </div>
     </div>
-    
+
     <div class="col d-none d-md-block"></div>
 
     <div class="col-12 col-md-4 text-end mb-2 mb-md-0">
       <div class="placeholder-glow">
-        <span class="placeholder col-12 col-md-6 rounded" style="height: 30px;"></span>
+        <span class="placeholder col-12 col-md-6 rounded" style="height: 31.5px;"></span>
       </div>
     </div>
   </div>
 
   <!-- Skeleton Rows -->
-  <div class="table-responsive">
-    <table class="table table-sm nowrap w-100 mb-2">
+  <div class="table-responsive border rounded mb-2">
+    <table class="table table-sm nowrap w-100 mb-0">
       <thead>
         <tr>
           <slot name="thead" />
@@ -35,7 +35,7 @@ const { columnCount = 8 } = Astro.props
             <tr class="placeholder-glow">
               {Array.from({ length: columnCount }).map(() => (
                 <td>
-                  <span class="placeholder col-11 rounded my-1" style="height: 22px;" />
+                  <span class="placeholder col-11 rounded my-1" style="height: 21.1px;" />
                 </td>
               ))}
             </tr>

@@ -1,0 +1,202 @@
+[
+  {
+    "PublisherID": 1,
+    "Name": "Editorial Sudamericana",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Ficción",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 2,
+    "Name": "Planeta",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Novela",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 3,
+    "Name": "Alfaguara",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Literatura contemporánea",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 4,
+    "Name": "Anagrama",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Ensayo",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 5,
+    "Name": "Siglo XXI Editores",
+    "NationalityName": "México",
+    "LiteraryGenreName": "Ciencias sociales",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 6,
+    "Name": "Fondo de Cultura Económica",
+    "NationalityName": "México",
+    "LiteraryGenreName": "Educativo",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 7,
+    "Name": "Penguin Random House",
+    "NationalityName": "Estados Unidos",
+    "LiteraryGenreName": "Ficción",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 8,
+    "Name": "HarperCollins",
+    "NationalityName": "Estados Unidos",
+    "LiteraryGenreName": "Best Sellers",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 9,
+    "Name": "Bloomsbury",
+    "NationalityName": "Reino Unido",
+    "LiteraryGenreName": "Fantasía",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 10,
+    "Name": "Hachette Livre",
+    "NationalityName": "Francia",
+    "LiteraryGenreName": "No ficción",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 11,
+    "Name": "Macmillan Publishers",
+    "NationalityName": "Reino Unido",
+    "LiteraryGenreName": "Ciencia ficción",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 12,
+    "Name": "Oxford University Press",
+    "NationalityName": "Reino Unido",
+    "LiteraryGenreName": "Académico",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 13,
+    "Name": "Cambridge University Press",
+    "NationalityName": "Reino Unido",
+    "LiteraryGenreName": "Educativo",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 14,
+    "Name": "Ediciones B",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Misterio",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 15,
+    "Name": "Grupo SM",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Infantil",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 16,
+    "Name": "Kalandraka",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Cuentos",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 17,
+    "Name": "Libros del Zorzal",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Poesía",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 18,
+    "Name": "Minotauro",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Fantasía",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 19,
+    "Name": "Eterna Cadencia",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Narrativa",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 20,
+    "Name": "Taurus",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Política",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 21,
+    "Name": "Debate",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Historia",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 22,
+    "Name": "Tusquets Editores",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Narrativa contemporánea",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 23,
+    "Name": "Seix Barral",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Literatura universal",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 24,
+    "Name": "Lumen",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Biografía",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "PublisherID": 25,
+    "Name": "Blackie Books",
+    "NationalityName": "España",
+    "LiteraryGenreName": "Humor",
+    "Status": "activo",
+    "Photo": ""
+  }
+]

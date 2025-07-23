@@ -1,0 +1,227 @@
+[
+  {
+    "BookID": 1,
+    "Title": "Cien años de soledad",
+    "AvailableCopies": 3,
+    "LoanedCopies": 2,
+    "AuthorName": "Gabriel García Márquez",
+    "PublisherName": "Sudamericana",
+    "Status": "activo"
+  },
+  {
+    "BookID": 2,
+    "Title": "Rayuela",
+    "AvailableCopies": 5,
+    "LoanedCopies": 0,
+    "AuthorName": "Julio Cortázar",
+    "PublisherName": "Editorial Sudamericana",
+    "Status": "activo"
+  },
+  {
+    "BookID": 3,
+    "Title": "La ciudad y los perros",
+    "AvailableCopies": 1,
+    "LoanedCopies": 4,
+    "AuthorName": "Mario Vargas Llosa",
+    "PublisherName": "Seix Barral",
+    "Status": "activo"
+  },
+  {
+    "BookID": 4,
+    "Title": "Pedro Páramo",
+    "AvailableCopies": 0,
+    "LoanedCopies": 2,
+    "AuthorName": "Juan Rulfo",
+    "PublisherName": "Fondo de Cultura Económica",
+    "Status": "inactivo"
+  },
+  {
+    "BookID": 5,
+    "Title": "Don Quijote de la Mancha",
+    "AvailableCopies": 8,
+    "LoanedCopies": 1,
+    "AuthorName": "Miguel de Cervantes",
+    "PublisherName": "Francisco de Robles",
+    "Status": "activo"
+  },
+  {
+    "BookID": 6,
+    "Title": "El túnel",
+    "AvailableCopies": 3,
+    "LoanedCopies": 3,
+    "AuthorName": "Ernesto Sabato",
+    "PublisherName": "Editorial Sur",
+    "Status": "activo"
+  },
+  {
+    "BookID": 7,
+    "Title": "Fervor de Buenos Aires",
+    "AvailableCopies": 6,
+    "LoanedCopies": 1,
+    "AuthorName": "Jorge Luis Borges",
+    "PublisherName": "Editorial Proa",
+    "Status": "activo"
+  },
+  {
+    "BookID": 8,
+    "Title": "La tregua",
+    "AvailableCopies": 2,
+    "LoanedCopies": 2,
+    "AuthorName": "Mario Benedetti",
+    "PublisherName": "Arca",
+    "Status": "activo"
+  },
+  {
+    "BookID": 9,
+    "Title": "Aura",
+    "AvailableCopies": 4,
+    "LoanedCopies": 0,
+    "AuthorName": "Carlos Fuentes",
+    "PublisherName": "Fondo de Cultura Económica",
+    "Status": "activo"
+  },
+  {
+    "BookID": 10,
+    "Title": "Los pasos perdidos",
+    "AvailableCopies": 1,
+    "LoanedCopies": 4,
+    "AuthorName": "Alejo Carpentier",
+    "PublisherName": "Losada",
+    "Status": "inactivo"
+  },
+  {
+    "BookID": 11,
+    "Title": "El amor en los tiempos del cólera",
+    "AvailableCopies": 2,
+    "LoanedCopies": 3,
+    "AuthorName": "Gabriel García Márquez",
+    "PublisherName": "Editorial Oveja Negra",
+    "Status": "activo"
+  },
+  {
+    "BookID": 12,
+    "Title": "Sobre héroes y tumbas",
+    "AvailableCopies": 3,
+    "LoanedCopies": 1,
+    "AuthorName": "Ernesto Sabato",
+    "PublisherName": "Losada",
+    "Status": "activo"
+  },
+  {
+    "BookID": 13,
+    "Title": "El Aleph",
+    "AvailableCopies": 0,
+    "LoanedCopies": 5,
+    "AuthorName": "Jorge Luis Borges",
+    "PublisherName": "Editorial Losada",
+    "Status": "inactivo"
+  },
+  {
+    "BookID": 14,
+    "Title": "Crónica de una muerte anunciada",
+    "AvailableCopies": 2,
+    "LoanedCopies": 2,
+    "AuthorName": "Gabriel García Márquez",
+    "PublisherName": "Oveja Negra",
+    "Status": "activo"
+  },
+  {
+    "BookID": 15,
+    "Title": "La casa de los espíritus",
+    "AvailableCopies": 4,
+    "LoanedCopies": 1,
+    "AuthorName": "Isabel Allende",
+    "PublisherName": "Plaza & Janés",
+    "Status": "activo"
+  },
+  {
+    "BookID": 16,
+    "Title": "La invención de Morel",
+    "AvailableCopies": 3,
+    "LoanedCopies": 2,
+    "AuthorName": "Adolfo Bioy Casares",
+    "PublisherName": "Losada",
+    "Status": "activo"
+  },
+  {
+    "BookID": 17,
+    "Title": "La muerte de Artemio Cruz",
+    "AvailableCopies": 1,
+    "LoanedCopies": 3,
+    "AuthorName": "Carlos Fuentes",
+    "PublisherName": "Fondo de Cultura Económica",
+    "Status": "activo"
+  },
+  {
+    "BookID": 18,
+    "Title": "El reino de este mundo",
+    "AvailableCopies": 5,
+    "LoanedCopies": 0,
+    "AuthorName": "Alejo Carpentier",
+    "PublisherName": "Losada",
+    "Status": "activo"
+  },
+  {
+    "BookID": 19,
+    "Title": "Los de abajo",
+    "AvailableCopies": 2,
+    "LoanedCopies": 3,
+    "AuthorName": "Mariano Azuela",
+    "PublisherName": "Editorial Porrúa",
+    "Status": "activo"
+  },
+  {
+    "BookID": 20,
+    "Title": "El laberinto de la soledad",
+    "AvailableCopies": 4,
+    "LoanedCopies": 1,
+    "AuthorName": "Octavio Paz",
+    "PublisherName": "Fondo de Cultura Económica",
+    "Status": "activo"
+  },
+  {
+    "BookID": 21,
+    "Title": "Popol Vuh",
+    "AvailableCopies": 3,
+    "LoanedCopies": 0,
+    "AuthorName": "Anónimo",
+    "PublisherName": "Editorial Universitaria",
+    "Status": "activo"
+  },
+  {
+    "BookID": 22,
+    "Title": "Hombres de maíz",
+    "AvailableCopies": 2,
+    "LoanedCopies": 1,
+    "AuthorName": "Miguel Ángel Asturias",
+    "PublisherName": "Losada",
+    "Status": "activo"
+  },
+  {
+    "BookID": 23,
+    "Title": "Balún Canán",
+    "AvailableCopies": 1,
+    "LoanedCopies": 2,
+    "AuthorName": "Rosario Castellanos",
+    "PublisherName": "Fondo de Cultura Económica",
+    "Status": "inactivo"
+  },
+  {
+    "BookID": 24,
+    "Title": "El llano en llamas",
+    "AvailableCopies": 3,
+    "LoanedCopies": 2,
+    "AuthorName": "Juan Rulfo",
+    "PublisherName": "Fondo de Cultura Económica",
+    "Status": "activo"
+  },
+  {
+    "BookID": 25,
+    "Title": "El coronel no tiene quien le escriba",
+    "AvailableCopies": 0,
+    "LoanedCopies": 3,
+    "AuthorName": "Gabriel García Márquez",
+    "PublisherName": "Sudamericana",
+    "Status": "inactivo"
+  }
+]

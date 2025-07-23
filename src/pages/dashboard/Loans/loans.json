@@ -1,0 +1,227 @@
+[
+  {
+    "LoanID": 1,
+    "BookTitle": "Cien años de soledad",
+    "StudentDNI": "Juan Pérez - 60916631",
+    "LoanDate": "2023-01-10",
+    "ReturnDate": "2023-01-24",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 2,
+    "BookTitle": "La ciudad y los perros",
+    "StudentDNI": "Lucía Gómez - 72103412",
+    "LoanDate": "2023-02-15",
+    "ReturnDate": "2023-03-01",
+    "Quantity": 2,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 3,
+    "BookTitle": "Rayuela",
+    "StudentDNI": "Carlos Ruiz - 65321098",
+    "LoanDate": "2023-01-05",
+    "ReturnDate": "2023-01-20",
+    "Quantity": 1,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 4,
+    "BookTitle": "Pedro Páramo",
+    "StudentDNI": "Sofía Herrera - 64890011",
+    "LoanDate": "2022-12-10",
+    "ReturnDate": "2022-12-24",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 5,
+    "BookTitle": "El túnel",
+    "StudentDNI": "Martín Díaz - 73215649",
+    "LoanDate": "2023-03-12",
+    "ReturnDate": "2023-03-26",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 6,
+    "BookTitle": "Don Quijote de la Mancha",
+    "StudentDNI": "Ana Torres - 65980123",
+    "LoanDate": "2023-04-01",
+    "ReturnDate": "2023-04-15",
+    "Quantity": 2,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 7,
+    "BookTitle": "La tregua",
+    "StudentDNI": "Diego Navarro - 61234567",
+    "LoanDate": "2023-05-20",
+    "ReturnDate": "2023-06-03",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 8,
+    "BookTitle": "Ficciones",
+    "StudentDNI": "Clara Campos - 70122345",
+    "LoanDate": "2023-06-10",
+    "ReturnDate": "2023-06-24",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 9,
+    "BookTitle": "Aura",
+    "StudentDNI": "Esteban Vidal - 69876543",
+    "LoanDate": "2023-07-01",
+    "ReturnDate": "2023-07-15",
+    "Quantity": 1,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 10,
+    "BookTitle": "Santa",
+    "StudentDNI": "Valentina Ríos - 69001122",
+    "LoanDate": "2023-08-01",
+    "ReturnDate": "2023-08-15",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 11,
+    "BookTitle": "Los pasos perdidos",
+    "StudentDNI": "Felipe Mora - 64566778",
+    "LoanDate": "2023-09-01",
+    "ReturnDate": "2023-09-15",
+    "Quantity": 2,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 12,
+    "BookTitle": "La invención de Morel",
+    "StudentDNI": "Daniela Castro - 63457890",
+    "LoanDate": "2023-10-05",
+    "ReturnDate": "2023-10-19",
+    "Quantity": 1,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 13,
+    "BookTitle": "La casa de los espíritus",
+    "StudentDNI": "Tomás Rivas - 67789900",
+    "LoanDate": "2023-11-01",
+    "ReturnDate": "2023-11-15",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 14,
+    "BookTitle": "Sobre héroes y tumbas",
+    "StudentDNI": "Marta Luján - 69998877",
+    "LoanDate": "2023-12-01",
+    "ReturnDate": "2023-12-15",
+    "Quantity": 2,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 15,
+    "BookTitle": "Popol Vuh",
+    "StudentDNI": "Agustín Bravo - 64442233",
+    "LoanDate": "2023-12-20",
+    "ReturnDate": "2024-01-03",
+    "Quantity": 1,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 16,
+    "BookTitle": "El amor en los tiempos del cólera",
+    "StudentDNI": "Laura Peña - 67889910",
+    "LoanDate": "2024-01-15",
+    "ReturnDate": "2024-01-29",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 17,
+    "BookTitle": "El Aleph",
+    "StudentDNI": "Nicolás Sosa - 70011234",
+    "LoanDate": "2024-02-10",
+    "ReturnDate": "2024-02-24",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 18,
+    "BookTitle": "La sombra del viento",
+    "StudentDNI": "Jimena Vidal - 61239087",
+    "LoanDate": "2024-03-01",
+    "ReturnDate": "2024-03-15",
+    "Quantity": 1,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 19,
+    "BookTitle": "Crónica de una muerte anunciada",
+    "StudentDNI": "Pedro Sánchez - 65678900",
+    "LoanDate": "2024-03-10",
+    "ReturnDate": "2024-03-24",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 20,
+    "BookTitle": "El coronel no tiene quien le escriba",
+    "StudentDNI": "Romina Delgado - 69990123",
+    "LoanDate": "2024-04-01",
+    "ReturnDate": "2024-04-15",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 21,
+    "BookTitle": "Los de abajo",
+    "StudentDNI": "Iván Cáceres - 68881234",
+    "LoanDate": "2024-04-10",
+    "ReturnDate": "2024-04-24",
+    "Quantity": 1,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 22,
+    "BookTitle": "Confabulario",
+    "StudentDNI": "Verónica Reyes - 69009876",
+    "LoanDate": "2024-05-01",
+    "ReturnDate": "2024-05-15",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 23,
+    "BookTitle": "La región más transparente",
+    "StudentDNI": "Sebastián Herrera - 67991122",
+    "LoanDate": "2024-05-10",
+    "ReturnDate": "2024-05-24",
+    "Quantity": 1,
+    "Status": "prestado"
+  },
+  {
+    "LoanID": 24,
+    "BookTitle": "Cartas a un joven poeta",
+    "StudentDNI": "María Beltrán - 63345567",
+    "LoanDate": "2024-06-01",
+    "ReturnDate": "2024-06-15",
+    "Quantity": 2,
+    "Status": "devuelto"
+  },
+  {
+    "LoanID": 25,
+    "BookTitle": "El laberinto de la soledad",
+    "StudentDNI": "Andrés Romero - 68990012",
+    "LoanDate": "2024-06-10",
+    "ReturnDate": "2024-06-24",
+    "Quantity": 1,
+    "Status": "prestado"
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "AuthorID": 1,
+    "Name": "Gabriel García Márquez",
+    "NationalityName": "Colombiana",
+    "LiteraryGenreName": "Realismo mágico",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 2,
+    "Name": "Isabel Allende",
+    "NationalityName": "Chilena",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 3,
+    "Name": "Jorge Luis Borges",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Ficción filosófica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 4,
+    "Name": "Mario Vargas Llosa",
+    "NationalityName": "Peruana",
+    "LiteraryGenreName": "Realismo",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 5,
+    "Name": "Julio Cortázar",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Realismo mágico",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 6,
+    "Name": "Laura Esquivel",
+    "NationalityName": "Mexicana",
+    "LiteraryGenreName": "Realismo mágico",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 7,
+    "Name": "Carlos Fuentes",
+    "NationalityName": "Mexicana",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 8,
+    "Name": "Claribel Alegría",
+    "NationalityName": "Nicaragüense",
+    "LiteraryGenreName": "Ficción filosófica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 9,
+    "Name": "Gioconda Belli",
+    "NationalityName": "Nicaragüense",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 10,
+    "Name": "Manuel Puig",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Realismo",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 11,
+    "Name": "Rosa Montero",
+    "NationalityName": "Española",
+    "LiteraryGenreName": "Ficción filosófica",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 12,
+    "Name": "Ana María Matute",
+    "NationalityName": "Española",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 13,
+    "Name": "Eduardo Galeano",
+    "NationalityName": "Uruguaya",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 14,
+    "Name": "Juan Rulfo",
+    "NationalityName": "Mexicana",
+    "LiteraryGenreName": "Realismo mágico",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 15,
+    "Name": "Ángeles Mastretta",
+    "NationalityName": "Mexicana",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 16,
+    "Name": "Ricardo Piglia",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Ficción filosófica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 17,
+    "Name": "José Donoso",
+    "NationalityName": "Chilena",
+    "LiteraryGenreName": "Realismo mágico",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 18,
+    "Name": "Sergio Ramírez",
+    "NationalityName": "Nicaragüense",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 19,
+    "Name": "Alfonsina Storni",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Ficción filosófica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 20,
+    "Name": "Horacio Quiroga",
+    "NationalityName": "Uruguaya",
+    "LiteraryGenreName": "Realismo",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 21,
+    "Name": "Zoé Valdés",
+    "NationalityName": "Cubana",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "activo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 22,
+    "Name": "Reinaldo Arenas",
+    "NationalityName": "Cubana",
+    "LiteraryGenreName": "Ficción filosófica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 23,
+    "Name": "Teresa Wilms Montt",
+    "NationalityName": "Chilena",
+    "LiteraryGenreName": "Ficción filosófica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 24,
+    "Name": "Domingo Faustino Sarmiento",
+    "NationalityName": "Argentina",
+    "LiteraryGenreName": "Narrativa histórica",
+    "Status": "inactivo",
+    "Photo": ""
+  },
+  {
+    "AuthorID": 25,
+    "Name": "Fernanda Melchor",
+    "NationalityName": "Mexicana",
+    "LiteraryGenreName": "Realismo mágico",
+    "Status": "activo",
+    "Photo": ""
+  }
+]

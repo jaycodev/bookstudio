@@ -1,15 +1,13 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@views/*": ["src/views/*"]
+      "@/*": ["./src/*"]
     }
-  },
-  "include": [".astro/types.d.ts", "**/*", ".prettierrc.config.mjs"],
-  "exclude": ["dist"]
+  }
 }

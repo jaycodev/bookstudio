@@ -1,0 +1,227 @@
+[
+  {
+    "StudentID": 1,
+    "DNI": "60916631",
+    "FirstName": "Lucía",
+    "LastName": "Ramírez",
+    "Phone": "1122334455",
+    "Email": "lucia.ramirez@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 2,
+    "DNI": "78211245",
+    "FirstName": "Mateo",
+    "LastName": "Fernández",
+    "Phone": "1166778899",
+    "Email": "mateo.fernandez@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 3,
+    "DNI": "55112233",
+    "FirstName": "Valentina",
+    "LastName": "Gómez",
+    "Phone": "1133445566",
+    "Email": "valentina.gomez@example.com",
+    "Status": "inactivo"
+  },
+  {
+    "StudentID": 4,
+    "DNI": "44889977",
+    "FirstName": "Santiago",
+    "LastName": "López",
+    "Phone": "1155779911",
+    "Email": "santiago.lopez@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 5,
+    "DNI": "77889900",
+    "FirstName": "Camila",
+    "LastName": "Martínez",
+    "Phone": "1122556699",
+    "Email": "camila.martinez@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 6,
+    "DNI": "33114455",
+    "FirstName": "Joaquín",
+    "LastName": "García",
+    "Phone": "1144667788",
+    "Email": "joaquin.garcia@example.com",
+    "Status": "inactivo"
+  },
+  {
+    "StudentID": 7,
+    "DNI": "99001122",
+    "FirstName": "Martina",
+    "LastName": "Pérez",
+    "Phone": "1177889900",
+    "Email": "martina.perez@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 8,
+    "DNI": "12345678",
+    "FirstName": "Benjamín",
+    "LastName": "Sánchez",
+    "Phone": "1133557799",
+    "Email": "benjamin.sanchez@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 9,
+    "DNI": "88887777",
+    "FirstName": "Mía",
+    "LastName": "Díaz",
+    "Phone": "1100223344",
+    "Email": "mia.diaz@example.com",
+    "Status": "inactivo"
+  },
+  {
+    "StudentID": 10,
+    "DNI": "66665555",
+    "FirstName": "Tomás",
+    "LastName": "Moreno",
+    "Phone": "1199887766",
+    "Email": "tomas.moreno@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 11,
+    "DNI": "44332211",
+    "FirstName": "Emilia",
+    "LastName": "Silva",
+    "Phone": "1144226655",
+    "Email": "emilia.silva@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 12,
+    "DNI": "77665544",
+    "FirstName": "Juan",
+    "LastName": "Rojas",
+    "Phone": "1188992233",
+    "Email": "juan.rojas@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 13,
+    "DNI": "99887766",
+    "FirstName": "Isabella",
+    "LastName": "Castro",
+    "Phone": "1177665544",
+    "Email": "isabella.castro@example.com",
+    "Status": "inactivo"
+  },
+  {
+    "StudentID": 14,
+    "DNI": "66554433",
+    "FirstName": "Agustín",
+    "LastName": "Vargas",
+    "Phone": "1122113344",
+    "Email": "agustin.vargas@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 15,
+    "DNI": "22334455",
+    "FirstName": "Victoria",
+    "LastName": "Reyes",
+    "Phone": "1133224455",
+    "Email": "victoria.reyes@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 16,
+    "DNI": "11223344",
+    "FirstName": "Felipe",
+    "LastName": "Cruz",
+    "Phone": "1199112233",
+    "Email": "felipe.cruz@example.com",
+    "Status": "inactivo"
+  },
+  {
+    "StudentID": 17,
+    "DNI": "88990011",
+    "FirstName": "Antonella",
+    "LastName": "Mendoza",
+    "Phone": "1177334422",
+    "Email": "antonella.mendoza@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 18,
+    "DNI": "12344321",
+    "FirstName": "Diego",
+    "LastName": "Ortiz",
+    "Phone": "1100998877",
+    "Email": "diego.ortiz@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 19,
+    "DNI": "66778899",
+    "FirstName": "Sofía",
+    "LastName": "Peña",
+    "Phone": "1144556699",
+    "Email": "sofia.pena@example.com",
+    "Status": "inactivo"
+  },
+  {
+    "StudentID": 20,
+    "DNI": "33445566",
+    "FirstName": "Bruno",
+    "LastName": "Herrera",
+    "Phone": "1133112244",
+    "Email": "bruno.herrera@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 21,
+    "DNI": "55667788",
+    "FirstName": "Emma",
+    "LastName": "Torres",
+    "Phone": "1177223344",
+    "Email": "emma.torres@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 22,
+    "DNI": "22335577",
+    "FirstName": "Thiago",
+    "LastName": "Flores",
+    "Phone": "1155998877",
+    "Email": "thiago.flores@example.com",
+    "Status": "inactivo"
+  },
+  {
+    "StudentID": 23,
+    "DNI": "44556677",
+    "FirstName": "Carla",
+    "LastName": "Acosta",
+    "Phone": "1133667799",
+    "Email": "carla.acosta@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 24,
+    "DNI": "77668899",
+    "FirstName": "Lucas",
+    "LastName": "Jiménez",
+    "Phone": "1100112233",
+    "Email": "lucas.jimenez@example.com",
+    "Status": "activo"
+  },
+  {
+    "StudentID": 25,
+    "DNI": "33442211",
+    "FirstName": "Renata",
+    "LastName": "Ibarra",
+    "Phone": "1199223344",
+    "Email": "renata.ibarra@example.com",
+    "Status": "activo"
+  }
+]

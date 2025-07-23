@@ -1,0 +1,227 @@
+[
+  {
+    "UserID": 1,
+    "Username": "admin01",
+    "Email": "admin01@bookstudio.com",
+    "FirstName": "Lucía",
+    "LastName": "Ramírez",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 2,
+    "Username": "biblio02",
+    "Email": "biblio02@bookstudio.com",
+    "FirstName": "Mateo",
+    "LastName": "Fernández",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 3,
+    "Username": "admin03",
+    "Email": "admin03@bookstudio.com",
+    "FirstName": "Valentina",
+    "LastName": "Gómez",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 4,
+    "Username": "biblio04",
+    "Email": "biblio04@bookstudio.com",
+    "FirstName": "Santiago",
+    "LastName": "López",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 5,
+    "Username": "admin05",
+    "Email": "admin05@bookstudio.com",
+    "FirstName": "Camila",
+    "LastName": "Martínez",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 6,
+    "Username": "biblio06",
+    "Email": "biblio06@bookstudio.com",
+    "FirstName": "Joaquín",
+    "LastName": "García",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 7,
+    "Username": "admin07",
+    "Email": "admin07@bookstudio.com",
+    "FirstName": "Martina",
+    "LastName": "Pérez",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 8,
+    "Username": "biblio08",
+    "Email": "biblio08@bookstudio.com",
+    "FirstName": "Benjamín",
+    "LastName": "Sánchez",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 9,
+    "Username": "admin09",
+    "Email": "admin09@bookstudio.com",
+    "FirstName": "Mía",
+    "LastName": "Díaz",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 10,
+    "Username": "biblio10",
+    "Email": "biblio10@bookstudio.com",
+    "FirstName": "Tomás",
+    "LastName": "Moreno",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 11,
+    "Username": "admin11",
+    "Email": "admin11@bookstudio.com",
+    "FirstName": "Emilia",
+    "LastName": "Silva",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 12,
+    "Username": "biblio12",
+    "Email": "biblio12@bookstudio.com",
+    "FirstName": "Juan",
+    "LastName": "Rojas",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 13,
+    "Username": "admin13",
+    "Email": "admin13@bookstudio.com",
+    "FirstName": "Isabella",
+    "LastName": "Castro",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 14,
+    "Username": "biblio14",
+    "Email": "biblio14@bookstudio.com",
+    "FirstName": "Agustín",
+    "LastName": "Vargas",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 15,
+    "Username": "admin15",
+    "Email": "admin15@bookstudio.com",
+    "FirstName": "Victoria",
+    "LastName": "Reyes",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 16,
+    "Username": "biblio16",
+    "Email": "biblio16@bookstudio.com",
+    "FirstName": "Felipe",
+    "LastName": "Cruz",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 17,
+    "Username": "admin17",
+    "Email": "admin17@bookstudio.com",
+    "FirstName": "Antonella",
+    "LastName": "Mendoza",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 18,
+    "Username": "biblio18",
+    "Email": "biblio18@bookstudio.com",
+    "FirstName": "Diego",
+    "LastName": "Ortiz",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 19,
+    "Username": "admin19",
+    "Email": "admin19@bookstudio.com",
+    "FirstName": "Sofía",
+    "LastName": "Peña",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 20,
+    "Username": "biblio20",
+    "Email": "biblio20@bookstudio.com",
+    "FirstName": "Bruno",
+    "LastName": "Herrera",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 21,
+    "Username": "admin21",
+    "Email": "admin21@bookstudio.com",
+    "FirstName": "Emma",
+    "LastName": "Torres",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 22,
+    "Username": "biblio22",
+    "Email": "biblio22@bookstudio.com",
+    "FirstName": "Thiago",
+    "LastName": "Flores",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 23,
+    "Username": "admin23",
+    "Email": "admin23@bookstudio.com",
+    "FirstName": "Carla",
+    "LastName": "Acosta",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 24,
+    "Username": "biblio24",
+    "Email": "biblio24@bookstudio.com",
+    "FirstName": "Lucas",
+    "LastName": "Jiménez",
+    "Role": "bibliotecario",
+    "ProfilePhoto": ""
+  },
+  {
+    "UserID": 25,
+    "Username": "admin25",
+    "Email": "admin25@bookstudio.com",
+    "FirstName": "Renata",
+    "LastName": "Ibarra",
+    "Role": "administrador",
+    "ProfilePhoto": ""
+  }
+]

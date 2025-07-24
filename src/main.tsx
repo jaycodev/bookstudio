@@ -8,7 +8,7 @@ import './globals.css'
 createRoot(document.getElementById('root')!).render(
   <ThemeProvider
     attribute="class"
-    defaultTheme="system"
+    defaultTheme="dark"
     enableSystem
     disableTransitionOnChange
     enableColorScheme

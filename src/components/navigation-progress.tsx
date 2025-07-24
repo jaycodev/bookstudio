@@ -1,20 +1,18 @@
 import { useEffect, useRef } from 'react'
-import { useLocation } from '@tanstack/react-router'
+import { useRouterState } from '@tanstack/react-router'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 
 export default function NavigationProgress() {
   const ref = useRef<LoadingBarRef>(null)
-  const location = useLocation()
+  const state = useRouterState()
 
   useEffect(() => {
-    ref.current?.continuousStart()
-
-    const timeout = setTimeout(() => {
+    if (state.status === 'pending') {
+      ref.current?.continuousStart()
+    } else {
       ref.current?.complete()
-    }, 300)
+    }
+  }, [state.status])
 
-    return () => clearTimeout(timeout)
-  }, [location.pathname])
-
-  return <LoadingBar color="var(--ring)" ref={ref} height={2} shadow />
+  return <LoadingBar color="var(--ring)" ref={ref} height={2} shadow={true} />
 }

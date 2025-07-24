@@ -1,12 +1,8 @@
-// src/routes/(auth)/layout.ts
-import { createRoute, Outlet } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import AuthLayout from '@/layouts/AuthLayout'
-import { rootRoute } from '@/routes/__root'
 
-export const authLayoutRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '',
+export const Route = createFileRoute('/(auth)')({
   component: () => (
     <AuthLayout>
       <Outlet />

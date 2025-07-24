@@ -1,25 +1,42 @@
 import { StrictMode, Suspense } from 'react'
-import { RouterProvider } from '@tanstack/react-router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { ThemeProvider } from 'next-themes'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom/client'
 
 import LoadingScreen from './components/LoadingScreen'
-import { router } from './router.ts'
+import { routeTree } from './routeTree.gen'
 
 import './globals.css'
 
-createRoot(document.getElementById('root')!).render(
+const queryClient = new QueryClient()
+
+const router = createRouter({
+  routeTree,
+  context: { queryClient },
+})
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
+const rootElement = document.getElementById('root')!
+ReactDOM.createRoot(rootElement).render(
   <StrictMode>
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="dark"
-      enableSystem
-      disableTransitionOnChange
-      enableColorScheme
-    >
-      <Suspense fallback={<LoadingScreen />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange
+        enableColorScheme
+      >
+        <Suspense fallback={<LoadingScreen />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </ThemeProvider>
+    </QueryClientProvider>
   </StrictMode>
 )

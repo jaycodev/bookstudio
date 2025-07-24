@@ -2,11 +2,11 @@ import * as React from "react"
 import { Link } from "react-router-dom";
 import {
   LibraryBig,
-  Gauge,
+  LayoutDashboard,
   CircleFadingPlus,
   BookCopy,
   Users,
-  Newspaper,
+  Building2,
   Notebook,
   GraduationCap,
   SquareUser,
@@ -42,7 +42,7 @@ const data = {
     {
       title: "Dashboard",
       to: "/",
-      icon: Gauge,
+      icon: LayoutDashboard,
     },
     {
       title: "Préstamos",
@@ -62,7 +62,7 @@ const data = {
     {
       title: "Editoriales",
       to: "/publishers",
-      icon: Newspaper,
+      icon: Building2,
     },
     {
       title: "Cursos",

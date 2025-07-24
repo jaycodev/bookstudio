@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { LibraryBig } from 'lucide-react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import DocumentTitle from '@/components/DocumentTitle'
 import NavigationProgress from '@/components/navigation-progress'
 
 import AuthLayout from '../layouts/AuthLayout'
@@ -35,6 +36,7 @@ export default function AppRoutes() {
     <BrowserRouter>
       <Suspense fallback={<LoadingScreen />}>
         <NavigationProgress />
+        <DocumentTitle />
         <Routes>
           <Route element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />

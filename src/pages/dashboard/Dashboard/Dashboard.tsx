@@ -1,13 +1,7 @@
-import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
+import { TrendingDownIcon, TrendingUpIcon } from 'lucide-react'
 
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Badge } from '@/components/ui/badge'
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 
 const Dashboard = () => {
   return (
@@ -21,10 +15,7 @@ const Dashboard = () => {
                 120
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingUpIcon className="size-3" />
                   +15%
                 </Badge>
@@ -32,12 +23,9 @@ const Dashboard = () => {
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Incremento de préstamos este mes{" "}
-                <TrendingUpIcon className="size-4" />
+                Incremento de préstamos este mes <TrendingUpIcon className="size-4" />
               </div>
-              <div className="text-muted-foreground">
-                Comparado con el mes anterior.
-              </div>
+              <div className="text-muted-foreground">Comparado con el mes anterior.</div>
             </CardFooter>
           </Card>
 
@@ -48,10 +36,7 @@ const Dashboard = () => {
                 95
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingDownIcon className="size-3" />
                   -5%
                 </Badge>
@@ -61,9 +46,7 @@ const Dashboard = () => {
               <div className="line-clamp-1 flex gap-2 font-medium">
                 Devoluciones a tiempo <TrendingDownIcon className="size-4" />
               </div>
-              <div className="text-muted-foreground">
-                Leve disminución este mes.
-              </div>
+              <div className="text-muted-foreground">Leve disminución este mes.</div>
             </CardFooter>
           </Card>
 
@@ -74,10 +57,7 @@ const Dashboard = () => {
                 75
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingUpIcon className="size-3" />
                   +8%
                 </Badge>
@@ -98,10 +78,7 @@ const Dashboard = () => {
                 150
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingUpIcon className="size-3" />
                   +10%
                 </Badge>
@@ -109,18 +86,15 @@ const Dashboard = () => {
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Mayor actividad de usuarios{" "}
-                <TrendingUpIcon className="size-4" />
+                Mayor actividad de usuarios <TrendingUpIcon className="size-4" />
               </div>
-              <div className="text-muted-foreground">
-                Participación en el sistema.
-              </div>
+              <div className="text-muted-foreground">Participación en el sistema.</div>
             </CardFooter>
           </Card>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

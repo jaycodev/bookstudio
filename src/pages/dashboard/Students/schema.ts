@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const studentSchema = z.object({
   StudentID: z.number(),
@@ -7,7 +7,7 @@ export const studentSchema = z.object({
   LastName: z.string(),
   Phone: z.string().optional(),
   Email: z.string(),
-  Status: z.enum(["activo", "inactivo"]),
-});
+  Status: z.enum(['activo', 'inactivo']),
+})
 
-export type Student = z.infer<typeof studentSchema>;
+export type Student = z.infer<typeof studentSchema>

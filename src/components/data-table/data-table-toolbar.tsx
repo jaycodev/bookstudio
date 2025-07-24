@@ -1,62 +1,53 @@
-import { useState } from "react";
-import { Table } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { X, Search, Trash } from "lucide-react";
-import { DateRange } from "react-day-picker";
-import { DataTableFacetedFilter } from "./data-table-faceted-filter";
-import { DataTableViewOptions } from "./data-table-view-options";
-import { DateRangePicker } from "@/components/ui/date-range-picker";
-import { FilterOption } from "@/types/types";
-import { getColumnLabel } from "@/lib/column-labels";
+import { useState } from 'react'
+import { Table } from '@tanstack/react-table'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { X, Search, Trash } from 'lucide-react'
+import { DateRange } from 'react-day-picker'
+import { DataTableFacetedFilter } from './data-table-faceted-filter'
+import { DataTableViewOptions } from './data-table-view-options'
+import { DateRangePicker } from '@/components/ui/date-range-picker'
+import { FilterOption } from '@/types/types'
+import { getColumnLabel } from '@/lib/column-labels'
 
 interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
-  resource: string;
+  table: Table<TData>
+  resource: string
 }
 
-export function DataTableToolbar<TData>({
-  table,
-  resource,
-}: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
+export function DataTableToolbar<TData>({ table, resource }: DataTableToolbarProps<TData>) {
+  const isFiltered = table.getState().columnFilters.length > 0
 
-  const searchCol = table
-    .getAllLeafColumns()
-    .find((col) => col.columnDef.meta?.searchable);
+  const searchCol = table.getAllLeafColumns().find((col) => col.columnDef.meta?.searchable)
 
   const dateRangeCols = table
     .getAllLeafColumns()
-    .filter((col) => col.columnDef.meta?.dateRangeFilter);
+    .filter((col) => col.columnDef.meta?.dateRangeFilter)
 
   const searchValue =
-    (searchCol
-      ? (table.getColumn(searchCol.id)?.getFilterValue() as string)
-      : "") ?? "";
+    (searchCol ? (table.getColumn(searchCol.id)?.getFilterValue() as string) : '') ?? ''
 
-  const [dateRanges, setDateRanges] = useState<
-    Record<string, DateRange | null>
-  >({});
+  const [dateRanges, setDateRanges] = useState<Record<string, DateRange | null>>({})
 
   const handleDateSelect = (columnId: string, range: DateRange | undefined) => {
-    const updatedDateRanges = { ...dateRanges };
+    const updatedDateRanges = { ...dateRanges }
 
     if (!range || (!range.from && !range.to)) {
-      updatedDateRanges[columnId] = null;
-      table.getColumn(columnId)?.setFilterValue(undefined);
-      setDateRanges(updatedDateRanges);
-      return;
+      updatedDateRanges[columnId] = null
+      table.getColumn(columnId)?.setFilterValue(undefined)
+      setDateRanges(updatedDateRanges)
+      return
     }
 
-    updatedDateRanges[columnId] = range;
-    setDateRanges(updatedDateRanges);
+    updatedDateRanges[columnId] = range
+    setDateRanges(updatedDateRanges)
 
     if (range.from && range.to) {
-      table.getColumn(columnId)?.setFilterValue([range.from, range.to]);
+      table.getColumn(columnId)?.setFilterValue([range.from, range.to])
     } else if (range.from) {
-      table.getColumn(columnId)?.setFilterValue([range.from, range.from]);
+      table.getColumn(columnId)?.setFilterValue([range.from, range.from])
     }
-  };
+  }
 
   return (
     <div className="flex flex-wrap items-center justify-between space-x-2 gap-2">
@@ -64,15 +55,10 @@ export function DataTableToolbar<TData>({
         {searchCol && (
           <div className="relative">
             <Input
-              placeholder={`Buscar por ${getColumnLabel(
-                resource,
-                searchCol.id
-              ).toLowerCase()}…`}
+              placeholder={`Buscar por ${getColumnLabel(resource, searchCol.id).toLowerCase()}…`}
               className="pl-9 pr-4 h-8 w-[190px] lg:w-[270px] text-sm"
               value={searchValue}
-              onChange={(e) =>
-                table.getColumn(searchCol.id)?.setFilterValue(e.target.value)
-              }
+              onChange={(e) => table.getColumn(searchCol.id)?.setFilterValue(e.target.value)}
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           </div>
@@ -83,18 +69,13 @@ export function DataTableToolbar<TData>({
           .filter((col) => col.columnDef.meta?.filter)
           .map((col) => {
             const { title, options } = col.columnDef.meta!.filter! as {
-              title: string;
-              options: FilterOption[];
-            };
+              title: string
+              options: FilterOption[]
+            }
 
             return (
-              <DataTableFacetedFilter
-                key={col.id}
-                column={col}
-                title={title}
-                options={options}
-              />
-            );
+              <DataTableFacetedFilter key={col.id} column={col} title={title} options={options} />
+            )
           })}
 
         {dateRangeCols.map((col) => {
@@ -103,12 +84,9 @@ export function DataTableToolbar<TData>({
               key={col.id}
               date={dateRanges[col.id] ?? null}
               onDateSelect={(range) => handleDateSelect(col.id, range)}
-              placeholder={`Rango de ${getColumnLabel(
-                resource,
-                col.id
-              ).toLowerCase()}`}
+              placeholder={`Rango de ${getColumnLabel(resource, col.id).toLowerCase()}`}
             />
-          );
+          )
         })}
 
         {isFiltered && (
@@ -117,8 +95,8 @@ export function DataTableToolbar<TData>({
             variant="outline"
             size="sm"
             onClick={() => {
-              table.resetColumnFilters();
-              setDateRanges({});
+              table.resetColumnFilters()
+              setDateRanges({})
             }}
           >
             Resetear
@@ -141,5 +119,5 @@ export function DataTableToolbar<TData>({
         <DataTableViewOptions table={table} resource={resource} />
       </div>
     </div>
-  );
+  )
 }

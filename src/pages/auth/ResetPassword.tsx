@@ -1,10 +1,10 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { LibraryBig } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { PasswordInput } from "@/components/ui/password-input";
-import { Button } from "@/components/ui/button";
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { LibraryBig } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { PasswordInput } from '@/components/ui/password-input'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormField,
@@ -12,55 +12,52 @@ import {
   FormControl,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form'
 
 const resetPasswordSchema = z
   .object({
     newPassword: z
       .string()
       .trim()
-      .min(8, { message: "La contraseña debe tener al menos 8 caracteres." })
+      .min(8, { message: 'La contraseña debe tener al menos 8 caracteres.' })
       .max(50, {
-        message: "La contraseña no puede tener más de 50 caracteres.",
+        message: 'La contraseña no puede tener más de 50 caracteres.',
       })
       .regex(/^\S+$/, {
-        message: "La contraseña no puede contener espacios en blanco.",
+        message: 'La contraseña no puede contener espacios en blanco.',
       })
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/, {
         message:
-          "La contraseña debe incluir al menos una minúscula, una mayúscula, un número y un carácter especial (@$!%*?&).",
+          'La contraseña debe incluir al menos una minúscula, una mayúscula, un número y un carácter especial (@$!%*?&).',
       }),
     confirmNewPassword: z
       .string()
       .trim()
-      .min(8, { message: "Debes confirmar la contraseña nueva." }),
+      .min(8, { message: 'Debes confirmar la contraseña nueva.' }),
   })
   .refine((data) => data.newPassword === data.confirmNewPassword, {
-    message: "Las contraseñas no coinciden.",
-    path: ["confirmNewPassword"],
-  });
+    message: 'Las contraseñas no coinciden.',
+    path: ['confirmNewPassword'],
+  })
 
-type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
+type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>
 
-const ResetPassword = ({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) => {
+const ResetPassword = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   const form = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      newPassword: "",
-      confirmNewPassword: "",
+      newPassword: '',
+      confirmNewPassword: '',
     },
-  });
+  })
 
   const onSubmit = (data: ResetPasswordFormValues) => {
-    console.log("Datos para crear contraseña nueva:", data);
-  };
+    console.log('Datos para crear contraseña nueva:', data)
+  }
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
@@ -73,8 +70,7 @@ const ResetPassword = ({
               </div>
               <h1 className="text-xl font-bold">Crear contraseña nueva</h1>
               <div className="text-center text-sm">
-                Ingresa la contraseña nueva para tu cuenta de BookStudio a
-                continuación.
+                Ingresa la contraseña nueva para tu cuenta de BookStudio a continuación.
               </div>
             </div>
             <div className="flex flex-col gap-6">
@@ -91,9 +87,7 @@ const ResetPassword = ({
                         {...field}
                       />
                     </FormControl>
-                    {fieldState.error && (
-                      <FormMessage>{fieldState.error.message}</FormMessage>
-                    )}
+                    {fieldState.error && <FormMessage>{fieldState.error.message}</FormMessage>}
                   </FormItem>
                 )}
               />
@@ -110,9 +104,7 @@ const ResetPassword = ({
                         {...field}
                       />
                     </FormControl>
-                    {fieldState.error && (
-                      <FormMessage>{fieldState.error.message}</FormMessage>
-                    )}
+                    {fieldState.error && <FormMessage>{fieldState.error.message}</FormMessage>}
                   </FormItem>
                 )}
               />
@@ -122,7 +114,7 @@ const ResetPassword = ({
         </form>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default ResetPassword;
+export default ResetPassword

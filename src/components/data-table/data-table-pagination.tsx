@@ -1,38 +1,31 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-} from "lucide-react";
-import { Table } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react'
+import { Table } from '@tanstack/react-table'
+import { Button } from '@/components/ui/button'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select'
 
 interface DataTablePaginationProps<TData> {
-  table: Table<TData>;
+  table: Table<TData>
 }
 
-export function DataTablePagination<TData>({
-  table,
-}: DataTablePaginationProps<TData>) {
+export function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
   return (
     <div className="flex flex-col items-center justify-between space-y-4 px-2 lg:flex-row lg:space-y-0">
       <div className="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-6 sm:space-y-0">
         <div className="text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} de{" "}
+          {table.getFilteredSelectedRowModel().rows.length} de{' '}
           {table.getFilteredRowModel().rows.length} columna(s) seleccionadas.
         </div>
         <div className="flex items-center space-x-2">
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
-              table.setPageSize(Number(value));
+              table.setPageSize(Number(value))
             }}
           >
             <SelectTrigger
@@ -55,8 +48,7 @@ export function DataTablePagination<TData>({
       </div>
       <div className="flex items-center space-x-2">
         <div className="flex items-center justify-center text-sm font-medium">
-          Página {table.getState().pagination.pageIndex + 1} de{" "}
-          {table.getPageCount()}
+          Página {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
         </div>
         <div className="flex items-center space-x-2">
           <Button
@@ -98,5 +90,5 @@ export function DataTablePagination<TData>({
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,24 +1,23 @@
-import type { ColumnDef } from "@tanstack/react-table";
-import { Course } from "./schema";
-import { Badge } from "@/components/ui/badge";
-import { DataTableRowActions } from "@/components/data-table/data-table-row-actions";
-import { CheckCircle2, XCircle } from "lucide-react";
-import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header";
-import { Checkbox } from "@/components/ui/checkbox";
-import { getColumnLabel } from "@/lib/column-labels";
-import { levels, status } from "./options-data";
-import { cn } from "@/lib/utils";
+import type { ColumnDef } from '@tanstack/react-table'
+import { Course } from './schema'
+import { Badge } from '@/components/ui/badge'
+import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
+import { CheckCircle2, XCircle } from 'lucide-react'
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
+import { Checkbox } from '@/components/ui/checkbox'
+import { getColumnLabel } from '@/lib/column-labels'
+import { levels, status } from './options-data'
+import { cn } from '@/lib/utils'
 
-const resource = "courses";
+const resource = 'courses'
 
 export const columns: ColumnDef<Course>[] = [
   {
-    id: "select",
+    id: 'select',
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Seleccionar todo"
@@ -37,99 +36,82 @@ export const columns: ColumnDef<Course>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "CourseID",
+    accessorKey: 'CourseID',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "CourseID")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'CourseID')} />
     ),
   },
   {
-    accessorKey: "Name",
+    accessorKey: 'Name',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "Name")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Name')} />
     ),
     meta: {
       searchable: true,
     },
   },
   {
-    accessorKey: "Level",
+    accessorKey: 'Level',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "Level")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Level')} />
     ),
     meta: {
       filter: {
-        title: getColumnLabel(resource, "Level"),
+        title: getColumnLabel(resource, 'Level'),
         options: levels,
       },
     },
     cell: ({ row }) => {
-      const nationality = row.getValue("Level") as string;
+      const nationality = row.getValue('Level') as string
       return (
         <Badge variant="outline" className="flex items-center gap-1">
           {nationality}
         </Badge>
-      );
+      )
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value.includes(row.getValue(id))
     },
   },
   {
-    accessorKey: "Description",
+    accessorKey: 'Description',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "Description")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Description')} />
     ),
   },
   {
-    accessorKey: "Status",
+    accessorKey: 'Status',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "Status")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Status')} />
     ),
     meta: {
       filter: {
-        title: getColumnLabel(resource, "Status"),
+        title: getColumnLabel(resource, 'Status'),
         options: status,
       },
     },
     cell: ({ row }) => {
-      const courseStatus = row.getValue("Status") as Course["Status"];
-      const Icon = courseStatus === "activo" ? CheckCircle2 : XCircle;
+      const courseStatus = row.getValue('Status') as Course['Status']
+      const Icon = courseStatus === 'activo' ? CheckCircle2 : XCircle
 
       return (
         <Badge variant="outline" className="capitalize flex items-center gap-1">
           <Icon
             className={cn(
-              "w-4 h-4",
-              courseStatus === "activo"
-                ? "text-green-500 dark:text-green-400"
-                : "text-destructive"
+              'w-4 h-4',
+              courseStatus === 'activo' ? 'text-green-500 dark:text-green-400' : 'text-destructive'
             )}
           />
           {courseStatus}
         </Badge>
-      );
+      )
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value.includes(row.getValue(id))
     },
   },
   {
-    id: "actions",
+    id: 'actions',
     cell: () => <DataTableRowActions />,
   },
-];
+]

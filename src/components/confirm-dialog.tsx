@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 import {
   AlertDialog,
@@ -11,53 +11,47 @@ import {
   AlertDialogDescription,
   AlertDialogCancel,
   AlertDialogAction,
-} from "@/components/ui/alert-dialog";
-import { buttonVariants } from "@/components/ui/button";
+} from '@/components/ui/alert-dialog'
+import { buttonVariants } from '@/components/ui/button'
 
 interface ConfirmActionButton {
-  label: string;
-  variant?:
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | "link";
-  icon?: React.ReactNode;
+  label: string
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  icon?: React.ReactNode
 }
 
 interface ConfirmDialogProps {
-  title: string;
-  description: string;
-  actionButton: ConfirmActionButton;
-  cancelLabel?: string;
-  onConfirm?: () => void;
-  onOpenChange?: (open: boolean) => void;
-  to?: string;
-  open?: boolean;
-  children?: React.ReactNode;
+  title: string
+  description: string
+  actionButton: ConfirmActionButton
+  cancelLabel?: string
+  onConfirm?: () => void
+  onOpenChange?: (open: boolean) => void
+  to?: string
+  open?: boolean
+  children?: React.ReactNode
 }
 
 export function ConfirmDialog({
   title,
   description,
   actionButton,
-  cancelLabel = "Cancelar",
+  cancelLabel = 'Cancelar',
   onConfirm,
   onOpenChange,
   to,
   open,
   children,
 }: ConfirmDialogProps) {
-  const actionButtonRef = useRef<HTMLButtonElement>(null);
+  const actionButtonRef = useRef<HTMLButtonElement>(null)
 
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       {children && <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>}
       <AlertDialogContent
         onOpenAutoFocus={(e) => {
-          e.preventDefault();
-          actionButtonRef.current?.focus();
+          e.preventDefault()
+          actionButtonRef.current?.focus()
         }}
       >
         <AlertDialogHeader>
@@ -70,7 +64,7 @@ export function ConfirmDialog({
             <AlertDialogAction
               asChild
               className={buttonVariants({
-                variant: actionButton.variant ?? "default",
+                variant: actionButton.variant ?? 'default',
               })}
               ref={actionButtonRef}
             >
@@ -81,7 +75,7 @@ export function ConfirmDialog({
           ) : (
             <AlertDialogAction
               className={buttonVariants({
-                variant: actionButton.variant ?? "default",
+                variant: actionButton.variant ?? 'default',
               })}
               onClick={onConfirm}
               ref={actionButtonRef}
@@ -92,5 +86,5 @@ export function ConfirmDialog({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
+  )
 }

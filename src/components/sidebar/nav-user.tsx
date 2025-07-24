@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { User, Bell, ChevronsUpDown, LogOut } from "lucide-react";
-import { useState } from "react";
+import { Link } from 'react-router-dom'
+import { User, Bell, ChevronsUpDown, LogOut } from 'lucide-react'
+import { useState } from 'react'
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,34 +11,34 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu'
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar";
-import { ConfirmDialog } from "@/components/confirm-dialog";
+} from '@/components/ui/sidebar'
+import { ConfirmDialog } from '@/components/confirm-dialog'
 
 export function NavUser({
   user,
 }: {
   user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
+    name: string
+    email: string
+    avatar: string
+  }
 }) {
-  const { isMobile } = useSidebar();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+  const { isMobile } = useSidebar()
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
 
   const handleLogoutClick = () => {
-    setDropdownOpen(false);
+    setDropdownOpen(false)
     setTimeout(() => {
-      setConfirmDialogOpen(true);
-    }, 50);
-  };
+      setConfirmDialogOpen(true)
+    }, 50)
+  }
 
   return (
     <SidebarMenu>
@@ -62,7 +62,7 @@ export function NavUser({
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-            side={isMobile ? "bottom" : "right"}
+            side={isMobile ? 'bottom' : 'right'}
             align="end"
             sideOffset={4}
           >
@@ -106,8 +106,8 @@ export function NavUser({
           title="¿Estás seguro?"
           description="Esto cerrará tu sesión y te redirigirá a la pantalla de inicio de sesión."
           actionButton={{
-            label: "Cerrar sesión",
-            variant: "destructive",
+            label: 'Cerrar sesión',
+            variant: 'destructive',
             icon: <LogOut />,
           }}
           onOpenChange={setConfirmDialogOpen}
@@ -116,5 +116,5 @@ export function NavUser({
         />
       </SidebarMenuItem>
     </SidebarMenu>
-  );
+  )
 }

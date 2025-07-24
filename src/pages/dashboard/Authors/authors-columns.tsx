@@ -1,26 +1,25 @@
-import type { ColumnDef } from "@tanstack/react-table";
-import { Author } from "./schema";
-import { Badge } from "@/components/ui/badge";
-import { DataTableRowActions } from "@/components/data-table/data-table-row-actions";
-import { CheckCircle2, XCircle } from "lucide-react";
-import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header";
-import { Checkbox } from "@/components/ui/checkbox";
-import { getColumnLabel } from "@/lib/column-labels";
-import { nationalities, literaryGenres, status } from "./options-data";
-import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getInitials } from "@/lib/utils";
+import type { ColumnDef } from '@tanstack/react-table'
+import { Author } from './schema'
+import { Badge } from '@/components/ui/badge'
+import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
+import { CheckCircle2, XCircle } from 'lucide-react'
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
+import { Checkbox } from '@/components/ui/checkbox'
+import { getColumnLabel } from '@/lib/column-labels'
+import { nationalities, literaryGenres, status } from './options-data'
+import { cn } from '@/lib/utils'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { getInitials } from '@/lib/utils'
 
-const resource = "authors";
+const resource = 'authors'
 
 export const columns: ColumnDef<Author>[] = [
   {
-    id: "select",
+    id: 'select',
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Seleccionar todo"
@@ -39,142 +38,123 @@ export const columns: ColumnDef<Author>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "AuthorID",
+    accessorKey: 'AuthorID',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "AuthorID")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'AuthorID')} />
     ),
   },
   {
-    accessorKey: "Name",
+    accessorKey: 'Name',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "Name")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Name')} />
     ),
     meta: {
       searchable: true,
     },
   },
   {
-    accessorKey: "NationalityName",
+    accessorKey: 'NationalityName',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "NationalityName")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'NationalityName')} />
     ),
     meta: {
       filter: {
-        title: getColumnLabel(resource, "NationalityName"),
+        title: getColumnLabel(resource, 'NationalityName'),
         options: nationalities,
       },
     },
     cell: ({ row }) => {
-      const nationality = row.getValue("NationalityName") as string;
+      const nationality = row.getValue('NationalityName') as string
       return (
         <Badge variant="outline" className="flex items-center gap-1">
           {nationality}
         </Badge>
-      );
+      )
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value.includes(row.getValue(id))
     },
   },
   {
-    accessorKey: "LiteraryGenreName",
+    accessorKey: 'LiteraryGenreName',
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title={getColumnLabel(resource, "LiteraryGenreName")}
+        title={getColumnLabel(resource, 'LiteraryGenreName')}
       />
     ),
     meta: {
       filter: {
-        title: getColumnLabel(resource, "LiteraryGenreName"),
+        title: getColumnLabel(resource, 'LiteraryGenreName'),
         options: literaryGenres,
       },
     },
     cell: ({ row }) => {
-      const genre = row.getValue("LiteraryGenreName") as string;
+      const genre = row.getValue('LiteraryGenreName') as string
       return (
         <Badge variant="outline" className="flex items-center gap-1">
           {genre}
         </Badge>
-      );
+      )
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value.includes(row.getValue(id))
     },
   },
   {
-    accessorKey: "Status",
+    accessorKey: 'Status',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "Status")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Status')} />
     ),
     meta: {
       filter: {
-        title: getColumnLabel(resource, "Status"),
+        title: getColumnLabel(resource, 'Status'),
         options: status,
       },
     },
     cell: ({ row }) => {
-      const status = row.getValue("Status") as Author["Status"];
-      const Icon = status === "activo" ? CheckCircle2 : XCircle;
+      const status = row.getValue('Status') as Author['Status']
+      const Icon = status === 'activo' ? CheckCircle2 : XCircle
 
       return (
         <Badge variant="outline" className="capitalize flex items-center gap-1">
           <Icon
             className={cn(
-              "w-4 h-4",
-              status === "activo"
-                ? "text-green-500 dark:text-green-400"
-                : "text-destructive"
+              'w-4 h-4',
+              status === 'activo' ? 'text-green-500 dark:text-green-400' : 'text-destructive'
             )}
           />
           {status}
         </Badge>
-      );
+      )
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value.includes(row.getValue(id))
     },
   },
   {
-    accessorKey: "Photo",
+    accessorKey: 'Photo',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, "Photo")}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Photo')} />
     ),
     cell: ({ row }) => {
-      const photo = row.getValue("Photo") as string | undefined;
-      const name = row.getValue("Name") as string;
+      const photo = row.getValue('Photo') as string | undefined
+      const name = row.getValue('Name') as string
 
       return (
         <Avatar className="h-8 w-8">
           {photo ? (
             <AvatarImage src={photo} alt={name} className="object-cover" />
           ) : (
-            <AvatarFallback className="text-xs">
-              {getInitials(name)}
-            </AvatarFallback>
+            <AvatarFallback className="text-xs">{getInitials(name)}</AvatarFallback>
           )}
         </Avatar>
-      );
+      )
     },
     enableSorting: false,
   },
   {
-    id: "actions",
-    cell: () => <DataTableRowActions  />,
+    id: 'actions',
+    cell: () => <DataTableRowActions />,
   },
-];
+]

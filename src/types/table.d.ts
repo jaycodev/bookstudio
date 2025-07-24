@@ -1,12 +1,12 @@
-import "@tanstack/react-table";
+import '@tanstack/react-table'
 
-declare module "@tanstack/react-table" {
+declare module '@tanstack/react-table' {
   interface ColumnMeta {
     filter?: {
-      title: string;
-      options: { label: string; value: string }[];
-    };
-    searchable?: boolean;
-    dateRangeFilter?: boolean;
+      title: string
+      options: { label: string; value: string }[]
+    }
+    searchable?: boolean
+    dateRangeFilter?: boolean
   }
 }

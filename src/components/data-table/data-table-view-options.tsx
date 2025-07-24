@@ -1,7 +1,7 @@
-import type { Table } from "@tanstack/react-table";
-import { Check, ChevronsUpDown, Settings2 } from "lucide-react";
+import type { Table } from '@tanstack/react-table'
+import { Check, ChevronsUpDown, Settings2 } from 'lucide-react'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Command,
   CommandEmpty,
@@ -9,35 +9,25 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import * as React from "react";
-import { getColumnLabel } from "@/lib/column-labels";
+} from '@/components/ui/command'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
+import * as React from 'react'
+import { getColumnLabel } from '@/lib/column-labels'
 
 interface DataTableViewOptionsProps<TData> {
-  table: Table<TData>;
-  resource: string;
+  table: Table<TData>
+  resource: string
 }
 
-export function DataTableViewOptions<TData>({
-  table,
-  resource,
-}: DataTableViewOptionsProps<TData>) {
+export function DataTableViewOptions<TData>({ table, resource }: DataTableViewOptionsProps<TData>) {
   const columns = React.useMemo(
     () =>
       table
         .getAllColumns()
-        .filter(
-          (column) =>
-            typeof column.accessorFn !== "undefined" && column.getCanHide()
-        ),
+        .filter((column) => typeof column.accessorFn !== 'undefined' && column.getCanHide()),
     [table]
-  );
+  )
 
   return (
     <Popover>
@@ -63,17 +53,13 @@ export function DataTableViewOptions<TData>({
               {columns.map((column) => (
                 <CommandItem
                   key={column.id}
-                  onSelect={() =>
-                    column.toggleVisibility(!column.getIsVisible())
-                  }
+                  onSelect={() => column.toggleVisibility(!column.getIsVisible())}
                 >
-                  <span className="truncate">
-                    {getColumnLabel(resource, column.id)}
-                  </span>
+                  <span className="truncate">{getColumnLabel(resource, column.id)}</span>
                   <Check
                     className={cn(
-                      "ml-auto size-4 shrink-0",
-                      column.getIsVisible() ? "opacity-100" : "opacity-0"
+                      'ml-auto size-4 shrink-0',
+                      column.getIsVisible() ? 'opacity-100' : 'opacity-0'
                     )}
                   />
                 </CommandItem>
@@ -83,5 +69,5 @@ export function DataTableViewOptions<TData>({
         </Command>
       </PopoverContent>
     </Popover>
-  );
+  )
 }

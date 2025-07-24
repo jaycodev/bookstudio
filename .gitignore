@@ -10,7 +10,8 @@ package-lock.json
 yarn.lock
 
 # IDE settings
-.vscode/
+.vscode/*
+!.vscode/settings.json
 .idea/
 
 # Logs

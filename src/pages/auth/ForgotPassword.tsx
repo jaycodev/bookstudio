@@ -1,11 +1,11 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router-dom";
-import { LibraryBig } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Link } from 'react-router-dom'
+import { LibraryBig } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormField,
@@ -13,35 +13,29 @@ import {
   FormControl,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form'
 
 const forgotPasswordSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Introduce un correo electrónico válido." }),
-});
+  email: z.string().trim().email({ message: 'Introduce un correo electrónico válido.' }),
+})
 
-type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
+type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>
 
-const ForgotPassword = ({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) => {
+const ForgotPassword = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   const form = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      email: "",
+      email: '',
     },
-  });
+  })
 
   const onSubmit = (data: ForgotPasswordFormValues) => {
-    console.log("Datos para restablecer contraseña:", data);
-  };
+    console.log('Datos para restablecer contraseña:', data)
+  }
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
@@ -54,8 +48,8 @@ const ForgotPassword = ({
               </div>
               <h1 className="text-xl font-bold">Restablece la contraseña</h1>
               <div className="text-center text-sm">
-                Escribe la dirección de correo electrónico vinculada a tu cuenta
-                de BookStudio y te enviaremos un mensaje.
+                Escribe la dirección de correo electrónico vinculada a tu cuenta de BookStudio y te
+                enviaremos un mensaje.
               </div>
             </div>
             <div className="flex flex-col gap-6">
@@ -73,9 +67,7 @@ const ForgotPassword = ({
                         {...field}
                       />
                     </FormControl>
-                    {fieldState.error && (
-                      <FormMessage>{fieldState.error.message}</FormMessage>
-                    )}
+                    {fieldState.error && <FormMessage>{fieldState.error.message}</FormMessage>}
                   </FormItem>
                 )}
               />
@@ -88,7 +80,7 @@ const ForgotPassword = ({
         </form>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default ForgotPassword;
+export default ForgotPassword

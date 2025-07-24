@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const bookSchema = z.object({
   BookID: z.number(),
@@ -7,7 +7,7 @@ export const bookSchema = z.object({
   LoanedCopies: z.number(),
   AuthorName: z.string(),
   PublisherName: z.string(),
-  Status: z.enum(["activo", "inactivo"]),
-});
+  Status: z.enum(['activo', 'inactivo']),
+})
 
-export type Book = z.infer<typeof bookSchema>;
+export type Book = z.infer<typeof bookSchema>

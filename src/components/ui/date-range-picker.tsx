@@ -1,31 +1,27 @@
-import * as React from "react";
-import { format, getMonth, getYear, setMonth, setYear } from "date-fns";
-import { es } from "date-fns/locale";
-import { CalendarIcon } from "lucide-react";
-import { DateRange } from "react-day-picker";
+import * as React from 'react'
+import { format, getMonth, getYear, setMonth, setYear } from 'date-fns'
+import { es } from 'date-fns/locale'
+import { CalendarIcon } from 'lucide-react'
+import { DateRange } from 'react-day-picker'
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select'
 
 interface DateRangePickerProps extends React.HTMLAttributes<HTMLDivElement> {
-  date?: DateRange | null;
-  onDateSelect: (date: DateRange | undefined) => void;
-  placeholder?: string;
-  startYear?: number;
-  endYear?: number;
+  date?: DateRange | null
+  onDateSelect: (date: DateRange | undefined) => void
+  placeholder?: string
+  startYear?: number
+  endYear?: number
 }
 
 export function DateRangePicker({
@@ -36,82 +32,70 @@ export function DateRangePicker({
   startYear = getYear(new Date()) - 100,
   endYear = getYear(new Date()) + 100,
 }: DateRangePickerProps) {
-  const [leftMonth, setLeftMonth] = React.useState<Date>(
-    date?.from || new Date()
-  );
+  const [leftMonth, setLeftMonth] = React.useState<Date>(date?.from || new Date())
   const [rightMonth, setRightMonth] = React.useState<Date>(() => {
-    const firstMonth = date?.from || new Date();
+    const firstMonth = date?.from || new Date()
     if (getMonth(firstMonth) === 11) {
-      return setYear(setMonth(new Date(), 0), getYear(firstMonth) + 1);
+      return setYear(setMonth(new Date(), 0), getYear(firstMonth) + 1)
     }
-    return setMonth(new Date(firstMonth), getMonth(firstMonth) + 1);
-  });
+    return setMonth(new Date(firstMonth), getMonth(firstMonth) + 1)
+  })
 
   const months = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ]
 
-  const years = Array.from(
-    { length: endYear - startYear + 1 },
-    (_, i) => startYear + i
-  );
+  const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i)
 
   const handleLeftMonthChange = (month: string) => {
-    const newDate = setMonth(leftMonth, months.indexOf(month));
-    setLeftMonth(newDate);
-  };
+    const newDate = setMonth(leftMonth, months.indexOf(month))
+    setLeftMonth(newDate)
+  }
 
   const handleLeftYearChange = (year: string) => {
-    const newDate = setYear(leftMonth, parseInt(year));
-    setLeftMonth(newDate);
-  };
+    const newDate = setYear(leftMonth, parseInt(year))
+    setLeftMonth(newDate)
+  }
 
   const handleRightMonthChange = (month: string) => {
-    const newDate = setMonth(rightMonth, months.indexOf(month));
-    setRightMonth(newDate);
-  };
+    const newDate = setMonth(rightMonth, months.indexOf(month))
+    setRightMonth(newDate)
+  }
 
   const handleRightYearChange = (year: string) => {
-    const newDate = setYear(rightMonth, parseInt(year));
-    setRightMonth(newDate);
-  };
+    const newDate = setYear(rightMonth, parseInt(year))
+    setRightMonth(newDate)
+  }
 
   React.useEffect(() => {
     if (date?.from) {
-      setLeftMonth(date.from);
+      setLeftMonth(date.from)
 
       if (date.to) {
-        setRightMonth(date.to);
+        setRightMonth(date.to)
       } else {
         if (getMonth(date.from) === 11) {
-          setRightMonth(
-            setYear(setMonth(new Date(), 0), getYear(date.from) + 1)
-          );
+          setRightMonth(setYear(setMonth(new Date(), 0), getYear(date.from) + 1))
         } else {
-          setRightMonth(
-            setMonth(
-              setYear(new Date(), getYear(date.from)),
-              getMonth(date.from) + 1
-            )
-          );
+          setRightMonth(setMonth(setYear(new Date(), getYear(date.from)), getMonth(date.from) + 1))
         }
       }
     }
-  }, [date]);
+  }, [date])
 
   return (
-    <div className={cn("grid gap-2", className)}>
+    <div className={cn('grid gap-2', className)}>
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -119,22 +103,22 @@ export function DateRangePicker({
             id="date"
             variant="outline"
             className={cn(
-              "w-[260px] justify-start text-left font-normal",
-              !date?.from && "text-muted-foreground"
+              'w-[260px] justify-start text-left font-normal',
+              !date?.from && 'text-muted-foreground'
             )}
           >
             <CalendarIcon />
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "dd LLL y", { locale: es })} -{" "}
-                  {format(date.to, "dd LLL y", { locale: es })}
+                  {format(date.from, 'dd LLL y', { locale: es })} -{' '}
+                  {format(date.to, 'dd LLL y', { locale: es })}
                 </>
               ) : (
-                format(date.from, "dd LLL y", { locale: es })
+                format(date.from, 'dd LLL y', { locale: es })
               )
             ) : (
-              placeholder ?? "Selecciona un rango de fechas"
+              (placeholder ?? 'Selecciona un rango de fechas')
             )}
           </Button>
         </PopoverTrigger>
@@ -143,10 +127,7 @@ export function DateRangePicker({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="flex flex-col">
                 <div className="flex justify-between p-2 gap-2">
-                  <Select
-                    onValueChange={handleLeftMonthChange}
-                    value={months[getMonth(leftMonth)]}
-                  >
+                  <Select onValueChange={handleLeftMonthChange} value={months[getMonth(leftMonth)]}>
                     <SelectTrigger className="flex-1">
                       <SelectValue placeholder="Mes" />
                     </SelectTrigger>
@@ -239,5 +220,5 @@ export function DateRangePicker({
         </PopoverContent>
       </Popover>
     </div>
-  );
+  )
 }

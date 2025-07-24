@@ -1,12 +1,12 @@
-import { Ellipsis } from "lucide-react";
-import { Eye, Pencil } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Ellipsis } from 'lucide-react'
+import { Eye, Pencil } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu'
 
 export function DataTableRowActions() {
   return (
@@ -31,5 +31,5 @@ export function DataTableRowActions() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

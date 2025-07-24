@@ -1,26 +1,24 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
-import { LibraryBig } from "lucide-react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+import { LibraryBig } from 'lucide-react'
 
-import NavigationProgress from "@/components/navigation-progress";
+import NavigationProgress from '@/components/navigation-progress'
 
-import DashboardLayout from "../layouts/DashboardLayout";
-import AuthLayout from "../layouts/AuthLayout";
+import DashboardLayout from '../layouts/DashboardLayout'
+import AuthLayout from '../layouts/AuthLayout'
 
-const Dashboard = lazy(() => import("../pages/dashboard/Dashboard/Dashboard"));
-const Users = lazy(() => import("../pages/dashboard/Users/UsersPage"));
-const Books = lazy(() => import("../pages/dashboard/Books/BooksPage"));
-const Authors = lazy(() => import("../pages/dashboard/Authors/AuthorsPage"));
-const Courses = lazy(() => import("../pages/dashboard/Courses/CoursesPage"));
-const Loans = lazy(() => import("../pages/dashboard/Loans/LoansPage"));
-const Publishers = lazy(
-  () => import("../pages/dashboard/Publishers/PublishersPage")
-);
-const Students = lazy(() => import("../pages/dashboard/Students/StudentsPage"));
-const Profile = lazy(() => import("../pages/dashboard/Profile/Profile"));
-const Login = lazy(() => import("../pages/auth/Login"));
-const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassword"));
-const ResetPassword = lazy(() => import("../pages/auth/ResetPassword"));
+const Dashboard = lazy(() => import('../pages/dashboard/Dashboard/Dashboard'))
+const Users = lazy(() => import('../pages/dashboard/Users/UsersPage'))
+const Books = lazy(() => import('../pages/dashboard/Books/BooksPage'))
+const Authors = lazy(() => import('../pages/dashboard/Authors/AuthorsPage'))
+const Courses = lazy(() => import('../pages/dashboard/Courses/CoursesPage'))
+const Loans = lazy(() => import('../pages/dashboard/Loans/LoansPage'))
+const Publishers = lazy(() => import('../pages/dashboard/Publishers/PublishersPage'))
+const Students = lazy(() => import('../pages/dashboard/Students/StudentsPage'))
+const Profile = lazy(() => import('../pages/dashboard/Profile/Profile'))
+const Login = lazy(() => import('../pages/auth/Login'))
+const ForgotPassword = lazy(() => import('../pages/auth/ForgotPassword'))
+const ResetPassword = lazy(() => import('../pages/auth/ResetPassword'))
 
 function LoadingScreen() {
   return (
@@ -29,7 +27,7 @@ function LoadingScreen() {
         <LibraryBig className="h-10 w-10" />
       </div>
     </div>
-  );
+  )
 }
 
 export default function AppRoutes() {
@@ -58,5 +56,5 @@ export default function AppRoutes() {
         </Routes>
       </Suspense>
     </BrowserRouter>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Link } from "react-router-dom";
+import * as React from 'react'
+import { Link } from 'react-router-dom'
 import {
   LibraryBig,
   LayoutDashboard,
@@ -10,10 +10,10 @@ import {
   Notebook,
   GraduationCap,
   SquareUser,
-} from "lucide-react"
+} from 'lucide-react'
 
-import { NavMain } from "@/components/sidebar/nav-main"
-import { NavUser } from "@/components/sidebar/nav-user"
+import { NavMain } from '@/components/sidebar/nav-main'
+import { NavUser } from '@/components/sidebar/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -23,60 +23,60 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar'
 
 const data = {
   user: {
-    name: "Jason",
-    email: "jasonvilac@gmail.com",
-    avatar: "",
+    name: 'Jason',
+    email: 'jasonvilac@gmail.com',
+    avatar: '',
   },
   teams: [
     {
-      name: "BookStudio",
+      name: 'BookStudio',
       logo: LibraryBig,
-      plan: "Biblioteca",
-    }
+      plan: 'Biblioteca',
+    },
   ],
   navMain: [
     {
-      title: "Dashboard",
-      to: "/",
+      title: 'Dashboard',
+      to: '/',
       icon: LayoutDashboard,
     },
     {
-      title: "Préstamos",
-      to: "/loans",
+      title: 'Préstamos',
+      to: '/loans',
       icon: CircleFadingPlus,
     },
     {
-      title: "Libros",
-      to: "/books",
+      title: 'Libros',
+      to: '/books',
       icon: BookCopy,
     },
     {
-      title: "Autores",
-      to: "/authors",
+      title: 'Autores',
+      to: '/authors',
       icon: SquareUser,
     },
     {
-      title: "Editoriales",
-      to: "/publishers",
+      title: 'Editoriales',
+      to: '/publishers',
       icon: Building2,
     },
     {
-      title: "Cursos",
-      to: "/courses",
+      title: 'Cursos',
+      to: '/courses',
       icon: Notebook,
     },
     {
-      title: "Estudiantes",
-      to: "/students",
+      title: 'Estudiantes',
+      to: '/students',
       icon: GraduationCap,
     },
     {
-      title: "Usuarios",
-      to: "/users",
+      title: 'Usuarios',
+      to: '/users',
       icon: Users,
     },
   ],
@@ -86,7 +86,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar variant="floating" collapsible="icon" {...props}>
       <SidebarHeader>
-      <SidebarMenu>
+        <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">

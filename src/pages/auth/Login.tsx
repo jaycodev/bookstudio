@@ -1,49 +1,40 @@
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "react-router-dom";
-import { LibraryBig } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
-import { PasswordInput } from "@/components/ui/password-input";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormControl,
-  FormLabel,
-} from "@/components/ui/form";
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Link, useNavigate } from 'react-router-dom'
+import { LibraryBig } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
+import { Button } from '@/components/ui/button'
+import { Form, FormField, FormItem, FormControl, FormLabel } from '@/components/ui/form'
 
 const loginSchema = z.object({
   email: z.string().trim().email(),
   password: z.string().trim().min(8),
-});
+})
 
-type LoginFormValues = z.infer<typeof loginSchema>;
+type LoginFormValues = z.infer<typeof loginSchema>
 
-const Login = ({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) => {
-  const navigate = useNavigate();
+const Login = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
+  const navigate = useNavigate()
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-  });
+  })
 
   const onSubmit = (data: LoginFormValues) => {
-    console.log("Datos de login:", data);
-    navigate("/");
-  };
+    console.log('Datos de login:', data)
+    navigate('/')
+  }
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
@@ -109,12 +100,11 @@ const Login = ({
         </form>
       </Form>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary  ">
-        Al hacer clic en continuar, acepta nuestros{" "}
-        <a href="#">Términos de servicio</a> y{" "}
+        Al hacer clic en continuar, acepta nuestros <a href="#">Términos de servicio</a> y{' '}
         <a href="#">Política de privacidad</a>.
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

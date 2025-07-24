@@ -1,28 +1,24 @@
-import { useLocation, Outlet } from "react-router-dom";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { Separator } from "@/components/ui/separator";
-import { ModeToggle } from "@/components/mode-toggle";
+import { useLocation, Outlet } from 'react-router-dom'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/sidebar/app-sidebar'
+import { Separator } from '@/components/ui/separator'
+import { ModeToggle } from '@/components/mode-toggle'
 
 const pageMap: Record<string, string> = {
-  "/": "Dashboard",
-  "/loans": "Préstamos",
-  "/books": "Libros",
-  "/authors": "Autores",
-  "/publishers": "Editoriales",
-  "/courses": "Cursos",
-  "/students": "Estudiantes",
-  "/users": "Usuarios",
-  "/profile": "Perfil",
-};
+  '/': 'Dashboard',
+  '/loans': 'Préstamos',
+  '/books': 'Libros',
+  '/authors': 'Autores',
+  '/publishers': 'Editoriales',
+  '/courses': 'Cursos',
+  '/students': 'Estudiantes',
+  '/users': 'Usuarios',
+  '/profile': 'Perfil',
+}
 
 const DashboardLayout = () => {
-  const location = useLocation();
-  const page = pageMap[location.pathname] || "Desconocido";
+  const location = useLocation()
+  const page = pageMap[location.pathname] || 'Desconocido'
 
   return (
     <SidebarProvider>
@@ -47,7 +43,7 @@ const DashboardLayout = () => {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
-};
+  )
+}
 
-export default DashboardLayout;
+export default DashboardLayout

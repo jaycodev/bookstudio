@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const loanSchema = z.object({
   LoanID: z.number(),
@@ -7,7 +7,7 @@ export const loanSchema = z.object({
   LoanDate: z.coerce.date(),
   ReturnDate: z.coerce.date(),
   Quantity: z.number(),
-  Status: z.enum(["prestado", "devuelto"]),
-});
+  Status: z.enum(['prestado', 'devuelto']),
+})
 
-export type Loan = z.infer<typeof loanSchema>;
+export type Loan = z.infer<typeof loanSchema>

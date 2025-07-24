@@ -1,5 +1,5 @@
 export type FilterOption = {
-  label: string;
-  value: string;
-  icon?: React.ComponentType<{ className?: string }>;
-};
+  label: string
+  value: string
+  icon?: React.ComponentType<{ className?: string }>
+}

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from '@tanstack/react-router'
 import {
   BookCopy,
   Building2,
@@ -10,7 +11,6 @@ import {
   SquareUser,
   Users,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
 
 import { NavMain } from '@/components/sidebar/nav-main'
 import { NavUser } from '@/components/sidebar/nav-user'

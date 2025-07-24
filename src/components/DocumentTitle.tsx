@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from '@tanstack/react-router'
 
 const routeTitles: Record<string, string> = {
   '/': 'Dashboard',

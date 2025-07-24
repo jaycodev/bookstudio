@@ -1,4 +1,5 @@
-import { Outlet, useLocation } from 'react-router-dom'
+import { ReactNode } from 'react'
+import { useLocation } from '@tanstack/react-router'
 
 import { ModeToggle } from '@/components/mode-toggle'
 import { AppSidebar } from '@/components/sidebar/app-sidebar'
@@ -18,7 +19,11 @@ const pageMap: Record<string, string> = {
   '/profile': 'Perfil',
 }
 
-const DashboardLayout = () => {
+type DashboardLayoutProps = {
+  children: ReactNode
+}
+
+const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation()
   const page = pageMap[location.pathname] || 'Desconocido'
 
@@ -59,9 +64,7 @@ const DashboardLayout = () => {
           </div>
         </header>
         <div className="flex flex-1 p-5">
-          <div className="@container/main flex flex-1 flex-col">
-            <Outlet />
-          </div>
+          <div className="@container/main flex flex-1 flex-col">{children}</div>
         </div>
       </SidebarInset>
     </SidebarProvider>

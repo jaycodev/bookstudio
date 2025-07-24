@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { LibraryBig } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -31,7 +31,7 @@ const Login = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) =
 
   const onSubmit = (data: LoginFormValues) => {
     console.log('Datos de login:', data)
-    navigate('/')
+    navigate({ to: '/' })
   }
 
   return (

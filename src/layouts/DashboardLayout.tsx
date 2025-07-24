@@ -34,7 +34,7 @@ const DashboardLayout = () => {
               <div>{page}</div>
             </div>
             <div className="ml-auto flex items-center gap-2">
-              <Button asChild variant="ghost" className="size-8">
+              <Button asChild variant="ghost" className="size-8 rounded-full">
                 <a
                   aria-label="GitHub repo"
                   href="https://github.com/jason-vila/bookstudio"

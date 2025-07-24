@@ -103,11 +103,15 @@ export function NavUser({
         </DropdownMenu>
 
         <ConfirmDialog
-          open={confirmDialogOpen}
-          onOpenChange={setConfirmDialogOpen}
           title="¿Estás seguro?"
-          description="Esto cerrará tu sesión y te redirigirá a la página de inicio."
-          confirmLabel="Cerrar sesión"
+          description="Esto cerrará tu sesión y te redirigirá a la pantalla de inicio de sesión."
+          actionButton={{
+            label: "Cerrar sesión",
+            variant: "destructive",
+            icon: <LogOut />,
+          }}
+          onOpenChange={setConfirmDialogOpen}
+          open={confirmDialogOpen}
           to="/login"
         />
       </SidebarMenuItem>

@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -10,29 +12,41 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
-import { useRef } from "react";
+import { buttonVariants } from "@/components/ui/button";
+
+interface ConfirmActionButton {
+  label: string;
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
+  icon?: React.ReactNode;
+}
 
 interface ConfirmDialogProps {
   title: string;
   description: string;
-  confirmLabel: string;
+  actionButton: ConfirmActionButton;
   cancelLabel?: string;
   onConfirm?: () => void;
+  onOpenChange?: (open: boolean) => void;
   to?: string;
   open?: boolean;
-  onOpenChange?: (open: boolean) => void;
   children?: React.ReactNode;
 }
 
 export function ConfirmDialog({
   title,
   description,
-  confirmLabel,
+  actionButton,
   cancelLabel = "Cancelar",
   onConfirm,
+  onOpenChange,
   to,
   open,
-  onOpenChange,
   children,
 }: ConfirmDialogProps) {
   const actionButtonRef = useRef<HTMLButtonElement>(null);
@@ -53,12 +67,26 @@ export function ConfirmDialog({
         <AlertDialogFooter>
           <AlertDialogCancel>{cancelLabel}</AlertDialogCancel>
           {to ? (
-            <AlertDialogAction asChild ref={actionButtonRef}>
-              <Link to={to}>{confirmLabel}</Link>
+            <AlertDialogAction
+              asChild
+              className={buttonVariants({
+                variant: actionButton.variant ?? "default",
+              })}
+              ref={actionButtonRef}
+            >
+              <Link to={to}>
+                {actionButton.icon} {actionButton.label}
+              </Link>
             </AlertDialogAction>
           ) : (
-            <AlertDialogAction ref={actionButtonRef} onClick={onConfirm}>
-              {confirmLabel}
+            <AlertDialogAction
+              className={buttonVariants({
+                variant: actionButton.variant ?? "default",
+              })}
+              onClick={onConfirm}
+              ref={actionButtonRef}
+            >
+              {actionButton.icon} {actionButton.label}
             </AlertDialogAction>
           )}
         </AlertDialogFooter>

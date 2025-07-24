@@ -17,10 +17,10 @@ export function ModeToggle() {
   return (
     <Button
       variant="outline"
-      className="h-8 w-8"
+      className="size-8"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
-      {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+      {theme === 'light' ? <Moon className="size-4" /> : <Sun className="size-4" />}
       <span className="sr-only">Cambiar tema</span>
     </Button>
   )

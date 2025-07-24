@@ -6,12 +6,12 @@ import {
   CircleFadingPlus,
   GraduationCap,
   LayoutDashboard,
-  LibraryBig,
   Notebook,
   SquareUser,
   Users,
 } from 'lucide-react'
 
+import Logo from '@/assets/icons/logo.svg?react'
 import { NavMain } from '@/components/sidebar/nav-main'
 import { NavUser } from '@/components/sidebar/nav-user'
 import {
@@ -31,13 +31,6 @@ const data = {
     email: 'jasonvilac@gmail.com',
     avatar: '',
   },
-  teams: [
-    {
-      name: 'BookStudio',
-      logo: LibraryBig,
-      plan: 'Biblioteca',
-    },
-  ],
   navMain: [
     {
       title: 'Dashboard',
@@ -90,9 +83,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">
-                <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <LibraryBig className="size-4" />
-                </div>
+                <span className="size-8">
+                  <Logo />
+                </span>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold">BookStudio</span>
                   <span>Biblioteca</span>

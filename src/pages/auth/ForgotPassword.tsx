@@ -1,9 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from '@tanstack/react-router'
-import { LibraryBig } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import Logo from '@/assets/icons/logo.svg?react'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -42,9 +42,9 @@ const ForgotPassword = ({ className, ...props }: React.ComponentPropsWithoutRef<
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-2">
               <div className="flex flex-col items-center gap-2 font-medium">
-                <div className="bg-primary text-primary-foreground flex aspect-square h-8 w-8 items-center justify-center rounded-lg">
-                  <LibraryBig className="h-5 w-5" />
-                </div>
+                <span className="size-10">
+                  <Logo />
+                </span>
                 <span className="sr-only">BookStudio</span>
               </div>
               <h1 className="text-xl font-bold">Restablece la contraseña</h1>

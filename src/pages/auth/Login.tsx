@@ -1,9 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { LibraryBig } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import Logo from '@/assets/icons/logo.svg?react'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -41,9 +41,9 @@ const Login = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) =
           <div className="flex flex-col gap-6">
             <div className="flex flex-col items-center gap-2">
               <div className="flex flex-col items-center gap-2 font-medium">
-                <div className="bg-primary text-primary-foreground flex aspect-square h-8 w-8 items-center justify-center rounded-lg">
-                  <LibraryBig className="h-5 w-5" />
-                </div>
+                <span className="size-10">
+                  <Logo />
+                </span>
                 <span className="sr-only">BookStudio</span>
               </div>
               <h1 className="text-xl font-bold">¡Bienvenido a BookStudio!</h1>

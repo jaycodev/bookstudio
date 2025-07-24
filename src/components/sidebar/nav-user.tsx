@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { User, Bell, ChevronsUpDown, LogOut } from "lucide-react";
+import { useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -29,11 +30,20 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+
+  const handleLogoutClick = () => {
+    setDropdownOpen(false);
+    setTimeout(() => {
+      setConfirmDialogOpen(true);
+    }, 50);
+  };
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
@@ -82,22 +92,24 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <ConfirmDialog
-              title="¿Estás seguro?"
-              description="Esto cerrará tu sesión y te redirigirá a la página de inicio."
-              confirmLabel="Cerrar sesión"
-              to="/login"
+            <DropdownMenuItem
+              className="text-destructive data-[highlighted]:text-destructive"
+              onClick={handleLogoutClick}
             >
-              <DropdownMenuItem
-                className="text-destructive data-[highlighted]:text-destructive"
-                onSelect={(e) => e.preventDefault()}
-              >
-                <LogOut className="text-current" />
-                Cerrar sesión
-              </DropdownMenuItem>
-            </ConfirmDialog>
+              <LogOut className="text-current" />
+              Cerrar sesión
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <ConfirmDialog
+          open={confirmDialogOpen}
+          onOpenChange={setConfirmDialogOpen}
+          title="¿Estás seguro?"
+          description="Esto cerrará tu sesión y te redirigirá a la página de inicio."
+          confirmLabel="Cerrar sesión"
+          to="/login"
+        />
       </SidebarMenuItem>
     </SidebarMenu>
   );

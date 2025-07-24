@@ -19,7 +19,9 @@ interface ConfirmDialogProps {
   cancelLabel?: string;
   onConfirm?: () => void;
   to?: string;
-  children: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  children?: React.ReactNode;
 }
 
 export function ConfirmDialog({
@@ -29,17 +31,19 @@ export function ConfirmDialog({
   cancelLabel = "Cancelar",
   onConfirm,
   to,
+  open,
+  onOpenChange,
   children,
 }: ConfirmDialogProps) {
-  const confirmButtonRef = useRef<HTMLButtonElement>(null);
+  const actionButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
+      {children && <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>}
       <AlertDialogContent
         onOpenAutoFocus={(e) => {
           e.preventDefault();
-          confirmButtonRef.current?.focus();
+          actionButtonRef.current?.focus();
         }}
       >
         <AlertDialogHeader>
@@ -49,11 +53,11 @@ export function ConfirmDialog({
         <AlertDialogFooter>
           <AlertDialogCancel>{cancelLabel}</AlertDialogCancel>
           {to ? (
-            <AlertDialogAction asChild>
+            <AlertDialogAction asChild ref={actionButtonRef}>
               <Link to={to}>{confirmLabel}</Link>
             </AlertDialogAction>
           ) : (
-            <AlertDialogAction ref={confirmButtonRef} onClick={onConfirm}>
+            <AlertDialogAction ref={actionButtonRef} onClick={onConfirm}>
               {confirmLabel}
             </AlertDialogAction>
           )}

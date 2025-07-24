@@ -85,7 +85,7 @@ const passwordSchema = z
       .max(50, {
         message: 'La contraseña no puede tener más de 50 caracteres.',
       })
-      .regex(/^\S+$/, 'La contraseña no puede contener espacios en blanco.')
+      .regex(/^\S+$/, { message: 'La contraseña no puede contener espacios en blanco.' })
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/, {
         message:
           'La contraseña debe incluir al menos una minúscula, una mayúscula, un número y un carácter especial (@$!%*?&).',
@@ -178,7 +178,7 @@ const Profile = () => {
         return () => URL.revokeObjectURL(objectUrl)
       } catch (error) {
         if (error instanceof z.ZodError) {
-          setPhotoError(error.errors[0].message)
+          setPhotoError(error.issues[0].message)
           setAvatarUrl(null)
         }
       }

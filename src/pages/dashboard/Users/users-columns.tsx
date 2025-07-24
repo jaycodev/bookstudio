@@ -1,14 +1,16 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { User } from './schema'
-import { Badge } from '@/components/ui/badge'
-import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
 import { CheckCircle2 } from 'lucide-react'
+
 import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
+import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/lib/column-labels'
-import { roles } from './options-data'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { getInitials } from '@/lib/utils'
+
+import { roles } from './options-data'
+import { User } from './schema'
 
 const resource = 'users'
 

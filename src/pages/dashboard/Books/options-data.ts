@@ -1,5 +1,6 @@
-import { FilterOption } from '@/types/types'
 import { CheckCircle2, XCircle } from 'lucide-react'
+
+import { FilterOption } from '@/types/types'
 
 export const authors: FilterOption[] = [
   { label: 'Gabriel García Márquez', value: 'Gabriel García Márquez' },

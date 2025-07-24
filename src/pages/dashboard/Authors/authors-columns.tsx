@@ -1,15 +1,17 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Author } from './schema'
-import { Badge } from '@/components/ui/badge'
-import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
 import { CheckCircle2, XCircle } from 'lucide-react'
+
 import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
+import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/lib/column-labels'
-import { nationalities, literaryGenres, status } from './options-data'
 import { cn } from '@/lib/utils'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { getInitials } from '@/lib/utils'
+
+import { literaryGenres, nationalities, status } from './options-data'
+import { Author } from './schema'
 
 const resource = 'authors'
 

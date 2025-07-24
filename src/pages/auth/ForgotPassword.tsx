@@ -1,19 +1,20 @@
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Link } from 'react-router-dom'
 import { LibraryBig } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { Input } from '@/components/ui/input'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { z } from 'zod'
+
 import { Button } from '@/components/ui/button'
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
-  FormControl,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 const forgotPasswordSchema = z.object({
   email: z.string().trim().email({ message: 'Introduce un correo electrónico válido.' }),

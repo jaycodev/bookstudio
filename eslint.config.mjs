@@ -2,6 +2,7 @@ import { defineConfig } from 'eslint/config'
 import reactPlugin from 'eslint-plugin-react'
 import tseslint from 'typescript-eslint'
 import prettierPlugin from 'eslint-plugin-prettier'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import globals from 'globals'
 
 export default defineConfig([
@@ -23,6 +24,7 @@ export default defineConfig([
       '@typescript-eslint': tseslint.plugin,
       react: reactPlugin,
       prettier: prettierPlugin,
+      'simple-import-sort': simpleImportSort,
     },
     rules: {
       ...reactPlugin.configs.recommended.rules,
@@ -39,6 +41,20 @@ export default defineConfig([
 
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
+
+      'simple-import-sort/imports': [
+        'warn',
+        {
+          groups: [
+            ['^react$', '^@?\\w'],
+            ['^\\u0000'],
+            ['^@/'],
+            ['^\\.\\.(?!/?$)', '^\\./'],
+            ['\\.css$', '\\.scss$', '\\.less$'],
+          ],
+        },
+      ],
+      'simple-import-sort/exports': 'warn',
     },
     settings: {
       react: {

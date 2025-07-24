@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
+import { lazy, Suspense } from 'react'
 import { LibraryBig } from 'lucide-react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import NavigationProgress from '@/components/navigation-progress'
 
-import DashboardLayout from '../layouts/DashboardLayout'
 import AuthLayout from '../layouts/AuthLayout'
+import DashboardLayout from '../layouts/DashboardLayout'
 
 const Dashboard = lazy(() => import('../pages/dashboard/Dashboard/Dashboard'))
 const Users = lazy(() => import('../pages/dashboard/Users/UsersPage'))

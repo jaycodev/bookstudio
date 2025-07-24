@@ -1,12 +1,10 @@
 import * as React from 'react'
+import { useEffect, useRef } from 'react'
 import { Slot } from '@radix-ui/react-slot'
-import { VariantProps, cva } from 'class-variance-authority'
+import { cva, VariantProps } from 'class-variance-authority'
 import { PanelLeftIcon } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
-import { useEffect, useRef } from 'react'
 
-import { useIsMobile } from '@/hooks/use-mobile'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -16,6 +14,8 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { useIsMobile } from '@/hooks/use-mobile'
+import { cn } from '@/lib/utils'
 
 const SIDEBAR_WIDTH = '16rem'
 const SIDEBAR_WIDTH_MOBILE = '18rem'

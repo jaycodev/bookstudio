@@ -1,18 +1,19 @@
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LibraryBig } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { PasswordInput } from '@/components/ui/password-input'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import { Button } from '@/components/ui/button'
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
-  FormControl,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { PasswordInput } from '@/components/ui/password-input'
+import { cn } from '@/lib/utils'
 
 const resetPasswordSchema = z
   .object({

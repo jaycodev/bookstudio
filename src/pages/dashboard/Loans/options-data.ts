@@ -1,5 +1,6 @@
+import { CheckCircle2, Loader } from 'lucide-react'
+
 import { FilterOption } from '@/types/types'
-import { Loader, CheckCircle2 } from 'lucide-react'
 
 export const studentDnis: FilterOption[] = [
   { label: 'Juan Pérez - 60916631', value: 'Juan Pérez - 60916631' },

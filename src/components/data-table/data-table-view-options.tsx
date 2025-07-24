@@ -1,3 +1,4 @@
+import * as React from 'react'
 import type { Table } from '@tanstack/react-table'
 import { Check, ChevronsUpDown, Settings2 } from 'lucide-react'
 
@@ -11,9 +12,8 @@ import {
   CommandList,
 } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { cn } from '@/lib/utils'
-import * as React from 'react'
 import { getColumnLabel } from '@/lib/column-labels'
+import { cn } from '@/lib/utils'
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>

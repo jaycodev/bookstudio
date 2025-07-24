@@ -1,6 +1,7 @@
 import { DataTable } from '@/components/data-table/data-table'
-import { columns } from './publishers-columns'
+
 import rawData from './publishers.json'
+import { columns } from './publishers-columns'
 import { Publisher } from './schema'
 
 const data: Publisher[] = rawData.map((publisher) => ({

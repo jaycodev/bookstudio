@@ -4,7 +4,6 @@ import { es } from 'date-fns/locale'
 import { CalendarIcon } from 'lucide-react'
 import { DateRange } from 'react-day-picker'
 
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -15,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { cn } from '@/lib/utils'
 
 interface DateRangePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   date?: DateRange | null

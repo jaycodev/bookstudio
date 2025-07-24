@@ -2,8 +2,6 @@ import * as React from 'react'
 import {
   ColumnDef,
   ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -11,9 +9,13 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  SortingState,
   useReactTable,
+  VisibilityState,
 } from '@tanstack/react-table'
+import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
 
+import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
@@ -23,12 +25,8 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-import { Button } from '@/components/ui/button'
-
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'
-
-import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

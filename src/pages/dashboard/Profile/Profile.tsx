@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
-import { z } from 'zod'
+import { useEffect, useRef, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, useWatch } from 'react-hook-form'
 import { Pencil, Trash, Upload } from 'lucide-react'
+import { useForm, useWatch } from 'react-hook-form'
+import { z } from 'zod'
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,9 +21,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { Separator } from '@/components/ui/separator'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
+import { Separator } from '@/components/ui/separator'
 
 const photoSchema = z.object({
   photo: z

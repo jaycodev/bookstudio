@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 

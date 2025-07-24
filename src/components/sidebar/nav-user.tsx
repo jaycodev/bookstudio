@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom'
-import { User, Bell, ChevronsUpDown, LogOut } from 'lucide-react'
 import { useState } from 'react'
+import { Bell, ChevronsUpDown, LogOut, User } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
+import { ConfirmDialog } from '@/components/confirm-dialog'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -18,7 +19,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
-import { ConfirmDialog } from '@/components/confirm-dialog'
 
 export function NavUser({
   user,

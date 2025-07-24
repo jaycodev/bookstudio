@@ -1,13 +1,15 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Loan } from './schema'
-import { Badge } from '@/components/ui/badge'
-import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
-import { Loader, CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Loader } from 'lucide-react'
+
 import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
+import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
+import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/lib/column-labels'
-import { studentDnis, status } from './options-data'
 import { cn } from '@/lib/utils'
+
+import { status, studentDnis } from './options-data'
+import { Loan } from './schema'
 
 const resource = 'loans'
 

@@ -1,16 +1,16 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
 import {
-  LibraryBig,
-  LayoutDashboard,
-  CircleFadingPlus,
   BookCopy,
-  Users,
   Building2,
-  Notebook,
+  CircleFadingPlus,
   GraduationCap,
+  LayoutDashboard,
+  LibraryBig,
+  Notebook,
   SquareUser,
+  Users,
 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { NavMain } from '@/components/sidebar/nav-main'
 import { NavUser } from '@/components/sidebar/nav-user'
@@ -20,8 +20,8 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuItem,
   SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar'
 

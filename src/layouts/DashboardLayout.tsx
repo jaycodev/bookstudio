@@ -1,8 +1,9 @@
-import { useLocation, Outlet } from 'react-router-dom'
-import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { Outlet, useLocation } from 'react-router-dom'
+
+import { ModeToggle } from '@/components/mode-toggle'
 import { AppSidebar } from '@/components/sidebar/app-sidebar'
 import { Separator } from '@/components/ui/separator'
-import { ModeToggle } from '@/components/mode-toggle'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 
 const pageMap: Record<string, string> = {
   '/': 'Dashboard',

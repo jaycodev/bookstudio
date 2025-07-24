@@ -1,5 +1,6 @@
+import { BookUser, ShieldUser } from 'lucide-react'
+
 import { FilterOption } from '@/types/types'
-import { ShieldUser, BookUser } from 'lucide-react'
 
 export const roles: FilterOption[] = [
   { label: 'Administrador', value: 'administrador', icon: ShieldUser },

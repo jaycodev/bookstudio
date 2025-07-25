@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import PublishersPage from '@/pages/dashboard/Publishers/PublishersPage'
+import PublishersPage from '@/features/app/publishers'
 
 export const Route = createFileRoute('/_authenticated/publishers')({
   component: PublishersPage,

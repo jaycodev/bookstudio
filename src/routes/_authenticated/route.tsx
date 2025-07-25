@@ -1,11 +1,11 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
-import DashboardLayout from '@/layouts/DashboardLayout'
+import AppLayout from '@/features/app/app-layout'
 
 export const Route = createFileRoute('/_authenticated')({
   component: () => (
-    <DashboardLayout>
+    <AppLayout>
       <Outlet />
-    </DashboardLayout>
+    </AppLayout>
   ),
 })

@@ -8,6 +8,7 @@ export default {
   trailingComma: 'es5',
   bracketSpacing: true,
   arrowParens: 'always',
+  endOfLine: 'lf',
   plugins: [],
   overrides: [
     {

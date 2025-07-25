@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from '@tanstack/react-router'
 
-import { ModeToggle } from '@/components/mode-toggle'
-import { AppSidebar } from '@/components/sidebar/app-sidebar'
+import { ModeToggle } from '@/components/ui/mode-toggle'
+import { AppSidebar } from '@/features/app/components/sidebar/app-sidebar'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'

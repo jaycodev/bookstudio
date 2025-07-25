@@ -12,8 +12,8 @@ import {
 } from 'lucide-react'
 
 import Logo from '@/assets/icons/logo.svg?react'
-import { NavMain } from '@/components/sidebar/nav-main'
-import { NavUser } from '@/components/sidebar/nav-user'
+import { NavMain } from '@/features/app/components/sidebar/nav-main'
+import { NavUser } from '@/features/app/components/sidebar/nav-user'
 import {
   Sidebar,
   SidebarContent,

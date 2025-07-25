@@ -4,7 +4,7 @@ import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { ThemeProvider } from 'next-themes'
 import ReactDOM from 'react-dom/client'
 
-import LoadingScreen from './components/loading-screen'
+import LoadingScreen from './components/shared/feedback/loading-screen'
 import { routeTree } from './routeTree.gen'
 
 import './globals.css'

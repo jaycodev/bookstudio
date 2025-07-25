@@ -1,4 +1,4 @@
-import { DataTable } from '@/components/data-table/data-table'
+import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
 
 import rawData from './authors.json'
 import { columns } from './authors-columns'

@@ -3,8 +3,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
-import DocumentTitle from '@/components/document-title'
-import NavigationProgress from '@/components/navigation-progress'
+import DocumentTitle from '@/components/shared/utils/document-title'
+import NavigationProgress from '@/components/shared/feedback/navigation-progress'
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient

@@ -1,8 +1,8 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { CheckCircle2, XCircle } from 'lucide-react'
 
-import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
-import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
+import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
+import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'

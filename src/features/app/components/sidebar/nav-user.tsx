@@ -81,7 +81,7 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link to="/profile">
+                <Link to="/perfil">
                   <User className="text-current" />
                   Perfil
                 </Link>
@@ -112,7 +112,7 @@ export function NavUser({
           }}
           onOpenChange={setConfirmDialogOpen}
           open={confirmDialogOpen}
-          to="/login"
+          to="/iniciar-sesion"
         />
       </SidebarMenuItem>
     </SidebarMenu>

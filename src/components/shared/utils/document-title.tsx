@@ -3,24 +3,24 @@ import { useLocation } from '@tanstack/react-router'
 
 const routeTitles: Record<string, string> = {
   '/': 'Dashboard',
-  '/loans': 'Préstamos',
-  '/books': 'Libros',
-  '/authors': 'Autores',
-  '/publishers': 'Editoriales',
-  '/courses': 'Cursos',
-  '/students': 'Estudiantes',
-  '/users': 'Usuarios',
-  '/profile': 'Perfil',
-  '/login': 'Iniciar sesión',
-  '/forgot-password': 'Recuperar contraseña',
-  '/reset-password': 'Restablecer contraseña',
+  '/prestamos': 'Préstamos',
+  '/libros': 'Libros',
+  '/autores': 'Autores',
+  '/editoriales': 'Editoriales',
+  '/cursos': 'Cursos',
+  '/estudiantes': 'Estudiantes',
+  '/usuarios': 'Usuarios',
+  '/perfil': 'Perfil',
+  '/iniciar-sesión': 'Iniciar sesión',
+  '/recuperar-contraseña': 'Recuperar contraseña',
+  '/restablecer-contraseña': 'Restablecer contraseña',
 }
 
 export default function DocumentTitle() {
   const location = useLocation()
 
   useEffect(() => {
-    const title = routeTitles[location.pathname] || 'BookStudio'
+    const title = routeTitles[location.pathname] || ''
     document.title = `${title} - BookStudio`
   }, [location.pathname])
 

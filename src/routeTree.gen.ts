@@ -12,17 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
-import { Route as AuthResetPasswordIndexRouteImport } from './routes/_auth/reset-password/index'
-import { Route as AuthLoginIndexRouteImport } from './routes/_auth/login/index'
-import { Route as AuthForgotPasswordIndexRouteImport } from './routes/_auth/forgot-password/index'
-import { Route as AppUsersIndexRouteImport } from './routes/_app/users/index'
-import { Route as AppStudentsIndexRouteImport } from './routes/_app/students/index'
-import { Route as AppPublishersIndexRouteImport } from './routes/_app/publishers/index'
-import { Route as AppProfileIndexRouteImport } from './routes/_app/profile/index'
-import { Route as AppLoansIndexRouteImport } from './routes/_app/loans/index'
-import { Route as AppCoursesIndexRouteImport } from './routes/_app/courses/index'
-import { Route as AppBooksIndexRouteImport } from './routes/_app/books/index'
-import { Route as AppAuthorsIndexRouteImport } from './routes/_app/authors/index'
+import { Route as AuthRestablecerContraseChar241aIndexRouteImport } from './routes/_auth/restablecer-contraseña/index'
+import { Route as AuthRecuperarContraseChar241aIndexRouteImport } from './routes/_auth/recuperar-contraseña/index'
+import { Route as AuthIniciarSesionIndexRouteImport } from './routes/_auth/iniciar-sesion/index'
+import { Route as AppUsuariosIndexRouteImport } from './routes/_app/usuarios/index'
+import { Route as AppPrestamosIndexRouteImport } from './routes/_app/prestamos/index'
+import { Route as AppPerfilIndexRouteImport } from './routes/_app/perfil/index'
+import { Route as AppLibrosIndexRouteImport } from './routes/_app/libros/index'
+import { Route as AppEstudiantesIndexRouteImport } from './routes/_app/estudiantes/index'
+import { Route as AppEditorialesIndexRouteImport } from './routes/_app/editoriales/index'
+import { Route as AppCursosIndexRouteImport } from './routes/_app/cursos/index'
+import { Route as AppAutoresIndexRouteImport } from './routes/_app/autores/index'
 
 const AuthRouteRoute = AuthRouteRouteImport.update({
   id: '/_auth',
@@ -37,152 +37,154 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AuthResetPasswordIndexRoute = AuthResetPasswordIndexRouteImport.update({
-  id: '/reset-password/',
-  path: '/reset-password/',
+const AuthRestablecerContraseChar241aIndexRoute =
+  AuthRestablecerContraseChar241aIndexRouteImport.update({
+    id: '/restablecer-contraseña/',
+    path: '/restablecer-contraseña/',
+    getParentRoute: () => AuthRouteRoute,
+  } as any)
+const AuthRecuperarContraseChar241aIndexRoute =
+  AuthRecuperarContraseChar241aIndexRouteImport.update({
+    id: '/recuperar-contraseña/',
+    path: '/recuperar-contraseña/',
+    getParentRoute: () => AuthRouteRoute,
+  } as any)
+const AuthIniciarSesionIndexRoute = AuthIniciarSesionIndexRouteImport.update({
+  id: '/iniciar-sesion/',
+  path: '/iniciar-sesion/',
   getParentRoute: () => AuthRouteRoute,
 } as any)
-const AuthLoginIndexRoute = AuthLoginIndexRouteImport.update({
-  id: '/login/',
-  path: '/login/',
-  getParentRoute: () => AuthRouteRoute,
-} as any)
-const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexRouteImport.update({
-  id: '/forgot-password/',
-  path: '/forgot-password/',
-  getParentRoute: () => AuthRouteRoute,
-} as any)
-const AppUsersIndexRoute = AppUsersIndexRouteImport.update({
-  id: '/users/',
-  path: '/users/',
+const AppUsuariosIndexRoute = AppUsuariosIndexRouteImport.update({
+  id: '/usuarios/',
+  path: '/usuarios/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppStudentsIndexRoute = AppStudentsIndexRouteImport.update({
-  id: '/students/',
-  path: '/students/',
+const AppPrestamosIndexRoute = AppPrestamosIndexRouteImport.update({
+  id: '/prestamos/',
+  path: '/prestamos/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppPublishersIndexRoute = AppPublishersIndexRouteImport.update({
-  id: '/publishers/',
-  path: '/publishers/',
+const AppPerfilIndexRoute = AppPerfilIndexRouteImport.update({
+  id: '/perfil/',
+  path: '/perfil/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppProfileIndexRoute = AppProfileIndexRouteImport.update({
-  id: '/profile/',
-  path: '/profile/',
+const AppLibrosIndexRoute = AppLibrosIndexRouteImport.update({
+  id: '/libros/',
+  path: '/libros/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppLoansIndexRoute = AppLoansIndexRouteImport.update({
-  id: '/loans/',
-  path: '/loans/',
+const AppEstudiantesIndexRoute = AppEstudiantesIndexRouteImport.update({
+  id: '/estudiantes/',
+  path: '/estudiantes/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppCoursesIndexRoute = AppCoursesIndexRouteImport.update({
-  id: '/courses/',
-  path: '/courses/',
+const AppEditorialesIndexRoute = AppEditorialesIndexRouteImport.update({
+  id: '/editoriales/',
+  path: '/editoriales/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppBooksIndexRoute = AppBooksIndexRouteImport.update({
-  id: '/books/',
-  path: '/books/',
+const AppCursosIndexRoute = AppCursosIndexRouteImport.update({
+  id: '/cursos/',
+  path: '/cursos/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppAuthorsIndexRoute = AppAuthorsIndexRouteImport.update({
-  id: '/authors/',
-  path: '/authors/',
+const AppAutoresIndexRoute = AppAutoresIndexRouteImport.update({
+  id: '/autores/',
+  path: '/autores/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
-  '/authors': typeof AppAuthorsIndexRoute
-  '/books': typeof AppBooksIndexRoute
-  '/courses': typeof AppCoursesIndexRoute
-  '/loans': typeof AppLoansIndexRoute
-  '/profile': typeof AppProfileIndexRoute
-  '/publishers': typeof AppPublishersIndexRoute
-  '/students': typeof AppStudentsIndexRoute
-  '/users': typeof AppUsersIndexRoute
-  '/forgot-password': typeof AuthForgotPasswordIndexRoute
-  '/login': typeof AuthLoginIndexRoute
-  '/reset-password': typeof AuthResetPasswordIndexRoute
+  '/autores': typeof AppAutoresIndexRoute
+  '/cursos': typeof AppCursosIndexRoute
+  '/editoriales': typeof AppEditorialesIndexRoute
+  '/estudiantes': typeof AppEstudiantesIndexRoute
+  '/libros': typeof AppLibrosIndexRoute
+  '/perfil': typeof AppPerfilIndexRoute
+  '/prestamos': typeof AppPrestamosIndexRoute
+  '/usuarios': typeof AppUsuariosIndexRoute
+  '/iniciar-sesion': typeof AuthIniciarSesionIndexRoute
+  '/recuperar-contraseña': typeof AuthRecuperarContraseChar241aIndexRoute
+  '/restablecer-contraseña': typeof AuthRestablecerContraseChar241aIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
-  '/authors': typeof AppAuthorsIndexRoute
-  '/books': typeof AppBooksIndexRoute
-  '/courses': typeof AppCoursesIndexRoute
-  '/loans': typeof AppLoansIndexRoute
-  '/profile': typeof AppProfileIndexRoute
-  '/publishers': typeof AppPublishersIndexRoute
-  '/students': typeof AppStudentsIndexRoute
-  '/users': typeof AppUsersIndexRoute
-  '/forgot-password': typeof AuthForgotPasswordIndexRoute
-  '/login': typeof AuthLoginIndexRoute
-  '/reset-password': typeof AuthResetPasswordIndexRoute
+  '/autores': typeof AppAutoresIndexRoute
+  '/cursos': typeof AppCursosIndexRoute
+  '/editoriales': typeof AppEditorialesIndexRoute
+  '/estudiantes': typeof AppEstudiantesIndexRoute
+  '/libros': typeof AppLibrosIndexRoute
+  '/perfil': typeof AppPerfilIndexRoute
+  '/prestamos': typeof AppPrestamosIndexRoute
+  '/usuarios': typeof AppUsuariosIndexRoute
+  '/iniciar-sesion': typeof AuthIniciarSesionIndexRoute
+  '/recuperar-contraseña': typeof AuthRecuperarContraseChar241aIndexRoute
+  '/restablecer-contraseña': typeof AuthRestablecerContraseChar241aIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_auth': typeof AuthRouteRouteWithChildren
   '/_app/': typeof AppIndexRoute
-  '/_app/authors/': typeof AppAuthorsIndexRoute
-  '/_app/books/': typeof AppBooksIndexRoute
-  '/_app/courses/': typeof AppCoursesIndexRoute
-  '/_app/loans/': typeof AppLoansIndexRoute
-  '/_app/profile/': typeof AppProfileIndexRoute
-  '/_app/publishers/': typeof AppPublishersIndexRoute
-  '/_app/students/': typeof AppStudentsIndexRoute
-  '/_app/users/': typeof AppUsersIndexRoute
-  '/_auth/forgot-password/': typeof AuthForgotPasswordIndexRoute
-  '/_auth/login/': typeof AuthLoginIndexRoute
-  '/_auth/reset-password/': typeof AuthResetPasswordIndexRoute
+  '/_app/autores/': typeof AppAutoresIndexRoute
+  '/_app/cursos/': typeof AppCursosIndexRoute
+  '/_app/editoriales/': typeof AppEditorialesIndexRoute
+  '/_app/estudiantes/': typeof AppEstudiantesIndexRoute
+  '/_app/libros/': typeof AppLibrosIndexRoute
+  '/_app/perfil/': typeof AppPerfilIndexRoute
+  '/_app/prestamos/': typeof AppPrestamosIndexRoute
+  '/_app/usuarios/': typeof AppUsuariosIndexRoute
+  '/_auth/iniciar-sesion/': typeof AuthIniciarSesionIndexRoute
+  '/_auth/recuperar-contraseña/': typeof AuthRecuperarContraseChar241aIndexRoute
+  '/_auth/restablecer-contraseña/': typeof AuthRestablecerContraseChar241aIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/authors'
-    | '/books'
-    | '/courses'
-    | '/loans'
-    | '/profile'
-    | '/publishers'
-    | '/students'
-    | '/users'
-    | '/forgot-password'
-    | '/login'
-    | '/reset-password'
+    | '/autores'
+    | '/cursos'
+    | '/editoriales'
+    | '/estudiantes'
+    | '/libros'
+    | '/perfil'
+    | '/prestamos'
+    | '/usuarios'
+    | '/iniciar-sesion'
+    | '/recuperar-contraseña'
+    | '/restablecer-contraseña'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/authors'
-    | '/books'
-    | '/courses'
-    | '/loans'
-    | '/profile'
-    | '/publishers'
-    | '/students'
-    | '/users'
-    | '/forgot-password'
-    | '/login'
-    | '/reset-password'
+    | '/autores'
+    | '/cursos'
+    | '/editoriales'
+    | '/estudiantes'
+    | '/libros'
+    | '/perfil'
+    | '/prestamos'
+    | '/usuarios'
+    | '/iniciar-sesion'
+    | '/recuperar-contraseña'
+    | '/restablecer-contraseña'
   id:
     | '__root__'
     | '/_app'
     | '/_auth'
     | '/_app/'
-    | '/_app/authors/'
-    | '/_app/books/'
-    | '/_app/courses/'
-    | '/_app/loans/'
-    | '/_app/profile/'
-    | '/_app/publishers/'
-    | '/_app/students/'
-    | '/_app/users/'
-    | '/_auth/forgot-password/'
-    | '/_auth/login/'
-    | '/_auth/reset-password/'
+    | '/_app/autores/'
+    | '/_app/cursos/'
+    | '/_app/editoriales/'
+    | '/_app/estudiantes/'
+    | '/_app/libros/'
+    | '/_app/perfil/'
+    | '/_app/prestamos/'
+    | '/_app/usuarios/'
+    | '/_auth/iniciar-sesion/'
+    | '/_auth/recuperar-contraseña/'
+    | '/_auth/restablecer-contraseña/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -213,81 +215,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_auth/reset-password/': {
-      id: '/_auth/reset-password/'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof AuthResetPasswordIndexRouteImport
+    '/_auth/restablecer-contraseña/': {
+      id: '/_auth/restablecer-contraseña/'
+      path: '/restablecer-contraseña'
+      fullPath: '/restablecer-contraseña'
+      preLoaderRoute: typeof AuthRestablecerContraseChar241aIndexRouteImport
       parentRoute: typeof AuthRouteRoute
     }
-    '/_auth/login/': {
-      id: '/_auth/login/'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof AuthLoginIndexRouteImport
+    '/_auth/recuperar-contraseña/': {
+      id: '/_auth/recuperar-contraseña/'
+      path: '/recuperar-contraseña'
+      fullPath: '/recuperar-contraseña'
+      preLoaderRoute: typeof AuthRecuperarContraseChar241aIndexRouteImport
       parentRoute: typeof AuthRouteRoute
     }
-    '/_auth/forgot-password/': {
-      id: '/_auth/forgot-password/'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof AuthForgotPasswordIndexRouteImport
+    '/_auth/iniciar-sesion/': {
+      id: '/_auth/iniciar-sesion/'
+      path: '/iniciar-sesion'
+      fullPath: '/iniciar-sesion'
+      preLoaderRoute: typeof AuthIniciarSesionIndexRouteImport
       parentRoute: typeof AuthRouteRoute
     }
-    '/_app/users/': {
-      id: '/_app/users/'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof AppUsersIndexRouteImport
+    '/_app/usuarios/': {
+      id: '/_app/usuarios/'
+      path: '/usuarios'
+      fullPath: '/usuarios'
+      preLoaderRoute: typeof AppUsuariosIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/students/': {
-      id: '/_app/students/'
-      path: '/students'
-      fullPath: '/students'
-      preLoaderRoute: typeof AppStudentsIndexRouteImport
+    '/_app/prestamos/': {
+      id: '/_app/prestamos/'
+      path: '/prestamos'
+      fullPath: '/prestamos'
+      preLoaderRoute: typeof AppPrestamosIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/publishers/': {
-      id: '/_app/publishers/'
-      path: '/publishers'
-      fullPath: '/publishers'
-      preLoaderRoute: typeof AppPublishersIndexRouteImport
+    '/_app/perfil/': {
+      id: '/_app/perfil/'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AppPerfilIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/profile/': {
-      id: '/_app/profile/'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof AppProfileIndexRouteImport
+    '/_app/libros/': {
+      id: '/_app/libros/'
+      path: '/libros'
+      fullPath: '/libros'
+      preLoaderRoute: typeof AppLibrosIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/loans/': {
-      id: '/_app/loans/'
-      path: '/loans'
-      fullPath: '/loans'
-      preLoaderRoute: typeof AppLoansIndexRouteImport
+    '/_app/estudiantes/': {
+      id: '/_app/estudiantes/'
+      path: '/estudiantes'
+      fullPath: '/estudiantes'
+      preLoaderRoute: typeof AppEstudiantesIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/courses/': {
-      id: '/_app/courses/'
-      path: '/courses'
-      fullPath: '/courses'
-      preLoaderRoute: typeof AppCoursesIndexRouteImport
+    '/_app/editoriales/': {
+      id: '/_app/editoriales/'
+      path: '/editoriales'
+      fullPath: '/editoriales'
+      preLoaderRoute: typeof AppEditorialesIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/books/': {
-      id: '/_app/books/'
-      path: '/books'
-      fullPath: '/books'
-      preLoaderRoute: typeof AppBooksIndexRouteImport
+    '/_app/cursos/': {
+      id: '/_app/cursos/'
+      path: '/cursos'
+      fullPath: '/cursos'
+      preLoaderRoute: typeof AppCursosIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/authors/': {
-      id: '/_app/authors/'
-      path: '/authors'
-      fullPath: '/authors'
-      preLoaderRoute: typeof AppAuthorsIndexRouteImport
+    '/_app/autores/': {
+      id: '/_app/autores/'
+      path: '/autores'
+      fullPath: '/autores'
+      preLoaderRoute: typeof AppAutoresIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
   }
@@ -295,26 +297,26 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
-  AppAuthorsIndexRoute: typeof AppAuthorsIndexRoute
-  AppBooksIndexRoute: typeof AppBooksIndexRoute
-  AppCoursesIndexRoute: typeof AppCoursesIndexRoute
-  AppLoansIndexRoute: typeof AppLoansIndexRoute
-  AppProfileIndexRoute: typeof AppProfileIndexRoute
-  AppPublishersIndexRoute: typeof AppPublishersIndexRoute
-  AppStudentsIndexRoute: typeof AppStudentsIndexRoute
-  AppUsersIndexRoute: typeof AppUsersIndexRoute
+  AppAutoresIndexRoute: typeof AppAutoresIndexRoute
+  AppCursosIndexRoute: typeof AppCursosIndexRoute
+  AppEditorialesIndexRoute: typeof AppEditorialesIndexRoute
+  AppEstudiantesIndexRoute: typeof AppEstudiantesIndexRoute
+  AppLibrosIndexRoute: typeof AppLibrosIndexRoute
+  AppPerfilIndexRoute: typeof AppPerfilIndexRoute
+  AppPrestamosIndexRoute: typeof AppPrestamosIndexRoute
+  AppUsuariosIndexRoute: typeof AppUsuariosIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
-  AppAuthorsIndexRoute: AppAuthorsIndexRoute,
-  AppBooksIndexRoute: AppBooksIndexRoute,
-  AppCoursesIndexRoute: AppCoursesIndexRoute,
-  AppLoansIndexRoute: AppLoansIndexRoute,
-  AppProfileIndexRoute: AppProfileIndexRoute,
-  AppPublishersIndexRoute: AppPublishersIndexRoute,
-  AppStudentsIndexRoute: AppStudentsIndexRoute,
-  AppUsersIndexRoute: AppUsersIndexRoute,
+  AppAutoresIndexRoute: AppAutoresIndexRoute,
+  AppCursosIndexRoute: AppCursosIndexRoute,
+  AppEditorialesIndexRoute: AppEditorialesIndexRoute,
+  AppEstudiantesIndexRoute: AppEstudiantesIndexRoute,
+  AppLibrosIndexRoute: AppLibrosIndexRoute,
+  AppPerfilIndexRoute: AppPerfilIndexRoute,
+  AppPrestamosIndexRoute: AppPrestamosIndexRoute,
+  AppUsuariosIndexRoute: AppUsuariosIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
@@ -322,15 +324,17 @@ const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
 )
 
 interface AuthRouteRouteChildren {
-  AuthForgotPasswordIndexRoute: typeof AuthForgotPasswordIndexRoute
-  AuthLoginIndexRoute: typeof AuthLoginIndexRoute
-  AuthResetPasswordIndexRoute: typeof AuthResetPasswordIndexRoute
+  AuthIniciarSesionIndexRoute: typeof AuthIniciarSesionIndexRoute
+  AuthRecuperarContraseChar241aIndexRoute: typeof AuthRecuperarContraseChar241aIndexRoute
+  AuthRestablecerContraseChar241aIndexRoute: typeof AuthRestablecerContraseChar241aIndexRoute
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
-  AuthForgotPasswordIndexRoute: AuthForgotPasswordIndexRoute,
-  AuthLoginIndexRoute: AuthLoginIndexRoute,
-  AuthResetPasswordIndexRoute: AuthResetPasswordIndexRoute,
+  AuthIniciarSesionIndexRoute: AuthIniciarSesionIndexRoute,
+  AuthRecuperarContraseChar241aIndexRoute:
+    AuthRecuperarContraseChar241aIndexRoute,
+  AuthRestablecerContraseChar241aIndexRoute:
+    AuthRestablecerContraseChar241aIndexRoute,
 }
 
 const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(

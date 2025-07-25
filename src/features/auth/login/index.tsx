@@ -77,7 +77,7 @@ const LoginPage = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'
                     <div className="flex items-center justify-between">
                       <FormLabel>Contraseña</FormLabel>
                       <Link
-                        to="/forgot-password"
+                        to="/recuperar-contraseña"
                         className="text-sm underline-offset-4 hover:underline"
                       >
                         ¿Olvidaste tu contraseña?

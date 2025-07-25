@@ -12,8 +12,6 @@ import {
 } from 'lucide-react'
 
 import Logo from '@/assets/icons/logo.svg?react'
-import { NavMain } from '@/features/app/components/sidebar/nav-main'
-import { NavUser } from '@/features/app/components/sidebar/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -24,6 +22,8 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar'
+import { NavMain } from '@/features/app/components/sidebar/nav-main'
+import { NavUser } from '@/features/app/components/sidebar/nav-user'
 
 const data = {
   user: {
@@ -39,37 +39,37 @@ const data = {
     },
     {
       title: 'Préstamos',
-      to: '/loans',
+      to: '/prestamos',
       icon: CircleFadingPlus,
     },
     {
       title: 'Libros',
-      to: '/books',
+      to: '/libros',
       icon: BookCopy,
     },
     {
       title: 'Autores',
-      to: '/authors',
+      to: '/autores',
       icon: SquareUser,
     },
     {
       title: 'Editoriales',
-      to: '/publishers',
+      to: '/editoriales',
       icon: Building2,
     },
     {
       title: 'Cursos',
-      to: '/courses',
+      to: '/cursos',
       icon: Notebook,
     },
     {
       title: 'Estudiantes',
-      to: '/students',
+      to: '/estudiantes',
       icon: GraduationCap,
     },
     {
       title: 'Usuarios',
-      to: '/users',
+      to: '/usuarios',
       icon: Users,
     },
   ],

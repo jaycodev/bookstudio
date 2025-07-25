@@ -74,7 +74,7 @@ const ForgotPasswordPage = ({ className, ...props }: React.ComponentPropsWithout
               />
               <Button type="submit">Enviar enlace</Button>
               <Button variant="outline" asChild>
-                <Link to="/login">Volver al inicio de sesión</Link>
+                <Link to="/iniciar-sesion">Volver al inicio de sesión</Link>
               </Button>
             </div>
           </div>

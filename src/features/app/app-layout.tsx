@@ -8,14 +8,14 @@ import { AppSidebar } from '@/features/app/components/sidebar/app-sidebar'
 
 const pageMap: Record<string, string> = {
   '/': 'Dashboard',
-  '/loans': 'Préstamos',
-  '/books': 'Libros',
-  '/authors': 'Autores',
-  '/publishers': 'Editoriales',
-  '/courses': 'Cursos',
-  '/students': 'Estudiantes',
-  '/users': 'Usuarios',
-  '/profile': 'Perfil',
+  '/prestamos': 'Préstamos',
+  '/libros': 'Libros',
+  '/autores': 'Autores',
+  '/editoriales': 'Editoriales',
+  '/cursos': 'Cursos',
+  '/estudiantes': 'Estudiantes',
+  '/usuarios': 'Usuarios',
+  '/perfil': 'Perfil',
 }
 
 interface Props {

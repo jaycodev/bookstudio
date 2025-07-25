@@ -1,7 +1,7 @@
 import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
 
+import { columns } from './columns.tsx'
 import rawData from './loans.json'
-import { columns } from './loans-columns'
 import { Loan } from './schema.ts'
 
 const data: Loan[] = rawData.map((loan) => ({

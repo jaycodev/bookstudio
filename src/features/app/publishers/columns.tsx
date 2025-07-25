@@ -1,21 +1,21 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { CheckCircle2, XCircle } from 'lucide-react'
 
-import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
-import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
+import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
+import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 import { getColumnLabel } from '@/lib/column-labels'
 import { cn } from '@/lib/utils'
 import { getInitials } from '@/lib/utils'
 
-import { literaryGenres, nationalities, status } from './options-data.ts'
-import { Author } from './schema.ts'
+import { genres, nationalities, status } from './options-data.ts'
+import { Publisher } from './schema.ts'
 
-const resource = 'authors'
+const resource = 'publishers'
 
-export const columns: ColumnDef<Author>[] = [
+export const columns: ColumnDef<Publisher>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -40,9 +40,9 @@ export const columns: ColumnDef<Author>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'AuthorID',
+    accessorKey: 'PublisherID',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'AuthorID')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'PublisherID')} />
     ),
   },
   {
@@ -73,9 +73,7 @@ export const columns: ColumnDef<Author>[] = [
         </Badge>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
     accessorKey: 'LiteraryGenreName',
@@ -88,7 +86,7 @@ export const columns: ColumnDef<Author>[] = [
     meta: {
       filter: {
         title: getColumnLabel(resource, 'LiteraryGenreName'),
-        options: literaryGenres,
+        options: genres,
       },
     },
     cell: ({ row }) => {
@@ -99,9 +97,7 @@ export const columns: ColumnDef<Author>[] = [
         </Badge>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
     accessorKey: 'Status',
@@ -115,7 +111,7 @@ export const columns: ColumnDef<Author>[] = [
       },
     },
     cell: ({ row }) => {
-      const status = row.getValue('Status') as Author['Status']
+      const status = row.getValue('Status') as Publisher['Status']
       const Icon = status === 'activo' ? CheckCircle2 : XCircle
 
       return (
@@ -130,9 +126,7 @@ export const columns: ColumnDef<Author>[] = [
         </Badge>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
     accessorKey: 'Photo',

@@ -83,9 +83,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">
-                <span className="size-8">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-2xl">
                   <Logo />
-                </span>
+                </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold">BookStudio</span>
                   <span>Biblioteca</span>

@@ -4,19 +4,8 @@ import { Button } from '@/components/ui/button'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { Separator } from '@/components/ui/separator'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { pageMap } from '@/lib/constants/page-map'
 import { AppSidebar } from '@/features/app/components/sidebar/app-sidebar'
-
-const pageMap: Record<string, string> = {
-  '/': 'Dashboard',
-  '/prestamos': 'Préstamos',
-  '/libros': 'Libros',
-  '/autores': 'Autores',
-  '/editoriales': 'Editoriales',
-  '/cursos': 'Cursos',
-  '/estudiantes': 'Estudiantes',
-  '/usuarios': 'Usuarios',
-  '/perfil': 'Perfil',
-}
 
 interface Props {
   children?: React.ReactNode
@@ -24,7 +13,7 @@ interface Props {
 
 export default function AppLayout({ children }: Props) {
   const location = useLocation()
-  const page = pageMap[location.pathname] || 'Desconocido'
+  const page = pageMap[location.pathname]?.title || 'Desconocido'
 
   return (
     <SidebarProvider>
@@ -35,7 +24,7 @@ export default function AppLayout({ children }: Props) {
             <SidebarTrigger />
             <div className="flex h-5 items-center space-x-4 text-sm">
               <Separator orientation="vertical" />
-              <div>{page}</div>
+              <span>{page}</span>
             </div>
             <div className="ml-auto flex items-center gap-2">
               <Button asChild variant="ghost" className="size-8 rounded-full">

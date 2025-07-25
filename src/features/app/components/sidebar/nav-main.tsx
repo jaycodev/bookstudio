@@ -1,5 +1,4 @@
 import { Link, useLocation } from '@tanstack/react-router'
-import { type LucideIcon } from 'lucide-react'
 
 import {
   SidebarGroup,
@@ -15,8 +14,7 @@ export function NavMain({
   items: {
     title: string
     to: string
-    icon?: LucideIcon
-    isActive?: boolean
+    icon?: React.ElementType
   }[]
 }) {
   const location = useLocation()

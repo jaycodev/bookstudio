@@ -1,15 +1,5 @@
 import * as React from 'react'
 import { Link } from '@tanstack/react-router'
-import {
-  BookCopy,
-  Building2,
-  CircleFadingPlus,
-  GraduationCap,
-  LayoutDashboard,
-  Notebook,
-  SquareUser,
-  Users,
-} from 'lucide-react'
 
 import Logo from '@/assets/icons/logo.svg?react'
 import {
@@ -25,55 +15,7 @@ import {
 import { NavMain } from '@/features/app/components/sidebar/nav-main'
 import { NavUser } from '@/features/app/components/sidebar/nav-user'
 
-const data = {
-  user: {
-    name: 'Jason',
-    email: 'jasonvilac@gmail.com',
-    avatar: '',
-  },
-  navMain: [
-    {
-      title: 'Dashboard',
-      to: '/',
-      icon: LayoutDashboard,
-    },
-    {
-      title: 'Préstamos',
-      to: '/prestamos',
-      icon: CircleFadingPlus,
-    },
-    {
-      title: 'Libros',
-      to: '/libros',
-      icon: BookCopy,
-    },
-    {
-      title: 'Autores',
-      to: '/autores',
-      icon: SquareUser,
-    },
-    {
-      title: 'Editoriales',
-      to: '/editoriales',
-      icon: Building2,
-    },
-    {
-      title: 'Cursos',
-      to: '/cursos',
-      icon: Notebook,
-    },
-    {
-      title: 'Estudiantes',
-      to: '/estudiantes',
-      icon: GraduationCap,
-    },
-    {
-      title: 'Usuarios',
-      to: '/usuarios',
-      icon: Users,
-    },
-  ],
-}
+import { sidebarData } from './sidebar.data'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -96,10 +38,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={sidebarData.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={sidebarData.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

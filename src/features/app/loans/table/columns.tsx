@@ -8,8 +8,8 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 import { getColumnLabel } from '@/lib/column-labels'
 import { cn } from '@/lib/utils'
 
-import { status, studentDnis } from './options-data.ts'
-import { Loan } from './schema.ts'
+import { status, studentDnis } from '../data/options-data.ts'
+import { Loan } from '../schema/loan.schema.ts'
 
 const resource = 'loans'
 

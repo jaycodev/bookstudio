@@ -9,8 +9,8 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 import { getColumnLabel } from '@/lib/column-labels'
 import { getInitials } from '@/lib/utils'
 
-import { roles } from './options-data.ts'
-import { User } from './schema.ts'
+import { roles } from '../data/options-data.ts'
+import { User } from '../schema/user.schema.ts'
 
 const resource = 'users'
 

@@ -8,8 +8,8 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 import { getColumnLabel } from '@/lib/column-labels'
 import { cn } from '@/lib/utils'
 
-import { levels, status } from './options-data.ts'
-import { Course } from './schema.ts'
+import { levels, status } from '../data/options-data.ts'
+import { Course } from '../schema/course.schema.ts'
 
 const resource = 'courses'
 

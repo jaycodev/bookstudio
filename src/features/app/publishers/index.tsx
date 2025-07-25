@@ -1,8 +1,8 @@
 import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
 
-import { columns } from './columns.tsx'
-import rawData from './publishers.json'
-import { Publisher } from './schema.ts'
+import rawData from './data/publishers.json'
+import { Publisher } from './schema/publisher.schema.ts'
+import { columns } from './table/columns.tsx'
 
 const data: Publisher[] = rawData.map((publisher) => ({
   ...publisher,

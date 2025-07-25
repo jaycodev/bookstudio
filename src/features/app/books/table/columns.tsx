@@ -1,21 +1,19 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { CheckCircle2, XCircle } from 'lucide-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 import { getColumnLabel } from '@/lib/column-labels'
 import { cn } from '@/lib/utils'
-import { getInitials } from '@/lib/utils'
 
-import { literaryGenres, nationalities, status } from './options-data.ts'
-import { Author } from './schema.ts'
+import { authors, publishers, status } from '../data/options-data.ts'
+import { Book } from '../schema/book.schema.ts'
 
-const resource = 'authors'
+const resource = 'books'
 
-export const columns: ColumnDef<Author>[] = [
+export const columns: ColumnDef<Book>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -40,64 +38,65 @@ export const columns: ColumnDef<Author>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'AuthorID',
+    accessorKey: 'BookID',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'AuthorID')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'BookID')} />
     ),
   },
   {
-    accessorKey: 'Name',
+    accessorKey: 'Title',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Name')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Title')} />
     ),
     meta: {
       searchable: true,
     },
   },
   {
-    accessorKey: 'NationalityName',
+    accessorKey: 'AvailableCopies',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'NationalityName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'AvailableCopies')} />
+    ),
+    cell: ({ row }) => {
+      const value = row.getValue('AvailableCopies') as number
+      return <Badge variant="outline">{value}</Badge>
+    },
+  },
+  {
+    accessorKey: 'LoanedCopies',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'LoanedCopies')} />
+    ),
+    cell: ({ row }) => {
+      const value = row.getValue('LoanedCopies') as number
+      return <Badge variant="outline">{value}</Badge>
+    },
+  },
+  {
+    accessorKey: 'AuthorName',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'AuthorName')} />
     ),
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'NationalityName'),
-        options: nationalities,
+        title: getColumnLabel(resource, 'AuthorName'),
+        options: authors,
       },
-    },
-    cell: ({ row }) => {
-      const nationality = row.getValue('NationalityName') as string
-      return (
-        <Badge variant="outline" className="flex items-center gap-1">
-          {nationality}
-        </Badge>
-      )
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
   {
-    accessorKey: 'LiteraryGenreName',
+    accessorKey: 'PublisherName',
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={getColumnLabel(resource, 'LiteraryGenreName')}
-      />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'PublisherName')} />
     ),
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'LiteraryGenreName'),
-        options: literaryGenres,
+        title: getColumnLabel(resource, 'PublisherName'),
+        options: publishers,
       },
-    },
-    cell: ({ row }) => {
-      const genre = row.getValue('LiteraryGenreName') as string
-      return (
-        <Badge variant="outline" className="flex items-center gap-1">
-          {genre}
-        </Badge>
-      )
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
@@ -115,7 +114,7 @@ export const columns: ColumnDef<Author>[] = [
       },
     },
     cell: ({ row }) => {
-      const status = row.getValue('Status') as Author['Status']
+      const status = row.getValue('Status') as Book['Status']
       const Icon = status === 'activo' ? CheckCircle2 : XCircle
 
       return (
@@ -133,27 +132,6 @@ export const columns: ColumnDef<Author>[] = [
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-  },
-  {
-    accessorKey: 'Photo',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Photo')} />
-    ),
-    cell: ({ row }) => {
-      const photo = row.getValue('Photo') as string | undefined
-      const name = row.getValue('Name') as string
-
-      return (
-        <Avatar className="h-8 w-8">
-          {photo ? (
-            <AvatarImage src={photo} alt={name} className="object-cover" />
-          ) : (
-            <AvatarFallback className="text-xs">{getInitials(name)}</AvatarFallback>
-          )}
-        </Avatar>
-      )
-    },
-    enableSorting: false,
   },
   {
     id: 'actions',

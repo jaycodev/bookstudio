@@ -8,12 +8,12 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 import { getColumnLabel } from '@/lib/column-labels'
 import { cn } from '@/lib/utils'
 
-import { authors, publishers, status } from './options-data.ts'
-import { Book } from './schema.ts'
+import { status } from '../data/options-data.ts'
+import { Student } from '../schema/student.schema.ts'
 
-const resource = 'books'
+const resource = 'students'
 
-export const columns: ColumnDef<Book>[] = [
+export const columns: ColumnDef<Student>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -38,69 +38,43 @@ export const columns: ColumnDef<Book>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'BookID',
+    accessorKey: 'StudentID',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'BookID')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'StudentID')} />
     ),
   },
   {
-    accessorKey: 'Title',
+    accessorKey: 'DNI',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Title')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'DNI')} />
     ),
     meta: {
       searchable: true,
     },
   },
   {
-    accessorKey: 'AvailableCopies',
+    accessorKey: 'FirstName',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'AvailableCopies')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'FirstName')} />
     ),
-    cell: ({ row }) => {
-      const value = row.getValue('AvailableCopies') as number
-      return <Badge variant="outline">{value}</Badge>
-    },
   },
   {
-    accessorKey: 'LoanedCopies',
+    accessorKey: 'LastName',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'LoanedCopies')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'LastName')} />
     ),
-    cell: ({ row }) => {
-      const value = row.getValue('LoanedCopies') as number
-      return <Badge variant="outline">{value}</Badge>
-    },
   },
   {
-    accessorKey: 'AuthorName',
+    accessorKey: 'Phone',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'AuthorName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Phone')} />
     ),
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'AuthorName'),
-        options: authors,
-      },
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
   },
   {
-    accessorKey: 'PublisherName',
+    accessorKey: 'Email',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'PublisherName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Email')} />
     ),
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'PublisherName'),
-        options: publishers,
-      },
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
   },
   {
     accessorKey: 'Status',
@@ -114,7 +88,7 @@ export const columns: ColumnDef<Book>[] = [
       },
     },
     cell: ({ row }) => {
-      const status = row.getValue('Status') as Book['Status']
+      const status = row.getValue('Status') as Student['Status']
       const Icon = status === 'activo' ? CheckCircle2 : XCircle
 
       return (
@@ -129,9 +103,7 @@ export const columns: ColumnDef<Book>[] = [
         </Badge>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    filterFn: (row, id, value) => value.includes(row.getValue(id)),
   },
   {
     id: 'actions',

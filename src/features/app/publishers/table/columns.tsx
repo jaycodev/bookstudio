@@ -10,8 +10,8 @@ import { getColumnLabel } from '@/lib/column-labels'
 import { cn } from '@/lib/utils'
 import { getInitials } from '@/lib/utils'
 
-import { genres, nationalities, status } from './options-data.ts'
-import { Publisher } from './schema.ts'
+import { genres, nationalities, status } from '../data/options-data.ts'
+import { Publisher } from '../schema/publisher.schema.ts'
 
 const resource = 'publishers'
 

@@ -1,6 +1,6 @@
 export const columnLabelsByResource: Record<string, Record<string, string>> = {
   authors: {
-    AuthorID: 'Id',
+    AuthorID: 'ID',
     Name: 'Nombre',
     NationalityName: 'Nacionalidad',
     LiteraryGenreName: 'Género literario',
@@ -8,32 +8,32 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     Photo: 'Foto',
   },
   books: {
-    BookID: 'Id',
+    BookID: 'ID',
     Title: 'Título',
-    AvailableCopies: 'Disponibles',
-    LoanedCopies: 'Prestados',
+    AvailableCopies: 'Ej. disp.',
+    LoanedCopies: 'Ej. pres.',
     AuthorName: 'Autor',
     PublisherName: 'Editorial',
     Status: 'Estado',
   },
   courses: {
-    CourseID: 'Id',
+    CourseID: 'ID',
     Name: 'Nombre',
     Level: 'Nivel',
     Description: 'Descripción',
     Status: 'Estado',
   },
   loans: {
-    LoanID: 'Id',
+    LoanID: 'ID',
     BookTitle: 'Libro',
-    StudentDNI: 'Estudiante - DNI',
+    StudentDNI: 'Estudiante',
     LoanDate: 'Préstamo',
     ReturnDate: 'Devolución',
     Quantity: 'Cantidad',
     Status: 'Estado',
   },
   publishers: {
-    PublisherID: 'Id',
+    PublisherID: 'ID',
     Name: 'Nombre',
     NationalityName: 'Nacionalidad',
     LiteraryGenreName: 'Género literario',
@@ -41,7 +41,7 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     Photo: 'Foto',
   },
   students: {
-    StudentID: 'Id',
+    StudentID: 'ID',
     DNI: 'DNI',
     FirstName: 'Nombres',
     LastName: 'Apellidos',
@@ -50,13 +50,13 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     Status: 'Estado',
   },
   users: {
-    UserID: 'Id',
+    UserID: 'ID',
     Username: 'Nombre de usuario',
     Email: 'Correo electrónico',
     FirstName: 'Nombres',
     LastName: 'Apellidos',
     Role: 'Rol',
-    ProfilePhoto: 'Foto de perfil',
+    ProfilePhoto: 'Foto',
   },
 }
 

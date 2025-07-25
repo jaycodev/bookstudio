@@ -1,5 +1,4 @@
-import { ReactNode } from 'react'
-import { useLocation } from '@tanstack/react-router'
+import { Outlet, useLocation } from '@tanstack/react-router'
 
 import { ModeToggle } from '@/components/mode-toggle'
 import { AppSidebar } from '@/components/sidebar/app-sidebar'
@@ -19,11 +18,11 @@ const pageMap: Record<string, string> = {
   '/profile': 'Perfil',
 }
 
-type AppLayoutProps = {
-  children: ReactNode
+interface Props {
+  children?: React.ReactNode
 }
 
-const AppLayout = ({ children }: AppLayoutProps) => {
+export default function AppLayout({ children }: Props) {
   const location = useLocation()
   const page = pageMap[location.pathname] || 'Desconocido'
 
@@ -64,11 +63,11 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </div>
         </header>
         <div className="flex flex-1 p-5">
-          <div className="@container/main flex flex-1 flex-col">{children}</div>
+          <div className="@container/main flex flex-1 flex-col">
+            {children ? children : <Outlet />}
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
   )
 }
-
-export default AppLayout

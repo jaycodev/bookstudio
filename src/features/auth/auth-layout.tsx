@@ -1,15 +1,13 @@
-import { ReactNode } from 'react'
+import { Outlet } from '@tanstack/react-router'
 
-type AuthLayoutProps = {
-  children: ReactNode
+interface Props {
+  children?: React.ReactNode
 }
 
-const AuthLayout = ({ children }: AuthLayoutProps) => {
+export default function AuthLayout({ children }: Props) {
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">{children}</div>
+      <div className="w-full max-w-sm">{children ? children : <Outlet />}</div>
     </div>
   )
 }
-
-export default AuthLayout

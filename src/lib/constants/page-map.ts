@@ -38,4 +38,6 @@ export const pageMap: Record<string, PageMeta> = {
   '/iniciar-sesion': { title: 'Iniciar sesión', icon: LogIn },
   '/recuperar-contraseña': { title: 'Recuperar contraseña', icon: KeyRound },
   '/restablecer-contraseña': { title: 'Restablecer contraseña', icon: KeyRound },
-}
+} as const
+
+export type ValidUrl = keyof typeof pageMap

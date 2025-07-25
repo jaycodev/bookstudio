@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar'
-import { NavMain } from '@/features/app/components/sidebar/nav-main'
+import { NavGroup } from '@/features/app/components/sidebar/nav-group'
 import { NavUser } from '@/features/app/components/sidebar/nav-user'
 
 import { sidebarData } from './sidebar.data'
@@ -38,7 +38,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={sidebarData.navMain} />
+        {sidebarData.navGroups.map((props) => (
+          <NavGroup key={props.title} {...props} />
+        ))}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={sidebarData.user} />

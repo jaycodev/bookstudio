@@ -7,7 +7,8 @@ export default function DocumentTitle() {
   const location = useLocation()
 
   useEffect(() => {
-    const title = pageMap[location.pathname]?.title ?? ''
+    const page = pageMap[location.pathname]
+    const title = page?.documentTitle || page?.title || ''
     document.title = title ? `${title} - BookStudio` : 'BookStudio'
   }, [location.pathname])
 

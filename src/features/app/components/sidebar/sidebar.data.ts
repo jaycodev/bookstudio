@@ -1,8 +1,35 @@
-import { pageMap } from '@/config/page-map'
+import { Handshake } from 'lucide-react'
 
-import { NavLink } from './types'
+import { pageMap, type ValidUrl } from '@/config/page-map'
 
-type ValidPagePath = keyof typeof pageMap
+import { sidebarMap } from './sidebar-map'
+
+type ValidPagePath = ValidUrl
+
+type GroupKey = 'principal' | 'biblioteca' | 'usuarios' | 'otros'
+
+const getSidebarItemsByGroup = (group: GroupKey) =>
+  (Object.keys(pageMap) as ValidPagePath[])
+    .filter(
+      (url) =>
+        pageMap[url].showInSidebar &&
+        sidebarMap[url]?.group === group &&
+        !sidebarMap[url]?.parentItem
+    )
+    .map((url) => ({
+      title: pageMap[url].title,
+      url,
+      icon: sidebarMap[url]!.icon,
+    }))
+
+const getSubItems = (parentItem: string) =>
+  (Object.keys(pageMap) as ValidPagePath[])
+    .filter((url) => pageMap[url].showInSidebar && sidebarMap[url]?.parentItem === parentItem)
+    .map((url) => ({
+      title: pageMap[url].title,
+      url,
+      icon: sidebarMap[url]!.icon,
+    }))
 
 export const sidebarData = {
   user: {
@@ -12,14 +39,27 @@ export const sidebarData = {
   },
   navGroups: [
     {
-      title: 'Plataforma',
-      items: (Object.keys(pageMap) as ValidPagePath[])
-        .filter((url) => pageMap[url].showInSidebar)
-        .map((url) => ({
-          title: pageMap[url].title,
-          url,
-          icon: pageMap[url].icon,
-        })) as NavLink[],
+      title: 'Principal',
+      items: [
+        ...getSidebarItemsByGroup('principal'),
+        {
+          title: 'Préstamos',
+          icon: Handshake,
+          items: getSubItems('prestamos'),
+        },
+      ],
+    },
+    {
+      title: 'Biblioteca',
+      items: getSidebarItemsByGroup('biblioteca'),
+    },
+    {
+      title: 'Usuarios',
+      items: getSidebarItemsByGroup('usuarios'),
+    },
+    {
+      title: 'Otros',
+      items: getSidebarItemsByGroup('otros'),
     },
   ],
 }

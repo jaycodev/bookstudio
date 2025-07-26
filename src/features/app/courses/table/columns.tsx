@@ -3,9 +3,9 @@ import { CheckCircle2, XCircle } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
+import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
-import { getColumnLabel } from '@/config/column-labels.ts'
 import { cn } from '@/lib/utils'
 
 import { levels, status } from '../data/options-data.ts'

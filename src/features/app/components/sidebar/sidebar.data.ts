@@ -1,4 +1,4 @@
-import { pageMap } from '@/lib/constants/page-map'
+import { pageMap } from '@/config/page-map'
 
 import { NavLink } from './types'
 

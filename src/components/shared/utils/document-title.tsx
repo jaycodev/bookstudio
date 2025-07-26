@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from '@tanstack/react-router'
 
-import { pageMap } from '@/lib/constants/page-map'
+import { pageMap } from '@/config/page-map'
 
 export default function DocumentTitle() {
   const location = useLocation()

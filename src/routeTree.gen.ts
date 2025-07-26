@@ -319,9 +319,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppUsuariosIndexRoute: AppUsuariosIndexRoute,
 }
 
-const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
-  AppRouteRouteChildren,
-)
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(AppRouteRouteChildren)
 
 interface AuthRouteRouteChildren {
   AuthIniciarSesionIndexRoute: typeof AuthIniciarSesionIndexRoute
@@ -331,15 +329,11 @@ interface AuthRouteRouteChildren {
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthIniciarSesionIndexRoute: AuthIniciarSesionIndexRoute,
-  AuthRecuperarContraseChar241aIndexRoute:
-    AuthRecuperarContraseChar241aIndexRoute,
-  AuthRestablecerContraseChar241aIndexRoute:
-    AuthRestablecerContraseChar241aIndexRoute,
+  AuthRecuperarContraseChar241aIndexRoute: AuthRecuperarContraseChar241aIndexRoute,
+  AuthRestablecerContraseChar241aIndexRoute: AuthRestablecerContraseChar241aIndexRoute,
 }
 
-const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
-  AuthRouteRouteChildren,
-)
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(AuthRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,

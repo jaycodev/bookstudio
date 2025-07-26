@@ -36,11 +36,22 @@ export function SearchProvider({ children }: Props) {
 }
 
 export const useSearch = () => {
-  const searchContext = React.useContext(SearchContext)
+  const context = React.useContext(SearchContext)
 
-  if (!searchContext) {
-    throw new Error('useSearch has to be used within <SearchContext.Provider>')
+  if (!context) {
+    if (import.meta.env.DEV) {
+      console.warn('[useSearch] called outside of <SearchProvider> during hot reload')
+
+      return {
+        open: false,
+        setOpen: () => {
+          console.warn('[useSearch] setOpen was called without context (ignored)')
+        },
+      }
+    }
+
+    throw new Error('useSearch must be used within a <SearchProvider>')
   }
 
-  return searchContext
+  return context
 }

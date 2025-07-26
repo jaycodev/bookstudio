@@ -1,9 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_app/centro-de-ayuda/')({
-  component: RouteComponent,
-})
+import ComingSoon from '@/components/shared/coming-soon'
 
-function RouteComponent() {
-  return <div>Centro de ayuda</div>
-}
+export const Route = createFileRoute('/_app/centro-de-ayuda/')({
+  component: ComingSoon,
+})

@@ -1,41 +1,38 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="BookStudio es un sistema de biblioteca para gestionar préstamos, libros, autores y otros recursos, facilitando la administración y seguimiento de los préstamos."
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BookStudio</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="icon" type="image/ico" href="/logo_ico.ico" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description"
+    content="BookStudio es un sistema de biblioteca para gestionar préstamos, libros, autores y otros recursos, facilitando la administración y seguimiento de los préstamos." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookStudio</title>
 
-    <link href="/logo.svg" rel="icon" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="icon" type="image/ico" href="/logo_ico.ico" />
 
-    <meta name="theme-color" content="oklch(0.141 0.005 285.823)" />
+  <meta name="theme-color" content="oklch(0.141 0.005 285.823)" />
 
-    <link rel="stylesheet" href="/src/globals.css" />
+  <link rel="stylesheet" href="/src/globals.css" />
 
-    <script>
-      // Prevent theme flash on first load
-      const theme =
-        localStorage.getItem('theme') ||
-        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-      document.documentElement.classList.add(theme)
+  <script>
+    // Prevent theme flash on first load
+    const theme =
+      localStorage.getItem('theme') ||
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    document.documentElement.classList.add(theme)
 
-      const meta = document.querySelector('meta[name="theme-color"]')
-      if (meta) {
-        meta.content = theme === 'dark' ? 'oklch(0.141 0.005 285.823)' : 'oklch(1 0 0)'
-      }
-    </script>
-  </head>
+    const meta = document.querySelector('meta[name="theme-color"]')
+    if (meta) {
+      meta.content = theme === 'dark' ? 'oklch(0.141 0.005 285.823)' : 'oklch(1 0 0)'
+    }
+  </script>
+</head>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

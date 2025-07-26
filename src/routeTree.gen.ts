@@ -15,7 +15,6 @@ import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AuthRestablecerContraseChar241aIndexRouteImport } from './routes/_auth/restablecer-contraseña/index'
 import { Route as AuthRecuperarContraseChar241aIndexRouteImport } from './routes/_auth/recuperar-contraseña/index'
 import { Route as AuthIniciarSesionIndexRouteImport } from './routes/_auth/iniciar-sesion/index'
-import { Route as AppUsuariosIndexRouteImport } from './routes/_app/usuarios/index'
 import { Route as AppUbicacionesIndexRouteImport } from './routes/_app/ubicaciones/index'
 import { Route as AppTrabajadoresIndexRouteImport } from './routes/_app/trabajadores/index'
 import { Route as AppRolesIndexRouteImport } from './routes/_app/roles/index'
@@ -65,11 +64,6 @@ const AuthIniciarSesionIndexRoute = AuthIniciarSesionIndexRouteImport.update({
   id: '/iniciar-sesion/',
   path: '/iniciar-sesion/',
   getParentRoute: () => AuthRouteRoute,
-} as any)
-const AppUsuariosIndexRoute = AppUsuariosIndexRouteImport.update({
-  id: '/usuarios/',
-  path: '/usuarios/',
-  getParentRoute: () => AppRouteRoute,
 } as any)
 const AppUbicacionesIndexRoute = AppUbicacionesIndexRouteImport.update({
   id: '/ubicaciones/',
@@ -151,12 +145,11 @@ const AppPrestamosDevueltosRoute = AppPrestamosDevueltosRouteImport.update({
   path: '/prestamos/devueltos',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppAjustesNotificacionesRoute =
-  AppAjustesNotificacionesRouteImport.update({
-    id: '/ajustes/notificaciones',
-    path: '/ajustes/notificaciones',
-    getParentRoute: () => AppRouteRoute,
-  } as any)
+const AppAjustesNotificacionesRoute = AppAjustesNotificacionesRouteImport.update({
+  id: '/ajustes/notificaciones',
+  path: '/ajustes/notificaciones',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppAjustesCuentaRoute = AppAjustesCuentaRouteImport.update({
   id: '/ajustes/cuenta',
   path: '/ajustes/cuenta',
@@ -189,7 +182,6 @@ export interface FileRoutesByFullPath {
   '/roles': typeof AppRolesIndexRoute
   '/trabajadores': typeof AppTrabajadoresIndexRoute
   '/ubicaciones': typeof AppUbicacionesIndexRoute
-  '/usuarios': typeof AppUsuariosIndexRoute
   '/iniciar-sesion': typeof AuthIniciarSesionIndexRoute
   '/recuperar-contraseña': typeof AuthRecuperarContraseChar241aIndexRoute
   '/restablecer-contraseña': typeof AuthRestablecerContraseChar241aIndexRoute
@@ -215,7 +207,6 @@ export interface FileRoutesByTo {
   '/roles': typeof AppRolesIndexRoute
   '/trabajadores': typeof AppTrabajadoresIndexRoute
   '/ubicaciones': typeof AppUbicacionesIndexRoute
-  '/usuarios': typeof AppUsuariosIndexRoute
   '/iniciar-sesion': typeof AuthIniciarSesionIndexRoute
   '/recuperar-contraseña': typeof AuthRecuperarContraseChar241aIndexRoute
   '/restablecer-contraseña': typeof AuthRestablecerContraseChar241aIndexRoute
@@ -244,7 +235,6 @@ export interface FileRoutesById {
   '/_app/roles/': typeof AppRolesIndexRoute
   '/_app/trabajadores/': typeof AppTrabajadoresIndexRoute
   '/_app/ubicaciones/': typeof AppUbicacionesIndexRoute
-  '/_app/usuarios/': typeof AppUsuariosIndexRoute
   '/_auth/iniciar-sesion/': typeof AuthIniciarSesionIndexRoute
   '/_auth/recuperar-contraseña/': typeof AuthRecuperarContraseChar241aIndexRoute
   '/_auth/restablecer-contraseña/': typeof AuthRestablecerContraseChar241aIndexRoute
@@ -272,7 +262,6 @@ export interface FileRouteTypes {
     | '/roles'
     | '/trabajadores'
     | '/ubicaciones'
-    | '/usuarios'
     | '/iniciar-sesion'
     | '/recuperar-contraseña'
     | '/restablecer-contraseña'
@@ -298,7 +287,6 @@ export interface FileRouteTypes {
     | '/roles'
     | '/trabajadores'
     | '/ubicaciones'
-    | '/usuarios'
     | '/iniciar-sesion'
     | '/recuperar-contraseña'
     | '/restablecer-contraseña'
@@ -326,7 +314,6 @@ export interface FileRouteTypes {
     | '/_app/roles/'
     | '/_app/trabajadores/'
     | '/_app/ubicaciones/'
-    | '/_app/usuarios/'
     | '/_auth/iniciar-sesion/'
     | '/_auth/recuperar-contraseña/'
     | '/_auth/restablecer-contraseña/'
@@ -380,13 +367,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/iniciar-sesion'
       preLoaderRoute: typeof AuthIniciarSesionIndexRouteImport
       parentRoute: typeof AuthRouteRoute
-    }
-    '/_app/usuarios/': {
-      id: '/_app/usuarios/'
-      path: '/usuarios'
-      fullPath: '/usuarios'
-      preLoaderRoute: typeof AppUsuariosIndexRouteImport
-      parentRoute: typeof AppRouteRoute
     }
     '/_app/ubicaciones/': {
       id: '/_app/ubicaciones/'
@@ -545,7 +525,6 @@ interface AppRouteRouteChildren {
   AppRolesIndexRoute: typeof AppRolesIndexRoute
   AppTrabajadoresIndexRoute: typeof AppTrabajadoresIndexRoute
   AppUbicacionesIndexRoute: typeof AppUbicacionesIndexRoute
-  AppUsuariosIndexRoute: typeof AppUsuariosIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
@@ -569,12 +548,9 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppRolesIndexRoute: AppRolesIndexRoute,
   AppTrabajadoresIndexRoute: AppTrabajadoresIndexRoute,
   AppUbicacionesIndexRoute: AppUbicacionesIndexRoute,
-  AppUsuariosIndexRoute: AppUsuariosIndexRoute,
 }
 
-const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
-  AppRouteRouteChildren,
-)
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(AppRouteRouteChildren)
 
 interface AuthRouteRouteChildren {
   AuthIniciarSesionIndexRoute: typeof AuthIniciarSesionIndexRoute
@@ -584,15 +560,11 @@ interface AuthRouteRouteChildren {
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthIniciarSesionIndexRoute: AuthIniciarSesionIndexRoute,
-  AuthRecuperarContraseChar241aIndexRoute:
-    AuthRecuperarContraseChar241aIndexRoute,
-  AuthRestablecerContraseChar241aIndexRoute:
-    AuthRestablecerContraseChar241aIndexRoute,
+  AuthRecuperarContraseChar241aIndexRoute: AuthRecuperarContraseChar241aIndexRoute,
+  AuthRestablecerContraseChar241aIndexRoute: AuthRestablecerContraseChar241aIndexRoute,
 }
 
-const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
-  AuthRouteRouteChildren,
-)
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(AuthRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,

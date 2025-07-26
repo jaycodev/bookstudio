@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import ProfilePage from '@/features/app/profile'
+import SettingsPage from '@/features/app/others/settings'
 
 export const Route = createFileRoute('/_app/ajustes/')({
-  component: ProfilePage,
+  component: SettingsPage,
 })

@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
-import { getColumnLabel } from '@/lib/column-labels'
+import { getColumnLabel } from '@/config/column-labels.ts'
 import { getInitials } from '@/lib/utils'
 
 import { roles } from '../data/options-data.ts'

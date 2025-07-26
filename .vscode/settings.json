@@ -35,5 +35,15 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.insertSpaces": true,
     "editor.tabSize": 2
+  },
+  "files.exclude": {
+    "**/.tanstack": true,
+    "**/dist": true,
+    "**/node_modules": true
+  },
+  "search.exclude": {
+    "**/.tanstack": true,
+    "**/dist": true,
+    "**/node_modules": true
   }
 }

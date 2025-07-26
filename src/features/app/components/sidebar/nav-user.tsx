@@ -81,14 +81,16 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link to="/perfil">
+                <Link to="/ajustes">
                   <User className="text-current" />
                   Perfil
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell className="text-current" />
-                Notificaciones
+              <DropdownMenuItem asChild>
+                <Link to="/ajustes/notificaciones">
+                  <Bell className="text-current" />
+                  Notificaciones
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

@@ -16,13 +16,25 @@ import { Route as AuthRestablecerContraseChar241aIndexRouteImport } from './rout
 import { Route as AuthRecuperarContraseChar241aIndexRouteImport } from './routes/_auth/recuperar-contraseña/index'
 import { Route as AuthIniciarSesionIndexRouteImport } from './routes/_auth/iniciar-sesion/index'
 import { Route as AppUsuariosIndexRouteImport } from './routes/_app/usuarios/index'
-import { Route as AppPrestamosIndexRouteImport } from './routes/_app/prestamos/index'
-import { Route as AppPerfilIndexRouteImport } from './routes/_app/perfil/index'
+import { Route as AppUbicacionesIndexRouteImport } from './routes/_app/ubicaciones/index'
+import { Route as AppTrabajadoresIndexRouteImport } from './routes/_app/trabajadores/index'
+import { Route as AppRolesIndexRouteImport } from './routes/_app/roles/index'
 import { Route as AppLibrosIndexRouteImport } from './routes/_app/libros/index'
-import { Route as AppEstudiantesIndexRouteImport } from './routes/_app/estudiantes/index'
+import { Route as AppLectoresIndexRouteImport } from './routes/_app/lectores/index'
+import { Route as AppEjemplaresIndexRouteImport } from './routes/_app/ejemplares/index'
 import { Route as AppEditorialesIndexRouteImport } from './routes/_app/editoriales/index'
-import { Route as AppCursosIndexRouteImport } from './routes/_app/cursos/index'
+import { Route as AppCentroDeAyudaIndexRouteImport } from './routes/_app/centro-de-ayuda/index'
+import { Route as AppCategoriasIndexRouteImport } from './routes/_app/categorias/index'
 import { Route as AppAutoresIndexRouteImport } from './routes/_app/autores/index'
+import { Route as AppAjustesIndexRouteImport } from './routes/_app/ajustes/index'
+import { Route as AppPrestamosReservasRouteImport } from './routes/_app/prestamos/reservas'
+import { Route as AppPrestamosPagosRouteImport } from './routes/_app/prestamos/pagos'
+import { Route as AppPrestamosMultasRouteImport } from './routes/_app/prestamos/multas'
+import { Route as AppPrestamosEnCursoRouteImport } from './routes/_app/prestamos/en-curso'
+import { Route as AppPrestamosDevueltosRouteImport } from './routes/_app/prestamos/devueltos'
+import { Route as AppAjustesNotificacionesRouteImport } from './routes/_app/ajustes/notificaciones'
+import { Route as AppAjustesCuentaRouteImport } from './routes/_app/ajustes/cuenta'
+import { Route as AppAjustesAparienciaRouteImport } from './routes/_app/ajustes/apariencia'
 
 const AuthRouteRoute = AuthRouteRouteImport.update({
   id: '/_auth',
@@ -59,14 +71,19 @@ const AppUsuariosIndexRoute = AppUsuariosIndexRouteImport.update({
   path: '/usuarios/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppPrestamosIndexRoute = AppPrestamosIndexRouteImport.update({
-  id: '/prestamos/',
-  path: '/prestamos/',
+const AppUbicacionesIndexRoute = AppUbicacionesIndexRouteImport.update({
+  id: '/ubicaciones/',
+  path: '/ubicaciones/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppPerfilIndexRoute = AppPerfilIndexRouteImport.update({
-  id: '/perfil/',
-  path: '/perfil/',
+const AppTrabajadoresIndexRoute = AppTrabajadoresIndexRouteImport.update({
+  id: '/trabajadores/',
+  path: '/trabajadores/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppRolesIndexRoute = AppRolesIndexRouteImport.update({
+  id: '/roles/',
+  path: '/roles/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppLibrosIndexRoute = AppLibrosIndexRouteImport.update({
@@ -74,9 +91,14 @@ const AppLibrosIndexRoute = AppLibrosIndexRouteImport.update({
   path: '/libros/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppEstudiantesIndexRoute = AppEstudiantesIndexRouteImport.update({
-  id: '/estudiantes/',
-  path: '/estudiantes/',
+const AppLectoresIndexRoute = AppLectoresIndexRouteImport.update({
+  id: '/lectores/',
+  path: '/lectores/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppEjemplaresIndexRoute = AppEjemplaresIndexRouteImport.update({
+  id: '/ejemplares/',
+  path: '/ejemplares/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppEditorialesIndexRoute = AppEditorialesIndexRouteImport.update({
@@ -84,9 +106,14 @@ const AppEditorialesIndexRoute = AppEditorialesIndexRouteImport.update({
   path: '/editoriales/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppCursosIndexRoute = AppCursosIndexRouteImport.update({
-  id: '/cursos/',
-  path: '/cursos/',
+const AppCentroDeAyudaIndexRoute = AppCentroDeAyudaIndexRouteImport.update({
+  id: '/centro-de-ayuda/',
+  path: '/centro-de-ayuda/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppCategoriasIndexRoute = AppCategoriasIndexRouteImport.update({
+  id: '/categorias/',
+  path: '/categorias/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppAutoresIndexRoute = AppAutoresIndexRouteImport.update({
@@ -94,16 +121,74 @@ const AppAutoresIndexRoute = AppAutoresIndexRouteImport.update({
   path: '/autores/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppAjustesIndexRoute = AppAjustesIndexRouteImport.update({
+  id: '/ajustes/',
+  path: '/ajustes/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppPrestamosReservasRoute = AppPrestamosReservasRouteImport.update({
+  id: '/prestamos/reservas',
+  path: '/prestamos/reservas',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppPrestamosPagosRoute = AppPrestamosPagosRouteImport.update({
+  id: '/prestamos/pagos',
+  path: '/prestamos/pagos',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppPrestamosMultasRoute = AppPrestamosMultasRouteImport.update({
+  id: '/prestamos/multas',
+  path: '/prestamos/multas',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppPrestamosEnCursoRoute = AppPrestamosEnCursoRouteImport.update({
+  id: '/prestamos/en-curso',
+  path: '/prestamos/en-curso',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppPrestamosDevueltosRoute = AppPrestamosDevueltosRouteImport.update({
+  id: '/prestamos/devueltos',
+  path: '/prestamos/devueltos',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppAjustesNotificacionesRoute =
+  AppAjustesNotificacionesRouteImport.update({
+    id: '/ajustes/notificaciones',
+    path: '/ajustes/notificaciones',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
+const AppAjustesCuentaRoute = AppAjustesCuentaRouteImport.update({
+  id: '/ajustes/cuenta',
+  path: '/ajustes/cuenta',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppAjustesAparienciaRoute = AppAjustesAparienciaRouteImport.update({
+  id: '/ajustes/apariencia',
+  path: '/ajustes/apariencia',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
+  '/ajustes/apariencia': typeof AppAjustesAparienciaRoute
+  '/ajustes/cuenta': typeof AppAjustesCuentaRoute
+  '/ajustes/notificaciones': typeof AppAjustesNotificacionesRoute
+  '/prestamos/devueltos': typeof AppPrestamosDevueltosRoute
+  '/prestamos/en-curso': typeof AppPrestamosEnCursoRoute
+  '/prestamos/multas': typeof AppPrestamosMultasRoute
+  '/prestamos/pagos': typeof AppPrestamosPagosRoute
+  '/prestamos/reservas': typeof AppPrestamosReservasRoute
+  '/ajustes': typeof AppAjustesIndexRoute
   '/autores': typeof AppAutoresIndexRoute
-  '/cursos': typeof AppCursosIndexRoute
+  '/categorias': typeof AppCategoriasIndexRoute
+  '/centro-de-ayuda': typeof AppCentroDeAyudaIndexRoute
   '/editoriales': typeof AppEditorialesIndexRoute
-  '/estudiantes': typeof AppEstudiantesIndexRoute
+  '/ejemplares': typeof AppEjemplaresIndexRoute
+  '/lectores': typeof AppLectoresIndexRoute
   '/libros': typeof AppLibrosIndexRoute
-  '/perfil': typeof AppPerfilIndexRoute
-  '/prestamos': typeof AppPrestamosIndexRoute
+  '/roles': typeof AppRolesIndexRoute
+  '/trabajadores': typeof AppTrabajadoresIndexRoute
+  '/ubicaciones': typeof AppUbicacionesIndexRoute
   '/usuarios': typeof AppUsuariosIndexRoute
   '/iniciar-sesion': typeof AuthIniciarSesionIndexRoute
   '/recuperar-contraseña': typeof AuthRecuperarContraseChar241aIndexRoute
@@ -111,13 +196,25 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
+  '/ajustes/apariencia': typeof AppAjustesAparienciaRoute
+  '/ajustes/cuenta': typeof AppAjustesCuentaRoute
+  '/ajustes/notificaciones': typeof AppAjustesNotificacionesRoute
+  '/prestamos/devueltos': typeof AppPrestamosDevueltosRoute
+  '/prestamos/en-curso': typeof AppPrestamosEnCursoRoute
+  '/prestamos/multas': typeof AppPrestamosMultasRoute
+  '/prestamos/pagos': typeof AppPrestamosPagosRoute
+  '/prestamos/reservas': typeof AppPrestamosReservasRoute
+  '/ajustes': typeof AppAjustesIndexRoute
   '/autores': typeof AppAutoresIndexRoute
-  '/cursos': typeof AppCursosIndexRoute
+  '/categorias': typeof AppCategoriasIndexRoute
+  '/centro-de-ayuda': typeof AppCentroDeAyudaIndexRoute
   '/editoriales': typeof AppEditorialesIndexRoute
-  '/estudiantes': typeof AppEstudiantesIndexRoute
+  '/ejemplares': typeof AppEjemplaresIndexRoute
+  '/lectores': typeof AppLectoresIndexRoute
   '/libros': typeof AppLibrosIndexRoute
-  '/perfil': typeof AppPerfilIndexRoute
-  '/prestamos': typeof AppPrestamosIndexRoute
+  '/roles': typeof AppRolesIndexRoute
+  '/trabajadores': typeof AppTrabajadoresIndexRoute
+  '/ubicaciones': typeof AppUbicacionesIndexRoute
   '/usuarios': typeof AppUsuariosIndexRoute
   '/iniciar-sesion': typeof AuthIniciarSesionIndexRoute
   '/recuperar-contraseña': typeof AuthRecuperarContraseChar241aIndexRoute
@@ -128,13 +225,25 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteRouteWithChildren
   '/_auth': typeof AuthRouteRouteWithChildren
   '/_app/': typeof AppIndexRoute
+  '/_app/ajustes/apariencia': typeof AppAjustesAparienciaRoute
+  '/_app/ajustes/cuenta': typeof AppAjustesCuentaRoute
+  '/_app/ajustes/notificaciones': typeof AppAjustesNotificacionesRoute
+  '/_app/prestamos/devueltos': typeof AppPrestamosDevueltosRoute
+  '/_app/prestamos/en-curso': typeof AppPrestamosEnCursoRoute
+  '/_app/prestamos/multas': typeof AppPrestamosMultasRoute
+  '/_app/prestamos/pagos': typeof AppPrestamosPagosRoute
+  '/_app/prestamos/reservas': typeof AppPrestamosReservasRoute
+  '/_app/ajustes/': typeof AppAjustesIndexRoute
   '/_app/autores/': typeof AppAutoresIndexRoute
-  '/_app/cursos/': typeof AppCursosIndexRoute
+  '/_app/categorias/': typeof AppCategoriasIndexRoute
+  '/_app/centro-de-ayuda/': typeof AppCentroDeAyudaIndexRoute
   '/_app/editoriales/': typeof AppEditorialesIndexRoute
-  '/_app/estudiantes/': typeof AppEstudiantesIndexRoute
+  '/_app/ejemplares/': typeof AppEjemplaresIndexRoute
+  '/_app/lectores/': typeof AppLectoresIndexRoute
   '/_app/libros/': typeof AppLibrosIndexRoute
-  '/_app/perfil/': typeof AppPerfilIndexRoute
-  '/_app/prestamos/': typeof AppPrestamosIndexRoute
+  '/_app/roles/': typeof AppRolesIndexRoute
+  '/_app/trabajadores/': typeof AppTrabajadoresIndexRoute
+  '/_app/ubicaciones/': typeof AppUbicacionesIndexRoute
   '/_app/usuarios/': typeof AppUsuariosIndexRoute
   '/_auth/iniciar-sesion/': typeof AuthIniciarSesionIndexRoute
   '/_auth/recuperar-contraseña/': typeof AuthRecuperarContraseChar241aIndexRoute
@@ -144,13 +253,25 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ajustes/apariencia'
+    | '/ajustes/cuenta'
+    | '/ajustes/notificaciones'
+    | '/prestamos/devueltos'
+    | '/prestamos/en-curso'
+    | '/prestamos/multas'
+    | '/prestamos/pagos'
+    | '/prestamos/reservas'
+    | '/ajustes'
     | '/autores'
-    | '/cursos'
+    | '/categorias'
+    | '/centro-de-ayuda'
     | '/editoriales'
-    | '/estudiantes'
+    | '/ejemplares'
+    | '/lectores'
     | '/libros'
-    | '/perfil'
-    | '/prestamos'
+    | '/roles'
+    | '/trabajadores'
+    | '/ubicaciones'
     | '/usuarios'
     | '/iniciar-sesion'
     | '/recuperar-contraseña'
@@ -158,13 +279,25 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ajustes/apariencia'
+    | '/ajustes/cuenta'
+    | '/ajustes/notificaciones'
+    | '/prestamos/devueltos'
+    | '/prestamos/en-curso'
+    | '/prestamos/multas'
+    | '/prestamos/pagos'
+    | '/prestamos/reservas'
+    | '/ajustes'
     | '/autores'
-    | '/cursos'
+    | '/categorias'
+    | '/centro-de-ayuda'
     | '/editoriales'
-    | '/estudiantes'
+    | '/ejemplares'
+    | '/lectores'
     | '/libros'
-    | '/perfil'
-    | '/prestamos'
+    | '/roles'
+    | '/trabajadores'
+    | '/ubicaciones'
     | '/usuarios'
     | '/iniciar-sesion'
     | '/recuperar-contraseña'
@@ -174,13 +307,25 @@ export interface FileRouteTypes {
     | '/_app'
     | '/_auth'
     | '/_app/'
+    | '/_app/ajustes/apariencia'
+    | '/_app/ajustes/cuenta'
+    | '/_app/ajustes/notificaciones'
+    | '/_app/prestamos/devueltos'
+    | '/_app/prestamos/en-curso'
+    | '/_app/prestamos/multas'
+    | '/_app/prestamos/pagos'
+    | '/_app/prestamos/reservas'
+    | '/_app/ajustes/'
     | '/_app/autores/'
-    | '/_app/cursos/'
+    | '/_app/categorias/'
+    | '/_app/centro-de-ayuda/'
     | '/_app/editoriales/'
-    | '/_app/estudiantes/'
+    | '/_app/ejemplares/'
+    | '/_app/lectores/'
     | '/_app/libros/'
-    | '/_app/perfil/'
-    | '/_app/prestamos/'
+    | '/_app/roles/'
+    | '/_app/trabajadores/'
+    | '/_app/ubicaciones/'
     | '/_app/usuarios/'
     | '/_auth/iniciar-sesion/'
     | '/_auth/recuperar-contraseña/'
@@ -243,18 +388,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppUsuariosIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/prestamos/': {
-      id: '/_app/prestamos/'
-      path: '/prestamos'
-      fullPath: '/prestamos'
-      preLoaderRoute: typeof AppPrestamosIndexRouteImport
+    '/_app/ubicaciones/': {
+      id: '/_app/ubicaciones/'
+      path: '/ubicaciones'
+      fullPath: '/ubicaciones'
+      preLoaderRoute: typeof AppUbicacionesIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/perfil/': {
-      id: '/_app/perfil/'
-      path: '/perfil'
-      fullPath: '/perfil'
-      preLoaderRoute: typeof AppPerfilIndexRouteImport
+    '/_app/trabajadores/': {
+      id: '/_app/trabajadores/'
+      path: '/trabajadores'
+      fullPath: '/trabajadores'
+      preLoaderRoute: typeof AppTrabajadoresIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/roles/': {
+      id: '/_app/roles/'
+      path: '/roles'
+      fullPath: '/roles'
+      preLoaderRoute: typeof AppRolesIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/libros/': {
@@ -264,11 +416,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLibrosIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/estudiantes/': {
-      id: '/_app/estudiantes/'
-      path: '/estudiantes'
-      fullPath: '/estudiantes'
-      preLoaderRoute: typeof AppEstudiantesIndexRouteImport
+    '/_app/lectores/': {
+      id: '/_app/lectores/'
+      path: '/lectores'
+      fullPath: '/lectores'
+      preLoaderRoute: typeof AppLectoresIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/ejemplares/': {
+      id: '/_app/ejemplares/'
+      path: '/ejemplares'
+      fullPath: '/ejemplares'
+      preLoaderRoute: typeof AppEjemplaresIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/editoriales/': {
@@ -278,11 +437,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppEditorialesIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/cursos/': {
-      id: '/_app/cursos/'
-      path: '/cursos'
-      fullPath: '/cursos'
-      preLoaderRoute: typeof AppCursosIndexRouteImport
+    '/_app/centro-de-ayuda/': {
+      id: '/_app/centro-de-ayuda/'
+      path: '/centro-de-ayuda'
+      fullPath: '/centro-de-ayuda'
+      preLoaderRoute: typeof AppCentroDeAyudaIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/categorias/': {
+      id: '/_app/categorias/'
+      path: '/categorias'
+      fullPath: '/categorias'
+      preLoaderRoute: typeof AppCategoriasIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/autores/': {
@@ -292,30 +458,117 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAutoresIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/ajustes/': {
+      id: '/_app/ajustes/'
+      path: '/ajustes'
+      fullPath: '/ajustes'
+      preLoaderRoute: typeof AppAjustesIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/prestamos/reservas': {
+      id: '/_app/prestamos/reservas'
+      path: '/prestamos/reservas'
+      fullPath: '/prestamos/reservas'
+      preLoaderRoute: typeof AppPrestamosReservasRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/prestamos/pagos': {
+      id: '/_app/prestamos/pagos'
+      path: '/prestamos/pagos'
+      fullPath: '/prestamos/pagos'
+      preLoaderRoute: typeof AppPrestamosPagosRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/prestamos/multas': {
+      id: '/_app/prestamos/multas'
+      path: '/prestamos/multas'
+      fullPath: '/prestamos/multas'
+      preLoaderRoute: typeof AppPrestamosMultasRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/prestamos/en-curso': {
+      id: '/_app/prestamos/en-curso'
+      path: '/prestamos/en-curso'
+      fullPath: '/prestamos/en-curso'
+      preLoaderRoute: typeof AppPrestamosEnCursoRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/prestamos/devueltos': {
+      id: '/_app/prestamos/devueltos'
+      path: '/prestamos/devueltos'
+      fullPath: '/prestamos/devueltos'
+      preLoaderRoute: typeof AppPrestamosDevueltosRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/ajustes/notificaciones': {
+      id: '/_app/ajustes/notificaciones'
+      path: '/ajustes/notificaciones'
+      fullPath: '/ajustes/notificaciones'
+      preLoaderRoute: typeof AppAjustesNotificacionesRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/ajustes/cuenta': {
+      id: '/_app/ajustes/cuenta'
+      path: '/ajustes/cuenta'
+      fullPath: '/ajustes/cuenta'
+      preLoaderRoute: typeof AppAjustesCuentaRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/ajustes/apariencia': {
+      id: '/_app/ajustes/apariencia'
+      path: '/ajustes/apariencia'
+      fullPath: '/ajustes/apariencia'
+      preLoaderRoute: typeof AppAjustesAparienciaRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppAjustesAparienciaRoute: typeof AppAjustesAparienciaRoute
+  AppAjustesCuentaRoute: typeof AppAjustesCuentaRoute
+  AppAjustesNotificacionesRoute: typeof AppAjustesNotificacionesRoute
+  AppPrestamosDevueltosRoute: typeof AppPrestamosDevueltosRoute
+  AppPrestamosEnCursoRoute: typeof AppPrestamosEnCursoRoute
+  AppPrestamosMultasRoute: typeof AppPrestamosMultasRoute
+  AppPrestamosPagosRoute: typeof AppPrestamosPagosRoute
+  AppPrestamosReservasRoute: typeof AppPrestamosReservasRoute
+  AppAjustesIndexRoute: typeof AppAjustesIndexRoute
   AppAutoresIndexRoute: typeof AppAutoresIndexRoute
-  AppCursosIndexRoute: typeof AppCursosIndexRoute
+  AppCategoriasIndexRoute: typeof AppCategoriasIndexRoute
+  AppCentroDeAyudaIndexRoute: typeof AppCentroDeAyudaIndexRoute
   AppEditorialesIndexRoute: typeof AppEditorialesIndexRoute
-  AppEstudiantesIndexRoute: typeof AppEstudiantesIndexRoute
+  AppEjemplaresIndexRoute: typeof AppEjemplaresIndexRoute
+  AppLectoresIndexRoute: typeof AppLectoresIndexRoute
   AppLibrosIndexRoute: typeof AppLibrosIndexRoute
-  AppPerfilIndexRoute: typeof AppPerfilIndexRoute
-  AppPrestamosIndexRoute: typeof AppPrestamosIndexRoute
+  AppRolesIndexRoute: typeof AppRolesIndexRoute
+  AppTrabajadoresIndexRoute: typeof AppTrabajadoresIndexRoute
+  AppUbicacionesIndexRoute: typeof AppUbicacionesIndexRoute
   AppUsuariosIndexRoute: typeof AppUsuariosIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppAjustesAparienciaRoute: AppAjustesAparienciaRoute,
+  AppAjustesCuentaRoute: AppAjustesCuentaRoute,
+  AppAjustesNotificacionesRoute: AppAjustesNotificacionesRoute,
+  AppPrestamosDevueltosRoute: AppPrestamosDevueltosRoute,
+  AppPrestamosEnCursoRoute: AppPrestamosEnCursoRoute,
+  AppPrestamosMultasRoute: AppPrestamosMultasRoute,
+  AppPrestamosPagosRoute: AppPrestamosPagosRoute,
+  AppPrestamosReservasRoute: AppPrestamosReservasRoute,
+  AppAjustesIndexRoute: AppAjustesIndexRoute,
   AppAutoresIndexRoute: AppAutoresIndexRoute,
-  AppCursosIndexRoute: AppCursosIndexRoute,
+  AppCategoriasIndexRoute: AppCategoriasIndexRoute,
+  AppCentroDeAyudaIndexRoute: AppCentroDeAyudaIndexRoute,
   AppEditorialesIndexRoute: AppEditorialesIndexRoute,
-  AppEstudiantesIndexRoute: AppEstudiantesIndexRoute,
+  AppEjemplaresIndexRoute: AppEjemplaresIndexRoute,
+  AppLectoresIndexRoute: AppLectoresIndexRoute,
   AppLibrosIndexRoute: AppLibrosIndexRoute,
-  AppPerfilIndexRoute: AppPerfilIndexRoute,
-  AppPrestamosIndexRoute: AppPrestamosIndexRoute,
+  AppRolesIndexRoute: AppRolesIndexRoute,
+  AppTrabajadoresIndexRoute: AppTrabajadoresIndexRoute,
+  AppUbicacionesIndexRoute: AppUbicacionesIndexRoute,
   AppUsuariosIndexRoute: AppUsuariosIndexRoute,
 }
 

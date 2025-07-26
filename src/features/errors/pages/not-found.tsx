@@ -1,4 +1,4 @@
-import ErrorLayout from '../error-layout'
+import ErrorLayout from '../layout'
 
 export default function ForbiddenError() {
   return (

@@ -2,7 +2,7 @@ import { Info } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-import ErrorLayout from '../error-layout'
+import ErrorLayout from '../layout'
 
 export default function MaintenanceError() {
   return (

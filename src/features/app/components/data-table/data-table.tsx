@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4 w-full">
-        <Button variant="default" size="sm">
+        <Button size="sm">
           <CirclePlus />
           Agregar
         </Button>

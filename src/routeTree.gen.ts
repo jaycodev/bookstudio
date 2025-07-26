@@ -12,6 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as errors503RouteImport } from './routes/(errors)/503'
+import { Route as errors500RouteImport } from './routes/(errors)/500'
+import { Route as errors404RouteImport } from './routes/(errors)/404'
+import { Route as errors403RouteImport } from './routes/(errors)/403'
+import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as AuthRestablecerContraseChar241aIndexRouteImport } from './routes/_auth/restablecer-contraseña/index'
 import { Route as AuthRecuperarContraseChar241aIndexRouteImport } from './routes/_auth/recuperar-contraseña/index'
 import { Route as AuthIniciarSesionIndexRouteImport } from './routes/_auth/iniciar-sesion/index'
@@ -47,6 +52,31 @@ const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRouteRoute,
+} as any)
+const errors503Route = errors503RouteImport.update({
+  id: '/(errors)/503',
+  path: '/503',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors500Route = errors500RouteImport.update({
+  id: '/(errors)/500',
+  path: '/500',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors404Route = errors404RouteImport.update({
+  id: '/(errors)/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors403Route = errors403RouteImport.update({
+  id: '/(errors)/403',
+  path: '/403',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors401Route = errors401RouteImport.update({
+  id: '/(errors)/401',
+  path: '/401',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRestablecerContraseChar241aIndexRoute =
   AuthRestablecerContraseChar241aIndexRouteImport.update({
@@ -145,11 +175,12 @@ const AppPrestamosDevueltosRoute = AppPrestamosDevueltosRouteImport.update({
   path: '/prestamos/devueltos',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppAjustesNotificacionesRoute = AppAjustesNotificacionesRouteImport.update({
-  id: '/ajustes/notificaciones',
-  path: '/ajustes/notificaciones',
-  getParentRoute: () => AppRouteRoute,
-} as any)
+const AppAjustesNotificacionesRoute =
+  AppAjustesNotificacionesRouteImport.update({
+    id: '/ajustes/notificaciones',
+    path: '/ajustes/notificaciones',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
 const AppAjustesCuentaRoute = AppAjustesCuentaRouteImport.update({
   id: '/ajustes/cuenta',
   path: '/ajustes/cuenta',
@@ -162,6 +193,11 @@ const AppAjustesAparienciaRoute = AppAjustesAparienciaRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/401': typeof errors401Route
+  '/403': typeof errors403Route
+  '/404': typeof errors404Route
+  '/500': typeof errors500Route
+  '/503': typeof errors503Route
   '/': typeof AppIndexRoute
   '/ajustes/apariencia': typeof AppAjustesAparienciaRoute
   '/ajustes/cuenta': typeof AppAjustesCuentaRoute
@@ -187,6 +223,11 @@ export interface FileRoutesByFullPath {
   '/restablecer-contraseña': typeof AuthRestablecerContraseChar241aIndexRoute
 }
 export interface FileRoutesByTo {
+  '/401': typeof errors401Route
+  '/403': typeof errors403Route
+  '/404': typeof errors404Route
+  '/500': typeof errors500Route
+  '/503': typeof errors503Route
   '/': typeof AppIndexRoute
   '/ajustes/apariencia': typeof AppAjustesAparienciaRoute
   '/ajustes/cuenta': typeof AppAjustesCuentaRoute
@@ -215,6 +256,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_auth': typeof AuthRouteRouteWithChildren
+  '/(errors)/401': typeof errors401Route
+  '/(errors)/403': typeof errors403Route
+  '/(errors)/404': typeof errors404Route
+  '/(errors)/500': typeof errors500Route
+  '/(errors)/503': typeof errors503Route
   '/_app/': typeof AppIndexRoute
   '/_app/ajustes/apariencia': typeof AppAjustesAparienciaRoute
   '/_app/ajustes/cuenta': typeof AppAjustesCuentaRoute
@@ -242,6 +288,11 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/401'
+    | '/403'
+    | '/404'
+    | '/500'
+    | '/503'
     | '/'
     | '/ajustes/apariencia'
     | '/ajustes/cuenta'
@@ -267,6 +318,11 @@ export interface FileRouteTypes {
     | '/restablecer-contraseña'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/401'
+    | '/403'
+    | '/404'
+    | '/500'
+    | '/503'
     | '/'
     | '/ajustes/apariencia'
     | '/ajustes/cuenta'
@@ -294,6 +350,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_app'
     | '/_auth'
+    | '/(errors)/401'
+    | '/(errors)/403'
+    | '/(errors)/404'
+    | '/(errors)/500'
+    | '/(errors)/503'
     | '/_app/'
     | '/_app/ajustes/apariencia'
     | '/_app/ajustes/cuenta'
@@ -322,6 +383,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AppRouteRoute: typeof AppRouteRouteWithChildren
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  errors401Route: typeof errors401Route
+  errors403Route: typeof errors403Route
+  errors404Route: typeof errors404Route
+  errors500Route: typeof errors500Route
+  errors503Route: typeof errors503Route
 }
 
 declare module '@tanstack/react-router' {
@@ -346,6 +412,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRouteRoute
+    }
+    '/(errors)/503': {
+      id: '/(errors)/503'
+      path: '/503'
+      fullPath: '/503'
+      preLoaderRoute: typeof errors503RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/500': {
+      id: '/(errors)/500'
+      path: '/500'
+      fullPath: '/500'
+      preLoaderRoute: typeof errors500RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/404': {
+      id: '/(errors)/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof errors404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/403': {
+      id: '/(errors)/403'
+      path: '/403'
+      fullPath: '/403'
+      preLoaderRoute: typeof errors403RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/401': {
+      id: '/(errors)/401'
+      path: '/401'
+      fullPath: '/401'
+      preLoaderRoute: typeof errors401RouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_auth/restablecer-contraseña/': {
       id: '/_auth/restablecer-contraseña/'
@@ -550,7 +651,9 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppUbicacionesIndexRoute: AppUbicacionesIndexRoute,
 }
 
-const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(AppRouteRouteChildren)
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
+  AppRouteRouteChildren,
+)
 
 interface AuthRouteRouteChildren {
   AuthIniciarSesionIndexRoute: typeof AuthIniciarSesionIndexRoute
@@ -560,15 +663,24 @@ interface AuthRouteRouteChildren {
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthIniciarSesionIndexRoute: AuthIniciarSesionIndexRoute,
-  AuthRecuperarContraseChar241aIndexRoute: AuthRecuperarContraseChar241aIndexRoute,
-  AuthRestablecerContraseChar241aIndexRoute: AuthRestablecerContraseChar241aIndexRoute,
+  AuthRecuperarContraseChar241aIndexRoute:
+    AuthRecuperarContraseChar241aIndexRoute,
+  AuthRestablecerContraseChar241aIndexRoute:
+    AuthRestablecerContraseChar241aIndexRoute,
 }
 
-const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(AuthRouteRouteChildren)
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   AppRouteRoute: AppRouteRouteWithChildren,
   AuthRouteRoute: AuthRouteRouteWithChildren,
+  errors401Route: errors401Route,
+  errors403Route: errors403Route,
+  errors404Route: errors404Route,
+  errors500Route: errors500Route,
+  errors503Route: errors503Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

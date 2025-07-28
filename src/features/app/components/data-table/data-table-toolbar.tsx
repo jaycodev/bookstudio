@@ -84,7 +84,7 @@ export function DataTableToolbar<TData>({ table, resource }: DataTableToolbarPro
           return (
             <DateRangePicker
               key={col.id}
-              date={dateRanges[col.id] ?? null}
+              value={dateRanges[col.id] || undefined}
               onDateSelect={(range) => handleDateSelect(col.id, range)}
               placeholder={`Rango de ${getColumnLabel(resource, col.id).toLowerCase()}`}
             />

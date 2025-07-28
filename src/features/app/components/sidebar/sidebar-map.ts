@@ -1,5 +1,4 @@
 import {
-  ArchiveRestore,
   BookCopy,
   BookOpenText,
   Boxes,
@@ -7,6 +6,7 @@ import {
   Building2,
   Calendar1,
   CircleQuestionMark,
+  ClipboardList,
   DollarSign,
   LayoutDashboard,
   MapPin,
@@ -15,7 +15,6 @@ import {
   ShieldCheck,
   SquareUser,
   Tags,
-  TimerReset,
 } from 'lucide-react'
 
 import { pageMap, type ValidUrl } from '@/config/page-map.ts'
@@ -40,13 +39,8 @@ setSidebar('/', {
   group: 'principal',
 })
 
-setSidebar('/prestamos/en-curso', {
-  icon: TimerReset,
-  group: 'principal',
-  parentItem: 'prestamos',
-})
-setSidebar('/prestamos/devueltos', {
-  icon: ArchiveRestore,
+setSidebar('/prestamos', {
+  icon: ClipboardList,
   group: 'principal',
   parentItem: 'prestamos',
 })

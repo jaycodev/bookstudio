@@ -8,14 +8,8 @@ type PageMeta = {
 export const pageMap: Record<string, PageMeta> = {
   '/': { title: 'Dashboard', documentTitle: 'Dashboard', authOnly: true, showInSidebar: true },
 
-  '/prestamos/en-curso': {
-    title: 'En curso',
-    documentTitle: 'Préstamos',
-    authOnly: true,
-    showInSidebar: true,
-  },
-  '/prestamos/devueltos': {
-    title: 'Devueltos',
+  '/prestamos': {
+    title: 'Todos',
     documentTitle: 'Préstamos',
     authOnly: true,
     showInSidebar: true,

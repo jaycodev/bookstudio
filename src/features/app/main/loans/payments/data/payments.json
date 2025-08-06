@@ -1,0 +1,132 @@
+[
+  {
+    "code": "PAG-2024-00013",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00012",
+    "readerFullName": "Sebastián Alonso Poma Hancco",
+    "amount": 25.0,
+    "paymentDate": "2024-08-25",
+    "method": "transferencia",
+    "id": 13
+  },
+  {
+    "code": "PAG-2024-00012",
+    "fineCount": 2,
+    "readerCode": "LEC-2025-00003",
+    "readerFullName": "Patricia Rosa Vargas Chávez",
+    "amount": 15.0,
+    "paymentDate": "2024-08-12",
+    "method": "transferencia",
+    "id": 12
+  },
+  {
+    "code": "PAG-2024-00011",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00015",
+    "readerFullName": "Fernanda Alejandra Mamani Quispe",
+    "amount": 20.0,
+    "paymentDate": "2024-09-01",
+    "method": "tarjeta",
+    "id": 11
+  },
+  {
+    "code": "PAG-2024-00010",
+    "fineCount": 2,
+    "readerCode": "LEC-2025-00011",
+    "readerFullName": "Valeria Milagros Ramos Ccahuana",
+    "amount": 18.0,
+    "paymentDate": "2024-08-30",
+    "method": "tarjeta",
+    "id": 10
+  },
+  {
+    "code": "PAG-2024-00009",
+    "fineCount": 3,
+    "readerCode": "LEC-2025-00013",
+    "readerFullName": "Isabella Nicole Nina Calla",
+    "amount": 7.5,
+    "paymentDate": "2024-08-18",
+    "method": "tarjeta",
+    "id": 9
+  },
+  {
+    "code": "PAG-2024-00008",
+    "fineCount": 2,
+    "readerCode": "LEC-2025-00008",
+    "readerFullName": "Javier Fernando Huamán Flores",
+    "amount": 15.0,
+    "paymentDate": "2024-08-17",
+    "method": "tarjeta",
+    "id": 8
+  },
+  {
+    "code": "PAG-2024-00007",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00007",
+    "readerFullName": "Sofía Elena Quispe Mamani",
+    "amount": 10.0,
+    "paymentDate": "2024-08-10",
+    "method": "tarjeta",
+    "id": 7
+  },
+  {
+    "code": "PAG-2024-00006",
+    "fineCount": 3,
+    "readerCode": "LEC-2025-00005",
+    "readerFullName": "Lucía Isabel Paredes Gutiérrez",
+    "amount": 12.0,
+    "paymentDate": "2024-08-29",
+    "method": "efectivo",
+    "id": 6
+  },
+  {
+    "code": "PAG-2024-00005",
+    "fineCount": 2,
+    "readerCode": "LEC-2025-00002",
+    "readerFullName": "Carlos Andrés Mendoza Silva",
+    "amount": 15.0,
+    "paymentDate": "2024-08-28",
+    "method": "efectivo",
+    "id": 5
+  },
+  {
+    "code": "PAG-2024-00004",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00021",
+    "readerFullName": "José Luis Fernández Huamán",
+    "amount": 3.75,
+    "paymentDate": "2024-08-26",
+    "method": "efectivo",
+    "id": 4
+  },
+  {
+    "code": "PAG-2024-00003",
+    "fineCount": 2,
+    "readerCode": "LEC-2025-00017",
+    "readerFullName": "Carmen Luz Herrera Morales",
+    "amount": 7.5,
+    "paymentDate": "2024-08-22",
+    "method": "efectivo",
+    "id": 3
+  },
+  {
+    "code": "PAG-2024-00002",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00004",
+    "readerFullName": "Roberto Miguel Castro Quispe",
+    "amount": 3.75,
+    "paymentDate": "2024-08-06",
+    "method": "efectivo",
+    "id": 2
+  },
+  {
+    "code": "PAG-2024-00001",
+    "fineCount": 3,
+    "readerCode": "LEC-2025-00001",
+    "readerFullName": "Ana María García López",
+    "amount": 7.5,
+    "paymentDate": "2024-07-26",
+    "method": "efectivo",
+    "id": 1
+  }
+]

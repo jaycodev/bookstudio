@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import ComingSoon from '@/components/shared/coming-soon'
+import PaymentsPage from '@/features/app/main/loans/payments'
 
 export const Route = createFileRoute('/_app/prestamos/pagos')({
-  component: ComingSoon,
+  component: PaymentsPage,
 })

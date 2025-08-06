@@ -24,6 +24,8 @@ const badgeVariants = cva(
           'bg-zinc-100 text-zinc-600 border border-zinc-200 dark:bg-zinc-600/20 dark:text-zinc-300 dark:border-zinc-500/40',
         danger:
           'bg-red-100 text-red-600 border border-red-200 dark:bg-red-600/20 dark:text-red-300 dark:border-red-500/40',
+        brand:
+          'bg-violet-100 text-violet-600 border border-violet-200 dark:bg-violet-600/20 dark:text-violet-300 dark:border-violet-500/40',
       },
     },
     defaultVariants: {

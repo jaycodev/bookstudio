@@ -1,31 +1,16 @@
 [
   {
-    "code": "PRE-20240815-00001",
-    "readerCode": "LEC-2025-00024",
-    "readerFullName": "Manuel Antonio Sánchez Vega",
-    "loanDate": "2024-08-15",
-    "itemCount": 1,
-    "statusCounts": {
-      "returned": 1,
-      "borrowed": 0,
-      "canceled": 0,
-      "overdue": 0,
-      "lost": 0
-    },
-    "id": 26
-  },
-  {
     "code": "PRE-20240814-00001",
     "readerCode": "LEC-2025-00023",
     "readerFullName": "Ricardo Manuel Morales Díaz",
     "loanDate": "2024-08-14",
     "itemCount": 1,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 1,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 0
     },
     "id": 25
   },
@@ -36,11 +21,11 @@
     "loanDate": "2024-08-13",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 2,
-      "borrowed": 0,
-      "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "canceled": 1,
+      "overdue": 1,
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 24
   },
@@ -49,13 +34,13 @@
     "readerCode": "LEC-2025-00021",
     "readerFullName": "José Luis Fernández Huamán",
     "loanDate": "2024-08-12",
-    "itemCount": 1,
+    "itemCount": 3,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 1,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 1
     },
     "id": 23
   },
@@ -66,11 +51,11 @@
     "loanDate": "2024-08-11",
     "itemCount": 1,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 0,
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0
+      "overdue": 0,
+      "lost": 1,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 22
   },
@@ -79,13 +64,13 @@
     "readerCode": "LEC-2025-00002",
     "readerFullName": "Carlos Andrés Mendoza Silva",
     "loanDate": "2024-08-10",
-    "itemCount": 2,
+    "itemCount": 1,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 2,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 0
     },
     "id": 21
   },
@@ -94,13 +79,13 @@
     "readerCode": "LEC-2025-00019",
     "readerFullName": "Rosa María Guerrero Silva",
     "loanDate": "2024-08-09",
-    "itemCount": 1,
+    "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 1,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 1,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 20
   },
@@ -111,11 +96,11 @@
     "loanDate": "2024-08-08",
     "itemCount": 1,
     "statusCounts": {
-      "returned": 1,
-      "borrowed": 0,
-      "canceled": 0,
+      "canceled": 1,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 19
   },
@@ -126,11 +111,11 @@
     "loanDate": "2024-08-07",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 2,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 1
     },
     "id": 18
   },
@@ -139,13 +124,13 @@
     "readerCode": "LEC-2025-00016",
     "readerFullName": "María Elena Rodríguez Torres",
     "loanDate": "2024-08-06",
-    "itemCount": 1,
+    "itemCount": 3,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 1,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 2,
+      "borrowed": 1
     },
     "id": 17
   },
@@ -154,13 +139,13 @@
     "readerCode": "LEC-2025-00015",
     "readerFullName": "Fernanda Alejandra Mamani Quispe",
     "loanDate": "2024-08-05",
-    "itemCount": 2,
+    "itemCount": 1,
     "statusCounts": {
-      "returned": 2,
-      "borrowed": 0,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 16
   },
@@ -171,11 +156,11 @@
     "loanDate": "2024-08-04",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 2,
-      "canceled": 0,
+      "canceled": 1,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 1
     },
     "id": 15
   },
@@ -186,11 +171,11 @@
     "loanDate": "2024-08-03",
     "itemCount": 1,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 0,
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0
+      "overdue": 0,
+      "lost": 1,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 14
   },
@@ -201,11 +186,11 @@
     "loanDate": "2024-08-02",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 2,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 1
     },
     "id": 13
   },
@@ -216,11 +201,11 @@
     "loanDate": "2024-08-01",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 2,
-      "borrowed": 0,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 1,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 12
   },
@@ -231,11 +216,11 @@
     "loanDate": "2024-07-30",
     "itemCount": 1,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 1,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 1
     },
     "id": 11
   },
@@ -246,11 +231,11 @@
     "loanDate": "2024-07-29",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 0,
       "canceled": 0,
-      "overdue": 2,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 0
     },
     "id": 10
   },
@@ -259,13 +244,13 @@
     "readerCode": "LEC-2025-00008",
     "readerFullName": "Javier Fernando Huamán Flores",
     "loanDate": "2024-07-28",
-    "itemCount": 1,
+    "itemCount": 3,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 1,
-      "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "canceled": 1,
+      "overdue": 1,
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 0
     },
     "id": 9
   },
@@ -276,11 +261,11 @@
     "loanDate": "2024-07-27",
     "itemCount": 1,
     "statusCounts": {
-      "returned": 1,
-      "borrowed": 0,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 1,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 8
   },
@@ -291,11 +276,11 @@
     "loanDate": "2024-07-26",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 2,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 1
     },
     "id": 7
   },
@@ -306,11 +291,11 @@
     "loanDate": "2024-07-25",
     "itemCount": 1,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 1,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 6
   },
@@ -319,13 +304,13 @@
     "readerCode": "LEC-2025-00005",
     "readerFullName": "Lucía Isabel Paredes Gutiérrez",
     "loanDate": "2024-07-24",
-    "itemCount": 2,
+    "itemCount": 3,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 2,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 1
     },
     "id": 5
   },
@@ -334,13 +319,13 @@
     "readerCode": "LEC-2025-00004",
     "readerFullName": "Roberto Miguel Castro Quispe",
     "loanDate": "2024-07-23",
-    "itemCount": 2,
+    "itemCount": 1,
     "statusCounts": {
-      "returned": 2,
-      "borrowed": 0,
       "canceled": 0,
       "overdue": 0,
-      "lost": 0
+      "lost": 0,
+      "returned": 1,
+      "borrowed": 0
     },
     "id": 4
   },
@@ -349,13 +334,13 @@
     "readerCode": "LEC-2025-00003",
     "readerFullName": "Patricia Rosa Vargas Chávez",
     "loanDate": "2024-07-22",
-    "itemCount": 1,
+    "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 0,
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0
+      "overdue": 2,
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 0
     },
     "id": 3
   },
@@ -366,11 +351,11 @@
     "loanDate": "2024-07-21",
     "itemCount": 2,
     "statusCounts": {
-      "returned": 0,
-      "borrowed": 2,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 0,
+      "borrowed": 1
     },
     "id": 2
   },
@@ -379,13 +364,13 @@
     "readerCode": "LEC-2025-00001",
     "readerFullName": "Ana María García López",
     "loanDate": "2024-07-20",
-    "itemCount": 2,
+    "itemCount": 3,
     "statusCounts": {
-      "returned": 2,
-      "borrowed": 0,
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0
+      "overdue": 1,
+      "lost": 0,
+      "returned": 2,
+      "borrowed": 0
     },
     "id": 1
   }

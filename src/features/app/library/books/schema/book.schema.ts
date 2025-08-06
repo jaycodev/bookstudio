@@ -1,13 +1,17 @@
 import { z } from 'zod'
 
-export const bookSchema = z.object({
-  BookID: z.number(),
-  Title: z.string(),
-  AvailableCopies: z.number(),
-  LoanedCopies: z.number(),
-  AuthorName: z.string(),
-  PublisherName: z.string(),
-  Status: z.enum(['activo', 'inactivo']),
+export const statusSchema = z.enum(['activo', 'inactivo'])
+
+export const bookListSchema = z.object({
+  isbn: z.string(),
+  coverUrl: z.string().nullable(),
+  title: z.string(),
+  categoryName: z.string(),
+  publisherName: z.string(),
+  languageCode: z.string(),
+  releaseDate: z.coerce.date(),
+  status: statusSchema,
+  id: z.number(),
 })
 
-export type Book = z.infer<typeof bookSchema>
+export type BookList = z.infer<typeof bookListSchema>

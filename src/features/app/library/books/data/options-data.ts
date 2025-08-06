@@ -1,45 +1,48 @@
-import { CheckCircle2, XCircle } from 'lucide-react'
-
 import { FilterOption } from '@/types/types'
 
-export const authors: FilterOption[] = [
-  { label: 'Gabriel García Márquez', value: 'Gabriel García Márquez' },
-  { label: 'Julio Cortázar', value: 'Julio Cortázar' },
-  { label: 'Mario Vargas Llosa', value: 'Mario Vargas Llosa' },
-  { label: 'Juan Rulfo', value: 'Juan Rulfo' },
-  { label: 'Miguel de Cervantes', value: 'Miguel de Cervantes' },
-  { label: 'Ernesto Sabato', value: 'Ernesto Sabato' },
-  { label: 'Jorge Luis Borges', value: 'Jorge Luis Borges' },
-  { label: 'Mario Benedetti', value: 'Mario Benedetti' },
-  { label: 'Carlos Fuentes', value: 'Carlos Fuentes' },
-  { label: 'Alejo Carpentier', value: 'Alejo Carpentier' },
-  { label: 'Isabel Allende', value: 'Isabel Allende' },
-  { label: 'Adolfo Bioy Casares', value: 'Adolfo Bioy Casares' },
-  { label: 'Mariano Azuela', value: 'Mariano Azuela' },
-  { label: 'Octavio Paz', value: 'Octavio Paz' },
-  { label: 'Anónimo', value: 'Anónimo' },
-  { label: 'Miguel Ángel Asturias', value: 'Miguel Ángel Asturias' },
-  { label: 'Rosario Castellanos', value: 'Rosario Castellanos' },
-]
+import { statusIconsAndLabels } from '../config/status-icons.ts'
+import books from '../data/books.json'
 
-export const publishers: FilterOption[] = [
-  { label: 'Sudamericana', value: 'Sudamericana' },
-  { label: 'Editorial Sudamericana', value: 'Editorial Sudamericana' },
-  { label: 'Seix Barral', value: 'Seix Barral' },
-  { label: 'Fondo de Cultura Económica', value: 'Fondo de Cultura Económica' },
-  { label: 'Francisco de Robles', value: 'Francisco de Robles' },
-  { label: 'Editorial Sur', value: 'Editorial Sur' },
-  { label: 'Editorial Proa', value: 'Editorial Proa' },
-  { label: 'Arca', value: 'Arca' },
-  { label: 'Losada', value: 'Losada' },
-  { label: 'Editorial Oveja Negra', value: 'Editorial Oveja Negra' },
-  { label: 'Oveja Negra', value: 'Oveja Negra' },
-  { label: 'Plaza & Janés', value: 'Plaza & Janés' },
-  { label: 'Editorial Porrúa', value: 'Editorial Porrúa' },
-  { label: 'Editorial Universitaria', value: 'Editorial Universitaria' },
-]
+export const categoriesOptions: FilterOption[] = Array.from(
+  new Map(
+    books.map((book) => [
+      book.categoryName,
+      {
+        label: book.categoryName,
+        value: book.categoryName,
+      },
+    ])
+  ).values()
+)
 
-export const status: FilterOption[] = [
-  { label: 'Activo', value: 'activo', icon: CheckCircle2 },
-  { label: 'Inactivo', value: 'inactivo', icon: XCircle },
-]
+export const publishersOptions: FilterOption[] = Array.from(
+  new Map(
+    books.map((book) => [
+      book.publisherName,
+      {
+        label: book.publisherName,
+        value: book.publisherName,
+      },
+    ])
+  ).values()
+)
+
+export const languagesOptions: FilterOption[] = Array.from(
+  new Map(
+    books.map((book) => [
+      book.languageCode,
+      {
+        label: book.languageName,
+        value: book.languageCode,
+      },
+    ])
+  ).values()
+)
+
+export const statusOptions: FilterOption[] = Object.entries(statusIconsAndLabels).map(
+  ([key, { label, icon }]) => ({
+    value: key,
+    label,
+    icon,
+  })
+)

@@ -1,3 +1,5 @@
+import { Handshake } from 'lucide-react'
+
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/loans.json'
@@ -14,7 +16,16 @@ try {
 }
 
 const LoansPage = () => {
-  return <DataTable columns={columns} data={data} resource="loans" />
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      resource="loans"
+      title="Préstamos"
+      description="Todo lo que necesitas para gestionarlos."
+      icon={Handshake}
+    />
+  )
 }
 
 export default LoansPage

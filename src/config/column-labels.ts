@@ -32,6 +32,15 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     statusCounts: 'Estados',
     id: 'ID',
   },
+  reservations: {
+    code: 'Código',
+    readerCode: 'Código lector',
+    readerFullName: 'Nombre lector',
+    copyCode: 'Código ejemplar',
+    reservationDate: 'Fecha reserva',
+    status: 'Estado',
+    id: 'ID',
+  },
   publishers: {
     PublisherID: 'ID',
     Name: 'Nombre',

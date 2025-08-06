@@ -13,7 +13,7 @@ import {
   useReactTable,
   VisibilityState,
 } from '@tanstack/react-table'
-import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
+import { CirclePlus, FileSpreadsheet, FileX, LucideIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -33,13 +33,21 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   resource: string
+  title?: string
+  description?: string
+  icon?: LucideIcon
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   resource,
+  title = 'Listado',
+  description = 'Esta es la información disponible en la tabla.',
+  icon,
 }: DataTableProps<TData, TValue>) {
+  const Icon = icon
+
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
@@ -75,20 +83,30 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center space-x-2 mb-4 w-full">
-        <Button size="sm">
-          <CirclePlus />
-          Agregar
-        </Button>
-        <Button variant="outline" size="sm">
-          <FileSpreadsheet className="text-destructive" />
-          PDF
-        </Button>
-        <Button variant="outline" size="sm">
-          <FileX className="text-green-500 dark:text-green-400" />
-          Excel
-        </Button>
+      <div className="mb-2 flex flex-wrap items-center justify-between space-y-2 gap-x-4">
+        <div>
+          <h2 className="text-2xl font-bold flex items-center gap-2">
+            {Icon && <Icon strokeWidth={2.5} />}
+            {title}
+          </h2>
+          <p className="text-muted-foreground">{description}</p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline">
+            <FileX className="text-green-500 dark:text-green-400" />
+            Excel
+          </Button>
+          <Button variant="outline">
+            <FileSpreadsheet className="text-destructive" />
+            PDF
+          </Button>
+          <Button>
+            <CirclePlus />
+            Agregar
+          </Button>
+        </div>
       </div>
+      <div className="flex items-center space-x-2 mb-2 w-full"></div>
       <DataTableToolbar table={table} resource={resource} />
       <div className="overflow-y-auto rounded-md border">
         <Table>

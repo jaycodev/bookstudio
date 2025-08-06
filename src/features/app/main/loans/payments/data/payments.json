@@ -1,5 +1,95 @@
 [
   {
+    "code": "PAG-2024-00022",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00024",
+    "readerFullName": "Manuel Antonio Sánchez Vega",
+    "amount": 13.75,
+    "paymentDate": "2024-09-06",
+    "method": "otros",
+    "id": 22
+  },
+  {
+    "code": "PAG-2024-00021",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00022",
+    "readerFullName": "Sandra Patricia López Vargas",
+    "amount": 11.25,
+    "paymentDate": "2024-09-05",
+    "method": "otros",
+    "id": 21
+  },
+  {
+    "code": "PAG-2024-00020",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00014",
+    "readerFullName": "Adrián Gabriel Choque Apaza",
+    "amount": 25.0,
+    "paymentDate": "2024-08-31",
+    "method": "otros",
+    "id": 20
+  },
+  {
+    "code": "PAG-2024-00019",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00010",
+    "readerFullName": "Mateo José Condori Apaza",
+    "amount": 16.5,
+    "paymentDate": "2024-09-04",
+    "method": "cheque",
+    "id": 19
+  },
+  {
+    "code": "PAG-2024-00018",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00006",
+    "readerFullName": "Diego Alejandro Moreno Ramos",
+    "amount": 14.0,
+    "paymentDate": "2024-09-03",
+    "method": "cheque",
+    "id": 18
+  },
+  {
+    "code": "PAG-2024-00017",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00020",
+    "readerFullName": "Jorge Enrique Medina Castro",
+    "amount": 17.5,
+    "paymentDate": "2024-08-30",
+    "method": "cheque",
+    "id": 17
+  },
+  {
+    "code": "PAG-2024-00016",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00009",
+    "readerFullName": "Camila Andrea Torres Vilca",
+    "amount": 30.0,
+    "paymentDate": "2024-08-20",
+    "method": "cheque",
+    "id": 16
+  },
+  {
+    "code": "PAG-2024-00015",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00018",
+    "readerFullName": "Luis Alberto Vega Sánchez",
+    "amount": 22.0,
+    "paymentDate": "2024-09-02",
+    "method": "transferencia",
+    "id": 15
+  },
+  {
+    "code": "PAG-2024-00014",
+    "fineCount": 1,
+    "readerCode": "LEC-2025-00016",
+    "readerFullName": "María Elena Rodríguez Torres",
+    "amount": 6.25,
+    "paymentDate": "2024-08-22",
+    "method": "transferencia",
+    "id": 14
+  },
+  {
     "code": "PAG-2024-00013",
     "fineCount": 1,
     "readerCode": "LEC-2025-00012",

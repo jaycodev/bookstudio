@@ -1,0 +1,112 @@
+[
+  {
+    "code": "MULT-2024-00011",
+    "loanCode": "PRE-20240813-00001",
+    "copyCode": "EJ-2025-0024",
+    "amount": 5.0,
+    "daysLate": 2,
+    "issuedAt": "2024-08-23",
+    "status": "pagado",
+    "id": 11
+  },
+  {
+    "code": "MULT-2024-00010",
+    "loanCode": "PRE-20240808-00001",
+    "copyCode": "EJ-2025-0008",
+    "amount": 2.5,
+    "daysLate": 1,
+    "issuedAt": "2024-08-18",
+    "status": "pagado",
+    "id": 10
+  },
+  {
+    "code": "MULT-2024-00009",
+    "loanCode": "PRE-20240805-00001",
+    "copyCode": "EJ-2025-0015",
+    "amount": 5.0,
+    "daysLate": 2,
+    "issuedAt": "2024-08-15",
+    "status": "pagado",
+    "id": 9
+  },
+  {
+    "code": "MULT-2024-00008",
+    "loanCode": "PRE-20240801-00001",
+    "copyCode": "EJ-2025-0007",
+    "amount": 2.5,
+    "daysLate": 1,
+    "issuedAt": "2024-08-10",
+    "status": "pagado",
+    "id": 8
+  },
+  {
+    "code": "MULT-2024-00007",
+    "loanCode": "PRE-20240727-00001",
+    "copyCode": "EJ-2025-0004",
+    "amount": 5.0,
+    "daysLate": 2,
+    "issuedAt": "2024-08-03",
+    "status": "pagado",
+    "id": 7
+  },
+  {
+    "code": "MULT-2024-00006",
+    "loanCode": "PRE-20240720-00001",
+    "copyCode": "EJ-2025-0003",
+    "amount": 2.5,
+    "daysLate": 1,
+    "issuedAt": "2024-07-25",
+    "status": "pagado",
+    "id": 6
+  },
+  {
+    "code": "MULT-2024-00005",
+    "loanCode": "PRE-20240811-00001",
+    "copyCode": "EJ-2025-0012",
+    "amount": 12.5,
+    "daysLate": 5,
+    "issuedAt": "2024-08-30",
+    "status": "pendiente",
+    "id": 5
+  },
+  {
+    "code": "MULT-2024-00004",
+    "loanCode": "PRE-20240803-00001",
+    "copyCode": "EJ-2025-0041",
+    "amount": 10.0,
+    "daysLate": 4,
+    "issuedAt": "2024-08-21",
+    "status": "pendiente",
+    "id": 4
+  },
+  {
+    "code": "MULT-2024-00003",
+    "loanCode": "PRE-20240729-00001",
+    "copyCode": "EJ-2025-0038",
+    "amount": 7.5,
+    "daysLate": 3,
+    "issuedAt": "2024-08-15",
+    "status": "pendiente",
+    "id": 3
+  },
+  {
+    "code": "MULT-2024-00002",
+    "loanCode": "PRE-20240729-00001",
+    "copyCode": "EJ-2025-0014",
+    "amount": 7.5,
+    "daysLate": 3,
+    "issuedAt": "2024-08-15",
+    "status": "pendiente",
+    "id": 2
+  },
+  {
+    "code": "MULT-2024-00001",
+    "loanCode": "PRE-20240722-00001",
+    "copyCode": "EJ-2025-0035",
+    "amount": 5.0,
+    "daysLate": 2,
+    "issuedAt": "2024-08-07",
+    "status": "pendiente",
+    "id": 1
+  }
+]

@@ -1,13 +1,19 @@
 import { z } from 'zod'
 
-export const loanSchema = z.object({
-  LoanID: z.number(),
-  BookTitle: z.string(),
-  StudentDNI: z.string(),
-  LoanDate: z.coerce.date(),
-  ReturnDate: z.coerce.date(),
-  Quantity: z.number(),
-  Status: z.enum(['prestado', 'devuelto']),
+export const loanListSchema = z.object({
+  code: z.string(),
+  readerCode: z.string(),
+  readerFullName: z.string(),
+  loanDate: z.coerce.date(),
+  itemCount: z.number(),
+  statusCounts: z.object({
+    borrowed: z.number(),
+    canceled: z.number(),
+    overdue: z.number(),
+    lost: z.number(),
+    returned: z.number(),
+  }),
+  id: z.number(),
 })
 
-export type Loan = z.infer<typeof loanSchema>
+export type LoanList = z.infer<typeof loanListSchema>

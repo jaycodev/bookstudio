@@ -1,227 +1,392 @@
 [
   {
-    "LoanID": 1,
-    "BookTitle": "Cien años de soledad",
-    "StudentDNI": "Juan Pérez - 60916631",
-    "LoanDate": "2023-01-10",
-    "ReturnDate": "2023-01-24",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240815-00001",
+    "readerCode": "LEC-2025-00024",
+    "readerFullName": "Manuel Antonio Sánchez Vega",
+    "loanDate": "2024-08-15",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 1,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 26
   },
   {
-    "LoanID": 2,
-    "BookTitle": "La ciudad y los perros",
-    "StudentDNI": "Lucía Gómez - 72103412",
-    "LoanDate": "2023-02-15",
-    "ReturnDate": "2023-03-01",
-    "Quantity": 2,
-    "Status": "prestado"
+    "code": "PRE-20240814-00001",
+    "readerCode": "LEC-2025-00023",
+    "readerFullName": "Ricardo Manuel Morales Díaz",
+    "loanDate": "2024-08-14",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 1,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 25
   },
   {
-    "LoanID": 3,
-    "BookTitle": "Rayuela",
-    "StudentDNI": "Carlos Ruiz - 65321098",
-    "LoanDate": "2023-01-05",
-    "ReturnDate": "2023-01-20",
-    "Quantity": 1,
-    "Status": "devuelto"
+    "code": "PRE-20240813-00001",
+    "readerCode": "LEC-2025-00022",
+    "readerFullName": "Sandra Patricia López Vargas",
+    "loanDate": "2024-08-13",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 2,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 24
   },
   {
-    "LoanID": 4,
-    "BookTitle": "Pedro Páramo",
-    "StudentDNI": "Sofía Herrera - 64890011",
-    "LoanDate": "2022-12-10",
-    "ReturnDate": "2022-12-24",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240812-00001",
+    "readerCode": "LEC-2025-00021",
+    "readerFullName": "José Luis Fernández Huamán",
+    "loanDate": "2024-08-12",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 1,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 23
   },
   {
-    "LoanID": 5,
-    "BookTitle": "El túnel",
-    "StudentDNI": "Martín Díaz - 73215649",
-    "LoanDate": "2023-03-12",
-    "ReturnDate": "2023-03-26",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240811-00001",
+    "readerCode": "LEC-2025-00020",
+    "readerFullName": "Jorge Enrique Medina Castro",
+    "loanDate": "2024-08-11",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 1,
+      "lost": 0
+    },
+    "id": 22
   },
   {
-    "LoanID": 6,
-    "BookTitle": "Don Quijote de la Mancha",
-    "StudentDNI": "Ana Torres - 65980123",
-    "LoanDate": "2023-04-01",
-    "ReturnDate": "2023-04-15",
-    "Quantity": 2,
-    "Status": "devuelto"
+    "code": "PRE-20240810-00001",
+    "readerCode": "LEC-2025-00002",
+    "readerFullName": "Carlos Andrés Mendoza Silva",
+    "loanDate": "2024-08-10",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 2,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 21
   },
   {
-    "LoanID": 7,
-    "BookTitle": "La tregua",
-    "StudentDNI": "Diego Navarro - 61234567",
-    "LoanDate": "2023-05-20",
-    "ReturnDate": "2023-06-03",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240809-00001",
+    "readerCode": "LEC-2025-00019",
+    "readerFullName": "Rosa María Guerrero Silva",
+    "loanDate": "2024-08-09",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 1,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 20
   },
   {
-    "LoanID": 8,
-    "BookTitle": "Ficciones",
-    "StudentDNI": "Clara Campos - 70122345",
-    "LoanDate": "2023-06-10",
-    "ReturnDate": "2023-06-24",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240808-00001",
+    "readerCode": "LEC-2025-00018",
+    "readerFullName": "Luis Alberto Vega Sánchez",
+    "loanDate": "2024-08-08",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 1,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 19
   },
   {
-    "LoanID": 9,
-    "BookTitle": "Aura",
-    "StudentDNI": "Esteban Vidal - 69876543",
-    "LoanDate": "2023-07-01",
-    "ReturnDate": "2023-07-15",
-    "Quantity": 1,
-    "Status": "devuelto"
+    "code": "PRE-20240807-00001",
+    "readerCode": "LEC-2025-00017",
+    "readerFullName": "Carmen Luz Herrera Morales",
+    "loanDate": "2024-08-07",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 2,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 18
   },
   {
-    "LoanID": 10,
-    "BookTitle": "Santa",
-    "StudentDNI": "Valentina Ríos - 69001122",
-    "LoanDate": "2023-08-01",
-    "ReturnDate": "2023-08-15",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240806-00001",
+    "readerCode": "LEC-2025-00016",
+    "readerFullName": "María Elena Rodríguez Torres",
+    "loanDate": "2024-08-06",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 1,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 17
   },
   {
-    "LoanID": 11,
-    "BookTitle": "Los pasos perdidos",
-    "StudentDNI": "Felipe Mora - 64566778",
-    "LoanDate": "2023-09-01",
-    "ReturnDate": "2023-09-15",
-    "Quantity": 2,
-    "Status": "prestado"
+    "code": "PRE-20240805-00001",
+    "readerCode": "LEC-2025-00015",
+    "readerFullName": "Fernanda Alejandra Mamani Quispe",
+    "loanDate": "2024-08-05",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 2,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 16
   },
   {
-    "LoanID": 12,
-    "BookTitle": "La invención de Morel",
-    "StudentDNI": "Daniela Castro - 63457890",
-    "LoanDate": "2023-10-05",
-    "ReturnDate": "2023-10-19",
-    "Quantity": 1,
-    "Status": "devuelto"
+    "code": "PRE-20240804-00001",
+    "readerCode": "LEC-2025-00014",
+    "readerFullName": "Adrián Gabriel Choque Apaza",
+    "loanDate": "2024-08-04",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 2,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 15
   },
   {
-    "LoanID": 13,
-    "BookTitle": "La casa de los espíritus",
-    "StudentDNI": "Tomás Rivas - 67789900",
-    "LoanDate": "2023-11-01",
-    "ReturnDate": "2023-11-15",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240803-00001",
+    "readerCode": "LEC-2025-00013",
+    "readerFullName": "Isabella Nicole Nina Calla",
+    "loanDate": "2024-08-03",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 1,
+      "lost": 0
+    },
+    "id": 14
   },
   {
-    "LoanID": 14,
-    "BookTitle": "Sobre héroes y tumbas",
-    "StudentDNI": "Marta Luján - 69998877",
-    "LoanDate": "2023-12-01",
-    "ReturnDate": "2023-12-15",
-    "Quantity": 2,
-    "Status": "prestado"
+    "code": "PRE-20240802-00001",
+    "readerCode": "LEC-2025-00012",
+    "readerFullName": "Sebastián Alonso Poma Hancco",
+    "loanDate": "2024-08-02",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 2,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 13
   },
   {
-    "LoanID": 15,
-    "BookTitle": "Popol Vuh",
-    "StudentDNI": "Agustín Bravo - 64442233",
-    "LoanDate": "2023-12-20",
-    "ReturnDate": "2024-01-03",
-    "Quantity": 1,
-    "Status": "devuelto"
+    "code": "PRE-20240801-00001",
+    "readerCode": "LEC-2025-00011",
+    "readerFullName": "Valeria Milagros Ramos Ccahuana",
+    "loanDate": "2024-08-01",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 2,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 12
   },
   {
-    "LoanID": 16,
-    "BookTitle": "El amor en los tiempos del cólera",
-    "StudentDNI": "Laura Peña - 67889910",
-    "LoanDate": "2024-01-15",
-    "ReturnDate": "2024-01-29",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240730-00001",
+    "readerCode": "LEC-2025-00010",
+    "readerFullName": "Mateo José Condori Apaza",
+    "loanDate": "2024-07-30",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 1,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 11
   },
   {
-    "LoanID": 17,
-    "BookTitle": "El Aleph",
-    "StudentDNI": "Nicolás Sosa - 70011234",
-    "LoanDate": "2024-02-10",
-    "ReturnDate": "2024-02-24",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240729-00001",
+    "readerCode": "LEC-2025-00009",
+    "readerFullName": "Camila Andrea Torres Vilca",
+    "loanDate": "2024-07-29",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 2,
+      "lost": 0
+    },
+    "id": 10
   },
   {
-    "LoanID": 18,
-    "BookTitle": "La sombra del viento",
-    "StudentDNI": "Jimena Vidal - 61239087",
-    "LoanDate": "2024-03-01",
-    "ReturnDate": "2024-03-15",
-    "Quantity": 1,
-    "Status": "devuelto"
+    "code": "PRE-20240728-00001",
+    "readerCode": "LEC-2025-00008",
+    "readerFullName": "Javier Fernando Huamán Flores",
+    "loanDate": "2024-07-28",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 1,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 9
   },
   {
-    "LoanID": 19,
-    "BookTitle": "Crónica de una muerte anunciada",
-    "StudentDNI": "Pedro Sánchez - 65678900",
-    "LoanDate": "2024-03-10",
-    "ReturnDate": "2024-03-24",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240727-00001",
+    "readerCode": "LEC-2025-00007",
+    "readerFullName": "Sofía Elena Quispe Mamani",
+    "loanDate": "2024-07-27",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 1,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 8
   },
   {
-    "LoanID": 20,
-    "BookTitle": "El coronel no tiene quien le escriba",
-    "StudentDNI": "Romina Delgado - 69990123",
-    "LoanDate": "2024-04-01",
-    "ReturnDate": "2024-04-15",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240726-00001",
+    "readerCode": "LEC-2025-00006",
+    "readerFullName": "Diego Alejandro Moreno Ramos",
+    "loanDate": "2024-07-26",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 2,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 7
   },
   {
-    "LoanID": 21,
-    "BookTitle": "Los de abajo",
-    "StudentDNI": "Iván Cáceres - 68881234",
-    "LoanDate": "2024-04-10",
-    "ReturnDate": "2024-04-24",
-    "Quantity": 1,
-    "Status": "devuelto"
+    "code": "PRE-20240725-00001",
+    "readerCode": "LEC-2025-00001",
+    "readerFullName": "Ana María García López",
+    "loanDate": "2024-07-25",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 1,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 6
   },
   {
-    "LoanID": 22,
-    "BookTitle": "Confabulario",
-    "StudentDNI": "Verónica Reyes - 69009876",
-    "LoanDate": "2024-05-01",
-    "ReturnDate": "2024-05-15",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240724-00001",
+    "readerCode": "LEC-2025-00005",
+    "readerFullName": "Lucía Isabel Paredes Gutiérrez",
+    "loanDate": "2024-07-24",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 2,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 5
   },
   {
-    "LoanID": 23,
-    "BookTitle": "La región más transparente",
-    "StudentDNI": "Sebastián Herrera - 67991122",
-    "LoanDate": "2024-05-10",
-    "ReturnDate": "2024-05-24",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240723-00001",
+    "readerCode": "LEC-2025-00004",
+    "readerFullName": "Roberto Miguel Castro Quispe",
+    "loanDate": "2024-07-23",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 2,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 4
   },
   {
-    "LoanID": 24,
-    "BookTitle": "Cartas a un joven poeta",
-    "StudentDNI": "María Beltrán - 63345567",
-    "LoanDate": "2024-06-01",
-    "ReturnDate": "2024-06-15",
-    "Quantity": 2,
-    "Status": "devuelto"
+    "code": "PRE-20240722-00001",
+    "readerCode": "LEC-2025-00003",
+    "readerFullName": "Patricia Rosa Vargas Chávez",
+    "loanDate": "2024-07-22",
+    "itemCount": 1,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 1,
+      "lost": 0
+    },
+    "id": 3
   },
   {
-    "LoanID": 25,
-    "BookTitle": "El laberinto de la soledad",
-    "StudentDNI": "Andrés Romero - 68990012",
-    "LoanDate": "2024-06-10",
-    "ReturnDate": "2024-06-24",
-    "Quantity": 1,
-    "Status": "prestado"
+    "code": "PRE-20240721-00001",
+    "readerCode": "LEC-2025-00002",
+    "readerFullName": "Carlos Andrés Mendoza Silva",
+    "loanDate": "2024-07-21",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 0,
+      "borrowed": 2,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 2
+  },
+  {
+    "code": "PRE-20240720-00001",
+    "readerCode": "LEC-2025-00001",
+    "readerFullName": "Ana María García López",
+    "loanDate": "2024-07-20",
+    "itemCount": 2,
+    "statusCounts": {
+      "returned": 2,
+      "borrowed": 0,
+      "canceled": 0,
+      "overdue": 0,
+      "lost": 0
+    },
+    "id": 1
   }
 ]

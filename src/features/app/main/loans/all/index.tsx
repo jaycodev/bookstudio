@@ -1,15 +1,17 @@
-import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
+import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/loans.json'
-import { Loan } from './schema/loan.schema.ts'
-import { columns } from './table/columns.tsx'
+import { LoanList, loanListSchema } from './schema/loan.schema.ts'
+import { columns } from './table/columns'
 
-const data: Loan[] = rawData.map((loan) => ({
-  ...loan,
-  Status: loan.Status === 'devuelto' ? 'devuelto' : 'prestado',
-  LoanDate: new Date(loan.LoanDate),
-  ReturnDate: new Date(loan.ReturnDate),
-}))
+let data: LoanList[] = []
+
+try {
+  data = loanListSchema.array().parse(rawData)
+} catch (error) {
+  console.error('Failed to parse loan data. Please check the structure of your JSON file.', error)
+  data = []
+}
 
 const LoansPage = () => {
   return <DataTable columns={columns} data={data} resource="loans" />

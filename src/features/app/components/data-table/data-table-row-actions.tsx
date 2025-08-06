@@ -1,5 +1,5 @@
 import { Ellipsis } from 'lucide-react'
-import { Eye, Pencil } from 'lucide-react'
+import { Info, Pencil } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -23,7 +23,7 @@ export function DataTableRowActions() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
-          <Eye />
+          <Info />
           Detalles
         </DropdownMenuItem>
         <DropdownMenuItem>

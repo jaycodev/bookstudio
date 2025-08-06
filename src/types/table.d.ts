@@ -8,5 +8,7 @@ declare module '@tanstack/react-table' {
     }
     searchable?: boolean
     dateRangeFilter?: boolean
+    cellClass?: string
+    headerClass?: string
   }
 }

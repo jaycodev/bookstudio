@@ -1,5 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Calendar, Globe } from 'lucide-react'
+import { Calendar, Globe, User } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
@@ -7,7 +7,6 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
-import { getInitials } from '@/lib/utils'
 
 import { statusIconsAndLabels } from '../config/status-icons.ts'
 import { nationalitiesOptions, statusOptions } from '../data/options-data.ts'
@@ -55,7 +54,7 @@ export const columns: ColumnDef<AuthorList>[] = [
               <AvatarImage src={photoUrl} alt={name} className="object-cover" />
             ) : (
               <AvatarFallback className="text-xs object-cover rounded-sm">
-                {getInitials(name)}
+                <User className="size-5 text-muted-foreground" />
               </AvatarFallback>
             )}
           </Avatar>

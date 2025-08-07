@@ -1,12 +1,14 @@
 import { z } from 'zod'
 
-export const authorSchema = z.object({
-  AuthorID: z.number(),
-  Name: z.string(),
-  NationalityName: z.string(),
-  LiteraryGenreName: z.string(),
-  Status: z.enum(['activo', 'inactivo']),
-  Photo: z.string().optional(),
+export const statusSchema = z.enum(['activo', 'inactivo'])
+
+export const authorListSchema = z.object({
+  photoUrl: z.string().nullable(),
+  name: z.string(),
+  nationalityName: z.string(),
+  birthDate: z.coerce.date(),
+  status: statusSchema,
+  id: z.number(),
 })
 
-export type Author = z.infer<typeof authorSchema>
+export type AuthorList = z.infer<typeof authorListSchema>

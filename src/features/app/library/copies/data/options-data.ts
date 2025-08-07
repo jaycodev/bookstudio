@@ -2,7 +2,7 @@ import { CheckCircle2, XCircle } from 'lucide-react'
 
 import { FilterOption } from '@/types/types'
 
-import { conditionIconsAndLabels } from '../config/condition-icons.ts'
+import { conditionsIconsAndLabels } from '../config/conditions-icons.ts'
 import copies from '../data/copies.json'
 
 export const booksOptions: FilterOption[] = Array.from(
@@ -30,7 +30,7 @@ export const availabilityOptions: FilterOption[] = [
   },
 ]
 
-export const conditionsOptions: FilterOption[] = Object.entries(conditionIconsAndLabels).map(
+export const conditionsOptions: FilterOption[] = Object.entries(conditionsIconsAndLabels).map(
   ([key, { label, icon }]) => ({
     value: key,
     label,

@@ -7,7 +7,7 @@ import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { statusIconsAndLabels } from '../config/status-icons.ts'
+import { methodsIconsAndLabels } from '../config/methods-icons.ts'
 import { readersOptions, statusOptions } from '../data/options-data.ts'
 import type { PaymentList } from '../schema/payment.schema.ts'
 
@@ -158,8 +158,8 @@ export const columns: ColumnDef<PaymentList>[] = [
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'method')} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusIconsAndLabels>('method')
-      const meta = statusIconsAndLabels[status]
+      const status = row.getValue<keyof typeof methodsIconsAndLabels>('method')
+      const meta = methodsIconsAndLabels[status]
 
       if (!meta) return null
       const Icon = meta.icon

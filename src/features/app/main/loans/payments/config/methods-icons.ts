@@ -1,6 +1,6 @@
 import { Banknote, CreditCard, DollarSign, FileText, type LucideIcon, Receipt } from 'lucide-react'
 
-export const statusIconsAndLabels = {
+export const methodsIconsAndLabels = {
   efectivo: {
     label: 'Efectivo',
     icon: DollarSign,
@@ -28,7 +28,7 @@ export const statusIconsAndLabels = {
   },
 } as const
 
-export type PaymentMethod = keyof typeof statusIconsAndLabels
+export type PaymentMethod = keyof typeof methodsIconsAndLabels
 
 export type PaymentMethodIconMeta = {
   label: string

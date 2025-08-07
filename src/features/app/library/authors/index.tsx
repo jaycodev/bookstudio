@@ -1,16 +1,31 @@
-import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
+import { SquareUser } from 'lucide-react'
+
+import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/authors.json'
-import { Author } from './schema/author.schema.ts'
-import { columns } from './table/columns.tsx'
+import { AuthorList, authorListSchema } from './schema/author.schema.ts'
+import { columns } from './table/columns'
 
-const data: Author[] = rawData.map((author) => ({
-  ...author,
-  Status: author.Status === 'activo' ? 'activo' : 'inactivo',
-}))
+let data: AuthorList[] = []
+
+try {
+  data = authorListSchema.array().parse(rawData)
+} catch (error) {
+  console.error('Failed to parse author data. Please check the structure of your JSON file.', error)
+  data = []
+}
 
 const AuthorsPage = () => {
-  return <DataTable columns={columns} data={data} resource="authors" />
+  return (
+    <DataTable
+      columns={columns}
+      data={data}
+      resource="authors"
+      title="Autores"
+      description="Rápidos, claros y ordenados."
+      icon={SquareUser}
+    />
+  )
 }
 
 export default AuthorsPage

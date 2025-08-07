@@ -1,202 +1,258 @@
 [
   {
-    "AuthorID": 1,
-    "Name": "Gabriel García Márquez",
-    "NationalityName": "Colombiana",
-    "LiteraryGenreName": "Realismo mágico",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Edgar_Allan_Poe_portrait.jpg/250px-Edgar_Allan_Poe_portrait.jpg",
+    "name": "Edgar Allan Poe",
+    "nationalityName": "Estadounidense",
+    "birthDate": "1809-01-19",
+    "status": "activo",
+    "id": 32
   },
   {
-    "AuthorID": 2,
-    "Name": "Isabel Allende",
-    "NationalityName": "Chilena",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://www.biografiasyvidas.com/biografia/t/fotos/twain_mark.jpg",
+    "name": "Mark Twain",
+    "nationalityName": "Estadounidense",
+    "birthDate": "1835-11-30",
+    "status": "activo",
+    "id": 31
   },
   {
-    "AuthorID": 3,
-    "Name": "Jorge Luis Borges",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Ficción filosófica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Dickens_Gurney_head.jpg/330px-Dickens_Gurney_head.jpg",
+    "name": "Charles Dickens",
+    "nationalityName": "Británica",
+    "birthDate": "1812-02-07",
+    "status": "activo",
+    "id": 30
   },
   {
-    "AuthorID": 4,
-    "Name": "Mario Vargas Llosa",
-    "NationalityName": "Peruana",
-    "LiteraryGenreName": "Realismo",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa_DJhO_MYLBPWthlaG-T3VS1s9XDajHewYw&s",
+    "name": "Jane Austen",
+    "nationalityName": "Británica",
+    "birthDate": "1775-12-16",
+    "status": "activo",
+    "id": 29
   },
   {
-    "AuthorID": 5,
-    "Name": "Julio Cortázar",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Realismo mágico",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWtPv8flPnqjFjXD4f26XftUHQNg3WvmBBCgqGPDQQmNzZZfTWVgTIk07ioArjBAskgI8",
+    "name": "George Orwell",
+    "nationalityName": "Británica",
+    "birthDate": "1903-06-25",
+    "status": "activo",
+    "id": 28
   },
   {
-    "AuthorID": 6,
-    "Name": "Laura Esquivel",
-    "NationalityName": "Mexicana",
-    "LiteraryGenreName": "Realismo mágico",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVox9E3jQeH8BFpnBRANQeBBC0bsH9230x6Q&s",
+    "name": "Agatha Christie",
+    "nationalityName": "Británica",
+    "birthDate": "1890-09-15",
+    "status": "activo",
+    "id": 27
   },
   {
-    "AuthorID": 7,
-    "Name": "Carlos Fuentes",
-    "NationalityName": "Mexicana",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://m.media-amazon.com/images/S/amzn-author-media-prod/8cigckin175jtpsk3gs361r4ss.jpg",
+    "name": "J.K. Rowling",
+    "nationalityName": "Británica",
+    "birthDate": "1965-07-31",
+    "status": "activo",
+    "id": 26
   },
   {
-    "AuthorID": 8,
-    "Name": "Claribel Alegría",
-    "NationalityName": "Nicaragüense",
-    "LiteraryGenreName": "Ficción filosófica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzdidYzM4lPIVjiSBk_zyLYE1JmSCt_NZMFA&s",
+    "name": "Stephen King",
+    "nationalityName": "Estadounidense",
+    "birthDate": "1947-09-21",
+    "status": "activo",
+    "id": 25
   },
   {
-    "AuthorID": 9,
-    "Name": "Gioconda Belli",
-    "NationalityName": "Nicaragüense",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr-h9MaDue5peCMC0nHtjfPd6rK-flGwMq2Q&s",
+    "name": "Ernest Hemingway",
+    "nationalityName": "Estadounidense",
+    "birthDate": "1899-07-21",
+    "status": "activo",
+    "id": 24
   },
   {
-    "AuthorID": 10,
-    "Name": "Manuel Puig",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Realismo",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfaNYWLuCHQbKlAe-G7AkVoD76qvBsvwR4Vg&s",
+    "name": "William Shakespeare",
+    "nationalityName": "Británica",
+    "birthDate": "1564-04-26",
+    "status": "activo",
+    "id": 23
   },
   {
-    "AuthorID": 11,
-    "Name": "Rosa Montero",
-    "NationalityName": "Española",
-    "LiteraryGenreName": "Ficción filosófica",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8XmYugB0jtGO4A6n_T940MEXT9ASYHsHRBA&s",
+    "name": "Miguel Delibes",
+    "nationalityName": "Española",
+    "birthDate": "1920-10-17",
+    "status": "activo",
+    "id": 22
   },
   {
-    "AuthorID": 12,
-    "Name": "Ana María Matute",
-    "NationalityName": "Española",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUMhqvroPXoeZqUhFLxGTOQ2NvfYjHClVW_g&s",
+    "name": "Camilo José Cela",
+    "nationalityName": "Española",
+    "birthDate": "1916-05-11",
+    "status": "activo",
+    "id": 21
   },
   {
-    "AuthorID": 13,
-    "Name": "Eduardo Galeano",
-    "NationalityName": "Uruguaya",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2MAHA1q7KckmnQrhJmVxLQDMdcXKYPZ-JVQ&s",
+    "name": "Juan Ramón Jiménez",
+    "nationalityName": "Española",
+    "birthDate": "1881-12-23",
+    "status": "activo",
+    "id": 20
   },
   {
-    "AuthorID": 14,
-    "Name": "Juan Rulfo",
-    "NationalityName": "Mexicana",
-    "LiteraryGenreName": "Realismo mágico",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://www.cervantesvirtual.com/images/portales/antonio_machado/antonio_machado.jpg",
+    "name": "Antonio Machado",
+    "nationalityName": "Española",
+    "birthDate": "1875-07-26",
+    "status": "activo",
+    "id": 19
   },
   {
-    "AuthorID": 15,
-    "Name": "Ángeles Mastretta",
-    "NationalityName": "Mexicana",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxIvPX4QM3R_jz0BLZ8tikBYkoVJ5hCD9jmQ&s",
+    "name": "Federico García Lorca",
+    "nationalityName": "Española",
+    "birthDate": "1898-06-05",
+    "status": "activo",
+    "id": 18
   },
   {
-    "AuthorID": 16,
-    "Name": "Ricardo Piglia",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Ficción filosófica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQptVFHhSDXKQF-Jg04BV9m_ebL46ofOeJqGg&s",
+    "name": "Miguel de Cervantes",
+    "nationalityName": "Española",
+    "birthDate": "1547-09-29",
+    "status": "activo",
+    "id": 17
   },
   {
-    "AuthorID": 17,
-    "Name": "José Donoso",
-    "NationalityName": "Chilena",
-    "LiteraryGenreName": "Realismo mágico",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW3L_tRYM8_zKZxBqmEsecUcz5l1LwAkKBBQ&s",
+    "name": "Ernesto Sabato",
+    "nationalityName": "Argentina",
+    "birthDate": "1911-06-24",
+    "status": "activo",
+    "id": 16
   },
   {
-    "AuthorID": 18,
-    "Name": "Sergio Ramírez",
-    "NationalityName": "Nicaragüense",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB0tz84SUKi8ofB4-PGBO1pawbo8Uk029-Vw&s",
+    "name": "Carlos Fuentes",
+    "nationalityName": "Mexicana",
+    "birthDate": "1928-11-11",
+    "status": "activo",
+    "id": 15
   },
   {
-    "AuthorID": 19,
-    "Name": "Alfonsina Storni",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Ficción filosófica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTwxSPB9FTat7um_b6KRiCGOHFUyRKbgWSxw&s",
+    "name": "Pablo Neruda",
+    "nationalityName": "Chilena",
+    "birthDate": "1904-07-12",
+    "status": "activo",
+    "id": 14
   },
   {
-    "AuthorID": 20,
-    "Name": "Horacio Quiroga",
-    "NationalityName": "Uruguaya",
-    "LiteraryGenreName": "Realismo",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAxnGUOOqgregKFvtRdEAlujiGq2PX2MeS5Q&s",
+    "name": "Julio Cortázar",
+    "nationalityName": "Argentina",
+    "birthDate": "1914-08-26",
+    "status": "activo",
+    "id": 13
   },
   {
-    "AuthorID": 21,
-    "Name": "Zoé Valdés",
-    "NationalityName": "Cubana",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNh6HAYvG6Nf0eCwhUamJR6DooIhX_f7mqhQ&s",
+    "name": "Octavio Paz",
+    "nationalityName": "Mexicana",
+    "birthDate": "1914-03-31",
+    "status": "activo",
+    "id": 12
   },
   {
-    "AuthorID": 22,
-    "Name": "Reinaldo Arenas",
-    "NationalityName": "Cubana",
-    "LiteraryGenreName": "Ficción filosófica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKKHLqOoWoChMh08Mrh6ypo295IMQEzyAUWA&s",
+    "name": "Isabel Allende",
+    "nationalityName": "Argentina",
+    "birthDate": "1942-08-02",
+    "status": "activo",
+    "id": 11
   },
   {
-    "AuthorID": 23,
-    "Name": "Teresa Wilms Montt",
-    "NationalityName": "Chilena",
-    "LiteraryGenreName": "Ficción filosófica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHKIGlaz3swY7Dz4dPvHbS2Vefa4m0auvY2g&s",
+    "name": "Jorge Luis Borges",
+    "nationalityName": "Argentina",
+    "birthDate": "1899-08-24",
+    "status": "activo",
+    "id": 10
   },
   {
-    "AuthorID": 24,
-    "Name": "Domingo Faustino Sarmiento",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Narrativa histórica",
-    "Status": "inactivo",
-    "Photo": ""
+    "photoUrl": "https://www.biografiasyvidas.com/reportaje/garcia_marquez/fotos/garcia_marquez_420a.jpg",
+    "name": "Gabriel García Márquez",
+    "nationalityName": "Colombiana",
+    "birthDate": "1927-03-06",
+    "status": "activo",
+    "id": 9
   },
   {
-    "AuthorID": 25,
-    "Name": "Fernanda Melchor",
-    "NationalityName": "Mexicana",
-    "LiteraryGenreName": "Realismo mágico",
-    "Status": "activo",
-    "Photo": ""
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMmUkZHafO_SU9YnccrNc6WH_2U8FREHPAsQ&s",
+    "name": "Alfredo Bryce Echenique",
+    "nationalityName": "Peruana",
+    "birthDate": "1939-02-19",
+    "status": "activo",
+    "id": 8
+  },
+  {
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoxReV53nsHY0Z6IDLkUZkZ65SsT4RVLd5yg&s",
+    "name": "José Carlos Mariátegui",
+    "nationalityName": "Peruana",
+    "birthDate": "1894-06-14",
+    "status": "activo",
+    "id": 7
+  },
+  {
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqyqMpscC4JQHXuuJ_FNep3N6DAU12CijIXQ&s",
+    "name": "Ciro Alegría",
+    "nationalityName": "Peruana",
+    "birthDate": "1909-11-04",
+    "status": "activo",
+    "id": 6
+  },
+  {
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-5xsn7BPM5X9Wyjfs_5cwWJ7-wUJqlbT9oQ&s",
+    "name": "Ricardo Palma",
+    "nationalityName": "Peruana",
+    "birthDate": "1833-02-07",
+    "status": "activo",
+    "id": 5
+  },
+  {
+    "photoUrl": "https://static.wixstatic.com/media/1f8451_ab7e05f2b05b409f97b2a7b8a48265bf~mv2.jpg/v1/fill/w_420,h_607,al_c,lg_1,q_80/1f8451_ab7e05f2b05b409f97b2a7b8a48265bf~mv2.jpg",
+    "name": "José María Arguedas",
+    "nationalityName": "Peruana",
+    "birthDate": "1911-01-18",
+    "status": "activo",
+    "id": 4
+  },
+  {
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIcaENo1dT84TEQhcP9ypMGTEHSe8zeGz3sQ&s",
+    "name": "César Vallejo",
+    "nationalityName": "Peruana",
+    "birthDate": "1892-03-16",
+    "status": "activo",
+    "id": 3
+  },
+  {
+    "photoUrl": "https://portal.andina.pe/EDPfotografia2/Thumbnail/2011/12/03/000171146W.jpg",
+    "name": "Julio Ramón Ribeyro",
+    "nationalityName": "Peruana",
+    "birthDate": "1929-08-31",
+    "status": "activo",
+    "id": 2
+  },
+  {
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1vrnEOMvV7mwmCjPaPQkFluklQO_IdsMvaQ&s",
+    "name": "Mario Vargas Llosa",
+    "nationalityName": "Peruana",
+    "birthDate": "1936-03-28",
+    "status": "activo",
+    "id": 1
   }
 ]

@@ -1,11 +1,11 @@
 export const columnLabelsByResource: Record<string, Record<string, string>> = {
   authors: {
-    AuthorID: 'ID',
-    Name: 'Nombre',
-    NationalityName: 'Nacionalidad',
-    LiteraryGenreName: 'Género literario',
-    Status: 'Estado',
-    Photo: 'Foto',
+    photoUrl: 'Foto',
+    name: 'Nombre',
+    nationalityName: 'Nacionalidad',
+    birthDate: 'Fecha nacimiento',
+    status: 'Estado',
+    id: 'ID',
   },
   books: {
     isbn: 'ISBN',

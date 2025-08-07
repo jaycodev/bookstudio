@@ -22,7 +22,7 @@ const BooksPage = () => {
       data={data}
       resource="books"
       title="Libros"
-      description="Administra sin complicaciones."
+      description="Admínistralos sin complicaciones."
       icon={BookCopy}
     />
   )

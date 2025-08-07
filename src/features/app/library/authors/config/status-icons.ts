@@ -13,9 +13,9 @@ export const statusIconsAndLabels = {
   },
 } as const
 
-export type BookStatus = keyof typeof statusIconsAndLabels
+export type AuthorStatus = keyof typeof statusIconsAndLabels
 
-export type BookStatusIconMeta = {
+export type AuthorStatusIconMeta = {
   label: string
   icon: LucideIcon
   variant: string

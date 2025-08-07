@@ -8,7 +8,7 @@ import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { conditionIconsAndLabels } from '../config/condition-icons.ts'
+import { conditionsIconsAndLabels } from '../config/conditions-icons.ts'
 import { availabilityOptions, booksOptions, conditionsOptions } from '../data/options-data.ts'
 import type { CopyList } from '../schema/copy.schema.ts'
 
@@ -183,8 +183,8 @@ export const columns: ColumnDef<CopyList>[] = [
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'condition')} />
     ),
     cell: ({ row }) => {
-      const condition = row.getValue<keyof typeof conditionIconsAndLabels>('condition')
-      const meta = conditionIconsAndLabels[condition]
+      const condition = row.getValue<keyof typeof conditionsIconsAndLabels>('condition')
+      const meta = conditionsIconsAndLabels[condition]
 
       if (!meta) return null
       const Icon = meta.icon

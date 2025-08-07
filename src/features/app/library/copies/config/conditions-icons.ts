@@ -7,7 +7,7 @@ import {
   ThumbsUp,
 } from 'lucide-react'
 
-export const conditionIconsAndLabels = {
+export const conditionsIconsAndLabels = {
   nuevo: {
     label: 'Nuevo',
     icon: CheckCircle,
@@ -35,7 +35,7 @@ export const conditionIconsAndLabels = {
   },
 } as const
 
-export type CopyCondition = keyof typeof conditionIconsAndLabels
+export type CopyCondition = keyof typeof conditionsIconsAndLabels
 
 export type CopyConditionIconMeta = {
   label: string

@@ -13,8 +13,8 @@ import {
   OctagonAlert,
   Settings,
   ShieldCheck,
-  SquareUser,
   Tags,
+  Users,
 } from 'lucide-react'
 
 import { pageMap, type ValidUrl } from '@/config/page-map.ts'
@@ -63,7 +63,7 @@ setSidebar('/prestamos/pagos', {
 // Biblioteca
 setSidebar('/ejemplares', { icon: Boxes, group: 'biblioteca' })
 setSidebar('/libros', { icon: BookCopy, group: 'biblioteca' })
-setSidebar('/autores', { icon: SquareUser, group: 'biblioteca' })
+setSidebar('/autores', { icon: Users, group: 'biblioteca' })
 setSidebar('/editoriales', { icon: Building2, group: 'biblioteca' })
 setSidebar('/categorias', { icon: Tags, group: 'biblioteca' })
 setSidebar('/ubicaciones', { icon: MapPin, group: 'biblioteca' })

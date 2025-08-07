@@ -1,4 +1,4 @@
-import { SquareUser } from 'lucide-react'
+import { Users } from 'lucide-react'
 
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
@@ -23,7 +23,7 @@ const AuthorsPage = () => {
       resource="authors"
       title="Autores"
       description="Rápidos, claros y ordenados."
-      icon={SquareUser}
+      icon={Users}
     />
   )
 }

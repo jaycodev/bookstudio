@@ -9,7 +9,9 @@ export const bookListSchema = z.object({
   categoryName: z.string(),
   publisherName: z.string(),
   languageCode: z.string(),
-  releaseDate: z.coerce.date(),
+  languageName: z.string(),
+  loanedCopies: z.number(),
+  availableCopies: z.number(),
   status: statusSchema,
   id: z.number(),
 })

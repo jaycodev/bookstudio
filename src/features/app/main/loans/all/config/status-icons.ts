@@ -1,9 +1,9 @@
-import { AlertTriangle, Ban, BookOpenCheck, Clock, type LucideIcon, Undo2 } from 'lucide-react'
+import { AlertTriangle, Ban, BookCheck, Clock, type LucideIcon, Undo2 } from 'lucide-react'
 
 export const statusIconsAndLabels = {
   borrowed: {
     label: 'Prestado',
-    icon: BookOpenCheck,
+    icon: BookCheck,
     variant: 'info',
   },
   returned: {

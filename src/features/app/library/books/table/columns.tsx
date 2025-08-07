@@ -1,17 +1,20 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { BookText, Building2, Calendar, Tags } from 'lucide-react'
+import { BookCheck, BookText, BookX, Building2, CircleCheck, Tags, XCircle } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
 import { statusIconsAndLabels } from '../config/status-icons.ts'
 import {
+  availabilityOptions,
   categoriesOptions,
   languagesOptions,
+  loanOptions,
   publishersOptions,
   statusOptions,
 } from '../data/options-data.ts'
@@ -63,7 +66,7 @@ export const columns: ColumnDef<BookList>[] = [
               </AvatarFallback>
             )}
           </Avatar>
-          <span>{title}</span>
+          <span className="truncate max-w-[14rem] text-sm leading-snug break-words">{title}</span>
         </div>
       )
     },
@@ -126,11 +129,24 @@ export const columns: ColumnDef<BookList>[] = [
     ),
     cell: ({ row }) => {
       const code = row.getValue<string>('languageCode')
+      const name = row.original.languageName
+
       return (
-        <Badge variant="outline">
-          <img src={`https://flagcdn.com/w20/${code}.jpg`} alt={code} className="w-4 h-auto mr-1" />
-          {code.toUpperCase()}
-        </Badge>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Badge variant="outline">
+                <img
+                  src={`https://flagcdn.com/w20/${code}.jpg`}
+                  alt={name}
+                  className="w-4 h-auto mr-1"
+                />
+                {code.toUpperCase()}
+              </Badge>
+            </TooltipTrigger>
+            <TooltipContent side="top">{name}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       )
     },
     enableSorting: false,
@@ -146,37 +162,122 @@ export const columns: ColumnDef<BookList>[] = [
       return value.includes(row.getValue(id))
     },
   },
+
+  // Filter
   {
-    accessorKey: 'releaseDate',
+    id: 'loanStatus',
+    accessorFn: (row) => (row.loanedCopies > 0 ? 'loaned' : 'notLoaned'),
+    header: () => null,
+    cell: () => null,
+    enableSorting: false,
+    enableHiding: false,
+    size: 0,
+    minSize: 0,
+    maxSize: 0,
+    meta: {
+      cellClass: 'hidden',
+      headerClass: 'hidden',
+      filter: {
+        title: getColumnLabel(resource, 'loanedCopies'),
+        options: loanOptions,
+      },
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+  {
+    accessorKey: 'loanedCopies',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'releaseDate')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'loanedCopies')} />
     ),
     cell: ({ row }) => {
-      const date = new Date(row.getValue('releaseDate'))
-      const formatted = new Intl.DateTimeFormat('es-ES', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      })
-        .format(date)
-        .replace('.', '')
+      const value = row.getValue('loanedCopies') as number
+      const isEmpty = value === 0
+      const Icon = isEmpty ? BookX : BookCheck
 
       return (
-        <Badge variant="outline">
-          <Calendar className="mr-1" />
-          {formatted}
-        </Badge>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Badge variant="outline">
+                <Icon
+                  className={`mr-1 ${isEmpty ? 'text-zinc-500 dark:text-zinc-400' : 'text-blue-500 dark:text-blue-400'}`}
+                />
+                {isEmpty ? '–' : value}
+              </Badge>
+            </TooltipTrigger>
+            <TooltipContent side="top">
+              {isEmpty
+                ? 'Sin ejemplares prestados'
+                : `${value} ejemplar${value === 1 ? '' : 'es'} prestado${value === 1 ? '' : 's'}`}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       )
     },
     meta: {
-      dateRangeFilter: true,
       headerClass: 'text-center',
       cellClass: 'text-center',
     },
+  },
+
+  // Filter
+  {
+    id: 'availabilityStatus',
+    accessorFn: (row) => (row.availableCopies > 0 ? 'available' : 'notAvailable'),
+    header: () => null,
+    cell: () => null,
+    enableSorting: false,
+    enableHiding: false,
+    size: 0,
+    minSize: 0,
+    maxSize: 0,
+    meta: {
+      cellClass: 'hidden',
+      headerClass: 'hidden',
+      filter: {
+        title: getColumnLabel(resource, 'availableCopies'),
+        options: availabilityOptions,
+      },
+    },
     filterFn: (row, id, value) => {
-      const rowDate = new Date(row.getValue(id))
-      const [startDate, endDate] = value
-      return rowDate >= startDate && rowDate <= endDate
+      return value.includes(row.getValue(id))
+    },
+  },
+  {
+    accessorKey: 'availableCopies',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'availableCopies')} />
+    ),
+    cell: ({ row }) => {
+      const value = row.getValue('availableCopies') as number
+      const isEmpty = value === 0
+      const Icon = isEmpty ? XCircle : CircleCheck
+
+      return (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Badge variant="outline">
+                <Icon
+                  className={`mr-1 ${isEmpty ? 'text-destructive' : 'text-green-500 dark:text-green-400'}`}
+                />
+                {isEmpty ? '–' : value}
+              </Badge>
+            </TooltipTrigger>
+            <TooltipContent side="top">
+              {isEmpty
+                ? 'Sin ejemplares disponibles'
+                : `${value} ejemplar${value === 1 ? '' : 'es'} disponible${value === 1 ? '' : 's'}`}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      )
+    },
+    meta: {
+      headerClass: 'text-center',
+      cellClass: 'text-center',
     },
   },
   {

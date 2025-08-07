@@ -1,3 +1,5 @@
+import { BookCheck, BookX, CircleCheck, XCircle } from 'lucide-react'
+
 import { FilterOption } from '@/types/types'
 
 import { statusIconsAndLabels } from '../config/status-icons.ts'
@@ -38,6 +40,32 @@ export const languagesOptions: FilterOption[] = Array.from(
     ])
   ).values()
 )
+
+export const loanOptions: FilterOption[] = [
+  {
+    label: 'Sí',
+    value: 'loaned',
+    icon: BookCheck,
+  },
+  {
+    label: 'No',
+    value: 'notLoaned',
+    icon: BookX,
+  },
+]
+
+export const availabilityOptions: FilterOption[] = [
+  {
+    label: 'Sí',
+    value: 'available',
+    icon: CircleCheck,
+  },
+  {
+    label: 'No',
+    value: 'notAvailable',
+    icon: XCircle,
+  },
+]
 
 export const statusOptions: FilterOption[] = Object.entries(statusIconsAndLabels).map(
   ([key, { label, icon }]) => ({

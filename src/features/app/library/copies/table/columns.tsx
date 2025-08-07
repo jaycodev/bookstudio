@@ -76,7 +76,9 @@ export const columns: ColumnDef<CopyList>[] = [
               </AvatarFallback>
             )}
           </Avatar>
-          <span>{bookTitle}</span>
+          <span className="truncate max-w-[14rem] text-sm leading-snug break-words">
+            {bookTitle}
+          </span>
         </div>
       )
     },
@@ -158,7 +160,7 @@ export const columns: ColumnDef<CopyList>[] = [
               available ? 'mr-1 text-green-500 dark:text-green-400' : 'mr-1 text-destructive'
             }
           />
-          {available ? 'Si' : 'No'}
+          {available ? 'Sí' : 'No'}
         </Badge>
       )
     },

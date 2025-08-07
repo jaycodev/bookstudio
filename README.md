@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://bookstudio-dev.vercel.app">
-    <img src="./public/readme.webp"  alt="BookStudio preview">
+    <img src="./public/readme.jpg"  alt="BookStudio preview">
   </a>
   <p></p>
 </div>

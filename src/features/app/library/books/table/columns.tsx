@@ -71,7 +71,6 @@ export const columns: ColumnDef<BookList>[] = [
       searchable: true,
     },
   },
-
   {
     accessorKey: 'categoryName',
     header: ({ column }) => (
@@ -129,11 +128,7 @@ export const columns: ColumnDef<BookList>[] = [
       const code = row.getValue<string>('languageCode')
       return (
         <Badge variant="outline">
-          <img
-            src={`https://flagcdn.com/${code}.svg`}
-            alt={code}
-            className="w-5 h-auto rounded-sm"
-          />
+          <img src={`https://flagcdn.com/w20/${code}.jpg`} alt={code} className="w-4 h-auto mr-1" />
           {code.toUpperCase()}
         </Badge>
       )
@@ -168,7 +163,7 @@ export const columns: ColumnDef<BookList>[] = [
 
       return (
         <Badge variant="outline">
-          <Calendar />
+          <Calendar className="mr-1" />
           {formatted}
         </Badge>
       )
@@ -198,7 +193,7 @@ export const columns: ColumnDef<BookList>[] = [
 
       return (
         <Badge variant={meta.variant}>
-          <Icon />
+          <Icon className="mr-1" />
           {meta.label}
         </Badge>
       )

@@ -118,7 +118,7 @@ export const columns: ColumnDef<FineList>[] = [
       const code = row.getValue<string>('daysLate')
       return (
         <Badge variant="outline">
-          <History />
+          <History className="mr-1" />
           {code}
         </Badge>
       )
@@ -145,7 +145,7 @@ export const columns: ColumnDef<FineList>[] = [
 
       return (
         <Badge variant="outline">
-          <Calendar />
+          <Calendar className="mr-1" />
           {formatted}
         </Badge>
       )
@@ -175,7 +175,7 @@ export const columns: ColumnDef<FineList>[] = [
 
       return (
         <Badge variant={meta.variant}>
-          <Icon />
+          <Icon className="mr-1" />
           {meta.label}
         </Badge>
       )

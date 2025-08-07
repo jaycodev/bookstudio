@@ -117,7 +117,7 @@ export const columns: ColumnDef<ReservationList>[] = [
 
       return (
         <Badge variant="outline">
-          <Calendar />
+          <Calendar className="mr-1" />
           {formatted}
         </Badge>
       )
@@ -147,7 +147,7 @@ export const columns: ColumnDef<ReservationList>[] = [
 
       return (
         <Badge variant={meta.variant}>
-          <Icon />
+          <Icon className="mr-1" />
           {meta.label}
         </Badge>
       )

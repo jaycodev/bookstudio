@@ -107,9 +107,21 @@ export function DataTableFacetedFilter<TData, TValue>({
                     </div>
                     {option.icon && <option.icon className="text-muted-foreground" />}
                     <span>{option.label}</span>
-                    {facets?.get(option.value) && (
+                    {facets?.get(
+                      option.value === 'true'
+                        ? true
+                        : option.value === 'false'
+                          ? false
+                          : option.value
+                    ) && (
                       <span className="ml-auto flex h-4 w-4 items-center justify-center text-xs">
-                        {facets.get(option.value)}
+                        {facets.get(
+                          option.value === 'true'
+                            ? true
+                            : option.value === 'false'
+                              ? false
+                              : option.value
+                        )}
                       </span>
                     )}
                   </CommandItem>

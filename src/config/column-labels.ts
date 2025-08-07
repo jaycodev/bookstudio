@@ -18,6 +18,17 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     status: 'Estado',
     id: 'ID',
   },
+  copies: {
+    code: 'Código',
+    bookCoverUrl: 'Portada libro',
+    bookTitle: 'Libro',
+    shelfCode: 'Estantería',
+    shelfFloor: 'Piso',
+    locationName: 'Ubicación',
+    isAvailable: 'Disponible',
+    condition: 'Condición',
+    id: 'ID',
+  },
   courses: {
     CourseID: 'ID',
     Name: 'Nombre',

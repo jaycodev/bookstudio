@@ -108,7 +108,7 @@ export const columns: ColumnDef<LoanList>[] = [
 
       return (
         <Badge variant="outline">
-          <Calendar />
+          <Calendar className="mr-1" />
           {formatted}
         </Badge>
       )
@@ -128,7 +128,7 @@ export const columns: ColumnDef<LoanList>[] = [
       const value = row.getValue('itemCount') as number
       return (
         <Badge variant="outline">
-          <BookCopy />
+          <BookCopy className="mr-1" />
           {value}
         </Badge>
       )
@@ -160,7 +160,7 @@ export const columns: ColumnDef<LoanList>[] = [
                   <Tooltip key={key}>
                     <TooltipTrigger asChild>
                       <Badge variant={status.variant}>
-                        <Icon />
+                        <Icon className="mr-1" />
                         {count}
                       </Badge>
                     </TooltipTrigger>

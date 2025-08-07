@@ -29,6 +29,28 @@ import { cn } from '@/lib/utils'
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'
 
+const normalizeText = (text: string): string => {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+}
+
+const createSmartFilter = () => {
+  return (row: any, columnId: string, filterValue: string) => {
+    if (!filterValue) return true
+
+    const cellValue = row.getValue(columnId)
+    if (cellValue === null) return false
+
+    const normalizedCellValue = normalizeText(String(cellValue))
+    const normalizedFilterValue = normalizeText(String(filterValue))
+
+    return normalizedCellValue.includes(normalizedFilterValue)
+  }
+}
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -57,9 +79,21 @@ export function DataTable<TData, TValue>({
     pageSize: 10,
   })
 
+  const enhancedColumns = React.useMemo(() => {
+    return columns.map((column) => {
+      if (column.meta?.searchable) {
+        return {
+          ...column,
+          filterFn: createSmartFilter(),
+        }
+      }
+      return column
+    })
+  }, [columns])
+
   const table = useReactTable({
     data,
-    columns,
+    columns: enhancedColumns,
     state: {
       sorting,
       columnVisibility,

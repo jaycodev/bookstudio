@@ -148,7 +148,7 @@ export const columns: ColumnDef<LoanList>[] = [
 
       return (
         <TooltipProvider>
-          <div className="flex flex-wrap gap-1 justify-center">
+          <div className="flex gap-1 justify-center">
             {Object.entries(statusCounts)
               .filter(([, count]) => count > 0)
               .map(([key, count]) => {

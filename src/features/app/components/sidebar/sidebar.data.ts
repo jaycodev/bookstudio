@@ -45,7 +45,7 @@ export const sidebarData = {
         {
           title: 'Préstamos',
           icon: Handshake,
-          items: getSubItems('prestamos'),
+          items: getSubItems('préstamos'),
         },
       ],
     },

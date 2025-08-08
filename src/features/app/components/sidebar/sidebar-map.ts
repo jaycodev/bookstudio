@@ -22,7 +22,7 @@ import { pageMap, type ValidUrl } from '@/config/page-map.ts'
 type SidebarVisualMeta = {
   icon: React.ElementType
   group: 'principal' | 'biblioteca' | 'usuarios' | 'otros'
-  parentItem?: 'prestamos'
+  parentItem?: 'préstamos'
 }
 
 export const sidebarMap: Partial<Record<ValidUrl, SidebarVisualMeta>> = {}
@@ -42,22 +42,22 @@ setSidebar('/', {
 setSidebar('/prestamos', {
   icon: ClipboardList,
   group: 'principal',
-  parentItem: 'prestamos',
+  parentItem: 'préstamos',
 })
 setSidebar('/prestamos/reservas', {
   icon: Calendar1,
   group: 'principal',
-  parentItem: 'prestamos',
+  parentItem: 'préstamos',
 })
 setSidebar('/prestamos/multas', {
   icon: OctagonAlert,
   group: 'principal',
-  parentItem: 'prestamos',
+  parentItem: 'préstamos',
 })
 setSidebar('/prestamos/pagos', {
   icon: DollarSign,
   group: 'principal',
-  parentItem: 'prestamos',
+  parentItem: 'préstamos',
 })
 
 // Biblioteca

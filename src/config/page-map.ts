@@ -3,6 +3,7 @@ type PageMeta = {
   documentTitle?: string
   authOnly?: boolean
   showInSidebar?: boolean
+  parentItem?: ValidUrl
 }
 
 export const pageMap: Record<string, PageMeta> = {

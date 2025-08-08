@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from '@tanstack/react-router'
+import { Outlet } from '@tanstack/react-router'
 
 import { Button } from '@/components/ui/button'
 import { ModeToggle } from '@/components/ui/mode-toggle'
@@ -7,7 +7,6 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
 import { SearchProvider } from '@/context/search-context'
 import { AppSidebar } from '@/features/app/components/sidebar/app-sidebar'
 
-import { AppBreadcrumbs } from './components/breadcrumbs'
 import { Search } from './components/sidebar/search'
 
 interface Props {
@@ -15,10 +14,6 @@ interface Props {
 }
 
 export default function AppLayout({ children }: Props) {
-  const location = useLocation()
-  const hideBreadcrumbPaths = ['/', '/ajustes', '/centro-de-ayuda']
-  const showBreadcrumb = !hideBreadcrumbPaths.includes(location.pathname)
-
   return (
     <SearchProvider>
       <SidebarProvider>
@@ -58,7 +53,6 @@ export default function AppLayout({ children }: Props) {
           </header>
           <div className="flex flex-1 p-5">
             <div className="@container/main flex flex-1 flex-col gap-4">
-              {showBreadcrumb && <AppBreadcrumbs />}
               {children ? children : <Outlet />}
             </div>
           </div>

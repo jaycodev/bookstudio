@@ -1,5 +1,6 @@
 import { Users } from 'lucide-react'
 
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/authors.json'
@@ -17,14 +18,17 @@ try {
 
 const AuthorsPage = () => {
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      resource="authors"
-      title="Autores"
-      description="Rápidos, claros y ordenados."
-      icon={Users}
-    />
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="authors"
+        title="Autores"
+        description="Rápidos, claros y ordenados."
+        icon={Users}
+      />
+    </>
   )
 }
 

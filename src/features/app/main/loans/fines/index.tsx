@@ -1,5 +1,6 @@
 import { OctagonAlert } from 'lucide-react'
 
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/fines.json'
@@ -17,14 +18,17 @@ try {
 
 const FinesPage = () => {
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      resource="fines"
-      title="Multas"
-      description="Control de sanciones."
-      icon={OctagonAlert}
-    />
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="fines"
+        title="Multas"
+        description="Control de sanciones."
+        icon={OctagonAlert}
+      />
+    </>
   )
 }
 

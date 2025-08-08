@@ -17,7 +17,7 @@ function capitalize(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
-export function AppBreadcrumbs() {
+export function Breadcrumbs() {
   const location = useLocation()
   const pathname = location.pathname
 

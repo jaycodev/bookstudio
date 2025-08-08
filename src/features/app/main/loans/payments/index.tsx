@@ -1,5 +1,6 @@
 import { DollarSign } from 'lucide-react'
 
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/payments.json'
@@ -20,14 +21,17 @@ try {
 
 const PaymentsPage = () => {
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      resource="payments"
-      title="Pagos"
-      description="Historial de transacciones."
-      icon={DollarSign}
-    />
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="payments"
+        title="Pagos"
+        description="Historial de transacciones."
+        icon={DollarSign}
+      />
+    </>
   )
 }
 

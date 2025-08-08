@@ -1,5 +1,6 @@
 import { BookCopy } from 'lucide-react'
 
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/books.json'
@@ -17,14 +18,17 @@ try {
 
 const BooksPage = () => {
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      resource="books"
-      title="Libros"
-      description="Admínistralos sin complicaciones."
-      icon={BookCopy}
-    />
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="books"
+        title="Libros"
+        description="Admínistralos sin complicaciones."
+        icon={BookCopy}
+      />
+    </>
   )
 }
 

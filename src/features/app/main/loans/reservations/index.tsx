@@ -1,5 +1,6 @@
 import { Calendar1 } from 'lucide-react'
 
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/reservations.json'
@@ -20,14 +21,17 @@ try {
 
 const ReservationsPage = () => {
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      resource="reservations"
-      title="Reservas"
-      description="Organizadas, claras y accesibles."
-      icon={Calendar1}
-    />
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="reservations"
+        title="Reservas"
+        description="Organizadas, claras y accesibles."
+        icon={Calendar1}
+      />
+    </>
   )
 }
 

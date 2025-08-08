@@ -1,5 +1,6 @@
 import { Boxes } from 'lucide-react'
 
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/copies.json'
@@ -17,14 +18,17 @@ try {
 
 const CopiesPage = () => {
   return (
-    <DataTable
-      columns={columns}
-      data={data}
-      resource="copies"
-      title="Ejemplares"
-      description="Controla tu inventario fácilmente."
-      icon={Boxes}
-    />
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="copies"
+        title="Ejemplares"
+        description="Controla tu inventario fácilmente."
+        icon={Boxes}
+      />
+    </>
   )
 }
 

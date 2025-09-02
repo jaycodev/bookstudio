@@ -1,202 +1,202 @@
 [
   {
-    "PublisherID": 1,
-    "Name": "Editorial Sudamericana",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Ficción",
-    "Status": "activo",
-    "Photo": ""
+    "id": 20,
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-Z5B40zh6694uqvZB6XbpLHkJ5dPbV_TuK0VhPrw5WtwfcNM3eZ1M3agJR6czbcKlz38",
+    "name": "Ediciones B",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.edicionesb.com",
+    "address": "Barcelona, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 2,
-    "Name": "Planeta",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Novela",
-    "Status": "activo",
-    "Photo": ""
+    "id": 19,
+    "photoUrl": "https://pbs.twimg.com/profile_images/1369193039466553345/bmhVCrT7_400x400.jpg",
+    "name": "Alianza Editorial",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.alianzaeditorial.es",
+    "address": "Madrid, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 3,
-    "Name": "Alfaguara",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Literatura contemporánea",
-    "Status": "activo",
-    "Photo": ""
+    "id": 18,
+    "photoUrl": "https://casatomadalibreriacafe.com/wp-content/uploads/2020/09/logo_CRITICA.jpg",
+    "name": "Crítica",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.ed-critica.es",
+    "address": "Barcelona, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 4,
-    "Name": "Anagrama",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Ensayo",
-    "Status": "activo",
-    "Photo": ""
+    "id": 17,
+    "photoUrl": "https://hablemos-escritoras-as.s3.us-west-1.amazonaws.com/variants/wgnm367hidp8j4s1pmefduijvyfv/fec9312db351f781c0197cc9c4f9c66013b1e39507ba1aecf24862b67be970f0",
+    "name": "Debolsillo",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.penguinlibros.com",
+    "address": "Barcelona, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 5,
-    "Name": "Siglo XXI Editores",
-    "NationalityName": "México",
-    "LiteraryGenreName": "Ciencias sociales",
-    "Status": "activo",
-    "Photo": ""
+    "id": 16,
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyiLwCL41nSe1jcHg4uee2dCZyBUGr4HS3bg&s",
+    "name": "Salamandra",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.salamandra.info",
+    "address": "Barcelona, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 6,
-    "Name": "Fondo de Cultura Económica",
-    "NationalityName": "México",
-    "LiteraryGenreName": "Educativo",
-    "Status": "activo",
-    "Photo": ""
+    "id": 15,
+    "photoUrl": "https://es.babelio.com/users/EDIG_Andres-Bello_9631.jpg",
+    "name": "Editorial Andrés Bello",
+    "nationalityCode": "cl",
+    "nationalityName": "Chilena",
+    "website": "www.andresbello.cl",
+    "address": "Santiago, Chile",
+    "status": "activo"
   },
   {
-    "PublisherID": 7,
-    "Name": "Penguin Random House",
-    "NationalityName": "Estados Unidos",
-    "LiteraryGenreName": "Ficción",
-    "Status": "activo",
-    "Photo": ""
+    "id": 14,
+    "photoUrl": "https://http2.mlstatic.com/D_NQ_NP_718679-MLM31408428279_072019-O.webp",
+    "name": "Editorial Porrúa",
+    "nationalityCode": "mx",
+    "nationalityName": "Mexicana",
+    "website": "www.porrua.com",
+    "address": "Ciudad de México, México",
+    "status": "activo"
   },
   {
-    "PublisherID": 8,
-    "Name": "HarperCollins",
-    "NationalityName": "Estados Unidos",
-    "LiteraryGenreName": "Best Sellers",
-    "Status": "activo",
-    "Photo": ""
+    "id": 13,
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqIiS61_tgWiFOKdEiulmL8jZZkt0f6wbj6Q&s",
+    "name": "Emecé Editores",
+    "nationalityCode": "ar",
+    "nationalityName": "Argentina",
+    "website": "www.emece.com.ar",
+    "address": "Buenos Aires, Argentina",
+    "status": "activo"
   },
   {
-    "PublisherID": 9,
-    "Name": "Bloomsbury",
-    "NationalityName": "Reino Unido",
-    "LiteraryGenreName": "Fantasía",
-    "Status": "activo",
-    "Photo": ""
+    "id": 12,
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQijPZ8s7YKGiJUWwnBZqojCS0rfCWUw6d1Tw&s",
+    "name": "Editorial Sudamericana",
+    "nationalityCode": "ar",
+    "nationalityName": "Argentina",
+    "website": "www.sudamericanalibros.com.ar",
+    "address": "Buenos Aires, Argentina",
+    "status": "activo"
   },
   {
-    "PublisherID": 10,
-    "Name": "Hachette Livre",
-    "NationalityName": "Francia",
-    "LiteraryGenreName": "No ficción",
-    "Status": "activo",
-    "Photo": ""
+    "id": 11,
+    "photoUrl": "https://pbs.twimg.com/profile_images/887441240110751744/mwP27QIB_400x400.jpg",
+    "name": "Editorial Norma",
+    "nationalityCode": "co",
+    "nationalityName": "Colombiana",
+    "website": "www.librerianorma.com",
+    "address": "Bogotá, Colombia",
+    "status": "activo"
   },
   {
-    "PublisherID": 11,
-    "Name": "Macmillan Publishers",
-    "NationalityName": "Reino Unido",
-    "LiteraryGenreName": "Ciencia ficción",
-    "Status": "activo",
-    "Photo": ""
+    "id": 10,
+    "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL5wYUc7Sdg3cfgS7eKvaaDBX6xpxD2mUEsg&s",
+    "name": "Peisa",
+    "nationalityCode": "pe",
+    "nationalityName": "Peruana",
+    "website": "www.peisa.com.pe",
+    "address": "Lima, Perú",
+    "status": "activo"
   },
   {
-    "PublisherID": 12,
-    "Name": "Oxford University Press",
-    "NationalityName": "Reino Unido",
-    "LiteraryGenreName": "Académico",
-    "Status": "activo",
-    "Photo": ""
+    "id": 9,
+    "photoUrl": null,
+    "name": "Tusquets",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.tusquetseditores.com",
+    "address": "Barcelona, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 13,
-    "Name": "Cambridge University Press",
-    "NationalityName": "Reino Unido",
-    "LiteraryGenreName": "Educativo",
-    "Status": "activo",
-    "Photo": ""
+    "id": 8,
+    "photoUrl": null,
+    "name": "Cátedra",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.catedra.com",
+    "address": "Madrid, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 14,
-    "Name": "Ediciones B",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Misterio",
-    "Status": "inactivo",
-    "Photo": ""
+    "id": 7,
+    "photoUrl": null,
+    "name": "Seix Barral",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.seixbarral.es",
+    "address": "Barcelona, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 15,
-    "Name": "Grupo SM",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Infantil",
-    "Status": "activo",
-    "Photo": ""
+    "id": 6,
+    "photoUrl": null,
+    "name": "Fondo de Cultura Económica",
+    "nationalityCode": "mx",
+    "nationalityName": "Mexicana",
+    "website": "www.fondodeculturaeconomica.com",
+    "address": "Ciudad de México, México",
+    "status": "activo"
   },
   {
-    "PublisherID": 16,
-    "Name": "Kalandraka",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Cuentos",
-    "Status": "activo",
-    "Photo": ""
+    "id": 5,
+    "photoUrl": null,
+    "name": "Anagrama",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.anagrama-ed.es",
+    "address": "Barcelona, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 17,
-    "Name": "Libros del Zorzal",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Poesía",
-    "Status": "inactivo",
-    "Photo": ""
+    "id": 4,
+    "photoUrl": null,
+    "name": "Santillana",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.santillana.com",
+    "address": "Madrid, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 18,
-    "Name": "Minotauro",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Fantasía",
-    "Status": "activo",
-    "Photo": ""
+    "id": 3,
+    "photoUrl": null,
+    "name": "Penguin Random House",
+    "nationalityCode": "us",
+    "nationalityName": "Estadounidense",
+    "website": "www.penguinrandomhouse.com",
+    "address": "New York, Estados Unidos",
+    "status": "activo"
   },
   {
-    "PublisherID": 19,
-    "Name": "Eterna Cadencia",
-    "NationalityName": "Argentina",
-    "LiteraryGenreName": "Narrativa",
-    "Status": "activo",
-    "Photo": ""
+    "id": 2,
+    "photoUrl": null,
+    "name": "Alfaguara",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.alfaguara.com",
+    "address": "Calle Torrelaguna 60, Madrid, España",
+    "status": "activo"
   },
   {
-    "PublisherID": 20,
-    "Name": "Taurus",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Política",
-    "Status": "activo",
-    "Photo": ""
-  },
-  {
-    "PublisherID": 21,
-    "Name": "Debate",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Historia",
-    "Status": "activo",
-    "Photo": ""
-  },
-  {
-    "PublisherID": 22,
-    "Name": "Tusquets Editores",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Narrativa contemporánea",
-    "Status": "activo",
-    "Photo": ""
-  },
-  {
-    "PublisherID": 23,
-    "Name": "Seix Barral",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Literatura universal",
-    "Status": "activo",
-    "Photo": ""
-  },
-  {
-    "PublisherID": 24,
-    "Name": "Lumen",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Biografía",
-    "Status": "inactivo",
-    "Photo": ""
-  },
-  {
-    "PublisherID": 25,
-    "Name": "Blackie Books",
-    "NationalityName": "España",
-    "LiteraryGenreName": "Humor",
-    "Status": "activo",
-    "Photo": ""
+    "id": 1,
+    "photoUrl": null,
+    "name": "Planeta",
+    "nationalityCode": "es",
+    "nationalityName": "Española",
+    "website": "www.planeta.es",
+    "address": "Av. Diagonal 662-664, Barcelona, España",
+    "status": "activo"
   }
 ]

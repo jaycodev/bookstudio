@@ -1,12 +1,16 @@
 import { z } from 'zod'
 
-export const publisherSchema = z.object({
-  PublisherID: z.number(),
-  Name: z.string(),
-  NationalityName: z.string(),
-  LiteraryGenreName: z.string(),
-  Status: z.enum(['activo', 'inactivo']),
-  Photo: z.string().optional(),
+export const statusSchema = z.enum(['activo', 'suspendido', 'eliminado'])
+
+export const publisherListSchema = z.object({
+  id: z.number(),
+  photoUrl: z.string().nullable(),
+  name: z.string(),
+  nationalityCode: z.string(),
+  nationalityName: z.string(),
+  website: z.string().nullable(),
+  address: z.string().nullable(),
+  status: statusSchema,
 })
 
-export type Publisher = z.infer<typeof publisherSchema>
+export type PublisherList = z.infer<typeof publisherListSchema>

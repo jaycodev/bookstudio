@@ -2,6 +2,7 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
   authors: {
     photoUrl: 'Foto',
     name: 'Nombre',
+    nationalityCode: 'Nacionalidad',
     nationalityName: 'Nacionalidad',
     birthDate: 'Fecha nacimiento',
     status: 'Estado',

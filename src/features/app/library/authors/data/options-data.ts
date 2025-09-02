@@ -6,10 +6,10 @@ import authors from '../data/authors.json'
 export const nationalitiesOptions: FilterOption[] = Array.from(
   new Map(
     authors.map((author) => [
-      author.nationalityName,
+      author.nationalityCode,
       {
         label: author.nationalityName,
-        value: author.nationalityName,
+        value: author.nationalityCode,
       },
     ])
   ).values()

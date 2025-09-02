@@ -1,5 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Calendar, Globe, User } from 'lucide-react'
+import { Calendar, User } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
@@ -67,23 +67,27 @@ export const columns: ColumnDef<AuthorList>[] = [
     },
   },
   {
-    accessorKey: 'nationalityName',
+    accessorKey: 'nationalityCode',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationalityName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationalityCode')} />
     ),
-
     cell: ({ row }) => {
-      const nationality = row.getValue<string>('nationalityName')
+      const code = row.getValue<string>('nationalityCode')
+      const name = row.original.nationalityName
+
       return (
         <Badge variant="outline">
-          <Globe className="mr-1" />
-          {nationality}
+          <img src={`https://flagcdn.com/w20/${code}.jpg`} alt={name} className="w-4 h-auto mr-1" />
+          {name}
         </Badge>
       )
     },
+    enableSorting: false,
     meta: {
+      headerClass: 'text-center',
+      cellClass: 'text-center',
       filter: {
-        title: getColumnLabel(resource, 'nationalityName'),
+        title: getColumnLabel(resource, 'nationalityCode'),
         options: nationalitiesOptions,
       },
     },

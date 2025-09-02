@@ -127,6 +127,10 @@ export const columns: ColumnDef<CopyList>[] = [
       )
     },
     enableSorting: false,
+    meta: {
+      headerClass: 'text-center',
+      cellClass: 'text-center',
+    },
   },
   {
     accessorKey: 'locationName',

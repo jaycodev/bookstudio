@@ -84,8 +84,6 @@ export const columns: ColumnDef<PublisherList>[] = [
     },
     enableSorting: false,
     meta: {
-      headerClass: 'text-center',
-      cellClass: 'text-center',
       filter: {
         title: getColumnLabel(resource, 'nationalityCode'),
         options: nationalitiesOptions,
@@ -117,6 +115,7 @@ export const columns: ColumnDef<PublisherList>[] = [
         </Badge>
       )
     },
+    enableSorting: false,
   },
   {
     accessorKey: 'address',
@@ -132,6 +131,7 @@ export const columns: ColumnDef<PublisherList>[] = [
         </Badge>
       )
     },
+    enableSorting: false,
   },
   {
     accessorKey: 'status',

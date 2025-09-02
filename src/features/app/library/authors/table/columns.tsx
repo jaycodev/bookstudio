@@ -84,8 +84,6 @@ export const columns: ColumnDef<AuthorList>[] = [
     },
     enableSorting: false,
     meta: {
-      headerClass: 'text-center',
-      cellClass: 'text-center',
       filter: {
         title: getColumnLabel(resource, 'nationalityCode'),
         options: nationalitiesOptions,

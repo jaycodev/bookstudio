@@ -3,6 +3,7 @@ import { z } from 'zod'
 export const statusSchema = z.enum(['activo', 'inactivo'])
 
 export const bookListSchema = z.object({
+  id: z.number(),
   isbn: z.string(),
   coverUrl: z.string().nullable(),
   title: z.string(),
@@ -13,7 +14,6 @@ export const bookListSchema = z.object({
   loanedCopies: z.number(),
   availableCopies: z.number(),
   status: statusSchema,
-  id: z.number(),
 })
 
 export type BookList = z.infer<typeof bookListSchema>

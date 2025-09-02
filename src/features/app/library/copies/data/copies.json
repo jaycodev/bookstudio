@@ -1,5 +1,6 @@
 [
   {
+    "id": 98,
     "code": "EJ-2025-0098",
     "bookCoverUrl": "https://letras.rae.es/128-thickbox_default/diccionario-de-la-lengua-espanola-23-edicion.jpg",
     "bookTitle": "Diccionario de la Real Academia Española",
@@ -7,10 +8,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala de Referencia",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 98
+    "condition": "bueno"
   },
   {
+    "id": 97,
     "code": "EJ-2025-0097",
     "bookCoverUrl": "https://letras.rae.es/128-thickbox_default/diccionario-de-la-lengua-espanola-23-edicion.jpg",
     "bookTitle": "Diccionario de la Real Academia Española",
@@ -18,10 +19,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala de Referencia",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 97
+    "condition": "nuevo"
   },
   {
+    "id": 96,
     "code": "EJ-2025-0096",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/83/e8/83e81530c5d2ed30544439f0d84b899e.jpg",
     "bookTitle": "Psicología del Desarrollo",
@@ -29,10 +30,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 96
+    "condition": "regular"
   },
   {
+    "id": 95,
     "code": "EJ-2025-0095",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/83/e8/83e81530c5d2ed30544439f0d84b899e.jpg",
     "bookTitle": "Psicología del Desarrollo",
@@ -40,10 +41,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 95
+    "condition": "nuevo"
   },
   {
+    "id": 94,
     "code": "EJ-2025-0094",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/83/e8/83e81530c5d2ed30544439f0d84b899e.jpg",
     "bookTitle": "Psicología del Desarrollo",
@@ -51,10 +52,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 94
+    "condition": "bueno"
   },
   {
+    "id": 93,
     "code": "EJ-2025-0093",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/45/d2/45d28890f2d269be7a105e4697931eb7.jpg",
     "bookTitle": "Biología Molecular",
@@ -62,10 +63,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 93
+    "condition": "bueno"
   },
   {
+    "id": 92,
     "code": "EJ-2025-0092",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/45/d2/45d28890f2d269be7a105e4697931eb7.jpg",
     "bookTitle": "Biología Molecular",
@@ -73,10 +74,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 92
+    "condition": "nuevo"
   },
   {
+    "id": 91,
     "code": "EJ-2025-0091",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ23tn2gq2hBnxcbTrFbytZp15_5V6iJ4w2w&s",
     "bookTitle": "Platero y yo",
@@ -84,10 +85,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 91
+    "condition": "regular"
   },
   {
+    "id": 90,
     "code": "EJ-2025-0090",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ23tn2gq2hBnxcbTrFbytZp15_5V6iJ4w2w&s",
     "bookTitle": "Platero y yo",
@@ -95,10 +96,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 90
+    "condition": "bueno"
   },
   {
+    "id": 89,
     "code": "EJ-2025-0089",
     "bookCoverUrl": "https://www.elvirrey.com/imagenes/9789972/978997233296.GIF",
     "bookTitle": "Tradiciones Peruanas",
@@ -106,10 +107,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 89
+    "condition": "nuevo"
   },
   {
+    "id": 88,
     "code": "EJ-2025-0088",
     "bookCoverUrl": "https://www.elvirrey.com/imagenes/9789972/978997233296.GIF",
     "bookTitle": "Tradiciones Peruanas",
@@ -117,10 +118,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 88
+    "condition": "regular"
   },
   {
+    "id": 87,
     "code": "EJ-2025-0087",
     "bookCoverUrl": "https://www.elvirrey.com/imagenes/9789972/978997233296.GIF",
     "bookTitle": "Tradiciones Peruanas",
@@ -128,10 +129,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 87
+    "condition": "bueno"
   },
   {
+    "id": 86,
     "code": "EJ-2025-0086",
     "bookCoverUrl": "https://pendulo.com/imagenes_grandes/9788494/978849441163.GIF",
     "bookTitle": "Orgullo y prejuicio",
@@ -139,10 +140,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 86
+    "condition": "regular"
   },
   {
+    "id": 85,
     "code": "EJ-2025-0085",
     "bookCoverUrl": "https://pendulo.com/imagenes_grandes/9788494/978849441163.GIF",
     "bookTitle": "Orgullo y prejuicio",
@@ -150,10 +151,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 85
+    "condition": "nuevo"
   },
   {
+    "id": 84,
     "code": "EJ-2025-0084",
     "bookCoverUrl": "https://pendulo.com/imagenes_grandes/9788494/978849441163.GIF",
     "bookTitle": "Orgullo y prejuicio",
@@ -161,10 +162,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 84
+    "condition": "bueno"
   },
   {
+    "id": 83,
     "code": "EJ-2025-0083",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/90/53/905322d10841b36aa311dbd5c90d92ed.jpg",
     "bookTitle": "Rayuela",
@@ -172,10 +173,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 83
+    "condition": "regular"
   },
   {
+    "id": 82,
     "code": "EJ-2025-0082",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/90/53/905322d10841b36aa311dbd5c90d92ed.jpg",
     "bookTitle": "Rayuela",
@@ -183,10 +184,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 82
+    "condition": "bueno"
   },
   {
+    "id": 81,
     "code": "EJ-2025-0081",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp_ZwohnRa6rntPD2M_AvydOmRyZ3ITtrbRA&s",
     "bookTitle": "Matilda",
@@ -194,10 +195,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 81
+    "condition": "bueno"
   },
   {
+    "id": 80,
     "code": "EJ-2025-0080",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp_ZwohnRa6rntPD2M_AvydOmRyZ3ITtrbRA&s",
     "bookTitle": "Matilda",
@@ -205,10 +206,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 80
+    "condition": "regular"
   },
   {
+    "id": 79,
     "code": "EJ-2025-0079",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp_ZwohnRa6rntPD2M_AvydOmRyZ3ITtrbRA&s",
     "bookTitle": "Matilda",
@@ -216,10 +217,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 79
+    "condition": "nuevo"
   },
   {
+    "id": 78,
     "code": "EJ-2025-0078",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp_ZwohnRa6rntPD2M_AvydOmRyZ3ITtrbRA&s",
     "bookTitle": "Matilda",
@@ -227,10 +228,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 78
+    "condition": "bueno"
   },
   {
+    "id": 77,
     "code": "EJ-2025-0077",
     "bookCoverUrl": null,
     "bookTitle": "Anatomía Humana",
@@ -238,10 +239,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 77
+    "condition": "bueno"
   },
   {
+    "id": 76,
     "code": "EJ-2025-0076",
     "bookCoverUrl": null,
     "bookTitle": "Anatomía Humana",
@@ -249,10 +250,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 76
+    "condition": "nuevo"
   },
   {
+    "id": 75,
     "code": "EJ-2025-0075",
     "bookCoverUrl": null,
     "bookTitle": "Química Orgánica",
@@ -260,10 +261,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 75
+    "condition": "regular"
   },
   {
+    "id": 74,
     "code": "EJ-2025-0074",
     "bookCoverUrl": null,
     "bookTitle": "Química Orgánica",
@@ -271,10 +272,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 74
+    "condition": "bueno"
   },
   {
+    "id": 73,
     "code": "EJ-2025-0073",
     "bookCoverUrl": null,
     "bookTitle": "Química Orgánica",
@@ -282,10 +283,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 73
+    "condition": "nuevo"
   },
   {
+    "id": 72,
     "code": "EJ-2025-0072",
     "bookCoverUrl": null,
     "bookTitle": "It",
@@ -293,10 +294,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 72
+    "condition": "bueno"
   },
   {
+    "id": 71,
     "code": "EJ-2025-0071",
     "bookCoverUrl": null,
     "bookTitle": "It",
@@ -304,10 +305,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 71
+    "condition": "bueno"
   },
   {
+    "id": 70,
     "code": "EJ-2025-0070",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/b0/39/b039af065268818b7bd3b0e016f8db65.jpg",
     "bookTitle": "1984",
@@ -315,10 +316,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 70
+    "condition": "bueno"
   },
   {
+    "id": 69,
     "code": "EJ-2025-0069",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/b0/39/b039af065268818b7bd3b0e016f8db65.jpg",
     "bookTitle": "1984",
@@ -326,10 +327,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 69
+    "condition": "regular"
   },
   {
+    "id": 68,
     "code": "EJ-2025-0068",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/b0/39/b039af065268818b7bd3b0e016f8db65.jpg",
     "bookTitle": "1984",
@@ -337,10 +338,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 68
+    "condition": "nuevo"
   },
   {
+    "id": 67,
     "code": "EJ-2025-0067",
     "bookCoverUrl": "https://images.cdn1.buscalibre.com/fit-in/360x360/b0/39/b039af065268818b7bd3b0e016f8db65.jpg",
     "bookTitle": "1984",
@@ -348,10 +349,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 67
+    "condition": "bueno"
   },
   {
+    "id": 66,
     "code": "EJ-2025-0066",
     "bookCoverUrl": null,
     "bookTitle": "La casa de los espíritus",
@@ -359,10 +360,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 66
+    "condition": "bueno"
   },
   {
+    "id": 65,
     "code": "EJ-2025-0065",
     "bookCoverUrl": null,
     "bookTitle": "La casa de los espíritus",
@@ -370,10 +371,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 65
+    "condition": "nuevo"
   },
   {
+    "id": 64,
     "code": "EJ-2025-0064",
     "bookCoverUrl": null,
     "bookTitle": "La casa de los espíritus",
@@ -381,10 +382,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 64
+    "condition": "bueno"
   },
   {
+    "id": 63,
     "code": "EJ-2025-0063",
     "bookCoverUrl": null,
     "bookTitle": "Ficciones",
@@ -392,10 +393,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 63
+    "condition": "nuevo"
   },
   {
+    "id": 62,
     "code": "EJ-2025-0062",
     "bookCoverUrl": null,
     "bookTitle": "Ficciones",
@@ -403,10 +404,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 62
+    "condition": "regular"
   },
   {
+    "id": 61,
     "code": "EJ-2025-0061",
     "bookCoverUrl": null,
     "bookTitle": "Ficciones",
@@ -414,10 +415,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 61
+    "condition": "bueno"
   },
   {
+    "id": 60,
     "code": "EJ-2025-0060",
     "bookCoverUrl": "https://biblioteca.asamblea.gob.sv/backendsiab/images/portadas/Enciclopedia%20Juvenil%20Oceano.jpg",
     "bookTitle": "Enciclopedia Juvenil Oceano",
@@ -425,10 +426,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 60
+    "condition": "regular"
   },
   {
+    "id": 59,
     "code": "EJ-2025-0059",
     "bookCoverUrl": "https://biblioteca.asamblea.gob.sv/backendsiab/images/portadas/Enciclopedia%20Juvenil%20Oceano.jpg",
     "bookTitle": "Enciclopedia Juvenil Oceano",
@@ -436,10 +437,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 59
+    "condition": "bueno"
   },
   {
+    "id": 58,
     "code": "EJ-2025-0058",
     "bookCoverUrl": "https://biblioteca.asamblea.gob.sv/backendsiab/images/portadas/Enciclopedia%20Juvenil%20Oceano.jpg",
     "bookTitle": "Enciclopedia Juvenil Oceano",
@@ -447,10 +448,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 58
+    "condition": "nuevo"
   },
   {
+    "id": 57,
     "code": "EJ-2025-0057",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -458,10 +459,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 57
+    "condition": "nuevo"
   },
   {
+    "id": 56,
     "code": "EJ-2025-0056",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -469,10 +470,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 56
+    "condition": "bueno"
   },
   {
+    "id": 55,
     "code": "EJ-2025-0055",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -480,10 +481,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 55
+    "condition": "regular"
   },
   {
+    "id": 54,
     "code": "EJ-2025-0054",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -491,10 +492,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 54
+    "condition": "bueno"
   },
   {
+    "id": 53,
     "code": "EJ-2025-0053",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -502,10 +503,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 53
+    "condition": "nuevo"
   },
   {
+    "id": 52,
     "code": "EJ-2025-0052",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -513,10 +514,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 52
+    "condition": "regular"
   },
   {
+    "id": 51,
     "code": "EJ-2025-0051",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -524,10 +525,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 51
+    "condition": "bueno"
   },
   {
+    "id": 50,
     "code": "EJ-2025-0050",
     "bookCoverUrl": "https://image.cdn1.buscalibre.com/5b57fc1690f0b5295a8b4567.RS500x500.jpg",
     "bookTitle": "El Principito",
@@ -535,10 +536,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 50
+    "condition": "bueno"
   },
   {
+    "id": 49,
     "code": "EJ-2025-0049",
     "bookCoverUrl": null,
     "bookTitle": "Física General",
@@ -546,10 +547,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 49
+    "condition": "bueno"
   },
   {
+    "id": 48,
     "code": "EJ-2025-0048",
     "bookCoverUrl": null,
     "bookTitle": "Física General",
@@ -557,10 +558,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 48
+    "condition": "regular"
   },
   {
+    "id": 47,
     "code": "EJ-2025-0047",
     "bookCoverUrl": null,
     "bookTitle": "Física General",
@@ -568,10 +569,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 47
+    "condition": "nuevo"
   },
   {
+    "id": 46,
     "code": "EJ-2025-0046",
     "bookCoverUrl": null,
     "bookTitle": "Física General",
@@ -579,10 +580,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 46
+    "condition": "bueno"
   },
   {
+    "id": 45,
     "code": "EJ-2025-0045",
     "bookCoverUrl": null,
     "bookTitle": "Matemáticas 4to Secundaria",
@@ -590,10 +591,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 45
+    "condition": "bueno"
   },
   {
+    "id": 44,
     "code": "EJ-2025-0044",
     "bookCoverUrl": null,
     "bookTitle": "Matemáticas 4to Secundaria",
@@ -601,10 +602,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 44
+    "condition": "nuevo"
   },
   {
+    "id": 43,
     "code": "EJ-2025-0043",
     "bookCoverUrl": null,
     "bookTitle": "Matemáticas 4to Secundaria",
@@ -612,10 +613,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 43
+    "condition": "regular"
   },
   {
+    "id": 42,
     "code": "EJ-2025-0042",
     "bookCoverUrl": null,
     "bookTitle": "Matemáticas 4to Secundaria",
@@ -623,10 +624,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 42
+    "condition": "bueno"
   },
   {
+    "id": 41,
     "code": "EJ-2025-0041",
     "bookCoverUrl": null,
     "bookTitle": "Matemáticas 4to Secundaria",
@@ -634,10 +635,10 @@
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 41
+    "condition": "bueno"
   },
   {
+    "id": 40,
     "code": "EJ-2025-0040",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE7JKNvHH9z1dXPXQ1giHsfknDNlNoncsniA&s",
     "bookTitle": "Historia del Perú Contemporáneo",
@@ -645,10 +646,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 40
+    "condition": "regular"
   },
   {
+    "id": 39,
     "code": "EJ-2025-0039",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE7JKNvHH9z1dXPXQ1giHsfknDNlNoncsniA&s",
     "bookTitle": "Historia del Perú Contemporáneo",
@@ -656,10 +657,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 39
+    "condition": "bueno"
   },
   {
+    "id": 38,
     "code": "EJ-2025-0038",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE7JKNvHH9z1dXPXQ1giHsfknDNlNoncsniA&s",
     "bookTitle": "Historia del Perú Contemporáneo",
@@ -667,10 +668,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 38
+    "condition": "bueno"
   },
   {
+    "id": 37,
     "code": "EJ-2025-0037",
     "bookCoverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE7JKNvHH9z1dXPXQ1giHsfknDNlNoncsniA&s",
     "bookTitle": "Historia del Perú Contemporáneo",
@@ -678,10 +679,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 37
+    "condition": "nuevo"
   },
   {
+    "id": 36,
     "code": "EJ-2025-0036",
     "bookCoverUrl": null,
     "bookTitle": "Asesinato en el Orient Express",
@@ -689,10 +690,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 36
+    "condition": "regular"
   },
   {
+    "id": 35,
     "code": "EJ-2025-0035",
     "bookCoverUrl": null,
     "bookTitle": "Asesinato en el Orient Express",
@@ -700,10 +701,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 35
+    "condition": "bueno"
   },
   {
+    "id": 34,
     "code": "EJ-2025-0034",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/f5/f2/f5f2e2edd647784f07b709f1fef82d1c.jpg",
     "bookTitle": "Harry Potter y la piedra filosofal",
@@ -711,10 +712,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 34
+    "condition": "nuevo"
   },
   {
+    "id": 33,
     "code": "EJ-2025-0033",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/f5/f2/f5f2e2edd647784f07b709f1fef82d1c.jpg",
     "bookTitle": "Harry Potter y la piedra filosofal",
@@ -722,10 +723,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 33
+    "condition": "regular"
   },
   {
+    "id": 32,
     "code": "EJ-2025-0032",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/f5/f2/f5f2e2edd647784f07b709f1fef82d1c.jpg",
     "bookTitle": "Harry Potter y la piedra filosofal",
@@ -733,10 +734,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 32
+    "condition": "bueno"
   },
   {
+    "id": 31,
     "code": "EJ-2025-0031",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/f5/f2/f5f2e2edd647784f07b709f1fef82d1c.jpg",
     "bookTitle": "Harry Potter y la piedra filosofal",
@@ -744,10 +745,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 31
+    "condition": "bueno"
   },
   {
+    "id": 30,
     "code": "EJ-2025-0030",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/f5/f2/f5f2e2edd647784f07b709f1fef82d1c.jpg",
     "bookTitle": "Harry Potter y la piedra filosofal",
@@ -755,10 +756,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 30
+    "condition": "bueno"
   },
   {
+    "id": 29,
     "code": "EJ-2025-0029",
     "bookCoverUrl": "https://images.cdn3.buscalibre.com/fit-in/360x360/f5/f2/f5f2e2edd647784f07b709f1fef82d1c.jpg",
     "bookTitle": "Harry Potter y la piedra filosofal",
@@ -766,10 +767,10 @@
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 29
+    "condition": "nuevo"
   },
   {
+    "id": 28,
     "code": "EJ-2025-0028",
     "bookCoverUrl": null,
     "bookTitle": "El viejo y el mar",
@@ -777,10 +778,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 28
+    "condition": "nuevo"
   },
   {
+    "id": 27,
     "code": "EJ-2025-0027",
     "bookCoverUrl": null,
     "bookTitle": "El viejo y el mar",
@@ -788,10 +789,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 27
+    "condition": "bueno"
   },
   {
+    "id": 26,
     "code": "EJ-2025-0026",
     "bookCoverUrl": null,
     "bookTitle": "El viejo y el mar",
@@ -799,10 +800,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 26
+    "condition": "bueno"
   },
   {
+    "id": 25,
     "code": "EJ-2025-0025",
     "bookCoverUrl": "https://images.cdn2.buscalibre.com/fit-in/360x360/1b/3d/1b3d13ee1322464e244fbb0b23dc11db.jpg",
     "bookTitle": "Romeo y Julieta",
@@ -810,10 +811,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 25
+    "condition": "bueno"
   },
   {
+    "id": 24,
     "code": "EJ-2025-0024",
     "bookCoverUrl": "https://images.cdn2.buscalibre.com/fit-in/360x360/1b/3d/1b3d13ee1322464e244fbb0b23dc11db.jpg",
     "bookTitle": "Romeo y Julieta",
@@ -821,10 +822,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 24
+    "condition": "nuevo"
   },
   {
+    "id": 23,
     "code": "EJ-2025-0023",
     "bookCoverUrl": "https://images.cdn2.buscalibre.com/fit-in/360x360/1b/3d/1b3d13ee1322464e244fbb0b23dc11db.jpg",
     "bookTitle": "Romeo y Julieta",
@@ -832,10 +833,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 23
+    "condition": "bueno"
   },
   {
+    "id": 22,
     "code": "EJ-2025-0022",
     "bookCoverUrl": null,
     "bookTitle": "Don Quijote de la Mancha",
@@ -843,10 +844,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 22
+    "condition": "regular"
   },
   {
+    "id": 21,
     "code": "EJ-2025-0021",
     "bookCoverUrl": null,
     "bookTitle": "Don Quijote de la Mancha",
@@ -854,10 +855,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 21
+    "condition": "bueno"
   },
   {
+    "id": 20,
     "code": "EJ-2025-0020",
     "bookCoverUrl": null,
     "bookTitle": "Don Quijote de la Mancha",
@@ -865,10 +866,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 20
+    "condition": "nuevo"
   },
   {
+    "id": 19,
     "code": "EJ-2025-0019",
     "bookCoverUrl": null,
     "bookTitle": "Don Quijote de la Mancha",
@@ -876,10 +877,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 19
+    "condition": "bueno"
   },
   {
+    "id": 18,
     "code": "EJ-2025-0018",
     "bookCoverUrl": null,
     "bookTitle": "Don Quijote de la Mancha",
@@ -887,10 +888,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 18
+    "condition": "regular"
   },
   {
+    "id": 17,
     "code": "EJ-2025-0017",
     "bookCoverUrl": null,
     "bookTitle": "Don Quijote de la Mancha",
@@ -898,10 +899,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 17
+    "condition": "bueno"
   },
   {
+    "id": 16,
     "code": "EJ-2025-0016",
     "bookCoverUrl": null,
     "bookTitle": "Trilce",
@@ -909,10 +910,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 16
+    "condition": "regular"
   },
   {
+    "id": 15,
     "code": "EJ-2025-0015",
     "bookCoverUrl": null,
     "bookTitle": "Trilce",
@@ -920,10 +921,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 15
+    "condition": "bueno"
   },
   {
+    "id": 14,
     "code": "EJ-2025-0014",
     "bookCoverUrl": null,
     "bookTitle": "La palabra del mudo",
@@ -931,10 +932,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 14
+    "condition": "bueno"
   },
   {
+    "id": 13,
     "code": "EJ-2025-0013",
     "bookCoverUrl": null,
     "bookTitle": "La palabra del mudo",
@@ -942,10 +943,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 13
+    "condition": "regular"
   },
   {
+    "id": 12,
     "code": "EJ-2025-0012",
     "bookCoverUrl": null,
     "bookTitle": "Los ríos profundos",
@@ -953,10 +954,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 12
+    "condition": "nuevo"
   },
   {
+    "id": 11,
     "code": "EJ-2025-0011",
     "bookCoverUrl": null,
     "bookTitle": "Los ríos profundos",
@@ -964,10 +965,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 11
+    "condition": "bueno"
   },
   {
+    "id": 10,
     "code": "EJ-2025-0010",
     "bookCoverUrl": null,
     "bookTitle": "Los ríos profundos",
@@ -975,10 +976,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 10
+    "condition": "bueno"
   },
   {
+    "id": 9,
     "code": "EJ-2025-0009",
     "bookCoverUrl": null,
     "bookTitle": "Cien años de soledad",
@@ -986,10 +987,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "regular",
-    "id": 9
+    "condition": "regular"
   },
   {
+    "id": 8,
     "code": "EJ-2025-0008",
     "bookCoverUrl": null,
     "bookTitle": "Cien años de soledad",
@@ -997,10 +998,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "bueno",
-    "id": 8
+    "condition": "bueno"
   },
   {
+    "id": 7,
     "code": "EJ-2025-0007",
     "bookCoverUrl": null,
     "bookTitle": "Cien años de soledad",
@@ -1008,10 +1009,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 7
+    "condition": "nuevo"
   },
   {
+    "id": 6,
     "code": "EJ-2025-0006",
     "bookCoverUrl": null,
     "bookTitle": "Cien años de soledad",
@@ -1019,10 +1020,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 6
+    "condition": "bueno"
   },
   {
+    "id": 5,
     "code": "EJ-2025-0005",
     "bookCoverUrl": "https://www.rae.es/sites/default/files/styles/obra_portada_ficha/public/la_ciudad_y_los_perros.jpg?itok=xRoMNsUb",
     "bookTitle": "La ciudad y los perros",
@@ -1030,10 +1031,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 5
+    "condition": "bueno"
   },
   {
+    "id": 4,
     "code": "EJ-2025-0004",
     "bookCoverUrl": "https://www.rae.es/sites/default/files/styles/obra_portada_ficha/public/la_ciudad_y_los_perros.jpg?itok=xRoMNsUb",
     "bookTitle": "La ciudad y los perros",
@@ -1041,10 +1042,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "nuevo",
-    "id": 4
+    "condition": "nuevo"
   },
   {
+    "id": 3,
     "code": "EJ-2025-0003",
     "bookCoverUrl": "https://www.rae.es/sites/default/files/styles/obra_portada_ficha/public/la_ciudad_y_los_perros.jpg?itok=xRoMNsUb",
     "bookTitle": "La ciudad y los perros",
@@ -1052,10 +1053,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": false,
-    "condition": "regular",
-    "id": 3
+    "condition": "regular"
   },
   {
+    "id": 2,
     "code": "EJ-2025-0002",
     "bookCoverUrl": "https://www.rae.es/sites/default/files/styles/obra_portada_ficha/public/la_ciudad_y_los_perros.jpg?itok=xRoMNsUb",
     "bookTitle": "La ciudad y los perros",
@@ -1063,10 +1064,10 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 2
+    "condition": "bueno"
   },
   {
+    "id": 1,
     "code": "EJ-2025-0001",
     "bookCoverUrl": "https://www.rae.es/sites/default/files/styles/obra_portada_ficha/public/la_ciudad_y_los_perros.jpg?itok=xRoMNsUb",
     "bookTitle": "La ciudad y los perros",
@@ -1074,7 +1075,6 @@
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
     "isAvailable": true,
-    "condition": "bueno",
-    "id": 1
+    "condition": "bueno"
   }
 ]

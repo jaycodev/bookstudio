@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 export const loanListSchema = z.object({
+  id: z.number(),
   code: z.string(),
   readerCode: z.string(),
   readerFullName: z.string(),
@@ -13,7 +14,6 @@ export const loanListSchema = z.object({
     lost: z.number(),
     returned: z.number(),
   }),
-  id: z.number(),
 })
 
 export type LoanList = z.infer<typeof loanListSchema>

@@ -1,5 +1,6 @@
 [
   {
+    "id": 25,
     "code": "PRE-20240814-00001",
     "readerCode": "LEC-2025-00023",
     "readerFullName": "Ricardo Manuel Morales Díaz",
@@ -7,14 +8,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 1,
-      "borrowed": 0
-    },
-    "id": 25
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 24,
     "code": "PRE-20240813-00001",
     "readerCode": "LEC-2025-00022",
     "readerFullName": "Sandra Patricia López Vargas",
@@ -22,14 +23,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 1,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 24
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 23,
     "code": "PRE-20240812-00001",
     "readerCode": "LEC-2025-00021",
     "readerFullName": "José Luis Fernández Huamán",
@@ -37,14 +38,14 @@
     "itemCount": 3,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 1,
-      "borrowed": 1
-    },
-    "id": 23
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 22,
     "code": "PRE-20240811-00001",
     "readerCode": "LEC-2025-00020",
     "readerFullName": "Jorge Enrique Medina Castro",
@@ -52,14 +53,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 1,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 22
+      "lost": 1,
+      "overdue": 0
+    }
   },
   {
+    "id": 21,
     "code": "PRE-20240810-00001",
     "readerCode": "LEC-2025-00002",
     "readerFullName": "Carlos Andrés Mendoza Silva",
@@ -67,14 +68,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 1,
-      "borrowed": 0
-    },
-    "id": 21
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 20,
     "code": "PRE-20240809-00001",
     "readerCode": "LEC-2025-00019",
     "readerFullName": "Rosa María Guerrero Silva",
@@ -82,14 +83,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 1,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 20
+      "lost": 1,
+      "overdue": 1
+    }
   },
   {
+    "id": 19,
     "code": "PRE-20240808-00001",
     "readerCode": "LEC-2025-00018",
     "readerFullName": "Luis Alberto Vega Sánchez",
@@ -97,14 +98,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 1,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 19
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 18,
     "code": "PRE-20240807-00001",
     "readerCode": "LEC-2025-00017",
     "readerFullName": "Carmen Luz Herrera Morales",
@@ -112,14 +113,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 0,
-      "borrowed": 1
-    },
-    "id": 18
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 17,
     "code": "PRE-20240806-00001",
     "readerCode": "LEC-2025-00016",
     "readerFullName": "María Elena Rodríguez Torres",
@@ -127,14 +128,14 @@
     "itemCount": 3,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 2,
-      "borrowed": 1
-    },
-    "id": 17
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 16,
     "code": "PRE-20240805-00001",
     "readerCode": "LEC-2025-00015",
     "readerFullName": "Fernanda Alejandra Mamani Quispe",
@@ -142,14 +143,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 16
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 15,
     "code": "PRE-20240804-00001",
     "readerCode": "LEC-2025-00014",
     "readerFullName": "Adrián Gabriel Choque Apaza",
@@ -157,14 +158,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 1,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 0,
-      "borrowed": 1
-    },
-    "id": 15
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 14,
     "code": "PRE-20240803-00001",
     "readerCode": "LEC-2025-00013",
     "readerFullName": "Isabella Nicole Nina Calla",
@@ -172,14 +173,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 1,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 14
+      "lost": 1,
+      "overdue": 0
+    }
   },
   {
+    "id": 13,
     "code": "PRE-20240802-00001",
     "readerCode": "LEC-2025-00012",
     "readerFullName": "Sebastián Alonso Poma Hancco",
@@ -187,14 +188,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 1,
-      "borrowed": 1
-    },
-    "id": 13
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 12,
     "code": "PRE-20240801-00001",
     "readerCode": "LEC-2025-00011",
     "readerFullName": "Valeria Milagros Ramos Ccahuana",
@@ -202,14 +203,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 1,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 12
+      "lost": 1,
+      "overdue": 1
+    }
   },
   {
+    "id": 11,
     "code": "PRE-20240730-00001",
     "readerCode": "LEC-2025-00010",
     "readerFullName": "Mateo José Condori Apaza",
@@ -217,14 +218,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 0,
-      "borrowed": 1
-    },
-    "id": 11
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 10,
     "code": "PRE-20240729-00001",
     "readerCode": "LEC-2025-00009",
     "readerFullName": "Camila Andrea Torres Vilca",
@@ -232,14 +233,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 1,
-      "borrowed": 0
-    },
-    "id": 10
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 9,
     "code": "PRE-20240728-00001",
     "readerCode": "LEC-2025-00008",
     "readerFullName": "Javier Fernando Huamán Flores",
@@ -247,14 +248,14 @@
     "itemCount": 3,
     "statusCounts": {
       "canceled": 1,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 1,
-      "borrowed": 0
-    },
-    "id": 9
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 8,
     "code": "PRE-20240727-00001",
     "readerCode": "LEC-2025-00007",
     "readerFullName": "Sofía Elena Quispe Mamani",
@@ -262,14 +263,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 1,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 8
+      "lost": 1,
+      "overdue": 0
+    }
   },
   {
+    "id": 7,
     "code": "PRE-20240726-00001",
     "readerCode": "LEC-2025-00006",
     "readerFullName": "Diego Alejandro Moreno Ramos",
@@ -277,14 +278,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 1,
-      "borrowed": 1
-    },
-    "id": 7
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 6,
     "code": "PRE-20240725-00001",
     "readerCode": "LEC-2025-00001",
     "readerFullName": "Ana María García López",
@@ -292,14 +293,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 6
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 5,
     "code": "PRE-20240724-00001",
     "readerCode": "LEC-2025-00005",
     "readerFullName": "Lucía Isabel Paredes Gutiérrez",
@@ -307,14 +308,14 @@
     "itemCount": 3,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 1,
-      "borrowed": 1
-    },
-    "id": 5
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 4,
     "code": "PRE-20240723-00001",
     "readerCode": "LEC-2025-00004",
     "readerFullName": "Roberto Miguel Castro Quispe",
@@ -322,14 +323,14 @@
     "itemCount": 1,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 0,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 1,
-      "borrowed": 0
-    },
-    "id": 4
+      "lost": 0,
+      "overdue": 0
+    }
   },
   {
+    "id": 3,
     "code": "PRE-20240722-00001",
     "readerCode": "LEC-2025-00003",
     "readerFullName": "Patricia Rosa Vargas Chávez",
@@ -337,14 +338,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 2,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 0,
-      "borrowed": 0
-    },
-    "id": 3
+      "lost": 0,
+      "overdue": 2
+    }
   },
   {
+    "id": 2,
     "code": "PRE-20240721-00001",
     "readerCode": "LEC-2025-00002",
     "readerFullName": "Carlos Andrés Mendoza Silva",
@@ -352,14 +353,14 @@
     "itemCount": 2,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 1,
       "returned": 0,
-      "borrowed": 1
-    },
-    "id": 2
+      "lost": 0,
+      "overdue": 1
+    }
   },
   {
+    "id": 1,
     "code": "PRE-20240720-00001",
     "readerCode": "LEC-2025-00001",
     "readerFullName": "Ana María García López",
@@ -367,11 +368,10 @@
     "itemCount": 3,
     "statusCounts": {
       "canceled": 0,
-      "overdue": 1,
-      "lost": 0,
+      "borrowed": 0,
       "returned": 2,
-      "borrowed": 0
-    },
-    "id": 1
+      "lost": 0,
+      "overdue": 1
+    }
   }
 ]

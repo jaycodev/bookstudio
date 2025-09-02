@@ -3,6 +3,7 @@ import { z } from 'zod'
 export const fineStatusSchema = z.enum(['pendiente', 'pagado'])
 
 export const fineListSchema = z.object({
+  id: z.number(),
   code: z.string(),
   loanCode: z.string(),
   copyCode: z.string(),
@@ -10,7 +11,6 @@ export const fineListSchema = z.object({
   daysLate: z.number().int(),
   issuedAt: z.coerce.date(),
   status: fineStatusSchema,
-  id: z.number(),
 })
 
 export type FineList = z.infer<typeof fineListSchema>

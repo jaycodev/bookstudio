@@ -9,6 +9,7 @@ export const paymentMethodSchema = z.enum([
 ])
 
 export const paymentListSchema = z.object({
+  id: z.number(),
   code: z.string(),
   fineCount: z.number(),
   readerCode: z.string(),
@@ -16,7 +17,6 @@ export const paymentListSchema = z.object({
   amount: z.number(),
   paymentDate: z.coerce.date(),
   method: paymentMethodSchema,
-  id: z.number(),
 })
 
 export type PaymentList = z.infer<typeof paymentListSchema>

@@ -1,14 +1,20 @@
-import { CheckCircle2, XCircle } from 'lucide-react'
-
 import { FilterOption } from '@/types/types'
 
-export const levels: FilterOption[] = [
-  { label: 'Principiante', value: 'Principiante' },
-  { label: 'Intermedio', value: 'Intermedio' },
-  { label: 'Avanzado', value: 'Avanzado' },
-]
+import { levelIconsAndLabels } from '../config/level-icons'
+import { statusIconsAndLabels } from '../config/status-icons'
 
-export const status: FilterOption[] = [
-  { label: 'Activo', value: 'activo', icon: CheckCircle2 },
-  { label: 'Inactivo', value: 'inactivo', icon: XCircle },
-]
+export const levelOptions: FilterOption[] = Object.entries(levelIconsAndLabels).map(
+  ([key, { label, icon }]) => ({
+    value: key,
+    label,
+    icon,
+  })
+)
+
+export const statusOptions: FilterOption[] = Object.entries(statusIconsAndLabels).map(
+  ([key, { label, icon }]) => ({
+    value: key,
+    label,
+    icon,
+  })
+)

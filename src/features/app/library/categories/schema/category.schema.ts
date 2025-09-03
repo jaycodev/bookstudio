@@ -1,11 +1,14 @@
 import { z } from 'zod'
 
-export const categorySchema = z.object({
-  CourseID: z.number(),
-  Name: z.string(),
-  Level: z.string(),
-  Description: z.string(),
-  Status: z.enum(['activo', 'inactivo']),
+export const statusSchema = z.enum(['activo', 'suspendido', 'eliminado'])
+export const categoryLevelSchema = z.enum(['primaria', 'secundaria', 'superior', 'general'])
+
+export const categoryListSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  level: categoryLevelSchema,
+  description: z.string(),
+  status: statusSchema,
 })
 
-export type Category = z.infer<typeof categorySchema>
+export type CategoryList = z.infer<typeof categoryListSchema>

@@ -1,177 +1,177 @@
 [
   {
-    "CourseID": 1,
-    "Name": "Curso de React",
-    "Level": "Intermedio",
-    "Description": "Aprende React.js y cómo crear aplicaciones web modernas.",
-    "Status": "inactivo"
+    "id": 25,
+    "name": "Religión",
+    "level": "general",
+    "description": "Textos religiosos y estudios teológicos",
+    "status": "activo"
   },
   {
-    "CourseID": 2,
-    "Name": "Curso de Node.js",
-    "Level": "Avanzado",
-    "Description": "Curso avanzado para aprender Node.js, Express y API REST.",
-    "Status": "activo"
+    "id": 24,
+    "name": "Tecnología",
+    "level": "superior",
+    "description": "Informática y nuevas tecnologías",
+    "status": "activo"
   },
   {
-    "CourseID": 3,
-    "Name": "Introducción a Python",
-    "Level": "Principiante",
-    "Description": "Aprende lo básico de Python y cómo aplicar programación en proyectos.",
-    "Status": "activo"
+    "id": 23,
+    "name": "Jardinería",
+    "level": "general",
+    "description": "Cuidado de plantas y jardines",
+    "status": "activo"
   },
   {
-    "CourseID": 4,
-    "Name": "Curso de JavaScript",
-    "Level": "Intermedio",
-    "Description": "Domina JavaScript y sus conceptos clave en desarrollo web.",
-    "Status": "activo"
+    "id": 22,
+    "name": "Cocina",
+    "level": "general",
+    "description": "Libros de recetas y gastronomía",
+    "status": "activo"
   },
   {
-    "CourseID": 5,
-    "Name": "Diseño Web con HTML y CSS",
-    "Level": "Principiante",
-    "Description": "Crea sitios web estáticos usando HTML y CSS.",
-    "Status": "activo"
+    "id": 21,
+    "name": "Deportes",
+    "level": "general",
+    "description": "Libros sobre deportes y educación física",
+    "status": "activo"
   },
   {
-    "CourseID": 6,
-    "Name": "Desarrollo de Apps Móviles",
-    "Level": "Intermedio",
-    "Description": "Aprende a desarrollar aplicaciones móviles para iOS y Android.",
-    "Status": "inactivo"
+    "id": 20,
+    "name": "Música",
+    "level": "general",
+    "description": "Teoría musical e historia de la música",
+    "status": "activo"
   },
   {
-    "CourseID": 7,
-    "Name": "Algoritmos y Estructuras de Datos",
-    "Level": "Avanzado",
-    "Description": "Curso sobre los fundamentos de algoritmos y estructuras de datos.",
-    "Status": "activo"
+    "id": 19,
+    "name": "Arte",
+    "level": "general",
+    "description": "Historia del arte y técnicas artísticas",
+    "status": "activo"
   },
   {
-    "CourseID": 8,
-    "Name": "Bases de Datos Relacionales",
-    "Level": "Intermedio",
-    "Description": "Aprende SQL y cómo gestionar bases de datos relacionales.",
-    "Status": "inactivo"
+    "id": 18,
+    "name": "Sociología",
+    "level": "superior",
+    "description": "Estudios sociales y antropología",
+    "status": "activo"
   },
   {
-    "CourseID": 9,
-    "Name": "Introducción a Git y GitHub",
-    "Level": "Principiante",
-    "Description": "Aprende los fundamentos de Git y cómo gestionar tu código en GitHub.",
-    "Status": "activo"
+    "id": 17,
+    "name": "Economía",
+    "level": "superior",
+    "description": "Textos de economía y finanzas",
+    "status": "activo"
   },
   {
-    "CourseID": 10,
-    "Name": "Desarrollo Web con Django",
-    "Level": "Intermedio",
-    "Description": "Curso de desarrollo web usando el framework Django y Python.",
-    "Status": "activo"
+    "id": 16,
+    "name": "Geografía",
+    "level": "secundaria",
+    "description": "Libros de geografía y cartografía",
+    "status": "activo"
   },
   {
-    "CourseID": 11,
-    "Name": "Ciberseguridad Básica",
-    "Level": "Principiante",
-    "Description": "Fundamentos de ciberseguridad, redes y protección de datos.",
-    "Status": "activo"
+    "id": 15,
+    "name": "Derecho",
+    "level": "superior",
+    "description": "Textos jurídicos y legales",
+    "status": "activo"
   },
   {
-    "CourseID": 12,
-    "Name": "Machine Learning con Python",
-    "Level": "Avanzado",
-    "Description": "Curso de introducción a machine learning usando Python y bibliotecas populares.",
-    "Status": "activo"
+    "id": 14,
+    "name": "Medicina",
+    "level": "superior",
+    "description": "Libros de medicina y salud",
+    "status": "activo"
   },
   {
-    "CourseID": 13,
-    "Name": "Desarrollo de Videojuegos con Unity",
-    "Level": "Intermedio",
-    "Description": "Aprende a crear videojuegos interactivos usando Unity.",
-    "Status": "activo"
+    "id": 13,
+    "name": "Ingeniería",
+    "level": "superior",
+    "description": "Textos técnicos de ingeniería",
+    "status": "activo"
   },
   {
-    "CourseID": 14,
-    "Name": "Creación de APIs con Node.js",
-    "Level": "Intermedio",
-    "Description": "Curso enfocado en la creación de APIs RESTful utilizando Node.js y Express.",
-    "Status": "activo"
+    "id": 12,
+    "name": "Psicología",
+    "level": "superior",
+    "description": "Libros de psicología y comportamiento humano",
+    "status": "activo"
   },
   {
-    "CourseID": 15,
-    "Name": "Marketing Digital",
-    "Level": "Principiante",
-    "Description": "Fundamentos del marketing digital, SEO y estrategias en redes sociales.",
-    "Status": "activo"
+    "id": 11,
+    "name": "Filosofía",
+    "level": "superior",
+    "description": "Textos filosóficos y pensamiento",
+    "status": "activo"
   },
   {
-    "CourseID": 16,
-    "Name": "Inteligencia Artificial para Todos",
-    "Level": "Principiante",
-    "Description": "Curso de introducción a la inteligencia artificial y sus aplicaciones.",
-    "Status": "activo"
+    "id": 10,
+    "name": "Enciclopedias",
+    "level": "general",
+    "description": "Obras de consulta general",
+    "status": "activo"
   },
   {
-    "CourseID": 17,
-    "Name": "Desarrollo de Páginas Web con Angular",
-    "Level": "Avanzado",
-    "Description": "Domina el desarrollo web con Angular, TypeScript y RxJS.",
-    "Status": "activo"
+    "id": 9,
+    "name": "Cuentos Infantiles",
+    "level": "primaria",
+    "description": "Libros para niños de educación primaria",
+    "status": "activo"
   },
   {
-    "CourseID": 18,
-    "Name": "Automatización con Python",
-    "Level": "Intermedio",
-    "Description": "Automatiza tareas con Python y aprende a trabajar con APIs y bibliotecas externas.",
-    "Status": "activo"
+    "id": 8,
+    "name": "Biología",
+    "level": "secundaria",
+    "description": "Textos de biología y ciencias naturales",
+    "status": "activo"
   },
   {
-    "CourseID": 19,
-    "Name": "Desarrollo de Software Ágil con Scrum",
-    "Level": "Intermedio",
-    "Description": "Curso sobre la metodología ágil Scrum para desarrollo de software.",
-    "Status": "activo"
+    "id": 7,
+    "name": "Química",
+    "level": "secundaria",
+    "description": "Libros de química nivel secundario",
+    "status": "activo"
   },
   {
-    "CourseID": 20,
-    "Name": "Introducción a la Ciencia de Datos",
-    "Level": "Principiante",
-    "Description": "Aprende los conceptos básicos de la ciencia de datos y su aplicación.",
-    "Status": "activo"
+    "id": 6,
+    "name": "Física",
+    "level": "secundaria",
+    "description": "Textos de física para secundaria",
+    "status": "activo"
   },
   {
-    "CourseID": 21,
-    "Name": "Blockchain y Criptomonedas",
-    "Level": "Intermedio",
-    "Description": "Introducción a la tecnología blockchain y el funcionamiento de las criptomonedas.",
-    "Status": "activo"
+    "id": 5,
+    "name": "Matemáticas",
+    "level": "secundaria",
+    "description": "Libros de matemáticas nivel secundario",
+    "status": "activo"
   },
   {
-    "CourseID": 22,
-    "Name": "Programación en Java",
-    "Level": "Principiante",
-    "Description": "Curso de Java desde cero, cubriendo todos los aspectos básicos del lenguaje.",
-    "Status": "activo"
+    "id": 4,
+    "name": "Historia Universal",
+    "level": "secundaria",
+    "description": "Historia mundial y civilizaciones",
+    "status": "activo"
   },
   {
-    "CourseID": 23,
-    "Name": "Desarrollo Web Full Stack",
-    "Level": "Avanzado",
-    "Description": "Curso completo sobre desarrollo web full-stack usando las tecnologías más actuales.",
-    "Status": "activo"
+    "id": 3,
+    "name": "Historia del Perú",
+    "level": "secundaria",
+    "description": "Libros sobre la historia nacional",
+    "status": "activo"
   },
   {
-    "CourseID": 24,
-    "Name": "Desarrollo de APIs con Python y Flask",
-    "Level": "Intermedio",
-    "Description": "Crea APIs RESTful con Python y Flask.",
-    "Status": "activo"
+    "id": 2,
+    "name": "Literatura Contemporánea",
+    "level": "superior",
+    "description": "Obras literarias modernas y actuales",
+    "status": "activo"
   },
   {
-    "CourseID": 25,
-    "Name": "Cloud Computing con AWS",
-    "Level": "Avanzado",
-    "Description": "Curso sobre los servicios de Amazon Web Services (AWS) y su uso en la computación en la nube.",
-    "Status": "activo"
+    "id": 1,
+    "name": "Literatura Clásica",
+    "level": "superior",
+    "description": "Obras literarias de reconocido valor universal",
+    "status": "activo"
   }
 ]

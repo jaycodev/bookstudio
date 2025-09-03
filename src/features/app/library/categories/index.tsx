@@ -1,16 +1,35 @@
+import { Tags } from 'lucide-react'
+
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
 
 import rawData from './data/categories.json'
-import { Category } from './schema/category.schema.ts'
+import { CategoryList, categoryListSchema } from './schema/category.schema.ts'
 import { columns } from './table/columns.tsx'
 
-const data: Category[] = rawData.map((category) => ({
-  ...category,
-  Status: category.Status === 'activo' ? 'activo' : 'inactivo',
-}))
+let data: CategoryList[] = []
+
+try {
+  data = categoryListSchema.array().parse(rawData)
+} catch (error) {
+  console.error('Failed to parse book data. Please check the structure of your JSON file.', error)
+  data = []
+}
 
 const CategoriesPage = () => {
-  return <DataTable columns={columns} data={data} resource="courses" />
+  return (
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="categories"
+        title="Categorías"
+        description="Organiza tus libros por temas fácilmente."
+        icon={Tags}
+      />
+    </>
+  )
 }
 
 export default CategoriesPage

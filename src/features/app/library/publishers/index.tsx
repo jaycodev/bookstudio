@@ -25,7 +25,7 @@ const PublishersPage = () => {
         data={data}
         resource="publishers"
         title="Editoriales"
-        description="Simplifica tu gestión."
+        description="Información siempre lista."
         icon={Building2}
       />
     </>

@@ -10,7 +10,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 import { getInitials } from '@/lib/utils'
 
 import { roles } from '../data/options-data.ts'
-import { Worker } from '../schema/worker.schema.ts'
+import { Worker } from '../schema/list.schema.ts'
 
 const resource = 'users'
 

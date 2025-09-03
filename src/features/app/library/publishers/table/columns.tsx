@@ -10,7 +10,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 
 import { statusIconsAndLabels } from '../config/status-icons.ts'
 import { nationalitiesOptions, statusOptions } from '../data/options-data.ts'
-import { PublisherList } from '../schema/publisher.schema.ts'
+import { PublisherList } from '../schema/list.schema.ts'
 
 const resource = 'publishers'
 

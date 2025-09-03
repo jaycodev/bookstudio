@@ -4,7 +4,7 @@ import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/payments.json'
-import { PaymentList, paymentListSchema } from './schema/payment.schema.ts'
+import { PaymentList, paymentListSchema } from './schema/list.schema.ts'
 import { columns } from './table/columns'
 
 let data: PaymentList[] = []

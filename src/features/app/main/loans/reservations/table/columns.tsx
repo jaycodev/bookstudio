@@ -9,7 +9,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 
 import { statusIconsAndLabels } from '../config/status-icons.ts'
 import { readersOptions, statusOptions } from '../data/options-data.ts'
-import type { ReservationList } from '../schema/reservation.schema.ts'
+import type { ReservationList } from '../schema/list.schema.ts'
 
 const resource = 'reservations'
 

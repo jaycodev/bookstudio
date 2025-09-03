@@ -4,7 +4,7 @@ import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/reservations.json'
-import { ReservationList, reservationListSchema } from './schema/reservation.schema.ts'
+import { ReservationList, reservationListSchema } from './schema/list.schema.ts'
 import { columns } from './table/columns'
 
 let data: ReservationList[] = []

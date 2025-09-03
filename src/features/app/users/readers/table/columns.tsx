@@ -9,7 +9,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 import { cn } from '@/lib/utils'
 
 import { status } from '../data/options-data.ts'
-import { Reader } from '../schema/reader.schema.ts'
+import { Reader } from '../schema/list.schema.ts'
 
 const resource = 'students'
 

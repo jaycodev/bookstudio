@@ -9,7 +9,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 import { levelIconsAndLabels } from '../config/level-icons.ts'
 import { statusIconsAndLabels } from '../config/status-icons.ts'
 import { levelOptions, statusOptions } from '../data/options-data.ts'
-import { CategoryList } from '../schema/category.schema.ts'
+import { CategoryList } from '../schema/list.schema.ts'
 
 const resource = 'categories'
 

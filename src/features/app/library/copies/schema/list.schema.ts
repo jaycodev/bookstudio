@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const conditionSchema = z.enum(['nuevo', 'bueno', 'regular', 'malo', 'deteriorado'])
+import { CopyCondition, CopyStatus } from './enums'
 
 export const copyListSchema = z.object({
   id: z.number(),
@@ -10,8 +10,8 @@ export const copyListSchema = z.object({
   shelfCode: z.string(),
   shelfFloor: z.string(),
   locationName: z.string(),
-  isAvailable: z.boolean(),
-  condition: conditionSchema,
+  status: CopyStatus,
+  condition: CopyCondition,
 })
 
 export type CopyList = z.infer<typeof copyListSchema>

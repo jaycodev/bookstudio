@@ -1,12 +1,6 @@
 import { z } from 'zod'
 
-export const paymentMethodSchema = z.enum([
-  'efectivo',
-  'tarjeta',
-  'transferencia',
-  'cheque',
-  'otros',
-])
+import { PaymentMethod } from './enums'
 
 export const paymentListSchema = z.object({
   id: z.number(),
@@ -16,7 +10,7 @@ export const paymentListSchema = z.object({
   readerFullName: z.string(),
   amount: z.number(),
   paymentDate: z.coerce.date(),
-  method: paymentMethodSchema,
+  method: PaymentMethod,
 })
 
 export type PaymentList = z.infer<typeof paymentListSchema>

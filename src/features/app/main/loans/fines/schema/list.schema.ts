@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const fineStatusSchema = z.enum(['pendiente', 'pagado'])
+import { FineStatus } from './enums'
 
 export const fineListSchema = z.object({
   id: z.number(),
@@ -10,7 +10,7 @@ export const fineListSchema = z.object({
   amount: z.number(),
   daysLate: z.number().int(),
   issuedAt: z.coerce.date(),
-  status: fineStatusSchema,
+  status: FineStatus,
 })
 
 export type FineList = z.infer<typeof fineListSchema>

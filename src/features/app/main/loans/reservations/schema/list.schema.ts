@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const reservationStatusSchema = z.enum(['pendiente', 'cancelada', 'atendida'])
+import { ReservationStatus } from './enums'
 
 export const reservationListSchema = z.object({
   id: z.number(),
@@ -9,7 +9,7 @@ export const reservationListSchema = z.object({
   readerFullName: z.string(),
   copyCode: z.string(),
   reservationDate: z.coerce.date(),
-  status: reservationStatusSchema,
+  status: ReservationStatus,
 })
 
 export type ReservationList = z.infer<typeof reservationListSchema>

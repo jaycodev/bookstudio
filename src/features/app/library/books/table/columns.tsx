@@ -18,7 +18,7 @@ import {
   publishersOptions,
   statusOptions,
 } from '../data/options-data.ts'
-import { BookList } from '../schema/book.schema.ts'
+import { BookList } from '../schema/list.schema.ts'
 
 const resource = 'books'
 

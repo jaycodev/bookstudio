@@ -9,7 +9,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 
 import { statusIconsAndLabels } from '../config/status-icons.ts'
 import { loansOptions, statusOptions } from '../data/options-data.ts'
-import type { FineList } from '../schema/fine.schema.ts'
+import type { FineList } from '../schema/list.schema.ts'
 
 const resource = 'fines'
 

@@ -9,7 +9,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 
 import { methodsIconsAndLabels } from '../config/methods-icons.ts'
 import { readersOptions, statusOptions } from '../data/options-data.ts'
-import type { PaymentList } from '../schema/payment.schema.ts'
+import type { PaymentList } from '../schema/list.schema.ts'
 
 const resource = 'payments'
 

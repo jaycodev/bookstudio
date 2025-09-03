@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const statusSchema = z.enum(['activo', 'inactivo'])
+import { Status } from '@/shared/enums/status.enum'
 
 export const bookListSchema = z.object({
   id: z.number(),
@@ -13,7 +13,7 @@ export const bookListSchema = z.object({
   languageName: z.string(),
   loanedCopies: z.number(),
   availableCopies: z.number(),
-  status: statusSchema,
+  status: Status,
 })
 
 export type BookList = z.infer<typeof bookListSchema>

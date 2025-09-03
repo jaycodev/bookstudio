@@ -1,7 +1,7 @@
 import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
 
 import rawData from './data/workers.json'
-import { Worker } from './schema/worker.schema.ts'
+import { Worker } from './schema/list.schema.ts'
 import { columns } from './table/columns.tsx'
 
 const data: Worker[] = rawData.map((worker) => ({

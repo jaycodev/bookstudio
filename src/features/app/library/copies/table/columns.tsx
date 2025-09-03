@@ -10,7 +10,7 @@ import { DataTableRowActions } from '@/features/app/components/data-table/data-t
 
 import { conditionsIconsAndLabels } from '../config/conditions-icons.ts'
 import { availabilityOptions, booksOptions, conditionsOptions } from '../data/options-data.ts'
-import type { CopyList } from '../schema/copy.schema.ts'
+import type { CopyList } from '../schema/list.schema.ts'
 
 const resource = 'copies'
 

@@ -4,7 +4,7 @@ import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/books.json'
-import { BookList, bookListSchema } from './schema/book.schema.ts'
+import { BookList, bookListSchema } from './schema/list.schema.ts'
 import { columns } from './table/columns'
 
 let data: BookList[] = []

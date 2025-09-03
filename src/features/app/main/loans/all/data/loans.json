@@ -7,11 +7,11 @@
     "loanDate": "2024-08-14",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 1,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -22,11 +22,11 @@
     "loanDate": "2024-08-13",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 1,
       "borrowed": 0,
       "returned": 0,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 1
     }
   },
   {
@@ -37,11 +37,11 @@
     "loanDate": "2024-08-12",
     "itemCount": 3,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 1,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -52,11 +52,11 @@
     "loanDate": "2024-08-11",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 1,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -67,11 +67,11 @@
     "loanDate": "2024-08-10",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 1,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -82,11 +82,11 @@
     "loanDate": "2024-08-09",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 1,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -97,11 +97,11 @@
     "loanDate": "2024-08-08",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 1,
       "borrowed": 0,
       "returned": 0,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 1
     }
   },
   {
@@ -112,11 +112,11 @@
     "loanDate": "2024-08-07",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 0,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -127,11 +127,11 @@
     "loanDate": "2024-08-06",
     "itemCount": 3,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 2,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -142,11 +142,11 @@
     "loanDate": "2024-08-05",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -157,11 +157,11 @@
     "loanDate": "2024-08-04",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 1,
       "borrowed": 1,
       "returned": 0,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 1
     }
   },
   {
@@ -172,11 +172,11 @@
     "loanDate": "2024-08-03",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 1,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -187,11 +187,11 @@
     "loanDate": "2024-08-02",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 1,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -202,11 +202,11 @@
     "loanDate": "2024-08-01",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 1,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -217,11 +217,11 @@
     "loanDate": "2024-07-30",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 0,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -232,11 +232,11 @@
     "loanDate": "2024-07-29",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 1,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -247,11 +247,11 @@
     "loanDate": "2024-07-28",
     "itemCount": 3,
     "statusCounts": {
-      "canceled": 1,
       "borrowed": 0,
       "returned": 1,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 1
     }
   },
   {
@@ -262,11 +262,11 @@
     "loanDate": "2024-07-27",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 1,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -277,11 +277,11 @@
     "loanDate": "2024-07-26",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 1,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -292,11 +292,11 @@
     "loanDate": "2024-07-25",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -307,11 +307,11 @@
     "loanDate": "2024-07-24",
     "itemCount": 3,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 1,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -322,11 +322,11 @@
     "loanDate": "2024-07-23",
     "itemCount": 1,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 1,
       "lost": 0,
-      "overdue": 0
+      "overdue": 0,
+      "canceled": 0
     }
   },
   {
@@ -337,11 +337,11 @@
     "loanDate": "2024-07-22",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 0,
       "lost": 0,
-      "overdue": 2
+      "overdue": 2,
+      "canceled": 0
     }
   },
   {
@@ -352,11 +352,11 @@
     "loanDate": "2024-07-21",
     "itemCount": 2,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 1,
       "returned": 0,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   },
   {
@@ -367,11 +367,11 @@
     "loanDate": "2024-07-20",
     "itemCount": 3,
     "statusCounts": {
-      "canceled": 0,
       "borrowed": 0,
       "returned": 2,
       "lost": 0,
-      "overdue": 1
+      "overdue": 1,
+      "canceled": 0
     }
   }
 ]

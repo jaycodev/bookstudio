@@ -10,7 +10,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 51,
@@ -23,7 +23,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 50,
@@ -36,7 +36,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 49,
@@ -49,7 +49,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 48,
@@ -62,7 +62,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 3,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 47,
@@ -75,7 +75,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 46,
@@ -88,7 +88,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 45,
@@ -101,7 +101,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 44,
@@ -114,7 +114,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 3,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 43,
@@ -127,7 +127,7 @@
     "languageName": "Español",
     "loanedCopies": 2,
     "availableCopies": 6,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 42,
@@ -140,7 +140,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 41,
@@ -153,7 +153,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 40,
@@ -166,7 +166,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 39,
@@ -179,7 +179,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 38,
@@ -192,7 +192,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 37,
@@ -205,7 +205,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 1,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 36,
@@ -218,7 +218,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 35,
@@ -231,7 +231,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 3,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 34,
@@ -244,7 +244,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 4,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 33,
@@ -257,7 +257,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 3,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 32,
@@ -270,7 +270,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 31,
@@ -283,7 +283,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 30,
@@ -296,7 +296,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 29,
@@ -309,7 +309,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 3,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 28,
@@ -322,7 +322,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 3,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 27,
@@ -335,7 +335,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 1,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 26,
@@ -348,7 +348,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 5,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 25,
@@ -361,7 +361,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 1,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 24,
@@ -374,7 +374,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 23,
@@ -387,7 +387,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 22,
@@ -400,7 +400,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 21,
@@ -413,7 +413,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 20,
@@ -426,7 +426,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 19,
@@ -439,7 +439,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 18,
@@ -452,7 +452,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 17,
@@ -465,7 +465,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 5,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 16,
@@ -478,7 +478,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 15,
@@ -491,7 +491,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 14,
@@ -504,7 +504,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 13,
@@ -517,7 +517,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 1,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 12,
@@ -530,7 +530,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 11,
@@ -543,7 +543,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 10,
@@ -556,7 +556,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 9,
@@ -569,7 +569,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 3,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 8,
@@ -582,7 +582,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 7,
@@ -595,7 +595,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 6,
@@ -608,7 +608,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 0,
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 5,
@@ -621,7 +621,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 4,
@@ -634,7 +634,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 1,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 3,
@@ -647,7 +647,7 @@
     "languageName": "Español",
     "loanedCopies": 0,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 2,
@@ -660,7 +660,7 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 2,
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 1,
@@ -673,6 +673,6 @@
     "languageName": "Español",
     "loanedCopies": 1,
     "availableCopies": 4,
-    "status": "activo"
+    "status": "ACTIVO"
   }
 ]

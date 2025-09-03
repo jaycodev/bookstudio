@@ -6,7 +6,7 @@
     "nationalityCode": "us",
     "nationalityName": "Estadounidense",
     "birthDate": "1809-01-19",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 31,
@@ -15,7 +15,7 @@
     "nationalityCode": "us",
     "nationalityName": "Estadounidense",
     "birthDate": "1835-11-30",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 30,
@@ -24,7 +24,7 @@
     "nationalityCode": "gb",
     "nationalityName": "Británica",
     "birthDate": "1812-02-07",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 29,
@@ -33,7 +33,7 @@
     "nationalityCode": "gb",
     "nationalityName": "Británica",
     "birthDate": "1775-12-16",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 28,
@@ -42,7 +42,7 @@
     "nationalityCode": "gb",
     "nationalityName": "Británica",
     "birthDate": "1903-06-25",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 27,
@@ -51,7 +51,7 @@
     "nationalityCode": "gb",
     "nationalityName": "Británica",
     "birthDate": "1890-09-15",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 26,
@@ -60,7 +60,7 @@
     "nationalityCode": "gb",
     "nationalityName": "Británica",
     "birthDate": "1965-07-31",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 25,
@@ -69,7 +69,7 @@
     "nationalityCode": "us",
     "nationalityName": "Estadounidense",
     "birthDate": "1947-09-21",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 24,
@@ -78,7 +78,7 @@
     "nationalityCode": "us",
     "nationalityName": "Estadounidense",
     "birthDate": "1899-07-21",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 23,
@@ -87,7 +87,7 @@
     "nationalityCode": "gb",
     "nationalityName": "Británica",
     "birthDate": "1564-04-26",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 22,
@@ -96,7 +96,7 @@
     "nationalityCode": "es",
     "nationalityName": "Española",
     "birthDate": "1920-10-17",
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 21,
@@ -105,7 +105,7 @@
     "nationalityCode": "es",
     "nationalityName": "Española",
     "birthDate": "1916-05-11",
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 20,
@@ -114,7 +114,7 @@
     "nationalityCode": "es",
     "nationalityName": "Española",
     "birthDate": "1881-12-23",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 19,
@@ -123,7 +123,7 @@
     "nationalityCode": "es",
     "nationalityName": "Española",
     "birthDate": "1875-07-26",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 18,
@@ -132,7 +132,7 @@
     "nationalityCode": "es",
     "nationalityName": "Española",
     "birthDate": "1898-06-05",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 17,
@@ -141,7 +141,7 @@
     "nationalityCode": "es",
     "nationalityName": "Española",
     "birthDate": "1547-09-29",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 16,
@@ -150,7 +150,7 @@
     "nationalityCode": "ar",
     "nationalityName": "Argentina",
     "birthDate": "1911-06-24",
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 15,
@@ -159,7 +159,7 @@
     "nationalityCode": "mx",
     "nationalityName": "Mexicana",
     "birthDate": "1928-11-11",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 14,
@@ -168,7 +168,7 @@
     "nationalityCode": "cl",
     "nationalityName": "Chilena",
     "birthDate": "1904-07-12",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 13,
@@ -177,7 +177,7 @@
     "nationalityCode": "ar",
     "nationalityName": "Argentina",
     "birthDate": "1914-08-26",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 12,
@@ -186,7 +186,7 @@
     "nationalityCode": "mx",
     "nationalityName": "Mexicana",
     "birthDate": "1914-03-31",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 11,
@@ -195,7 +195,7 @@
     "nationalityCode": "ar",
     "nationalityName": "Argentina",
     "birthDate": "1942-08-02",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 10,
@@ -204,7 +204,7 @@
     "nationalityCode": "ar",
     "nationalityName": "Argentina",
     "birthDate": "1899-08-24",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 9,
@@ -213,7 +213,7 @@
     "nationalityCode": "co",
     "nationalityName": "Colombiana",
     "birthDate": "1927-03-06",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 8,
@@ -222,7 +222,7 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1939-02-19",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 7,
@@ -231,7 +231,7 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1894-06-14",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 6,
@@ -240,7 +240,7 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1909-11-04",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 5,
@@ -249,7 +249,7 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1833-02-07",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 4,
@@ -258,7 +258,7 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1911-01-18",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 3,
@@ -267,7 +267,7 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1892-03-16",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 2,
@@ -276,7 +276,7 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1929-08-31",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 1,
@@ -285,6 +285,6 @@
     "nationalityCode": "pe",
     "nationalityName": "Peruana",
     "birthDate": "1936-03-28",
-    "status": "activo"
+    "status": "ACTIVO"
   }
 ]

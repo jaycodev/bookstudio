@@ -7,7 +7,7 @@
     "readerFullName": "Manuel Antonio Sánchez Vega",
     "amount": 13.75,
     "paymentDate": "2024-09-06",
-    "method": "otros"
+    "method": "OTROS"
   },
   {
     "id": 21,
@@ -17,7 +17,7 @@
     "readerFullName": "Sandra Patricia López Vargas",
     "amount": 11.25,
     "paymentDate": "2024-09-05",
-    "method": "otros"
+    "method": "OTROS"
   },
   {
     "id": 20,
@@ -27,7 +27,7 @@
     "readerFullName": "Adrián Gabriel Choque Apaza",
     "amount": 25.0,
     "paymentDate": "2024-08-31",
-    "method": "otros"
+    "method": "OTROS"
   },
   {
     "id": 19,
@@ -37,7 +37,7 @@
     "readerFullName": "Mateo José Condori Apaza",
     "amount": 16.5,
     "paymentDate": "2024-09-04",
-    "method": "cheque"
+    "method": "CHEQUE"
   },
   {
     "id": 18,
@@ -47,7 +47,7 @@
     "readerFullName": "Diego Alejandro Moreno Ramos",
     "amount": 14.0,
     "paymentDate": "2024-09-03",
-    "method": "cheque"
+    "method": "CHEQUE"
   },
   {
     "id": 17,
@@ -57,7 +57,7 @@
     "readerFullName": "Jorge Enrique Medina Castro",
     "amount": 17.5,
     "paymentDate": "2024-08-30",
-    "method": "cheque"
+    "method": "CHEQUE"
   },
   {
     "id": 16,
@@ -67,7 +67,7 @@
     "readerFullName": "Camila Andrea Torres Vilca",
     "amount": 30.0,
     "paymentDate": "2024-08-20",
-    "method": "cheque"
+    "method": "CHEQUE"
   },
   {
     "id": 15,
@@ -77,7 +77,7 @@
     "readerFullName": "Luis Alberto Vega Sánchez",
     "amount": 22.0,
     "paymentDate": "2024-09-02",
-    "method": "transferencia"
+    "method": "TRANSFERENCIA"
   },
   {
     "id": 14,
@@ -87,7 +87,7 @@
     "readerFullName": "María Elena Rodríguez Torres",
     "amount": 6.25,
     "paymentDate": "2024-08-22",
-    "method": "transferencia"
+    "method": "TRANSFERENCIA"
   },
   {
     "id": 13,
@@ -97,7 +97,7 @@
     "readerFullName": "Sebastián Alonso Poma Hancco",
     "amount": 25.0,
     "paymentDate": "2024-08-25",
-    "method": "transferencia"
+    "method": "TRANSFERENCIA"
   },
   {
     "id": 12,
@@ -107,7 +107,7 @@
     "readerFullName": "Patricia Rosa Vargas Chávez",
     "amount": 15.0,
     "paymentDate": "2024-08-12",
-    "method": "transferencia"
+    "method": "TRANSFERENCIA"
   },
   {
     "id": 11,
@@ -117,7 +117,7 @@
     "readerFullName": "Fernanda Alejandra Mamani Quispe",
     "amount": 20.0,
     "paymentDate": "2024-09-01",
-    "method": "tarjeta"
+    "method": "TARJETA"
   },
   {
     "id": 10,
@@ -127,7 +127,7 @@
     "readerFullName": "Valeria Milagros Ramos Ccahuana",
     "amount": 18.0,
     "paymentDate": "2024-08-30",
-    "method": "tarjeta"
+    "method": "TARJETA"
   },
   {
     "id": 9,
@@ -137,7 +137,7 @@
     "readerFullName": "Isabella Nicole Nina Calla",
     "amount": 7.5,
     "paymentDate": "2024-08-18",
-    "method": "tarjeta"
+    "method": "TARJETA"
   },
   {
     "id": 8,
@@ -147,7 +147,7 @@
     "readerFullName": "Javier Fernando Huamán Flores",
     "amount": 15.0,
     "paymentDate": "2024-08-17",
-    "method": "tarjeta"
+    "method": "TARJETA"
   },
   {
     "id": 7,
@@ -157,7 +157,7 @@
     "readerFullName": "Sofía Elena Quispe Mamani",
     "amount": 10.0,
     "paymentDate": "2024-08-10",
-    "method": "tarjeta"
+    "method": "TARJETA"
   },
   {
     "id": 6,
@@ -167,7 +167,7 @@
     "readerFullName": "Lucía Isabel Paredes Gutiérrez",
     "amount": 12.0,
     "paymentDate": "2024-08-29",
-    "method": "efectivo"
+    "method": "EFECTIVO"
   },
   {
     "id": 5,
@@ -177,7 +177,7 @@
     "readerFullName": "Carlos Andrés Mendoza Silva",
     "amount": 15.0,
     "paymentDate": "2024-08-28",
-    "method": "efectivo"
+    "method": "EFECTIVO"
   },
   {
     "id": 4,
@@ -187,7 +187,7 @@
     "readerFullName": "José Luis Fernández Huamán",
     "amount": 3.75,
     "paymentDate": "2024-08-26",
-    "method": "efectivo"
+    "method": "EFECTIVO"
   },
   {
     "id": 3,
@@ -197,7 +197,7 @@
     "readerFullName": "Carmen Luz Herrera Morales",
     "amount": 7.5,
     "paymentDate": "2024-08-22",
-    "method": "efectivo"
+    "method": "EFECTIVO"
   },
   {
     "id": 2,
@@ -207,7 +207,7 @@
     "readerFullName": "Roberto Miguel Castro Quispe",
     "amount": 3.75,
     "paymentDate": "2024-08-06",
-    "method": "efectivo"
+    "method": "EFECTIVO"
   },
   {
     "id": 1,
@@ -217,6 +217,6 @@
     "readerFullName": "Ana María García López",
     "amount": 7.5,
     "paymentDate": "2024-07-26",
-    "method": "efectivo"
+    "method": "EFECTIVO"
   }
 ]

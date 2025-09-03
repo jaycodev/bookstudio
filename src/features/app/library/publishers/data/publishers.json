@@ -7,7 +7,7 @@
     "nationalityName": "Española",
     "website": "www.edicionesb.com",
     "address": "Barcelona, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 19,
@@ -17,7 +17,7 @@
     "nationalityName": "Española",
     "website": "www.alianzaeditorial.es",
     "address": "Madrid, España",
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 18,
@@ -27,7 +27,7 @@
     "nationalityName": "Española",
     "website": "www.ed-critica.es",
     "address": "Barcelona, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 17,
@@ -37,7 +37,7 @@
     "nationalityName": "Española",
     "website": "www.penguinlibros.com",
     "address": "Barcelona, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 16,
@@ -47,7 +47,7 @@
     "nationalityName": "Española",
     "website": "www.salamandra.info",
     "address": "Barcelona, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 15,
@@ -57,7 +57,7 @@
     "nationalityName": "Chilena",
     "website": "www.andresbello.cl",
     "address": "Santiago, Chile",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 14,
@@ -67,7 +67,7 @@
     "nationalityName": "Mexicana",
     "website": "www.porrua.com",
     "address": "Ciudad de México, México",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 13,
@@ -77,7 +77,7 @@
     "nationalityName": "Argentina",
     "website": "www.emece.com.ar",
     "address": "Buenos Aires, Argentina",
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 12,
@@ -87,7 +87,7 @@
     "nationalityName": "Argentina",
     "website": "www.sudamericanalibros.com.ar",
     "address": "Buenos Aires, Argentina",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 11,
@@ -97,7 +97,7 @@
     "nationalityName": "Colombiana",
     "website": "www.librerianorma.com",
     "address": "Bogotá, Colombia",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 10,
@@ -107,7 +107,7 @@
     "nationalityName": "Peruana",
     "website": "www.peisa.com.pe",
     "address": "Lima, Perú",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 9,
@@ -117,7 +117,7 @@
     "nationalityName": "Española",
     "website": "www.tusquetseditores.com",
     "address": "Barcelona, España",
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 8,
@@ -127,7 +127,7 @@
     "nationalityName": "Española",
     "website": "www.catedra.com",
     "address": "Madrid, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 7,
@@ -137,7 +137,7 @@
     "nationalityName": "Española",
     "website": "www.seixbarral.es",
     "address": "Barcelona, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 6,
@@ -147,7 +147,7 @@
     "nationalityName": "Mexicana",
     "website": "www.fondodeculturaeconomica.com",
     "address": "Ciudad de México, México",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 5,
@@ -157,7 +157,7 @@
     "nationalityName": "Española",
     "website": "www.anagrama-ed.es",
     "address": "Barcelona, España",
-    "status": "activo"
+    "status": "INACTIVO"
   },
   {
     "id": 4,
@@ -167,7 +167,7 @@
     "nationalityName": "Española",
     "website": "www.santillana.com",
     "address": "Madrid, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 3,
@@ -177,7 +177,7 @@
     "nationalityName": "Estadounidense",
     "website": "www.penguinrandomhouse.com",
     "address": "New York, Estados Unidos",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 2,
@@ -187,7 +187,7 @@
     "nationalityName": "Española",
     "website": "www.alfaguara.com",
     "address": "Calle Torrelaguna 60, Madrid, España",
-    "status": "activo"
+    "status": "ACTIVO"
   },
   {
     "id": 1,
@@ -197,6 +197,6 @@
     "nationalityName": "Española",
     "website": "www.planeta.es",
     "address": "Av. Diagonal 662-664, Barcelona, España",
-    "status": "activo"
+    "status": "ACTIVO"
   }
 ]

@@ -6,7 +6,7 @@
     "readerFullName": "Rosa María Guerrero Silva",
     "copyCode": "EJ-2025-0006",
     "reservationDate": "2024-07-24",
-    "status": "cancelada"
+    "status": "EXPIRADA"
   },
   {
     "id": 24,
@@ -15,7 +15,7 @@
     "readerFullName": "Fernanda Alejandra Mamani Quispe",
     "copyCode": "EJ-2025-0023",
     "reservationDate": "2024-07-23",
-    "status": "cancelada"
+    "status": "CANCELADA"
   },
   {
     "id": 23,
@@ -24,7 +24,7 @@
     "readerFullName": "Mateo José Condori Apaza",
     "copyCode": "EJ-2025-0054",
     "reservationDate": "2024-07-22",
-    "status": "cancelada"
+    "status": "EXPIRADA"
   },
   {
     "id": 22,
@@ -33,7 +33,7 @@
     "readerFullName": "Sofía Elena Quispe Mamani",
     "copyCode": "EJ-2025-0030",
     "reservationDate": "2024-07-21",
-    "status": "cancelada"
+    "status": "CANCELADA"
   },
   {
     "id": 21,
@@ -42,7 +42,7 @@
     "readerFullName": "Roberto Miguel Castro Quispe",
     "copyCode": "EJ-2025-0040",
     "reservationDate": "2024-07-20",
-    "status": "cancelada"
+    "status": "EXPIRADA"
   },
   {
     "id": 20,
@@ -51,7 +51,7 @@
     "readerFullName": "Manuel Antonio Sánchez Vega",
     "copyCode": "EJ-2025-0016",
     "reservationDate": "2024-08-01",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 19,
@@ -60,7 +60,7 @@
     "readerFullName": "Jorge Enrique Medina Castro",
     "copyCode": "EJ-2025-0046",
     "reservationDate": "2024-07-30",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 18,
@@ -69,7 +69,7 @@
     "readerFullName": "Jorge Enrique Medina Castro",
     "copyCode": "EJ-2025-0012",
     "reservationDate": "2024-07-30",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 17,
@@ -78,7 +78,7 @@
     "readerFullName": "María Elena Rodríguez Torres",
     "copyCode": "EJ-2025-0015",
     "reservationDate": "2024-07-29",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 16,
@@ -87,7 +87,7 @@
     "readerFullName": "Sebastián Alonso Poma Hancco",
     "copyCode": "EJ-2025-0042",
     "reservationDate": "2024-07-28",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 15,
@@ -96,7 +96,7 @@
     "readerFullName": "Sebastián Alonso Poma Hancco",
     "copyCode": "EJ-2025-0007",
     "reservationDate": "2024-07-28",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 14,
@@ -105,7 +105,7 @@
     "readerFullName": "Camila Andrea Torres Vilca",
     "copyCode": "EJ-2025-0058",
     "reservationDate": "2024-07-27",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 13,
@@ -114,7 +114,7 @@
     "readerFullName": "Camila Andrea Torres Vilca",
     "copyCode": "EJ-2025-0044",
     "reservationDate": "2024-07-27",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 12,
@@ -123,7 +123,7 @@
     "readerFullName": "Camila Andrea Torres Vilca",
     "copyCode": "EJ-2025-0018",
     "reservationDate": "2024-07-27",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 11,
@@ -132,7 +132,7 @@
     "readerFullName": "Diego Alejandro Moreno Ramos",
     "copyCode": "EJ-2025-0032",
     "reservationDate": "2024-07-26",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 10,
@@ -141,7 +141,7 @@
     "readerFullName": "Patricia Rosa Vargas Chávez",
     "copyCode": "EJ-2025-0052",
     "reservationDate": "2024-07-25",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 9,
@@ -150,7 +150,7 @@
     "readerFullName": "Patricia Rosa Vargas Chávez",
     "copyCode": "EJ-2025-0035",
     "reservationDate": "2024-07-25",
-    "status": "atendida"
+    "status": "ATENDIDA"
   },
   {
     "id": 8,
@@ -159,7 +159,7 @@
     "readerFullName": "Jorge Enrique Medina Castro",
     "copyCode": "EJ-2025-0028",
     "reservationDate": "2024-08-05",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   },
   {
     "id": 7,
@@ -168,7 +168,7 @@
     "readerFullName": "Carmen Luz Herrera Morales",
     "copyCode": "EJ-2025-0011",
     "reservationDate": "2024-08-04",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   },
   {
     "id": 6,
@@ -177,7 +177,7 @@
     "readerFullName": "Adrián Gabriel Choque Apaza",
     "copyCode": "EJ-2025-0043",
     "reservationDate": "2024-08-03",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   },
   {
     "id": 5,
@@ -186,7 +186,7 @@
     "readerFullName": "Valeria Milagros Ramos Ccahuana",
     "copyCode": "EJ-2025-0021",
     "reservationDate": "2024-08-02",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   },
   {
     "id": 4,
@@ -195,7 +195,7 @@
     "readerFullName": "Javier Fernando Huamán Flores",
     "copyCode": "EJ-2025-0037",
     "reservationDate": "2024-08-01",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   },
   {
     "id": 3,
@@ -204,7 +204,7 @@
     "readerFullName": "Lucía Isabel Paredes Gutiérrez",
     "copyCode": "EJ-2025-0017",
     "reservationDate": "2024-07-30",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   },
   {
     "id": 2,
@@ -213,7 +213,7 @@
     "readerFullName": "Carlos Andrés Mendoza Silva",
     "copyCode": "EJ-2025-0031",
     "reservationDate": "2024-07-29",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   },
   {
     "id": 1,
@@ -222,6 +222,6 @@
     "readerFullName": "Ana María García López",
     "copyCode": "EJ-2025-0050",
     "reservationDate": "2024-07-28",
-    "status": "pendiente"
+    "status": "PENDIENTE"
   }
 ]

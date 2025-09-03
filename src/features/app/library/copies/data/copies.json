@@ -7,8 +7,8 @@
     "shelfCode": "E01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala de Referencia",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 97,
@@ -18,8 +18,8 @@
     "shelfCode": "E01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala de Referencia",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 96,
@@ -29,8 +29,8 @@
     "shelfCode": "C07",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "EXTRAVIADO",
+    "condition": "REGULAR"
   },
   {
     "id": 95,
@@ -40,8 +40,8 @@
     "shelfCode": "C07",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 94,
@@ -51,8 +51,8 @@
     "shelfCode": "C07",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 93,
@@ -62,8 +62,8 @@
     "shelfCode": "C02",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "PRESTADO",
+    "condition": "BUENO"
   },
   {
     "id": 92,
@@ -73,8 +73,8 @@
     "shelfCode": "C02",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 91,
@@ -84,8 +84,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 90,
@@ -95,8 +95,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 89,
@@ -106,8 +106,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 88,
@@ -117,8 +117,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "MANTENIMIENTO",
+    "condition": "REGULAR"
   },
   {
     "id": 87,
@@ -128,8 +128,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 86,
@@ -139,8 +139,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 85,
@@ -150,8 +150,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 84,
@@ -161,8 +161,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 83,
@@ -172,8 +172,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "RESERVADO",
+    "condition": "REGULAR"
   },
   {
     "id": 82,
@@ -183,8 +183,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 81,
@@ -194,8 +194,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 80,
@@ -205,8 +205,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "EXTRAVIADO",
+    "condition": "REGULAR"
   },
   {
     "id": 79,
@@ -216,8 +216,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 78,
@@ -227,8 +227,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 77,
@@ -238,8 +238,8 @@
     "shelfCode": "C04",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 76,
@@ -249,8 +249,8 @@
     "shelfCode": "C04",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 75,
@@ -260,8 +260,8 @@
     "shelfCode": "C02",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "PRESTADO",
+    "condition": "MALO"
   },
   {
     "id": 74,
@@ -271,8 +271,8 @@
     "shelfCode": "C02",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 73,
@@ -282,8 +282,8 @@
     "shelfCode": "C02",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 72,
@@ -293,8 +293,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "MANTENIMIENTO",
+    "condition": "BUENO"
   },
   {
     "id": 71,
@@ -304,8 +304,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 70,
@@ -315,8 +315,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 69,
@@ -326,8 +326,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "RESERVADO",
+    "condition": "REGULAR"
   },
   {
     "id": 68,
@@ -337,8 +337,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 67,
@@ -348,8 +348,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 66,
@@ -359,8 +359,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "PRESTADO",
+    "condition": "BUENO"
   },
   {
     "id": 65,
@@ -370,8 +370,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 64,
@@ -381,8 +381,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 63,
@@ -392,8 +392,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 62,
@@ -403,8 +403,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "EXTRAVIADO",
+    "condition": "REGULAR"
   },
   {
     "id": 61,
@@ -414,8 +414,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 60,
@@ -425,8 +425,8 @@
     "shelfCode": "D05",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "DETERIORADO"
   },
   {
     "id": 59,
@@ -436,8 +436,8 @@
     "shelfCode": "D05",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 58,
@@ -447,8 +447,8 @@
     "shelfCode": "D05",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 57,
@@ -458,8 +458,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 56,
@@ -469,8 +469,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "MANTENIMIENTO",
+    "condition": "BUENO"
   },
   {
     "id": 55,
@@ -480,8 +480,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 54,
@@ -491,8 +491,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 53,
@@ -502,8 +502,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 52,
@@ -513,8 +513,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "PRESTADO",
+    "condition": "REGULAR"
   },
   {
     "id": 51,
@@ -524,8 +524,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 50,
@@ -535,8 +535,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 49,
@@ -546,8 +546,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 48,
@@ -557,8 +557,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "RESERVADO",
+    "condition": "REGULAR"
   },
   {
     "id": 47,
@@ -568,8 +568,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 46,
@@ -579,8 +579,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 45,
@@ -590,8 +590,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 44,
@@ -601,8 +601,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 43,
@@ -612,8 +612,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 42,
@@ -623,8 +623,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "PRESTADO",
+    "condition": "BUENO"
   },
   {
     "id": 41,
@@ -634,8 +634,8 @@
     "shelfCode": "C01",
     "shelfFloor": "Primer Piso",
     "locationName": "Sala de Estudio",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 40,
@@ -645,8 +645,8 @@
     "shelfCode": "B01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "DETERIORADO"
   },
   {
     "id": 39,
@@ -656,8 +656,8 @@
     "shelfCode": "B01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "MANTENIMIENTO",
+    "condition": "BUENO"
   },
   {
     "id": 38,
@@ -667,8 +667,8 @@
     "shelfCode": "B01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 37,
@@ -678,8 +678,8 @@
     "shelfCode": "B01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 36,
@@ -689,8 +689,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "EXTRAVIADO",
+    "condition": "REGULAR"
   },
   {
     "id": 35,
@@ -700,8 +700,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 34,
@@ -711,8 +711,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 33,
@@ -722,8 +722,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 32,
@@ -733,8 +733,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 31,
@@ -744,8 +744,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "PRESTADO",
+    "condition": "BUENO"
   },
   {
     "id": 30,
@@ -755,8 +755,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 29,
@@ -766,8 +766,8 @@
     "shelfCode": "D01",
     "shelfFloor": "Segundo Piso",
     "locationName": "Sala Infantil",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 28,
@@ -777,8 +777,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 27,
@@ -788,8 +788,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "RESERVADO",
+    "condition": "BUENO"
   },
   {
     "id": 26,
@@ -799,8 +799,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 25,
@@ -810,8 +810,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "PRESTADO",
+    "condition": "BUENO"
   },
   {
     "id": 24,
@@ -821,8 +821,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 23,
@@ -832,8 +832,8 @@
     "shelfCode": "A04",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 22,
@@ -843,8 +843,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 21,
@@ -854,8 +854,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 20,
@@ -865,8 +865,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 19,
@@ -876,8 +876,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "MANTENIMIENTO",
+    "condition": "BUENO"
   },
   {
     "id": 18,
@@ -887,8 +887,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 17,
@@ -898,8 +898,8 @@
     "shelfCode": "A03",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 16,
@@ -909,8 +909,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "EXTRAVIADO",
+    "condition": "REGULAR"
   },
   {
     "id": 15,
@@ -920,8 +920,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 14,
@@ -931,8 +931,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 13,
@@ -942,8 +942,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "REGULAR"
   },
   {
     "id": 12,
@@ -953,8 +953,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 11,
@@ -964,8 +964,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "PRESTADO",
+    "condition": "BUENO"
   },
   {
     "id": 10,
@@ -975,8 +975,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 9,
@@ -986,8 +986,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "regular"
+    "status": "DISPONIBLE",
+    "condition": "MALO"
   },
   {
     "id": 8,
@@ -997,8 +997,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "bueno"
+    "status": "RESERVADO",
+    "condition": "BUENO"
   },
   {
     "id": 7,
@@ -1008,8 +1008,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 6,
@@ -1019,8 +1019,8 @@
     "shelfCode": "A02",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 5,
@@ -1030,8 +1030,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 4,
@@ -1041,8 +1041,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "nuevo"
+    "status": "DISPONIBLE",
+    "condition": "NUEVO"
   },
   {
     "id": 3,
@@ -1052,8 +1052,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": false,
-    "condition": "regular"
+    "status": "PRESTADO",
+    "condition": "REGULAR"
   },
   {
     "id": 2,
@@ -1063,8 +1063,8 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   },
   {
     "id": 1,
@@ -1074,7 +1074,7 @@
     "shelfCode": "A01",
     "shelfFloor": "Planta Baja",
     "locationName": "Sala General",
-    "isAvailable": true,
-    "condition": "bueno"
+    "status": "DISPONIBLE",
+    "condition": "BUENO"
   }
 ]

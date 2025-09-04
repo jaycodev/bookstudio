@@ -29,7 +29,7 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     shelfCode: 'Estantería',
     shelfFloor: 'Piso',
     locationName: 'Ubicación',
-    isAvailable: 'Disponible',
+    status: 'Estado',
     condition: 'Condición',
   },
   categories: {

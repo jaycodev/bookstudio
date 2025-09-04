@@ -1,43 +1,43 @@
 import {
   AlertTriangle,
+  BadgeCheck,
   Ban,
-  CheckCircle,
   type LucideIcon,
   MinusCircle,
   ThumbsUp,
 } from 'lucide-react'
 
-export const conditionsIconsAndLabels = {
-  nuevo: {
+export const conditionBadges = {
+  NUEVO: {
     label: 'Nuevo',
-    icon: CheckCircle,
-    variant: 'success',
+    icon: BadgeCheck,
+    variant: 'brand',
   },
-  bueno: {
+  BUENO: {
     label: 'Bueno',
     icon: ThumbsUp,
-    variant: 'info',
+    variant: 'bright',
   },
-  regular: {
+  REGULAR: {
     label: 'Regular',
     icon: MinusCircle,
     variant: 'muted',
   },
-  malo: {
+  MALO: {
     label: 'Malo',
     icon: AlertTriangle,
     variant: 'warning',
   },
-  deteriorado: {
+  DETERIORADO: {
     label: 'Deteriorado',
     icon: Ban,
     variant: 'danger',
   },
 } as const
 
-export type CopyCondition = keyof typeof conditionsIconsAndLabels
+export type Condition = keyof typeof conditionBadges
 
-export type CopyConditionIconMeta = {
+export type ConditionBadgeMeta = {
   label: string
   icon: LucideIcon
   variant: string

@@ -1,5 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { Archive, BookText, Boxes, CheckCircle2, Layers, MapPin, XCircle } from 'lucide-react'
+import { Archive, BookText, Boxes, Layers, MapPin } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge.tsx'
@@ -8,8 +8,9 @@ import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { conditionsIconsAndLabels } from '../config/conditions-icons.ts'
-import { availabilityOptions, booksOptions, conditionsOptions } from '../data/options-data.ts'
+import { conditionBadges } from '../components/badges/condition.ts'
+import { statusBadges } from '../components/badges/status.ts'
+import { booksOptions, conditionsOptions, statusOptions } from '../data/options-data.ts'
 import type { CopyList } from '../schema/list.schema.ts'
 
 const resource = 'copies'
@@ -149,22 +150,21 @@ export const columns: ColumnDef<CopyList>[] = [
     enableSorting: false,
   },
   {
-    accessorKey: 'isAvailable',
+    accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'isAvailable')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
     ),
     cell: ({ row }) => {
-      const available = row.getValue<boolean>('isAvailable')
-      const Icon = available ? CheckCircle2 : XCircle
+      const status = row.getValue<keyof typeof statusBadges>('status')
+      const meta = statusBadges[status]
+
+      if (!meta) return null
+      const Icon = meta.icon
 
       return (
-        <Badge variant="outline" className="gap-1">
-          <Icon
-            className={
-              available ? 'mr-1 text-green-500 dark:text-green-400' : 'mr-1 text-destructive'
-            }
-          />
-          {available ? 'Sí' : 'No'}
+        <Badge variant={meta.variant}>
+          <Icon className="mr-1" />
+          {meta.label}
         </Badge>
       )
     },
@@ -173,8 +173,8 @@ export const columns: ColumnDef<CopyList>[] = [
       headerClass: 'text-center',
       cellClass: 'text-center',
       filter: {
-        title: getColumnLabel(resource, 'isAvailable'),
-        options: availabilityOptions,
+        title: getColumnLabel(resource, 'status'),
+        options: statusOptions,
       },
     },
     filterFn: (row, id, value) => {
@@ -187,8 +187,8 @@ export const columns: ColumnDef<CopyList>[] = [
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'condition')} />
     ),
     cell: ({ row }) => {
-      const condition = row.getValue<keyof typeof conditionsIconsAndLabels>('condition')
-      const meta = conditionsIconsAndLabels[condition]
+      const condition = row.getValue<keyof typeof conditionBadges>('condition')
+      const meta = conditionBadges[condition]
 
       if (!meta) return null
       const Icon = meta.icon

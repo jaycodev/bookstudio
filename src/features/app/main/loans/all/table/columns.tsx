@@ -8,7 +8,7 @@ import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { statusIconsAndLabels } from '../config/status-icons.ts'
+import { statusBadges } from '../components/badges/status.ts'
 import { readersOptions, statusOptions } from '../data/options-data.ts'
 import { LoanList } from '../schema/list.schema.ts'
 
@@ -152,7 +152,7 @@ export const columns: ColumnDef<LoanList>[] = [
             {Object.entries(statusCounts)
               .filter(([, count]) => count > 0)
               .map(([key, count]) => {
-                const status = statusIconsAndLabels[key as keyof typeof statusIconsAndLabels]
+                const status = statusBadges[key as keyof typeof statusBadges]
                 if (!status) return null
 
                 const Icon = status.icon

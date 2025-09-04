@@ -26,6 +26,14 @@ const badgeVariants = cva(
           'bg-red-100 text-red-600 border border-red-200 dark:bg-red-600/20 dark:text-red-300 dark:border-red-500/40',
         brand:
           'bg-violet-100 text-violet-600 border border-violet-200 dark:bg-violet-600/20 dark:text-violet-300 dark:border-violet-500/40',
+        warm: 'bg-orange-100 text-orange-700 border border-orange-200 dark:bg-orange-700/20 dark:text-orange-300 dark:border-orange-500/40',
+        fresh:
+          'bg-cyan-100 text-cyan-700 border border-cyan-200 dark:bg-cyan-700/20 dark:text-cyan-300 dark:border-cyan-500/40',
+        flow: 'bg-teal-100 text-teal-700 border border-teal-200 dark:bg-teal-700/20 dark:text-teal-300 dark:border-teal-500/40',
+        active:
+          'bg-pink-100 text-pink-700 border border-pink-200 dark:bg-pink-700/20 dark:text-pink-300 dark:border-pink-500/40',
+        bright:
+          'bg-lime-100 text-lime-700 border border-lime-200 dark:bg-lime-700/20 dark:text-lime-300 dark:border-lime-500/40',
       },
     },
     defaultVariants: {

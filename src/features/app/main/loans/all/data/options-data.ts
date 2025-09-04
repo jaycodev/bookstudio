@@ -1,6 +1,6 @@
 import { FilterOption } from '@/types/types'
 
-import { statusIconsAndLabels } from '../config/status-icons.ts'
+import { statusBadges } from '../components/badges/status.ts'
 import loans from '../data/loans.json'
 
 export const readersOptions: FilterOption[] = Array.from(
@@ -15,7 +15,7 @@ export const readersOptions: FilterOption[] = Array.from(
   ).values()
 )
 
-export const statusOptions: FilterOption[] = Object.entries(statusIconsAndLabels).map(
+export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
   ([key, { label, icon }]) => ({
     value: key,
     label,

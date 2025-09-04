@@ -1,8 +1,7 @@
-import { CheckCircle2, XCircle } from 'lucide-react'
-
 import { FilterOption } from '@/types/types'
 
-import { conditionsIconsAndLabels } from '../config/conditions-icons.ts'
+import { conditionBadges } from '../components/badges/condition.ts'
+import { statusBadges } from '../components/badges/status.ts'
 import copies from '../data/copies.json'
 
 export const booksOptions: FilterOption[] = Array.from(
@@ -17,20 +16,15 @@ export const booksOptions: FilterOption[] = Array.from(
   ).values()
 )
 
-export const availabilityOptions: FilterOption[] = [
-  {
-    value: 'true',
-    label: 'Sí',
-    icon: CheckCircle2,
-  },
-  {
-    value: 'false',
-    label: 'No',
-    icon: XCircle,
-  },
-]
+export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
+  ([key, { label, icon }]) => ({
+    value: key,
+    label,
+    icon,
+  })
+)
 
-export const conditionsOptions: FilterOption[] = Object.entries(conditionsIconsAndLabels).map(
+export const conditionsOptions: FilterOption[] = Object.entries(conditionBadges).map(
   ([key, { label, icon }]) => ({
     value: key,
     label,

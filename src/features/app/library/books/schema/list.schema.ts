@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { Status } from '@/shared/enums/status.enum'
+import { Status } from '@/features/app/enums/status'
 
 export const bookListSchema = z.object({
   id: z.number(),

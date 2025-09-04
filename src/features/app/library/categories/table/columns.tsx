@@ -3,11 +3,11 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/config/column-labels.ts'
+import { statusBadges } from '@/features/app/components/badges/status.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { levelIconsAndLabels } from '../config/level-icons.ts'
-import { statusIconsAndLabels } from '../config/status-icons.ts'
+import { levelBadges } from '../components/badges/level.ts'
 import { levelOptions, statusOptions } from '../data/options-data.ts'
 import { CategoryList } from '../schema/list.schema.ts'
 
@@ -59,8 +59,8 @@ export const columns: ColumnDef<CategoryList>[] = [
       },
     },
     cell: ({ row }) => {
-      const level = row.getValue<keyof typeof levelIconsAndLabels>('level')
-      const meta = levelIconsAndLabels[level]
+      const level = row.getValue<keyof typeof levelBadges>('level')
+      const meta = levelBadges[level]
 
       if (!meta) return null
       const Icon = meta.icon
@@ -89,8 +89,8 @@ export const columns: ColumnDef<CategoryList>[] = [
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusIconsAndLabels>('status')
-      const meta = statusIconsAndLabels[status]
+      const status = row.getValue<keyof typeof statusBadges>('status')
+      const meta = statusBadges[status]
 
       if (!meta) return null
       const Icon = meta.icon

@@ -5,10 +5,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/config/column-labels.ts'
+import { statusBadges } from '@/features/app/components/badges/status.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { statusIconsAndLabels } from '../config/status-icons.ts'
 import { nationalitiesOptions, statusOptions } from '../data/options-data.ts'
 import { AuthorList } from '../schema/list.schema.ts'
 
@@ -132,8 +132,8 @@ export const columns: ColumnDef<AuthorList>[] = [
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusIconsAndLabels>('status')
-      const meta = statusIconsAndLabels[status]
+      const status = row.getValue<keyof typeof statusBadges>('status')
+      const meta = statusBadges[status]
 
       if (!meta) return null
       const Icon = meta.icon

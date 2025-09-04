@@ -1,31 +1,31 @@
 import { Backpack, GraduationCap, Layers, type LucideIcon, NotebookText } from 'lucide-react'
 
-export const levelIconsAndLabels = {
-  primaria: {
+export const levelBadges = {
+  PRIMARIA: {
     label: 'Primaria',
     icon: Backpack,
     variant: 'warning',
   },
-  secundaria: {
+  SECUNDARIA: {
     label: 'Secundaria',
     icon: NotebookText,
     variant: 'info',
   },
-  superior: {
+  SUPERIOR: {
     label: 'Superior',
     icon: GraduationCap,
     variant: 'brand',
   },
-  general: {
+  GENERAL: {
     label: 'General',
     icon: Layers,
     variant: 'muted',
   },
 } as const
 
-export type CategoryLevel = keyof typeof levelIconsAndLabels
+export type Level = keyof typeof levelBadges
 
-export type CategoryLevelIconMeta = {
+export type LevelBadgeMeta = {
   label: string
   icon: LucideIcon
   variant: string

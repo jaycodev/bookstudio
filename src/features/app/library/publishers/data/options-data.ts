@@ -1,6 +1,6 @@
+import { statusBadges } from '@/features/app/components/badges/status.ts'
 import { FilterOption } from '@/types/types'
 
-import { statusIconsAndLabels } from '../config/status-icons.ts'
 import publishers from '../data/publishers.json'
 
 export const nationalitiesOptions: FilterOption[] = Array.from(
@@ -15,7 +15,7 @@ export const nationalitiesOptions: FilterOption[] = Array.from(
   ).values()
 )
 
-export const statusOptions: FilterOption[] = Object.entries(statusIconsAndLabels).map(
+export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
   ([key, { label, icon }]) => ({
     value: key,
     label,

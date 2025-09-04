@@ -1,8 +1,8 @@
 import { BookCheck, BookX, CircleCheck, XCircle } from 'lucide-react'
 
+import { statusBadges } from '@/features/app/components/badges/status.ts'
 import { FilterOption } from '@/types/types'
 
-import { statusIconsAndLabels } from '../config/status-icons.ts'
 import books from '../data/books.json'
 
 export const categoriesOptions: FilterOption[] = Array.from(
@@ -67,7 +67,7 @@ export const availabilityOptions: FilterOption[] = [
   },
 ]
 
-export const statusOptions: FilterOption[] = Object.entries(statusIconsAndLabels).map(
+export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
   ([key, { label, icon }]) => ({
     value: key,
     label,

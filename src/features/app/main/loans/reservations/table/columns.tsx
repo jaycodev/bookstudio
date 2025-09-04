@@ -7,7 +7,7 @@ import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { statusIconsAndLabels } from '../config/status-icons.ts'
+import { statusBadges } from '../components/badges/status.ts'
 import { readersOptions, statusOptions } from '../data/options-data.ts'
 import type { ReservationList } from '../schema/list.schema.ts'
 
@@ -139,8 +139,8 @@ export const columns: ColumnDef<ReservationList>[] = [
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusIconsAndLabels>('status')
-      const meta = statusIconsAndLabels[status]
+      const status = row.getValue<keyof typeof statusBadges>('status')
+      const meta = statusBadges[status]
 
       if (!meta) return null
       const Icon = meta.icon

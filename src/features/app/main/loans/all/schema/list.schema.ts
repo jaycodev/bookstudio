@@ -9,10 +9,10 @@ export const loanListSchema = z.object({
   itemCount: z.number(),
   statusCounts: z.object({
     borrowed: z.number(),
-    canceled: z.number(),
+    returned: z.number(),
     overdue: z.number(),
     lost: z.number(),
-    returned: z.number(),
+    canceled: z.number(),
   }),
 })
 

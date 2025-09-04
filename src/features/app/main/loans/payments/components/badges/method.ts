@@ -1,36 +1,36 @@
 import { Banknote, CreditCard, DollarSign, FileText, type LucideIcon, Receipt } from 'lucide-react'
 
-export const methodsIconsAndLabels = {
-  efectivo: {
+export const methodBadges = {
+  EFECTIVO: {
     label: 'Efectivo',
     icon: DollarSign,
     variant: 'success',
   },
-  tarjeta: {
+  TARJETA: {
     label: 'Tarjeta',
     icon: CreditCard,
     variant: 'brand',
   },
-  transferencia: {
+  TRANSFERENCIA: {
     label: 'Transferencia',
     icon: Banknote,
     variant: 'info',
   },
-  cheque: {
+  CHEQUE: {
     label: 'Cheque',
     icon: Receipt,
     variant: 'warning',
   },
-  otros: {
+  OTROS: {
     label: 'Otros',
     icon: FileText,
     variant: 'muted',
   },
 } as const
 
-export type PaymentMethod = keyof typeof methodsIconsAndLabels
+export type Method = keyof typeof methodBadges
 
-export type PaymentMethodIconMeta = {
+export type MethodBadgeMeta = {
   label: string
   icon: LucideIcon
   variant: string

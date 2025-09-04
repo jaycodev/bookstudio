@@ -67,12 +67,13 @@ export const columns: ColumnDef<PublisherList>[] = [
     },
   },
   {
-    accessorKey: 'nationalityCode',
+    id: 'nationalityId',
+    accessorFn: (row) => String(row.nationalityId),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationalityCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationalityId')} />
     ),
     cell: ({ row }) => {
-      const code = row.getValue<string>('nationalityCode')
+      const code = row.original.nationalityCode
       const name = row.original.nationalityName
 
       return (
@@ -85,7 +86,7 @@ export const columns: ColumnDef<PublisherList>[] = [
     enableSorting: false,
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'nationalityCode'),
+        title: getColumnLabel(resource, 'nationalityId'),
         options: nationalitiesOptions,
       },
     },

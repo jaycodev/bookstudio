@@ -70,21 +70,25 @@ export const columns: ColumnDef<LoanList>[] = [
         </Badge>
       )
     },
+  },
+  {
+    id: 'readerId',
+    accessorFn: (row) => String(row.readerId),
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerId')} />
+    ),
+    cell: ({ row }) => {
+      return row.original.readerFullName
+    },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'readerFullName'),
+        title: getColumnLabel(resource, 'readerId'),
         options: readersOptions,
       },
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-  },
-  {
-    accessorKey: 'readerFullName',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerFullName')} />
-    ),
   },
   {
     accessorKey: 'loanDate',

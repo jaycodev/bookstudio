@@ -75,22 +75,23 @@ export const columns: ColumnDef<BookList>[] = [
     },
   },
   {
-    accessorKey: 'categoryName',
+    id: 'categoryId',
+    accessorFn: (row) => String(row.categoryId),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'categoryName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'categoryId')} />
     ),
     cell: ({ row }) => {
-      const code = row.getValue<string>('categoryName')
+      const name = row.original.categoryName
       return (
         <Badge variant="outline">
           <Tags className="mr-1" />
-          {code}
+          {name}
         </Badge>
       )
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'categoryName'),
+        title: getColumnLabel(resource, 'categoryId'),
         options: categoriesOptions,
       },
     },
@@ -99,22 +100,23 @@ export const columns: ColumnDef<BookList>[] = [
     },
   },
   {
-    accessorKey: 'publisherName',
+    id: 'publisherId',
+    accessorFn: (row) => String(row.publisherId),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'publisherName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'publisherId')} />
     ),
     cell: ({ row }) => {
-      const code = row.getValue<string>('publisherName')
+      const name = row.original.publisherName
       return (
         <Badge variant="outline">
           <Building2 className="mr-1" />
-          {code}
+          {name}
         </Badge>
       )
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'publisherName'),
+        title: getColumnLabel(resource, 'publisherId'),
         options: publishersOptions,
       },
     },
@@ -123,12 +125,13 @@ export const columns: ColumnDef<BookList>[] = [
     },
   },
   {
-    accessorKey: 'languageCode',
+    id: 'languageId',
+    accessorFn: (row) => String(row.languageId),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'languageCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'languageId')} />
     ),
     cell: ({ row }) => {
-      const code = row.getValue<string>('languageCode')
+      const code = row.original.languageCode
       const name = row.original.languageName
 
       return (
@@ -154,7 +157,7 @@ export const columns: ColumnDef<BookList>[] = [
       headerClass: 'text-center',
       cellClass: 'text-center',
       filter: {
-        title: getColumnLabel(resource, 'languageCode'),
+        title: getColumnLabel(resource, 'languageId'),
         options: languagesOptions,
       },
     },

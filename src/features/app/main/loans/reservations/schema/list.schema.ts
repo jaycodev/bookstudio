@@ -5,6 +5,7 @@ import { ReservationStatus } from './enums'
 export const reservationListSchema = z.object({
   id: z.number(),
   code: z.string(),
+  readerId: z.number(),
   readerCode: z.string(),
   readerFullName: z.string(),
   copyCode: z.string(),

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 4,
+    "name": "Alemán"
+  },
+  {
+    "id": 10,
+    "name": "Árabe"
+  },
+  {
+    "id": 9,
+    "name": "Chino"
+  },
+  {
+    "id": 12,
+    "name": "Coreano"
+  },
+  {
+    "id": 16,
+    "name": "Danés"
+  },
+  {
+    "id": 1,
+    "name": "Español"
+  },
+  {
+    "id": 17,
+    "name": "Finés"
+  },
+  {
+    "id": 3,
+    "name": "Francés"
+  },
+  {
+    "id": 18,
+    "name": "Griego"
+  },
+  {
+    "id": 20,
+    "name": "Hebreo"
+  },
+  {
+    "id": 11,
+    "name": "Hindi"
+  },
+  {
+    "id": 13,
+    "name": "Holandés"
+  },
+  {
+    "id": 2,
+    "name": "Inglés"
+  },
+  {
+    "id": 5,
+    "name": "Italiano"
+  },
+  {
+    "id": 7,
+    "name": "Japonés"
+  },
+  {
+    "id": 19,
+    "name": "Latín"
+  },
+  {
+    "id": 15,
+    "name": "Noruego"
+  },
+  {
+    "id": 6,
+    "name": "Portugués"
+  },
+  {
+    "id": 8,
+    "name": "Ruso"
+  },
+  {
+    "id": 14,
+    "name": "Sueco"
+  }
+]

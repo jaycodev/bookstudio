@@ -6,6 +6,7 @@ export const authorListSchema = z.object({
   id: z.number(),
   photoUrl: z.string().nullable(),
   name: z.string(),
+  nationalityId: z.number(),
   nationalityCode: z.string(),
   nationalityName: z.string(),
   birthDate: z.coerce.date(),

@@ -1,19 +1,12 @@
 import { FilterOption } from '@/types/types'
 
 import { statusBadges } from '../components/badges/status.ts'
-import reservations from '../data/reservations.json'
+import readersOptionsJson from '../data/readers-options.json'
 
-export const readersOptions: FilterOption[] = Array.from(
-  new Map(
-    reservations.map((reservation) => [
-      reservation.readerCode,
-      {
-        label: reservation.readerFullName,
-        value: reservation.readerCode,
-      },
-    ])
-  ).values()
-)
+export const readersOptions: FilterOption[] = readersOptionsJson.map((reader) => ({
+  value: String(reader.id),
+  label: reader.fullName,
+}))
 
 export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
   ([key, { label, icon }]) => ({

@@ -58,12 +58,13 @@ export const columns: ColumnDef<CopyList>[] = [
     },
   },
   {
-    accessorKey: 'bookTitle',
+    id: 'bookId',
+    accessorFn: (row) => String(row.bookId),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'bookTitle')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'bookId')} />
     ),
     cell: ({ row }) => {
-      const bookTitle = row.getValue<string>('bookTitle')
+      const bookTitle = row.original.bookTitle
       const bookCoverUrl = row.original.bookCoverUrl
 
       return (
@@ -85,7 +86,7 @@ export const columns: ColumnDef<CopyList>[] = [
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'bookTitle'),
+        title: getColumnLabel(resource, 'bookId'),
         options: booksOptions,
       },
     },

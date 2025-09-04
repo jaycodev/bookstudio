@@ -6,6 +6,7 @@ export const paymentListSchema = z.object({
   id: z.number(),
   code: z.string(),
   fineCount: z.number(),
+  readerId: z.number(),
   readerCode: z.string(),
   readerFullName: z.string(),
   amount: z.number(),

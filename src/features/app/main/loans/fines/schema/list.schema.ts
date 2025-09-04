@@ -5,7 +5,9 @@ import { FineStatus } from './enums'
 export const fineListSchema = z.object({
   id: z.number(),
   code: z.string(),
+  loanId: z.number(),
   loanCode: z.string(),
+  copyId: z.number(),
   copyCode: z.string(),
   amount: z.number(),
   daysLate: z.number().int(),

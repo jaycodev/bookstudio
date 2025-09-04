@@ -1,0 +1,66 @@
+[
+  {
+    "id": 2,
+    "name": "Alfaguara"
+  },
+  {
+    "id": 8,
+    "name": "Cátedra"
+  },
+  {
+    "id": 18,
+    "name": "Crítica"
+  },
+  {
+    "id": 17,
+    "name": "Debolsillo"
+  },
+  {
+    "id": 20,
+    "name": "Ediciones B"
+  },
+  {
+    "id": 15,
+    "name": "Editorial Andrés Bello"
+  },
+  {
+    "id": 11,
+    "name": "Editorial Norma"
+  },
+  {
+    "id": 14,
+    "name": "Editorial Porrúa"
+  },
+  {
+    "id": 12,
+    "name": "Editorial Sudamericana"
+  },
+  {
+    "id": 6,
+    "name": "Fondo de Cultura Económica"
+  },
+  {
+    "id": 10,
+    "name": "Peisa"
+  },
+  {
+    "id": 3,
+    "name": "Penguin Random House"
+  },
+  {
+    "id": 1,
+    "name": "Planeta"
+  },
+  {
+    "id": 16,
+    "name": "Salamandra"
+  },
+  {
+    "id": 4,
+    "name": "Santillana"
+  },
+  {
+    "id": 7,
+    "name": "Seix Barral"
+  }
+]

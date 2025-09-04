@@ -8,7 +8,7 @@ import { DataTableColumnHeader } from '@/features/app/components/data-table/data
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
 import { statusBadges } from '../components/badges/status.ts'
-import { loansOptions, statusOptions } from '../data/options-data.ts'
+import { copiesOptions, loansOptions, statusOptions } from '../data/options-data.ts'
 import type { FineList } from '../schema/list.schema.ts'
 
 const resource = 'fines'
@@ -56,12 +56,13 @@ export const columns: ColumnDef<FineList>[] = [
     },
   },
   {
-    accessorKey: 'loanCode',
+    id: 'loanId',
+    accessorFn: (row) => String(row.loanId),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'loanCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'loanId')} />
     ),
     cell: ({ row }) => {
-      const code = row.getValue<string>('loanCode')
+      const code = row.original.loanCode
       return (
         <Badge variant="outline" className="font-mono">
           <Handshake className="mr-1" />
@@ -71,7 +72,7 @@ export const columns: ColumnDef<FineList>[] = [
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'loanCode'),
+        title: getColumnLabel(resource, 'loanId'),
         options: loansOptions,
       },
     },
@@ -80,18 +81,28 @@ export const columns: ColumnDef<FineList>[] = [
     },
   },
   {
-    accessorKey: 'copyCode',
+    id: 'copyId',
+    accessorFn: (row) => String(row.copyId),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'copyCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'copyId')} />
     ),
     cell: ({ row }) => {
-      const code = row.getValue<string>('copyCode')
+      const code = row.original.copyCode
       return (
         <Badge variant="outline" className="font-mono">
           <BookText className="mr-1" />
           {code}
         </Badge>
       )
+    },
+    meta: {
+      filter: {
+        title: getColumnLabel(resource, 'copyId'),
+        options: copiesOptions,
+      },
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
     },
   },
   {

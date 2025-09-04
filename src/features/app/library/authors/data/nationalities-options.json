@@ -1,0 +1,102 @@
+[
+  {
+    "id": 10,
+    "name": "Alemana"
+  },
+  {
+    "id": 3,
+    "name": "Argentina"
+  },
+  {
+    "id": 16,
+    "name": "Australiana"
+  },
+  {
+    "id": 23,
+    "name": "Austriaca"
+  },
+  {
+    "id": 21,
+    "name": "Belga"
+  },
+  {
+    "id": 12,
+    "name": "Brasileña"
+  },
+  {
+    "id": 8,
+    "name": "Británica"
+  },
+  {
+    "id": 15,
+    "name": "Canadiense"
+  },
+  {
+    "id": 25,
+    "name": "Checa"
+  },
+  {
+    "id": 6,
+    "name": "Chilena"
+  },
+  {
+    "id": 5,
+    "name": "Colombiana"
+  },
+  {
+    "id": 20,
+    "name": "Danesa"
+  },
+  {
+    "id": 2,
+    "name": "Española"
+  },
+  {
+    "id": 7,
+    "name": "Estadounidense"
+  },
+  {
+    "id": 9,
+    "name": "Francesa"
+  },
+  {
+    "id": 17,
+    "name": "Holandesa"
+  },
+  {
+    "id": 11,
+    "name": "Italiana"
+  },
+  {
+    "id": 13,
+    "name": "Japonesa"
+  },
+  {
+    "id": 4,
+    "name": "Mexicana"
+  },
+  {
+    "id": 19,
+    "name": "Noruega"
+  },
+  {
+    "id": 1,
+    "name": "Peruana"
+  },
+  {
+    "id": 24,
+    "name": "Polaca"
+  },
+  {
+    "id": 14,
+    "name": "Rusa"
+  },
+  {
+    "id": 18,
+    "name": "Sueca"
+  },
+  {
+    "id": 22,
+    "name": "Suiza"
+  }
+]

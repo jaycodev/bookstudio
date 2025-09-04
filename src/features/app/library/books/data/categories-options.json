@@ -1,0 +1,102 @@
+[
+  {
+    "id": 19,
+    "name": "Arte"
+  },
+  {
+    "id": 8,
+    "name": "Biología"
+  },
+  {
+    "id": 22,
+    "name": "Cocina"
+  },
+  {
+    "id": 9,
+    "name": "Cuentos Infantiles"
+  },
+  {
+    "id": 21,
+    "name": "Deportes"
+  },
+  {
+    "id": 15,
+    "name": "Derecho"
+  },
+  {
+    "id": 17,
+    "name": "Economía"
+  },
+  {
+    "id": 10,
+    "name": "Enciclopedias"
+  },
+  {
+    "id": 11,
+    "name": "Filosofía"
+  },
+  {
+    "id": 6,
+    "name": "Física"
+  },
+  {
+    "id": 16,
+    "name": "Geografía"
+  },
+  {
+    "id": 3,
+    "name": "Historia del Perú"
+  },
+  {
+    "id": 4,
+    "name": "Historia Universal"
+  },
+  {
+    "id": 13,
+    "name": "Ingeniería"
+  },
+  {
+    "id": 23,
+    "name": "Jardinería"
+  },
+  {
+    "id": 1,
+    "name": "Literatura Clásica"
+  },
+  {
+    "id": 2,
+    "name": "Literatura Contemporánea"
+  },
+  {
+    "id": 5,
+    "name": "Matemáticas"
+  },
+  {
+    "id": 14,
+    "name": "Medicina"
+  },
+  {
+    "id": 20,
+    "name": "Música"
+  },
+  {
+    "id": 12,
+    "name": "Psicología"
+  },
+  {
+    "id": 7,
+    "name": "Química"
+  },
+  {
+    "id": 25,
+    "name": "Religión"
+  },
+  {
+    "id": 18,
+    "name": "Sociología"
+  },
+  {
+    "id": 24,
+    "name": "Tecnología"
+  }
+]

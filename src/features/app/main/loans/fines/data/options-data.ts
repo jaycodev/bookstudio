@@ -1,19 +1,18 @@
 import { FilterOption } from '@/types/types'
 
 import { statusBadges } from '../components/badges/status.ts'
-import fines from '../data/fines.json'
+import copiesOptionsJson from '../data/copies-options.json'
+import loansOptionsJson from '../data/loans-options.json'
 
-export const loansOptions: FilterOption[] = Array.from(
-  new Map(
-    fines.map((fine) => [
-      fine.loanCode,
-      {
-        label: fine.loanCode,
-        value: fine.loanCode,
-      },
-    ])
-  ).values()
-)
+export const loansOptions: FilterOption[] = loansOptionsJson.map((loan) => ({
+  value: String(loan.id),
+  label: loan.code,
+}))
+
+export const copiesOptions: FilterOption[] = copiesOptionsJson.map((copy) => ({
+  value: String(copy.id),
+  label: copy.code,
+}))
 
 export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
   ([key, { label, icon }]) => ({

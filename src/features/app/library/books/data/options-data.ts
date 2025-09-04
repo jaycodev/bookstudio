@@ -3,43 +3,24 @@ import { BookCheck, BookX, CircleCheck, XCircle } from 'lucide-react'
 import { statusBadges } from '@/features/app/components/badges/status.ts'
 import { FilterOption } from '@/types/types'
 
-import books from '../data/books.json'
+import categoriesOptionsJson from '../data/categories-options.json'
+import languagesOptionsJson from '../data/languages-options.json'
+import publishersOptionsJson from '../data/publishers.options.json'
 
-export const categoriesOptions: FilterOption[] = Array.from(
-  new Map(
-    books.map((book) => [
-      book.categoryName,
-      {
-        label: book.categoryName,
-        value: book.categoryName,
-      },
-    ])
-  ).values()
-)
+export const categoriesOptions: FilterOption[] = categoriesOptionsJson.map((category) => ({
+  value: String(category.id),
+  label: category.name,
+}))
 
-export const publishersOptions: FilterOption[] = Array.from(
-  new Map(
-    books.map((book) => [
-      book.publisherName,
-      {
-        label: book.publisherName,
-        value: book.publisherName,
-      },
-    ])
-  ).values()
-)
+export const publishersOptions: FilterOption[] = publishersOptionsJson.map((publisher) => ({
+  value: String(publisher.id),
+  label: publisher.name,
+}))
 
-export const languagesOptions: FilterOption[] = Array.from(
-  new Map(
-    books.map((book) => [
-      book.languageCode,
-      {
-        label: book.languageName,
-        value: book.languageCode,
-      },
-    ])
-  ).values()
-)
+export const languagesOptions: FilterOption[] = languagesOptionsJson.map((language) => ({
+  value: String(language.id),
+  label: language.name,
+}))
 
 export const loanOptions: FilterOption[] = [
   {

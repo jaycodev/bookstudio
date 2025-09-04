@@ -5,6 +5,7 @@ import { CopyCondition, CopyStatus } from './enums'
 export const copyListSchema = z.object({
   id: z.number(),
   code: z.string(),
+  bookId: z.number(),
   bookCoverUrl: z.string().nullable(),
   bookTitle: z.string(),
   shelfCode: z.string(),

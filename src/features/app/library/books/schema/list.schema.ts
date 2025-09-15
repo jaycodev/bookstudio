@@ -7,15 +7,23 @@ export const bookListSchema = z.object({
   isbn: z.string(),
   coverUrl: z.string().nullable(),
   title: z.string(),
-  categoryId: z.number(),
-  categoryName: z.string(),
-  publisherId: z.number(),
-  publisherName: z.string(),
-  languageId: z.number(),
-  languageCode: z.string(),
-  languageName: z.string(),
-  loanedCopies: z.number(),
-  availableCopies: z.number(),
+  category: z.object({
+    id: z.number(),
+    name: z.string(),
+  }),
+  publisher: z.object({
+    id: z.number(),
+    name: z.string(),
+  }),
+  language: z.object({
+    id: z.number(),
+    code: z.string(),
+    name: z.string(),
+  }),
+  copies: z.object({
+    loaned: z.number(),
+    available: z.number(),
+  }),
   status: Status,
 })
 

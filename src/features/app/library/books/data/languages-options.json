@@ -1,82 +1,82 @@
 [
   {
-    "id": 4,
-    "name": "Alemán"
+    "value": 4,
+    "label": "Alemán"
   },
   {
-    "id": 10,
-    "name": "Árabe"
+    "value": 10,
+    "label": "Árabe"
   },
   {
-    "id": 9,
-    "name": "Chino"
+    "value": 9,
+    "label": "Chino"
   },
   {
-    "id": 12,
-    "name": "Coreano"
+    "value": 12,
+    "label": "Coreano"
   },
   {
-    "id": 16,
-    "name": "Danés"
+    "value": 16,
+    "label": "Danés"
   },
   {
-    "id": 1,
-    "name": "Español"
+    "value": 1,
+    "label": "Español"
   },
   {
-    "id": 17,
-    "name": "Finés"
+    "value": 17,
+    "label": "Finés"
   },
   {
-    "id": 3,
-    "name": "Francés"
+    "value": 3,
+    "label": "Francés"
   },
   {
-    "id": 18,
-    "name": "Griego"
+    "value": 18,
+    "label": "Griego"
   },
   {
-    "id": 20,
-    "name": "Hebreo"
+    "value": 20,
+    "label": "Hebreo"
   },
   {
-    "id": 11,
-    "name": "Hindi"
+    "value": 11,
+    "label": "Hindi"
   },
   {
-    "id": 13,
-    "name": "Holandés"
+    "value": 13,
+    "label": "Holandés"
   },
   {
-    "id": 2,
-    "name": "Inglés"
+    "value": 2,
+    "label": "Inglés"
   },
   {
-    "id": 5,
-    "name": "Italiano"
+    "value": 5,
+    "label": "Italiano"
   },
   {
-    "id": 7,
-    "name": "Japonés"
+    "value": 7,
+    "label": "Japonés"
   },
   {
-    "id": 19,
-    "name": "Latín"
+    "value": 19,
+    "label": "Latín"
   },
   {
-    "id": 15,
-    "name": "Noruego"
+    "value": 15,
+    "label": "Noruego"
   },
   {
-    "id": 6,
-    "name": "Portugués"
+    "value": 6,
+    "label": "Portugués"
   },
   {
-    "id": 8,
-    "name": "Ruso"
+    "value": 8,
+    "label": "Ruso"
   },
   {
-    "id": 14,
-    "name": "Sueco"
+    "value": 14,
+    "label": "Sueco"
   }
 ]

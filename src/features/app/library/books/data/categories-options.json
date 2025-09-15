@@ -1,102 +1,102 @@
 [
   {
-    "id": 19,
-    "name": "Arte"
+    "value": 19,
+    "label": "Arte"
   },
   {
-    "id": 8,
-    "name": "Biología"
+    "value": 8,
+    "label": "Biología"
   },
   {
-    "id": 22,
-    "name": "Cocina"
+    "value": 22,
+    "label": "Cocina"
   },
   {
-    "id": 9,
-    "name": "Cuentos Infantiles"
+    "value": 9,
+    "label": "Cuentos Infantiles"
   },
   {
-    "id": 21,
-    "name": "Deportes"
+    "value": 21,
+    "label": "Deportes"
   },
   {
-    "id": 15,
-    "name": "Derecho"
+    "value": 15,
+    "label": "Derecho"
   },
   {
-    "id": 17,
-    "name": "Economía"
+    "value": 17,
+    "label": "Economía"
   },
   {
-    "id": 10,
-    "name": "Enciclopedias"
+    "value": 10,
+    "label": "Enciclopedias"
   },
   {
-    "id": 11,
-    "name": "Filosofía"
+    "value": 11,
+    "label": "Filosofía"
   },
   {
-    "id": 6,
-    "name": "Física"
+    "value": 6,
+    "label": "Física"
   },
   {
-    "id": 16,
-    "name": "Geografía"
+    "value": 16,
+    "label": "Geografía"
   },
   {
-    "id": 3,
-    "name": "Historia del Perú"
+    "value": 3,
+    "label": "Historia del Perú"
   },
   {
-    "id": 4,
-    "name": "Historia Universal"
+    "value": 4,
+    "label": "Historia Universal"
   },
   {
-    "id": 13,
-    "name": "Ingeniería"
+    "value": 13,
+    "label": "Ingeniería"
   },
   {
-    "id": 23,
-    "name": "Jardinería"
+    "value": 23,
+    "label": "Jardinería"
   },
   {
-    "id": 1,
-    "name": "Literatura Clásica"
+    "value": 1,
+    "label": "Literatura Clásica"
   },
   {
-    "id": 2,
-    "name": "Literatura Contemporánea"
+    "value": 2,
+    "label": "Literatura Contemporánea"
   },
   {
-    "id": 5,
-    "name": "Matemáticas"
+    "value": 5,
+    "label": "Matemáticas"
   },
   {
-    "id": 14,
-    "name": "Medicina"
+    "value": 14,
+    "label": "Medicina"
   },
   {
-    "id": 20,
-    "name": "Música"
+    "value": 20,
+    "label": "Música"
   },
   {
-    "id": 12,
-    "name": "Psicología"
+    "value": 12,
+    "label": "Psicología"
   },
   {
-    "id": 7,
-    "name": "Química"
+    "value": 7,
+    "label": "Química"
   },
   {
-    "id": 25,
-    "name": "Religión"
+    "value": 25,
+    "label": "Religión"
   },
   {
-    "id": 18,
-    "name": "Sociología"
+    "value": 18,
+    "label": "Sociología"
   },
   {
-    "id": 24,
-    "name": "Tecnología"
+    "value": 24,
+    "label": "Tecnología"
   }
 ]

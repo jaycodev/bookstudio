@@ -8,18 +8,18 @@ import languagesOptionsJson from '../data/languages-options.json'
 import publishersOptionsJson from '../data/publishers.options.json'
 
 export const categoriesOptions: FilterOption[] = categoriesOptionsJson.map((category) => ({
-  value: String(category.id),
-  label: category.name,
+  value: String(category.value),
+  label: category.label,
 }))
 
 export const publishersOptions: FilterOption[] = publishersOptionsJson.map((publisher) => ({
-  value: String(publisher.id),
-  label: publisher.name,
+  value: String(publisher.value),
+  label: publisher.label,
 }))
 
 export const languagesOptions: FilterOption[] = languagesOptionsJson.map((language) => ({
-  value: String(language.id),
-  label: language.name,
+  value: String(language.value),
+  label: language.label,
 }))
 
 export const loanOptions: FilterOption[] = [

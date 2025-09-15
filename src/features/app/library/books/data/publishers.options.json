@@ -1,66 +1,66 @@
 [
   {
-    "id": 2,
-    "name": "Alfaguara"
+    "value": 2,
+    "label": "Alfaguara"
   },
   {
-    "id": 8,
-    "name": "Cátedra"
+    "value": 8,
+    "label": "Cátedra"
   },
   {
-    "id": 18,
-    "name": "Crítica"
+    "value": 18,
+    "label": "Crítica"
   },
   {
-    "id": 17,
-    "name": "Debolsillo"
+    "value": 17,
+    "label": "Debolsillo"
   },
   {
-    "id": 20,
-    "name": "Ediciones B"
+    "value": 20,
+    "label": "Ediciones B"
   },
   {
-    "id": 15,
-    "name": "Editorial Andrés Bello"
+    "value": 15,
+    "label": "Editorial Andrés Bello"
   },
   {
-    "id": 11,
-    "name": "Editorial Norma"
+    "value": 11,
+    "label": "Editorial Norma"
   },
   {
-    "id": 14,
-    "name": "Editorial Porrúa"
+    "value": 14,
+    "label": "Editorial Porrúa"
   },
   {
-    "id": 12,
-    "name": "Editorial Sudamericana"
+    "value": 12,
+    "label": "Editorial Sudamericana"
   },
   {
-    "id": 6,
-    "name": "Fondo de Cultura Económica"
+    "value": 6,
+    "label": "Fondo de Cultura Económica"
   },
   {
-    "id": 10,
-    "name": "Peisa"
+    "value": 10,
+    "label": "Peisa"
   },
   {
-    "id": 3,
-    "name": "Penguin Random House"
+    "value": 3,
+    "label": "Penguin Random House"
   },
   {
-    "id": 1,
-    "name": "Planeta"
+    "value": 1,
+    "label": "Planeta"
   },
   {
-    "id": 16,
-    "name": "Salamandra"
+    "value": 16,
+    "label": "Salamandra"
   },
   {
-    "id": 4,
-    "name": "Santillana"
+    "value": 4,
+    "label": "Santillana"
   },
   {
-    "id": 7,
-    "name": "Seix Barral"
+    "value": 7,
+    "label": "Seix Barral"
   }
 ]

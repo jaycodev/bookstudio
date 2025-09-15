@@ -67,14 +67,14 @@ export const columns: ColumnDef<AuthorList>[] = [
     },
   },
   {
-    id: 'nationalityId',
-    accessorFn: (row) => String(row.nationalityId),
+    id: 'nationality',
+    accessorFn: (row) => String(row.nationality.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationalityId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationality')} />
     ),
     cell: ({ row }) => {
-      const code = row.original.nationalityCode
-      const name = row.original.nationalityName
+      const code = row.original.nationality.code
+      const name = row.original.nationality.name
 
       return (
         <Badge variant="outline">
@@ -86,7 +86,7 @@ export const columns: ColumnDef<AuthorList>[] = [
     enableSorting: false,
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'nationalityId'),
+        title: getColumnLabel(resource, 'nationality'),
         options: nationalitiesOptions,
       },
     },

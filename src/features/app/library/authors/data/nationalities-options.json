@@ -1,102 +1,102 @@
 [
   {
-    "id": 10,
-    "name": "Alemana"
+    "value": 10,
+    "label": "Alemana"
   },
   {
-    "id": 3,
-    "name": "Argentina"
+    "value": 3,
+    "label": "Argentina"
   },
   {
-    "id": 16,
-    "name": "Australiana"
+    "value": 16,
+    "label": "Australiana"
   },
   {
-    "id": 23,
-    "name": "Austriaca"
+    "value": 23,
+    "label": "Austriaca"
   },
   {
-    "id": 21,
-    "name": "Belga"
+    "value": 21,
+    "label": "Belga"
   },
   {
-    "id": 12,
-    "name": "Brasileña"
+    "value": 12,
+    "label": "Brasileña"
   },
   {
-    "id": 8,
-    "name": "Británica"
+    "value": 8,
+    "label": "Británica"
   },
   {
-    "id": 15,
-    "name": "Canadiense"
+    "value": 15,
+    "label": "Canadiense"
   },
   {
-    "id": 25,
-    "name": "Checa"
+    "value": 25,
+    "label": "Checa"
   },
   {
-    "id": 6,
-    "name": "Chilena"
+    "value": 6,
+    "label": "Chilena"
   },
   {
-    "id": 5,
-    "name": "Colombiana"
+    "value": 5,
+    "label": "Colombiana"
   },
   {
-    "id": 20,
-    "name": "Danesa"
+    "value": 20,
+    "label": "Danesa"
   },
   {
-    "id": 2,
-    "name": "Española"
+    "value": 2,
+    "label": "Española"
   },
   {
-    "id": 7,
-    "name": "Estadounidense"
+    "value": 7,
+    "label": "Estadounidense"
   },
   {
-    "id": 9,
-    "name": "Francesa"
+    "value": 9,
+    "label": "Francesa"
   },
   {
-    "id": 17,
-    "name": "Holandesa"
+    "value": 17,
+    "label": "Holandesa"
   },
   {
-    "id": 11,
-    "name": "Italiana"
+    "value": 11,
+    "label": "Italiana"
   },
   {
-    "id": 13,
-    "name": "Japonesa"
+    "value": 13,
+    "label": "Japonesa"
   },
   {
-    "id": 4,
-    "name": "Mexicana"
+    "value": 4,
+    "label": "Mexicana"
   },
   {
-    "id": 19,
-    "name": "Noruega"
+    "value": 19,
+    "label": "Noruega"
   },
   {
-    "id": 1,
-    "name": "Peruana"
+    "value": 1,
+    "label": "Peruana"
   },
   {
-    "id": 24,
-    "name": "Polaca"
+    "value": 24,
+    "label": "Polaca"
   },
   {
-    "id": 14,
-    "name": "Rusa"
+    "value": 14,
+    "label": "Rusa"
   },
   {
-    "id": 18,
-    "name": "Sueca"
+    "value": 18,
+    "label": "Sueca"
   },
   {
-    "id": 22,
-    "name": "Suiza"
+    "value": 22,
+    "label": "Suiza"
   }
 ]

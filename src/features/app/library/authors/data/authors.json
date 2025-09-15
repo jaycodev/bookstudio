@@ -3,9 +3,11 @@
     "id": 32,
     "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Edgar_Allan_Poe_portrait.jpg/250px-Edgar_Allan_Poe_portrait.jpg",
     "name": "Edgar Allan Poe",
-    "nationalityId": 7,
-    "nationalityCode": "us",
-    "nationalityName": "Estadounidense",
+    "nationality": {
+      "id": 7,
+      "code": "us",
+      "name": "Estadounidense"
+    },
     "birthDate": "1809-01-19",
     "status": "ACTIVO"
   },
@@ -13,9 +15,11 @@
     "id": 31,
     "photoUrl": "https://www.biografiasyvidas.com/biografia/t/fotos/twain_mark.jpg",
     "name": "Mark Twain",
-    "nationalityId": 7,
-    "nationalityCode": "us",
-    "nationalityName": "Estadounidense",
+    "nationality": {
+      "id": 7,
+      "code": "us",
+      "name": "Estadounidense"
+    },
     "birthDate": "1835-11-30",
     "status": "ACTIVO"
   },
@@ -23,9 +27,11 @@
     "id": 30,
     "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Dickens_Gurney_head.jpg/330px-Dickens_Gurney_head.jpg",
     "name": "Charles Dickens",
-    "nationalityId": 8,
-    "nationalityCode": "gb",
-    "nationalityName": "Británica",
+    "nationality": {
+      "id": 8,
+      "code": "gb",
+      "name": "Británica"
+    },
     "birthDate": "1812-02-07",
     "status": "ACTIVO"
   },
@@ -33,9 +39,11 @@
     "id": 29,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa_DJhO_MYLBPWthlaG-T3VS1s9XDajHewYw&s",
     "name": "Jane Austen",
-    "nationalityId": 8,
-    "nationalityCode": "gb",
-    "nationalityName": "Británica",
+    "nationality": {
+      "id": 8,
+      "code": "gb",
+      "name": "Británica"
+    },
     "birthDate": "1775-12-16",
     "status": "ACTIVO"
   },
@@ -43,9 +51,11 @@
     "id": 28,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWtPv8flPnqjFjXD4f26XftUHQNg3WvmBBCgqGPDQQmNzZZfTWVgTIk07ioArjBAskgI8",
     "name": "George Orwell",
-    "nationalityId": 8,
-    "nationalityCode": "gb",
-    "nationalityName": "Británica",
+    "nationality": {
+      "id": 8,
+      "code": "gb",
+      "name": "Británica"
+    },
     "birthDate": "1903-06-25",
     "status": "ACTIVO"
   },
@@ -53,9 +63,11 @@
     "id": 27,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVox9E3jQeH8BFpnBRANQeBBC0bsH9230x6Q&s",
     "name": "Agatha Christie",
-    "nationalityId": 8,
-    "nationalityCode": "gb",
-    "nationalityName": "Británica",
+    "nationality": {
+      "id": 8,
+      "code": "gb",
+      "name": "Británica"
+    },
     "birthDate": "1890-09-15",
     "status": "ACTIVO"
   },
@@ -63,9 +75,11 @@
     "id": 26,
     "photoUrl": "https://m.media-amazon.com/images/S/amzn-author-media-prod/8cigckin175jtpsk3gs361r4ss.jpg",
     "name": "J.K. Rowling",
-    "nationalityId": 8,
-    "nationalityCode": "gb",
-    "nationalityName": "Británica",
+    "nationality": {
+      "id": 8,
+      "code": "gb",
+      "name": "Británica"
+    },
     "birthDate": "1965-07-31",
     "status": "ACTIVO"
   },
@@ -73,9 +87,11 @@
     "id": 25,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzdidYzM4lPIVjiSBk_zyLYE1JmSCt_NZMFA&s",
     "name": "Stephen King",
-    "nationalityId": 7,
-    "nationalityCode": "us",
-    "nationalityName": "Estadounidense",
+    "nationality": {
+      "id": 7,
+      "code": "us",
+      "name": "Estadounidense"
+    },
     "birthDate": "1947-09-21",
     "status": "ACTIVO"
   },
@@ -83,9 +99,11 @@
     "id": 24,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr-h9MaDue5peCMC0nHtjfPd6rK-flGwMq2Q&s",
     "name": "Ernest Hemingway",
-    "nationalityId": 7,
-    "nationalityCode": "us",
-    "nationalityName": "Estadounidense",
+    "nationality": {
+      "id": 7,
+      "code": "us",
+      "name": "Estadounidense"
+    },
     "birthDate": "1899-07-21",
     "status": "ACTIVO"
   },
@@ -93,9 +111,11 @@
     "id": 23,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfaNYWLuCHQbKlAe-G7AkVoD76qvBsvwR4Vg&s",
     "name": "William Shakespeare",
-    "nationalityId": 8,
-    "nationalityCode": "gb",
-    "nationalityName": "Británica",
+    "nationality": {
+      "id": 8,
+      "code": "gb",
+      "name": "Británica"
+    },
     "birthDate": "1564-04-26",
     "status": "ACTIVO"
   },
@@ -103,9 +123,11 @@
     "id": 22,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8XmYugB0jtGO4A6n_T940MEXT9ASYHsHRBA&s",
     "name": "Miguel Delibes",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "birthDate": "1920-10-17",
     "status": "INACTIVO"
   },
@@ -113,9 +135,11 @@
     "id": 21,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUMhqvroPXoeZqUhFLxGTOQ2NvfYjHClVW_g&s",
     "name": "Camilo José Cela",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "birthDate": "1916-05-11",
     "status": "INACTIVO"
   },
@@ -123,9 +147,11 @@
     "id": 20,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2MAHA1q7KckmnQrhJmVxLQDMdcXKYPZ-JVQ&s",
     "name": "Juan Ramón Jiménez",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "birthDate": "1881-12-23",
     "status": "ACTIVO"
   },
@@ -133,9 +159,11 @@
     "id": 19,
     "photoUrl": "https://www.cervantesvirtual.com/images/portales/antonio_machado/antonio_machado.jpg",
     "name": "Antonio Machado",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "birthDate": "1875-07-26",
     "status": "ACTIVO"
   },
@@ -143,9 +171,11 @@
     "id": 18,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxIvPX4QM3R_jz0BLZ8tikBYkoVJ5hCD9jmQ&s",
     "name": "Federico García Lorca",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "birthDate": "1898-06-05",
     "status": "ACTIVO"
   },
@@ -153,9 +183,11 @@
     "id": 17,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQptVFHhSDXKQF-Jg04BV9m_ebL46ofOeJqGg&s",
     "name": "Miguel de Cervantes",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "birthDate": "1547-09-29",
     "status": "ACTIVO"
   },
@@ -163,9 +195,11 @@
     "id": 16,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW3L_tRYM8_zKZxBqmEsecUcz5l1LwAkKBBQ&s",
     "name": "Ernesto Sabato",
-    "nationalityId": 3,
-    "nationalityCode": "ar",
-    "nationalityName": "Argentina",
+    "nationality": {
+      "id": 3,
+      "code": "ar",
+      "name": "Argentina"
+    },
     "birthDate": "1911-06-24",
     "status": "INACTIVO"
   },
@@ -173,9 +207,11 @@
     "id": 15,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB0tz84SUKi8ofB4-PGBO1pawbo8Uk029-Vw&s",
     "name": "Carlos Fuentes",
-    "nationalityId": 4,
-    "nationalityCode": "mx",
-    "nationalityName": "Mexicana",
+    "nationality": {
+      "id": 4,
+      "code": "mx",
+      "name": "Mexicana"
+    },
     "birthDate": "1928-11-11",
     "status": "ACTIVO"
   },
@@ -183,9 +219,11 @@
     "id": 14,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTwxSPB9FTat7um_b6KRiCGOHFUyRKbgWSxw&s",
     "name": "Pablo Neruda",
-    "nationalityId": 6,
-    "nationalityCode": "cl",
-    "nationalityName": "Chilena",
+    "nationality": {
+      "id": 6,
+      "code": "cl",
+      "name": "Chilena"
+    },
     "birthDate": "1904-07-12",
     "status": "ACTIVO"
   },
@@ -193,9 +231,11 @@
     "id": 13,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAxnGUOOqgregKFvtRdEAlujiGq2PX2MeS5Q&s",
     "name": "Julio Cortázar",
-    "nationalityId": 3,
-    "nationalityCode": "ar",
-    "nationalityName": "Argentina",
+    "nationality": {
+      "id": 3,
+      "code": "ar",
+      "name": "Argentina"
+    },
     "birthDate": "1914-08-26",
     "status": "ACTIVO"
   },
@@ -203,9 +243,11 @@
     "id": 12,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNh6HAYvG6Nf0eCwhUamJR6DooIhX_f7mqhQ&s",
     "name": "Octavio Paz",
-    "nationalityId": 4,
-    "nationalityCode": "mx",
-    "nationalityName": "Mexicana",
+    "nationality": {
+      "id": 4,
+      "code": "mx",
+      "name": "Mexicana"
+    },
     "birthDate": "1914-03-31",
     "status": "ACTIVO"
   },
@@ -213,9 +255,11 @@
     "id": 11,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKKHLqOoWoChMh08Mrh6ypo295IMQEzyAUWA&s",
     "name": "Isabel Allende",
-    "nationalityId": 3,
-    "nationalityCode": "ar",
-    "nationalityName": "Argentina",
+    "nationality": {
+      "id": 3,
+      "code": "ar",
+      "name": "Argentina"
+    },
     "birthDate": "1942-08-02",
     "status": "ACTIVO"
   },
@@ -223,9 +267,11 @@
     "id": 10,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHKIGlaz3swY7Dz4dPvHbS2Vefa4m0auvY2g&s",
     "name": "Jorge Luis Borges",
-    "nationalityId": 3,
-    "nationalityCode": "ar",
-    "nationalityName": "Argentina",
+    "nationality": {
+      "id": 3,
+      "code": "ar",
+      "name": "Argentina"
+    },
     "birthDate": "1899-08-24",
     "status": "ACTIVO"
   },
@@ -233,9 +279,11 @@
     "id": 9,
     "photoUrl": "https://www.biografiasyvidas.com/reportaje/garcia_marquez/fotos/garcia_marquez_420a.jpg",
     "name": "Gabriel García Márquez",
-    "nationalityId": 5,
-    "nationalityCode": "co",
-    "nationalityName": "Colombiana",
+    "nationality": {
+      "id": 5,
+      "code": "co",
+      "name": "Colombiana"
+    },
     "birthDate": "1927-03-06",
     "status": "ACTIVO"
   },
@@ -243,9 +291,11 @@
     "id": 8,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMmUkZHafO_SU9YnccrNc6WH_2U8FREHPAsQ&s",
     "name": "Alfredo Bryce Echenique",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1939-02-19",
     "status": "ACTIVO"
   },
@@ -253,9 +303,11 @@
     "id": 7,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoxReV53nsHY0Z6IDLkUZkZ65SsT4RVLd5yg&s",
     "name": "José Carlos Mariátegui",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1894-06-14",
     "status": "ACTIVO"
   },
@@ -263,9 +315,11 @@
     "id": 6,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqyqMpscC4JQHXuuJ_FNep3N6DAU12CijIXQ&s",
     "name": "Ciro Alegría",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1909-11-04",
     "status": "ACTIVO"
   },
@@ -273,9 +327,11 @@
     "id": 5,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-5xsn7BPM5X9Wyjfs_5cwWJ7-wUJqlbT9oQ&s",
     "name": "Ricardo Palma",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1833-02-07",
     "status": "ACTIVO"
   },
@@ -283,9 +339,11 @@
     "id": 4,
     "photoUrl": "https://static.wixstatic.com/media/1f8451_ab7e05f2b05b409f97b2a7b8a48265bf~mv2.jpg/v1/fill/w_420,h_607,al_c,lg_1,q_80/1f8451_ab7e05f2b05b409f97b2a7b8a48265bf~mv2.jpg",
     "name": "José María Arguedas",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1911-01-18",
     "status": "ACTIVO"
   },
@@ -293,9 +351,11 @@
     "id": 3,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIcaENo1dT84TEQhcP9ypMGTEHSe8zeGz3sQ&s",
     "name": "César Vallejo",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1892-03-16",
     "status": "ACTIVO"
   },
@@ -303,9 +363,11 @@
     "id": 2,
     "photoUrl": "https://portal.andina.pe/EDPfotografia2/Thumbnail/2011/12/03/000171146W.jpg",
     "name": "Julio Ramón Ribeyro",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1929-08-31",
     "status": "ACTIVO"
   },
@@ -313,9 +375,11 @@
     "id": 1,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1vrnEOMvV7mwmCjPaPQkFluklQO_IdsMvaQ&s",
     "name": "Mario Vargas Llosa",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "birthDate": "1936-03-28",
     "status": "ACTIVO"
   }

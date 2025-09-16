@@ -1,106 +1,106 @@
 [
   {
-    "id": 14,
-    "fullName": "Adrián Gabriel Choque Apaza"
+    "value": 14,
+    "label": "Adrián Gabriel Choque Apaza"
   },
   {
-    "id": 1,
-    "fullName": "Ana María García López"
+    "value": 1,
+    "label": "Ana María García López"
   },
   {
-    "id": 9,
-    "fullName": "Camila Andrea Torres Vilca"
+    "value": 9,
+    "label": "Camila Andrea Torres Vilca"
   },
   {
-    "id": 2,
-    "fullName": "Carlos Andrés Mendoza Silva"
+    "value": 2,
+    "label": "Carlos Andrés Mendoza Silva"
   },
   {
-    "id": 17,
-    "fullName": "Carmen Luz Herrera Morales"
+    "value": 17,
+    "label": "Carmen Luz Herrera Morales"
   },
   {
-    "id": 6,
-    "fullName": "Diego Alejandro Moreno Ramos"
+    "value": 6,
+    "label": "Diego Alejandro Moreno Ramos"
   },
   {
-    "id": 26,
-    "fullName": "Eduardo César Espinoza Luna"
+    "value": 26,
+    "label": "Eduardo César Espinoza Luna"
   },
   {
-    "id": 15,
-    "fullName": "Fernanda Alejandra Mamani Quispe"
+    "value": 15,
+    "label": "Fernanda Alejandra Mamani Quispe"
   },
   {
-    "id": 13,
-    "fullName": "Isabella Nicole Nina Calla"
+    "value": 13,
+    "label": "Isabella Nicole Nina Calla"
   },
   {
-    "id": 8,
-    "fullName": "Javier Fernando Huamán Flores"
+    "value": 8,
+    "label": "Javier Fernando Huamán Flores"
   },
   {
-    "id": 20,
-    "fullName": "Jorge Enrique Medina Castro"
+    "value": 20,
+    "label": "Jorge Enrique Medina Castro"
   },
   {
-    "id": 21,
-    "fullName": "José Luis Fernández Huamán"
+    "value": 21,
+    "label": "José Luis Fernández Huamán"
   },
   {
-    "id": 5,
-    "fullName": "Lucía Isabel Paredes Gutiérrez"
+    "value": 5,
+    "label": "Lucía Isabel Paredes Gutiérrez"
   },
   {
-    "id": 18,
-    "fullName": "Luis Alberto Vega Sánchez"
+    "value": 18,
+    "label": "Luis Alberto Vega Sánchez"
   },
   {
-    "id": 24,
-    "fullName": "Manuel Antonio Sánchez Vega"
+    "value": 24,
+    "label": "Manuel Antonio Sánchez Vega"
   },
   {
-    "id": 16,
-    "fullName": "María Elena Rodríguez Torres"
+    "value": 16,
+    "label": "María Elena Rodríguez Torres"
   },
   {
-    "id": 10,
-    "fullName": "Mateo José Condori Apaza"
+    "value": 10,
+    "label": "Mateo José Condori Apaza"
   },
   {
-    "id": 3,
-    "fullName": "Patricia Rosa Vargas Chávez"
+    "value": 3,
+    "label": "Patricia Rosa Vargas Chávez"
   },
   {
-    "id": 25,
-    "fullName": "Pilar Roxana Alvarez Tejada"
+    "value": 25,
+    "label": "Pilar Roxana Alvarez Tejada"
   },
   {
-    "id": 23,
-    "fullName": "Ricardo Manuel Morales Díaz"
+    "value": 23,
+    "label": "Ricardo Manuel Morales Díaz"
   },
   {
-    "id": 4,
-    "fullName": "Roberto Miguel Castro Quispe"
+    "value": 4,
+    "label": "Roberto Miguel Castro Quispe"
   },
   {
-    "id": 19,
-    "fullName": "Rosa María Guerrero Silva"
+    "value": 19,
+    "label": "Rosa María Guerrero Silva"
   },
   {
-    "id": 22,
-    "fullName": "Sandra Patricia López Vargas"
+    "value": 22,
+    "label": "Sandra Patricia López Vargas"
   },
   {
-    "id": 12,
-    "fullName": "Sebastián Alonso Poma Hancco"
+    "value": 12,
+    "label": "Sebastián Alonso Poma Hancco"
   },
   {
-    "id": 7,
-    "fullName": "Sofía Elena Quispe Mamani"
+    "value": 7,
+    "label": "Sofía Elena Quispe Mamani"
   },
   {
-    "id": 11,
-    "fullName": "Valeria Milagros Ramos Ccahuana"
+    "value": 11,
+    "label": "Valeria Milagros Ramos Ccahuana"
   }
 ]

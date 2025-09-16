@@ -42,9 +42,8 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
   },
   reservations: {
     code: 'Código',
-    readerId: 'Lector',
     readerCode: 'Cód. lector',
-    readerFullName: 'Lector',
+    reader: 'Lector',
     copyCode: 'Cód. ejemplar',
     reservationDate: 'Fecha reserva',
     status: 'Estado',

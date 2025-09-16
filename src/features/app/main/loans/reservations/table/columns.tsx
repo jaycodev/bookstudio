@@ -40,10 +40,10 @@ export const columns: ColumnDef<ReservationList>[] = [
   {
     accessorKey: 'code',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'code')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('code')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <Calendar1 className="mr-1" />
@@ -56,12 +56,13 @@ export const columns: ColumnDef<ReservationList>[] = [
     },
   },
   {
-    accessorKey: 'readerCode',
+    id: 'readerCode',
+    accessorFn: (row) => String(row.reader.code),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('readerCode')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <BookOpenText className="mr-1" />
@@ -71,17 +72,17 @@ export const columns: ColumnDef<ReservationList>[] = [
     },
   },
   {
-    id: 'readerId',
-    accessorFn: (row) => String(row.readerId),
+    id: 'reader',
+    accessorFn: (row) => String(row.reader.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      return row.original.readerFullName
+      return row.original.reader.fullName
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'readerId'),
+        title: getColumnLabel(resource, 'reader'),
         options: readersOptions,
       },
     },
@@ -90,12 +91,13 @@ export const columns: ColumnDef<ReservationList>[] = [
     },
   },
   {
-    accessorKey: 'copyCode',
+    id: 'copyCode',
+    accessorFn: (row) => String(row.copy.code),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'copyCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('copyCode')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <BookText className="mr-1" />
@@ -107,10 +109,10 @@ export const columns: ColumnDef<ReservationList>[] = [
   {
     accessorKey: 'reservationDate',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'reservationDate')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const date = new Date(row.getValue('reservationDate'))
+    cell: ({ getValue }) => {
+      const date = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
         day: '2-digit',
         month: 'short',
@@ -140,11 +142,10 @@ export const columns: ColumnDef<ReservationList>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusBadges>('status')
-      const meta = statusBadges[status]
+      const meta = statusBadges[row.original.status]
 
       if (!meta) return null
       const Icon = meta.icon

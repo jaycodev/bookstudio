@@ -1,6 +1,5 @@
 export const columnLabelsByResource: Record<string, Record<string, string>> = {
   authors: {
-    id: 'ID',
     photoUrl: 'Foto',
     name: 'Nombre',
     nationality: 'Nacionalidad',
@@ -8,7 +7,6 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     status: 'Estado',
   },
   books: {
-    id: 'ID',
     isbn: 'ISBN',
     coverUrl: 'Portada',
     title: 'Título',
@@ -20,7 +18,6 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     status: 'Estado',
   },
   copies: {
-    id: 'ID',
     code: 'Código',
     book: 'Libro',
     shelf: 'Estantería',
@@ -30,24 +27,20 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     condition: 'Condición',
   },
   categories: {
-    id: 'ID',
     name: 'Nombre',
     level: 'Nivel',
     description: 'Descripción',
     status: 'Estado',
   },
   loans: {
-    id: 'ID',
     code: 'Código',
-    readerId: 'Lector',
     readerCode: 'Cód. lector',
-    readerFullName: 'Lector',
+    reader: 'Lector',
     loanDate: 'Fecha préstamo',
     itemCount: 'Ejemplares',
     statusCounts: 'Estados',
   },
   reservations: {
-    id: 'ID',
     code: 'Código',
     readerId: 'Lector',
     readerCode: 'Cód. lector',
@@ -57,7 +50,6 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     status: 'Estado',
   },
   fines: {
-    id: 'ID',
     code: 'Código',
     loanId: 'Cód. préstamo',
     loanCode: 'Cód. préstamo',
@@ -69,7 +61,6 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     issuedAt: 'Fecha emisión',
   },
   payments: {
-    id: 'ID',
     code: 'Código',
     fineCount: 'Multas',
     readerId: 'Lector',
@@ -80,7 +71,6 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     method: 'Método',
   },
   publishers: {
-    id: 'ID',
     photoUrl: 'Foto',
     name: 'Nombre',
     nationality: 'Nacionalidad',

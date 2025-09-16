@@ -1,56 +1,56 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="BookStudio es un sistema de biblioteca para gestionar préstamos, libros, autores y otros recursos, facilitando la administración y seguimiento de los préstamos."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookStudio</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="description"
-    content="BookStudio es un sistema de biblioteca para gestionar préstamos, libros, autores y otros recursos, facilitando la administración y seguimiento de los préstamos." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BookStudio</title>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <!-- PNG favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-  <!-- PNG favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <!-- SVG -->
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
 
-  <!-- SVG -->
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <!-- ICO -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
 
-  <!-- ICO -->
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
 
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.webmanifest">
+    <!-- iOS Web App Meta -->
+    <meta name="apple-mobile-web-app-title" content="BookStudio" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-  <!-- iOS Web App Meta -->
-  <meta name="apple-mobile-web-app-title" content="BookStudio" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <!-- Theme color -->
+    <meta name="theme-color" content="oklch(0.141 0.005 285.823)" />
 
-  <!-- Theme color -->
-  <meta name="theme-color" content="oklch(0.141 0.005 285.823)" />
+    <link rel="stylesheet" href="/src/globals.css" />
 
-  <link rel="stylesheet" href="/src/globals.css" />
+    <script>
+      // Prevent theme flash on first load
+      const theme =
+        localStorage.getItem('theme') ||
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      document.documentElement.classList.add(theme)
 
-  <script>
-    // Prevent theme flash on first load
-    const theme =
-      localStorage.getItem('theme') ||
-      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    document.documentElement.classList.add(theme)
+      const meta = document.querySelector('meta[name="theme-color"]')
+      if (meta) {
+        meta.content = theme === 'dark' ? 'oklch(0.141 0.005 285.823)' : 'oklch(1 0 0)'
+      }
+    </script>
+  </head>
 
-    const meta = document.querySelector('meta[name="theme-color"]')
-    if (meta) {
-      meta.content = theme === 'dark' ? 'oklch(0.141 0.005 285.823)' : 'oklch(1 0 0)'
-    }
-  </script>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

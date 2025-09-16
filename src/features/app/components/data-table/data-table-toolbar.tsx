@@ -76,7 +76,13 @@ export function DataTableToolbar<TData>({ table, resource }: DataTableToolbarPro
             }
 
             return (
-              <DataTableFacetedFilter key={col.id} column={col} title={title} options={options} />
+              <DataTableFacetedFilter
+                key={col.id}
+                column={col}
+                title={title}
+                options={options}
+                table={table}
+              />
             )
           })}
 

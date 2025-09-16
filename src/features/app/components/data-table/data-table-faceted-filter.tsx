@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Column } from '@tanstack/react-table'
+import { Column, Table } from '@tanstack/react-table'
 import { Check, ListFilter } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -25,14 +25,28 @@ interface DataTableFacetedFilterProps<TData, TValue> {
     value: string
     icon?: React.ComponentType<{ className?: string }>
   }[]
+  table?: Table<TData>
 }
 
 export function DataTableFacetedFilter<TData, TValue>({
   column,
   title,
   options,
+  table,
 }: DataTableFacetedFilterProps<TData, TValue>) {
-  const facets = column?.getFacetedUniqueValues()
+  const customFacetCalculator = column?.columnDef.meta?.customFacetCalculator
+
+  const filteredRowModel = table?.getFilteredRowModel()
+
+  const facets = React.useMemo(() => {
+    if (customFacetCalculator && table && column && filteredRowModel) {
+      const allRows = filteredRowModel.rows.map((row) => row.original)
+      const result = customFacetCalculator(allRows)
+      return result
+    }
+    return column?.getFacetedUniqueValues()
+  }, [column, customFacetCalculator, filteredRowModel])
+
   const selectedValues = new Set(column?.getFilterValue() as string[])
 
   return (
@@ -82,6 +96,9 @@ export function DataTableFacetedFilter<TData, TValue>({
             <CommandGroup>
               {options.map((option) => {
                 const isSelected = selectedValues.has(option.value)
+                const rawCount = facets?.get(option.value) ?? facets?.get(String(option.value))
+                const facetCount = typeof rawCount === 'number' ? rawCount : 0
+
                 return (
                   <CommandItem
                     key={option.value}
@@ -107,21 +124,9 @@ export function DataTableFacetedFilter<TData, TValue>({
                     </div>
                     {option.icon && <option.icon className="text-muted-foreground" />}
                     <span>{option.label}</span>
-                    {facets?.get(
-                      option.value === 'true'
-                        ? true
-                        : option.value === 'false'
-                          ? false
-                          : option.value
-                    ) && (
+                    {facetCount > 0 && (
                       <span className="ml-auto flex h-4 w-4 items-center justify-center text-xs">
-                        {facets.get(
-                          option.value === 'true'
-                            ? true
-                            : option.value === 'false'
-                              ? false
-                              : option.value
-                        )}
+                        {facetCount}
                       </span>
                     )}
                   </CommandItem>

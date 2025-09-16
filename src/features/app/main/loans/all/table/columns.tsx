@@ -7,6 +7,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
+import { createObjectSumFacetCalculator } from '@/lib/object-facets.ts'
 
 import { statusBadges } from '../components/badges/status.ts'
 import { readersOptions, statusOptions } from '../data/options-data.ts'
@@ -41,10 +42,10 @@ export const columns: ColumnDef<LoanList>[] = [
   {
     accessorKey: 'code',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'code')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('code')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <Handshake className="mr-1" />
@@ -57,12 +58,13 @@ export const columns: ColumnDef<LoanList>[] = [
     },
   },
   {
-    accessorKey: 'readerCode',
+    id: 'readerCode',
+    accessorFn: (row) => String(row.reader.code),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('readerCode')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <BookOpenText className="mr-1" />
@@ -72,17 +74,17 @@ export const columns: ColumnDef<LoanList>[] = [
     },
   },
   {
-    id: 'readerId',
-    accessorFn: (row) => String(row.readerId),
+    id: 'reader',
+    accessorFn: (row) => String(row.reader.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      return row.original.readerFullName
+      return row.original.reader.fullName
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'readerId'),
+        title: getColumnLabel(resource, 'reader'),
         options: readersOptions,
       },
     },
@@ -93,15 +95,15 @@ export const columns: ColumnDef<LoanList>[] = [
   {
     accessorKey: 'loanDate',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'loanDate')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     meta: {
       dateRangeFilter: true,
       headerClass: 'text-center',
       cellClass: 'text-center',
     },
-    cell: ({ row }) => {
-      const loanDate = new Date(row.getValue('loanDate'))
+    cell: ({ getValue }) => {
+      const loanDate = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
         day: '2-digit',
         month: 'short',
@@ -126,10 +128,10 @@ export const columns: ColumnDef<LoanList>[] = [
   {
     accessorKey: 'itemCount',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'itemCount')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const value = row.getValue('itemCount') as number
+    cell: ({ getValue }) => {
+      const value = getValue<number>()
       return (
         <Badge variant="outline">
           <BookCopy className="mr-1" />
@@ -145,10 +147,10 @@ export const columns: ColumnDef<LoanList>[] = [
   {
     accessorKey: 'statusCounts',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'statusCounts')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const statusCounts = row.getValue<typeof row.original.statusCounts>('statusCounts')
+    cell: ({ getValue }) => {
+      const statusCounts = getValue<object>()
 
       return (
         <TooltipProvider>
@@ -184,10 +186,16 @@ export const columns: ColumnDef<LoanList>[] = [
         title: getColumnLabel(resource, 'statusCounts'),
         options: statusOptions,
       },
+      customFacetCalculator: createObjectSumFacetCalculator('statusCounts', [
+        'borrowed',
+        'returned',
+        'overdue',
+        'lost',
+        'canceled',
+      ]),
     },
     filterFn: (row, id, value) => {
       const statusCounts = row.getValue<typeof row.original.statusCounts>(id)
-
       return (value as (keyof typeof statusCounts)[]).some((status) => statusCounts?.[status] > 0)
     },
   },

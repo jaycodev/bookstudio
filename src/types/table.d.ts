@@ -10,5 +10,6 @@ declare module '@tanstack/react-table' {
     dateRangeFilter?: boolean
     cellClass?: string
     headerClass?: string
+    customFacetCalculator?: (data: TData[]) => Map<string, number>
   }
 }

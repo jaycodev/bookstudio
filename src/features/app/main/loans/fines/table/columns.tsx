@@ -40,10 +40,10 @@ export const columns: ColumnDef<FineList>[] = [
   {
     accessorKey: 'code',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'code')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('code')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <OctagonAlert className="mr-1" />
@@ -56,13 +56,13 @@ export const columns: ColumnDef<FineList>[] = [
     },
   },
   {
-    id: 'loanId',
-    accessorFn: (row) => String(row.loanId),
+    id: 'loanCode',
+    accessorFn: (row) => String(row.loan.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'loanId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const code = row.original.loanCode
+      const code = row.original.loan.code
       return (
         <Badge variant="outline" className="font-mono">
           <Handshake className="mr-1" />
@@ -72,7 +72,7 @@ export const columns: ColumnDef<FineList>[] = [
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'loanId'),
+        title: getColumnLabel(resource, 'loanCode'),
         options: loansOptions,
       },
     },
@@ -81,13 +81,13 @@ export const columns: ColumnDef<FineList>[] = [
     },
   },
   {
-    id: 'copyId',
-    accessorFn: (row) => String(row.copyId),
+    id: 'copyCode',
+    accessorFn: (row) => String(row.copy.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'copyId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const code = row.original.copyCode
+      const code = row.original.copy.code
       return (
         <Badge variant="outline" className="font-mono">
           <BookText className="mr-1" />
@@ -97,7 +97,7 @@ export const columns: ColumnDef<FineList>[] = [
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'copyId'),
+        title: getColumnLabel(resource, 'copyCode'),
         options: copiesOptions,
       },
     },
@@ -108,11 +108,12 @@ export const columns: ColumnDef<FineList>[] = [
   {
     accessorKey: 'amount',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'amount')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const amount = row.getValue<number>('amount')
+    cell: ({ getValue }) => {
+      const amount = getValue<number>()
       const formatted = `S/. ${amount.toFixed(2)}`
+
       return <Badge variant="outline">{formatted}</Badge>
     },
     meta: {
@@ -123,10 +124,10 @@ export const columns: ColumnDef<FineList>[] = [
   {
     accessorKey: 'daysLate',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'daysLate')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('daysLate')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline">
           <History className="mr-1" />
@@ -142,10 +143,10 @@ export const columns: ColumnDef<FineList>[] = [
   {
     accessorKey: 'issuedAt',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'issuedAt')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const date = new Date(row.getValue('issuedAt'))
+    cell: ({ getValue }) => {
+      const date = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
         day: '2-digit',
         month: 'short',
@@ -175,11 +176,10 @@ export const columns: ColumnDef<FineList>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusBadges>('status')
-      const meta = statusBadges[status]
+      const meta = statusBadges[row.original.status]
 
       if (!meta) return null
       const Icon = meta.icon

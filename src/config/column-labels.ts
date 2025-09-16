@@ -51,9 +51,7 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
   },
   fines: {
     code: 'Código',
-    loanId: 'Cód. préstamo',
     loanCode: 'Cód. préstamo',
-    copyId: 'Cód. ejemplar',
     copyCode: 'Cód. ejemplar',
     amount: 'Monto',
     daysLate: 'Días retraso',

@@ -5,13 +5,13 @@ import copiesOptionsJson from '../data/copies-options.json'
 import loansOptionsJson from '../data/loans-options.json'
 
 export const loansOptions: FilterOption[] = loansOptionsJson.map((loan) => ({
-  value: String(loan.id),
-  label: loan.code,
+  value: String(loan.value),
+  label: loan.label,
 }))
 
 export const copiesOptions: FilterOption[] = copiesOptionsJson.map((copy) => ({
-  value: String(copy.id),
-  label: copy.code,
+  value: String(copy.value),
+  label: copy.label,
 }))
 
 export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(

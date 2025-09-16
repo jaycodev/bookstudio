@@ -2,10 +2,14 @@
   {
     "id": 25,
     "code": "MULT-2024-00025",
-    "loanId": 21,
-    "loanCode": "PRE-20240810-00001",
-    "copyId": 24,
-    "copyCode": "EJ-2025-0024",
+    "loan": {
+      "id": 21,
+      "code": "PRE-20240810-00001"
+    },
+    "copy": {
+      "id": 24,
+      "code": "EJ-2025-0024"
+    },
     "amount": 3.75,
     "daysLate": 1,
     "issuedAt": "2024-08-25",
@@ -14,10 +18,14 @@
   {
     "id": 24,
     "code": "MULT-2024-00024",
-    "loanId": 17,
-    "loanCode": "PRE-20240806-00001",
-    "copyId": 61,
-    "copyCode": "EJ-2025-0061",
+    "loan": {
+      "id": 17,
+      "code": "PRE-20240806-00001"
+    },
+    "copy": {
+      "id": 61,
+      "code": "EJ-2025-0061"
+    },
     "amount": 2.5,
     "daysLate": 1,
     "issuedAt": "2024-08-21",
@@ -26,10 +34,14 @@
   {
     "id": 23,
     "code": "MULT-2024-00023",
-    "loanId": 17,
-    "loanCode": "PRE-20240806-00001",
-    "copyId": 45,
-    "copyCode": "EJ-2025-0045",
+    "loan": {
+      "id": 17,
+      "code": "PRE-20240806-00001"
+    },
+    "copy": {
+      "id": 45,
+      "code": "EJ-2025-0045"
+    },
     "amount": 2.5,
     "daysLate": 1,
     "issuedAt": "2024-08-21",
@@ -38,10 +50,14 @@
   {
     "id": 22,
     "code": "MULT-2024-00022",
-    "loanId": 17,
-    "loanCode": "PRE-20240806-00001",
-    "copyId": 20,
-    "copyCode": "EJ-2025-0020",
+    "loan": {
+      "id": 17,
+      "code": "PRE-20240806-00001"
+    },
+    "copy": {
+      "id": 20,
+      "code": "EJ-2025-0020"
+    },
     "amount": 2.5,
     "daysLate": 1,
     "issuedAt": "2024-08-21",
@@ -50,10 +66,14 @@
   {
     "id": 21,
     "code": "MULT-2024-00021",
-    "loanId": 13,
-    "loanCode": "PRE-20240802-00001",
-    "copyId": 26,
-    "copyCode": "EJ-2025-0026",
+    "loan": {
+      "id": 13,
+      "code": "PRE-20240802-00001"
+    },
+    "copy": {
+      "id": 26,
+      "code": "EJ-2025-0026"
+    },
     "amount": 3.75,
     "daysLate": 1,
     "issuedAt": "2024-08-17",
@@ -62,10 +82,14 @@
   {
     "id": 20,
     "code": "MULT-2024-00020",
-    "loanId": 13,
-    "loanCode": "PRE-20240802-00001",
-    "copyId": 19,
-    "copyCode": "EJ-2025-0019",
+    "loan": {
+      "id": 13,
+      "code": "PRE-20240802-00001"
+    },
+    "copy": {
+      "id": 19,
+      "code": "EJ-2025-0019"
+    },
     "amount": 3.75,
     "daysLate": 1,
     "issuedAt": "2024-08-17",
@@ -74,10 +98,14 @@
   {
     "id": 19,
     "code": "MULT-2024-00019",
-    "loanId": 8,
-    "loanCode": "PRE-20240727-00001",
-    "copyId": 4,
-    "copyCode": "EJ-2025-0004",
+    "loan": {
+      "id": 8,
+      "code": "PRE-20240727-00001"
+    },
+    "copy": {
+      "id": 4,
+      "code": "EJ-2025-0004"
+    },
     "amount": 15.0,
     "daysLate": 6,
     "issuedAt": "2024-08-16",
@@ -86,10 +114,14 @@
   {
     "id": 18,
     "code": "MULT-2024-00018",
-    "loanId": 7,
-    "loanCode": "PRE-20240726-00001",
-    "copyId": 34,
-    "copyCode": "EJ-2025-0034",
+    "loan": {
+      "id": 7,
+      "code": "PRE-20240726-00001"
+    },
+    "copy": {
+      "id": 34,
+      "code": "EJ-2025-0034"
+    },
     "amount": 5.0,
     "daysLate": 2,
     "issuedAt": "2024-08-09",
@@ -98,10 +130,14 @@
   {
     "id": 17,
     "code": "MULT-2024-00017",
-    "loanId": 7,
-    "loanCode": "PRE-20240726-00001",
-    "copyId": 51,
-    "copyCode": "EJ-2025-0051",
+    "loan": {
+      "id": 7,
+      "code": "PRE-20240726-00001"
+    },
+    "copy": {
+      "id": 51,
+      "code": "EJ-2025-0051"
+    },
     "amount": 5.0,
     "daysLate": 2,
     "issuedAt": "2024-08-09",
@@ -110,10 +146,14 @@
   {
     "id": 16,
     "code": "MULT-2024-00016",
-    "loanId": 4,
-    "loanCode": "PRE-20240723-00001",
-    "copyId": 10,
-    "copyCode": "EJ-2025-0010",
+    "loan": {
+      "id": 4,
+      "code": "PRE-20240723-00001"
+    },
+    "copy": {
+      "id": 10,
+      "code": "EJ-2025-0010"
+    },
     "amount": 3.75,
     "daysLate": 1,
     "issuedAt": "2024-08-05",
@@ -122,10 +162,14 @@
   {
     "id": 15,
     "code": "MULT-2024-00015",
-    "loanId": 1,
-    "loanCode": "PRE-20240720-00001",
-    "copyId": 47,
-    "copyCode": "EJ-2025-0047",
+    "loan": {
+      "id": 1,
+      "code": "PRE-20240720-00001"
+    },
+    "copy": {
+      "id": 47,
+      "code": "EJ-2025-0047"
+    },
     "amount": 2.5,
     "daysLate": 1,
     "issuedAt": "2024-07-25",
@@ -134,10 +178,14 @@
   {
     "id": 14,
     "code": "MULT-2024-00014",
-    "loanId": 1,
-    "loanCode": "PRE-20240720-00001",
-    "copyId": 25,
-    "copyCode": "EJ-2025-0025",
+    "loan": {
+      "id": 1,
+      "code": "PRE-20240720-00001"
+    },
+    "copy": {
+      "id": 25,
+      "code": "EJ-2025-0025"
+    },
     "amount": 2.5,
     "daysLate": 1,
     "issuedAt": "2024-07-25",
@@ -146,10 +194,14 @@
   {
     "id": 13,
     "code": "MULT-2024-00013",
-    "loanId": 1,
-    "loanCode": "PRE-20240720-00001",
-    "copyId": 3,
-    "copyCode": "EJ-2025-0003",
+    "loan": {
+      "id": 1,
+      "code": "PRE-20240720-00001"
+    },
+    "copy": {
+      "id": 3,
+      "code": "EJ-2025-0003"
+    },
     "amount": 2.5,
     "daysLate": 1,
     "issuedAt": "2024-07-25",
@@ -158,10 +210,14 @@
   {
     "id": 12,
     "code": "MULT-2024-00012",
-    "loanId": 20,
-    "loanCode": "PRE-20240809-00001",
-    "copyId": 46,
-    "copyCode": "EJ-2025-0046",
+    "loan": {
+      "id": 20,
+      "code": "PRE-20240809-00001"
+    },
+    "copy": {
+      "id": 46,
+      "code": "EJ-2025-0046"
+    },
     "amount": 8.75,
     "daysLate": 3,
     "issuedAt": "2024-08-26",
@@ -170,10 +226,14 @@
   {
     "id": 11,
     "code": "MULT-2024-00011",
-    "loanId": 12,
-    "loanCode": "PRE-20240801-00001",
-    "copyId": 42,
-    "copyCode": "EJ-2025-0042",
+    "loan": {
+      "id": 12,
+      "code": "PRE-20240801-00001"
+    },
+    "copy": {
+      "id": 42,
+      "code": "EJ-2025-0042"
+    },
     "amount": 12.5,
     "daysLate": 5,
     "issuedAt": "2024-08-20",
@@ -182,10 +242,14 @@
   {
     "id": 10,
     "code": "MULT-2024-00010",
-    "loanId": 9,
-    "loanCode": "PRE-20240728-00001",
-    "copyId": 58,
-    "copyCode": "EJ-2025-0058",
+    "loan": {
+      "id": 9,
+      "code": "PRE-20240728-00001"
+    },
+    "copy": {
+      "id": 58,
+      "code": "EJ-2025-0058"
+    },
     "amount": 10.0,
     "daysLate": 4,
     "issuedAt": "2024-08-15",
@@ -194,10 +258,14 @@
   {
     "id": 9,
     "code": "MULT-2024-00009",
-    "loanId": 3,
-    "loanCode": "PRE-20240722-00001",
-    "copyId": 52,
-    "copyCode": "EJ-2025-0052",
+    "loan": {
+      "id": 3,
+      "code": "PRE-20240722-00001"
+    },
+    "copy": {
+      "id": 52,
+      "code": "EJ-2025-0052"
+    },
     "amount": 7.5,
     "daysLate": 3,
     "issuedAt": "2024-08-08",
@@ -206,10 +274,14 @@
   {
     "id": 8,
     "code": "MULT-2024-00008",
-    "loanId": 24,
-    "loanCode": "PRE-20240813-00001",
-    "copyId": 16,
-    "copyCode": "EJ-2025-0016",
+    "loan": {
+      "id": 24,
+      "code": "PRE-20240813-00001"
+    },
+    "copy": {
+      "id": 16,
+      "code": "EJ-2025-0016"
+    },
     "amount": 11.25,
     "daysLate": 4,
     "issuedAt": "2024-08-31",
@@ -218,10 +290,14 @@
   {
     "id": 7,
     "code": "MULT-2024-00007",
-    "loanId": 20,
-    "loanCode": "PRE-20240809-00001",
-    "copyId": 12,
-    "copyCode": "EJ-2025-0012",
+    "loan": {
+      "id": 20,
+      "code": "PRE-20240809-00001"
+    },
+    "copy": {
+      "id": 12,
+      "code": "EJ-2025-0012"
+    },
     "amount": 8.75,
     "daysLate": 3,
     "issuedAt": "2024-08-26",
@@ -230,10 +306,14 @@
   {
     "id": 6,
     "code": "MULT-2024-00006",
-    "loanId": 16,
-    "loanCode": "PRE-20240805-00001",
-    "copyId": 15,
-    "copyCode": "EJ-2025-0015",
+    "loan": {
+      "id": 16,
+      "code": "PRE-20240805-00001"
+    },
+    "copy": {
+      "id": 15,
+      "code": "EJ-2025-0015"
+    },
     "amount": 6.25,
     "daysLate": 2,
     "issuedAt": "2024-08-21",
@@ -242,10 +322,14 @@
   {
     "id": 5,
     "code": "MULT-2024-00005",
-    "loanId": 12,
-    "loanCode": "PRE-20240801-00001",
-    "copyId": 7,
-    "copyCode": "EJ-2025-0007",
+    "loan": {
+      "id": 12,
+      "code": "PRE-20240801-00001"
+    },
+    "copy": {
+      "id": 7,
+      "code": "EJ-2025-0007"
+    },
     "amount": 12.5,
     "daysLate": 5,
     "issuedAt": "2024-08-20",
@@ -254,10 +338,14 @@
   {
     "id": 4,
     "code": "MULT-2024-00004",
-    "loanId": 9,
-    "loanCode": "PRE-20240728-00001",
-    "copyId": 44,
-    "copyCode": "EJ-2025-0044",
+    "loan": {
+      "id": 9,
+      "code": "PRE-20240728-00001"
+    },
+    "copy": {
+      "id": 44,
+      "code": "EJ-2025-0044"
+    },
     "amount": 10.0,
     "daysLate": 4,
     "issuedAt": "2024-08-15",
@@ -266,10 +354,14 @@
   {
     "id": 3,
     "code": "MULT-2024-00003",
-    "loanId": 9,
-    "loanCode": "PRE-20240728-00001",
-    "copyId": 18,
-    "copyCode": "EJ-2025-0018",
+    "loan": {
+      "id": 9,
+      "code": "PRE-20240728-00001"
+    },
+    "copy": {
+      "id": 18,
+      "code": "EJ-2025-0018"
+    },
     "amount": 10.0,
     "daysLate": 4,
     "issuedAt": "2024-08-15",
@@ -278,10 +370,14 @@
   {
     "id": 2,
     "code": "MULT-2024-00002",
-    "loanId": 6,
-    "loanCode": "PRE-20240725-00001",
-    "copyId": 32,
-    "copyCode": "EJ-2025-0032",
+    "loan": {
+      "id": 6,
+      "code": "PRE-20240725-00001"
+    },
+    "copy": {
+      "id": 32,
+      "code": "EJ-2025-0032"
+    },
     "amount": 5.0,
     "daysLate": 2,
     "issuedAt": "2024-08-10",
@@ -290,10 +386,14 @@
   {
     "id": 1,
     "code": "MULT-2024-00001",
-    "loanId": 3,
-    "loanCode": "PRE-20240722-00001",
-    "copyId": 35,
-    "copyCode": "EJ-2025-0035",
+    "loan": {
+      "id": 3,
+      "code": "PRE-20240722-00001"
+    },
+    "copy": {
+      "id": 35,
+      "code": "EJ-2025-0035"
+    },
     "amount": 7.5,
     "daysLate": 3,
     "issuedAt": "2024-08-08",

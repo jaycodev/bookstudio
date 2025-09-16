@@ -4,8 +4,8 @@ import { methodBadges } from '../components/badges/method.ts'
 import readersOptionsJson from '../data/readers-options.json'
 
 export const readersOptions: FilterOption[] = readersOptionsJson.map((reader) => ({
-  value: String(reader.id),
-  label: reader.fullName,
+  value: String(reader.value),
+  label: reader.label,
 }))
 
 export const statusOptions: FilterOption[] = Object.entries(methodBadges).map(

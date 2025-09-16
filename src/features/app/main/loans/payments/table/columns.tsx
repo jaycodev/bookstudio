@@ -40,10 +40,10 @@ export const columns: ColumnDef<PaymentList>[] = [
   {
     accessorKey: 'code',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'code')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('code')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <DollarSign className="mr-1" />
@@ -58,10 +58,10 @@ export const columns: ColumnDef<PaymentList>[] = [
   {
     accessorKey: 'fineCount',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'fineCount')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('fineCount')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline">
           <ListChecks className="mr-1" />
@@ -75,12 +75,13 @@ export const columns: ColumnDef<PaymentList>[] = [
     },
   },
   {
-    accessorKey: 'readerCode',
+    id: 'readerCode',
+    accessorFn: (row) => String(row.reader.code),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('readerCode')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <BookOpenText className="mr-1" />
@@ -90,17 +91,17 @@ export const columns: ColumnDef<PaymentList>[] = [
     },
   },
   {
-    id: 'readerId',
-    accessorFn: (row) => String(row.readerId),
+    id: 'reader',
+    accessorFn: (row) => String(row.reader.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'readerId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      return row.original.readerFullName
+      return row.original.reader.fullName
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'readerId'),
+        title: getColumnLabel(resource, 'reader'),
         options: readersOptions,
       },
     },
@@ -111,11 +112,12 @@ export const columns: ColumnDef<PaymentList>[] = [
   {
     accessorKey: 'amount',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'amount')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const amount = row.getValue<number>('amount')
+    cell: ({ getValue }) => {
+      const amount = getValue<number>()
       const formatted = `S/. ${amount.toFixed(2)}`
+
       return <Badge variant="outline">{formatted}</Badge>
     },
     meta: {
@@ -126,10 +128,10 @@ export const columns: ColumnDef<PaymentList>[] = [
   {
     accessorKey: 'paymentDate',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'paymentDate')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const date = new Date(row.getValue('paymentDate'))
+    cell: ({ getValue }) => {
+      const date = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
         day: '2-digit',
         month: 'short',
@@ -159,11 +161,10 @@ export const columns: ColumnDef<PaymentList>[] = [
   {
     accessorKey: 'method',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'method')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof methodBadges>('method')
-      const meta = methodBadges[status]
+      const meta = methodBadges[row.original.method]
 
       if (!meta) return null
       const Icon = meta.icon

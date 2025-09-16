@@ -61,9 +61,8 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
   payments: {
     code: 'Código',
     fineCount: 'Multas',
-    readerId: 'Lector',
     readerCode: 'Cód. lector',
-    readerFullName: 'Lector',
+    reader: 'Lector',
     amount: 'Monto',
     paymentDate: 'Fecha pago',
     method: 'Método',

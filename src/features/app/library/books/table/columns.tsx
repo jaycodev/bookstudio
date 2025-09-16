@@ -49,10 +49,10 @@ export const columns: ColumnDef<BookList>[] = [
   {
     accessorKey: 'title',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'title')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const title = row.getValue<string>('title')
+    cell: ({ getValue, row }) => {
+      const title = getValue<string>()
       const coverUrl = row.original.coverUrl
 
       return (
@@ -78,7 +78,7 @@ export const columns: ColumnDef<BookList>[] = [
     id: 'category',
     accessorFn: (row) => String(row.category.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'category')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
       const name = row.original.category.name
@@ -103,7 +103,7 @@ export const columns: ColumnDef<BookList>[] = [
     id: 'publisher',
     accessorFn: (row) => String(row.publisher.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'publisher')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
       const name = row.original.publisher.name
@@ -128,7 +128,7 @@ export const columns: ColumnDef<BookList>[] = [
     id: 'language',
     accessorFn: (row) => String(row.language.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'language')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
       const code = row.original.language.code
@@ -165,34 +165,11 @@ export const columns: ColumnDef<BookList>[] = [
       return value.includes(row.getValue(id))
     },
   },
-
-  // Filter
   {
-    id: 'loanStatus',
+    id: 'copiesLoaned',
     accessorFn: (row) => (row.copies.loaned > 0 ? 'loaned' : 'notLoaned'),
-    header: () => null,
-    cell: () => null,
-    enableSorting: false,
-    enableHiding: false,
-    size: 0,
-    minSize: 0,
-    maxSize: 0,
-    meta: {
-      cellClass: 'hidden',
-      headerClass: 'hidden',
-      filter: {
-        title: getColumnLabel(resource, 'copiesLoaned'),
-        options: loanOptions,
-      },
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
-  },
-  {
-    accessorKey: 'copiesLoaned',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'copiesLoaned')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
       const value = row.original.copies.loaned
@@ -220,28 +197,11 @@ export const columns: ColumnDef<BookList>[] = [
       )
     },
     meta: {
-      headerClass: 'text-center',
       cellClass: 'text-center',
-    },
-  },
-
-  // Filter
-  {
-    id: 'availabilityStatus',
-    accessorFn: (row) => (row.copies.available > 0 ? 'available' : 'notAvailable'),
-    header: () => null,
-    cell: () => null,
-    enableSorting: false,
-    enableHiding: false,
-    size: 0,
-    minSize: 0,
-    maxSize: 0,
-    meta: {
-      cellClass: 'hidden',
-      headerClass: 'hidden',
+      headerClass: 'text-center',
       filter: {
-        title: getColumnLabel(resource, 'copiesAvailable'),
-        options: availabilityOptions,
+        title: getColumnLabel(resource, 'copiesLoaned'),
+        options: loanOptions,
       },
     },
     filterFn: (row, id, value) => {
@@ -249,9 +209,10 @@ export const columns: ColumnDef<BookList>[] = [
     },
   },
   {
-    accessorKey: 'copiesAvailable',
+    id: 'copiesAvailable',
+    accessorFn: (row) => (row.copies.available > 0 ? 'available' : 'notAvailable'),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'copiesAvailable')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
       const value = row.original.copies.available
@@ -281,16 +242,22 @@ export const columns: ColumnDef<BookList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
+      filter: {
+        title: getColumnLabel(resource, 'copiesAvailable'),
+        options: availabilityOptions,
+      },
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
     },
   },
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusBadges>('status')
-      const meta = statusBadges[status]
+      const meta = statusBadges[row.original.status]
 
       if (!meta) return null
       const Icon = meta.icon

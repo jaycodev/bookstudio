@@ -41,10 +41,10 @@ export const columns: ColumnDef<AuthorList>[] = [
   {
     accessorKey: 'name',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'name')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const name = row.getValue<string>('name')
+    cell: ({ getValue, row }) => {
+      const name = getValue<string>()
       const photoUrl = row.original.photoUrl
 
       return (
@@ -70,7 +70,7 @@ export const columns: ColumnDef<AuthorList>[] = [
     id: 'nationality',
     accessorFn: (row) => String(row.nationality.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationality')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
       const code = row.original.nationality.code
@@ -97,15 +97,15 @@ export const columns: ColumnDef<AuthorList>[] = [
   {
     accessorKey: 'birthDate',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'birthDate')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     meta: {
       dateRangeFilter: true,
       headerClass: 'text-center',
       cellClass: 'text-center',
     },
-    cell: ({ row }) => {
-      const birthDate = new Date(row.getValue('birthDate'))
+    cell: ({ getValue }) => {
+      const birthDate = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
         day: '2-digit',
         month: 'short',
@@ -130,11 +130,10 @@ export const columns: ColumnDef<AuthorList>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusBadges>('status')
-      const meta = statusBadges[status]
+      const meta = statusBadges[row.original.status]
 
       if (!meta) return null
       const Icon = meta.icon

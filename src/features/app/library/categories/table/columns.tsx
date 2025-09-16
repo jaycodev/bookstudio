@@ -40,7 +40,7 @@ export const columns: ColumnDef<CategoryList>[] = [
   {
     accessorKey: 'name',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'name')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     meta: {
       searchable: true,
@@ -49,7 +49,7 @@ export const columns: ColumnDef<CategoryList>[] = [
   {
     accessorKey: 'level',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'level')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     enableSorting: false,
     meta: {
@@ -59,8 +59,7 @@ export const columns: ColumnDef<CategoryList>[] = [
       },
     },
     cell: ({ row }) => {
-      const level = row.getValue<keyof typeof levelBadges>('level')
-      const meta = levelBadges[level]
+      const meta = levelBadges[row.original.level]
 
       if (!meta) return null
       const Icon = meta.icon
@@ -79,18 +78,17 @@ export const columns: ColumnDef<CategoryList>[] = [
   {
     accessorKey: 'description',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'description')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     enableSorting: false,
   },
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusBadges>('status')
-      const meta = statusBadges[status]
+      const meta = statusBadges[row.original.status]
 
       if (!meta) return null
       const Icon = meta.icon

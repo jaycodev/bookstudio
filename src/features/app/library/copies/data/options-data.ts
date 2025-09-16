@@ -5,8 +5,8 @@ import { statusBadges } from '../components/badges/status.ts'
 import booksOptionsJson from '../data/books-options.json'
 
 export const booksOptions: FilterOption[] = booksOptionsJson.map((book) => ({
-  value: String(book.id),
-  label: book.title,
+  value: String(book.value),
+  label: book.label,
 }))
 
 export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(

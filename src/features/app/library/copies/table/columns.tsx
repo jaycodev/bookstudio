@@ -42,10 +42,10 @@ export const columns: ColumnDef<CopyList>[] = [
   {
     accessorKey: 'code',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'code')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('code')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <Boxes className="mr-1" />
@@ -58,35 +58,33 @@ export const columns: ColumnDef<CopyList>[] = [
     },
   },
   {
-    id: 'bookId',
-    accessorFn: (row) => String(row.bookId),
+    id: 'book',
+    accessorFn: (row) => String(row.book.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'bookId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const bookTitle = row.original.bookTitle
-      const bookCoverUrl = row.original.bookCoverUrl
+      const title = row.original.book.title
+      const coverUrl = row.original.book.coverUrl
 
       return (
         <div className="flex items-center gap-2">
           <Avatar className="rounded-sm">
-            {bookCoverUrl ? (
-              <AvatarImage src={bookCoverUrl} alt={bookTitle} className="object-cover" />
+            {coverUrl ? (
+              <AvatarImage src={coverUrl} alt={title} className="object-cover" />
             ) : (
               <AvatarFallback className="text-xs object-cover rounded-sm">
                 <BookText className="size-5 text-muted-foreground" />
               </AvatarFallback>
             )}
           </Avatar>
-          <span className="truncate max-w-[14rem] text-sm leading-snug break-words">
-            {bookTitle}
-          </span>
+          <span className="truncate max-w-[14rem] text-sm leading-snug break-words">{title}</span>
         </div>
       )
     },
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'bookId'),
+        title: getColumnLabel(resource, 'book'),
         options: booksOptions,
       },
     },
@@ -95,12 +93,13 @@ export const columns: ColumnDef<CopyList>[] = [
     },
   },
   {
-    accessorKey: 'shelfCode',
+    id: 'shelf',
+    accessorFn: (row) => String(row.shelf.code),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'shelfCode')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('shelfCode')
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
       return (
         <Badge variant="outline" className="font-mono">
           <Archive className="mr-1" />
@@ -115,16 +114,17 @@ export const columns: ColumnDef<CopyList>[] = [
     },
   },
   {
-    accessorKey: 'shelfFloor',
+    id: 'floor',
+    accessorFn: (row) => String(row.shelf.floor),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'shelfFloor')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('shelfFloor')
+    cell: ({ getValue }) => {
+      const floor = getValue<string>()
       return (
         <Badge variant="outline">
           <Layers className="mr-1" />
-          {code}
+          {floor}
         </Badge>
       )
     },
@@ -135,16 +135,17 @@ export const columns: ColumnDef<CopyList>[] = [
     },
   },
   {
-    accessorKey: 'locationName',
+    id: 'location',
+    accessorFn: (row) => String(row.location.name),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'locationName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const code = row.getValue<string>('locationName')
+    cell: ({ getValue }) => {
+      const name = getValue<string>()
       return (
         <Badge variant="outline">
           <MapPin className="mr-1" />
-          {code}
+          {name}
         </Badge>
       )
     },
@@ -153,11 +154,10 @@ export const columns: ColumnDef<CopyList>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusBadges>('status')
-      const meta = statusBadges[status]
+      const meta = statusBadges[row.original.status]
 
       if (!meta) return null
       const Icon = meta.icon
@@ -185,11 +185,10 @@ export const columns: ColumnDef<CopyList>[] = [
   {
     accessorKey: 'condition',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'condition')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const condition = row.getValue<keyof typeof conditionBadges>('condition')
-      const meta = conditionBadges[condition]
+      const meta = conditionBadges[row.original.condition]
 
       if (!meta) return null
       const Icon = meta.icon

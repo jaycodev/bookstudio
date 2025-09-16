@@ -1,6 +1,6 @@
-import ErrorLayout from '../layout'
+import { ErrorLayout } from '../layout'
 
-export default function ForbiddenError() {
+export function ForbiddenError() {
   return (
     <ErrorLayout
       status={403}

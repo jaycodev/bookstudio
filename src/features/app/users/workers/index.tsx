@@ -9,8 +9,6 @@ const data: Worker[] = rawData.map((worker) => ({
   Role: worker.Role === 'administrador' ? 'administrador' : 'bibliotecario',
 }))
 
-const WorkersPage = () => {
+export function WorkersPage() {
   return <DataTable columns={columns} data={data} resource="users" />
 }
-
-export default WorkersPage

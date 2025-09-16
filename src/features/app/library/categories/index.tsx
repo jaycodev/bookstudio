@@ -16,7 +16,7 @@ try {
   data = []
 }
 
-const CategoriesPage = () => {
+export function CategoriesPage() {
   return (
     <>
       <Breadcrumbs />
@@ -31,5 +31,3 @@ const CategoriesPage = () => {
     </>
   )
 }
-
-export default CategoriesPage

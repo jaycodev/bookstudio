@@ -43,7 +43,7 @@ const resetPasswordSchema = z
 
 type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>
 
-const ResetPasswordPage = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
+export function ResetPasswordPage({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
   const form = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
     mode: 'onChange',
@@ -117,5 +117,3 @@ const ResetPasswordPage = ({ className, ...props }: React.ComponentPropsWithoutR
     </div>
   )
 }
-
-export default ResetPasswordPage

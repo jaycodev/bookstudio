@@ -16,7 +16,7 @@ try {
   data = []
 }
 
-const FinesPage = () => {
+export function FinesPage() {
   return (
     <>
       <Breadcrumbs />
@@ -31,5 +31,3 @@ const FinesPage = () => {
     </>
   )
 }
-
-export default FinesPage

@@ -17,7 +17,7 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>
 
-const LoginPage = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
+export function LoginPage({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
   const navigate = useNavigate()
 
   const form = useForm<LoginFormValues>({
@@ -107,5 +107,3 @@ const LoginPage = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'
     </div>
   )
 }
-
-export default LoginPage

@@ -19,7 +19,7 @@ try {
   data = []
 }
 
-const PaymentsPage = () => {
+export function PaymentsPage() {
   return (
     <>
       <Breadcrumbs />
@@ -34,5 +34,3 @@ const PaymentsPage = () => {
     </>
   )
 }
-
-export default PaymentsPage

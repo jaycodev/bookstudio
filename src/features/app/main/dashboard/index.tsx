@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
 
-const DashboardPage = () => {
+export function DashboardPage() {
   return (
     <>
       <Breadcrumbs />
@@ -100,5 +100,3 @@ const DashboardPage = () => {
     </>
   )
 }
-
-export default DashboardPage

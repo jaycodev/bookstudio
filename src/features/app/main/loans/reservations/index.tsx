@@ -19,7 +19,7 @@ try {
   data = []
 }
 
-const ReservationsPage = () => {
+export function ReservationsPage() {
   return (
     <>
       <Breadcrumbs />
@@ -34,5 +34,3 @@ const ReservationsPage = () => {
     </>
   )
 }
-
-export default ReservationsPage

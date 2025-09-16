@@ -16,7 +16,7 @@ try {
   data = []
 }
 
-const LoansPage = () => {
+export function LoansPage() {
   return (
     <>
       <Breadcrumbs />
@@ -31,5 +31,3 @@ const LoansPage = () => {
     </>
   )
 }
-
-export default LoansPage

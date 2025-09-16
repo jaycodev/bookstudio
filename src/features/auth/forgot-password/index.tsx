@@ -22,7 +22,7 @@ const forgotPasswordSchema = z.object({
 
 type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>
 
-const ForgotPasswordPage = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
+export function ForgotPasswordPage({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
   const form = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
     mode: 'onChange',
@@ -83,5 +83,3 @@ const ForgotPasswordPage = ({ className, ...props }: React.ComponentPropsWithout
     </div>
   )
 }
-
-export default ForgotPasswordPage

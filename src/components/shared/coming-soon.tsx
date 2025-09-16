@@ -1,6 +1,6 @@
 import { Rocket } from 'lucide-react'
 
-export default function ComingSoon() {
+export function ComingSoon() {
   return (
     <div className="flex h-full w-full items-center justify-center px-4">
       <div className="flex flex-col items-center justify-center gap-2 text-center">

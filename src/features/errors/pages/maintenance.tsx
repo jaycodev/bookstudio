@@ -2,9 +2,9 @@ import { Info } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-import ErrorLayout from '../layout'
+import { ErrorLayout } from '../layout'
 
-export default function MaintenanceError() {
+export function MaintenanceError() {
   return (
     <ErrorLayout
       status={503}

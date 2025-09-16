@@ -16,7 +16,7 @@ try {
   data = []
 }
 
-const AuthorsPage = () => {
+export function AuthorsPage() {
   return (
     <>
       <Breadcrumbs />
@@ -31,5 +31,3 @@ const AuthorsPage = () => {
     </>
   )
 }
-
-export default AuthorsPage

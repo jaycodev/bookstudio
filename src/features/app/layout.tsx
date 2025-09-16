@@ -13,7 +13,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-export default function AppLayout({ children }: Props) {
+export function AppLayout({ children }: Props) {
   return (
     <SearchProvider>
       <SidebarProvider>

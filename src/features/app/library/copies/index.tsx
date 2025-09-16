@@ -16,7 +16,7 @@ try {
   data = []
 }
 
-const CopiesPage = () => {
+export function CopiesPage() {
   return (
     <>
       <Breadcrumbs />
@@ -31,5 +31,3 @@ const CopiesPage = () => {
     </>
   )
 }
-
-export default CopiesPage

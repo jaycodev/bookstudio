@@ -11,13 +11,7 @@ interface Props {
   actions?: React.ReactNode
 }
 
-export default function ErrorLayout({
-  status,
-  title,
-  message,
-  showActions = true,
-  actions,
-}: Props) {
+export function ErrorLayout({ status, title, message, showActions = true, actions }: Props) {
   const navigate = useNavigate()
   const { history } = useRouter()
 

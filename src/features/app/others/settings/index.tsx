@@ -117,7 +117,7 @@ const passwordDefaults: Partial<PasswordFormValues> = {
   confirmNewPassword: '',
 }
 
-const SettingsPage = () => {
+export function SettingsPage() {
   const photoForm = useForm<PhotoFormValues>({
     resolver: zodResolver(photoSchema),
     defaultValues: { photo: null },
@@ -414,5 +414,3 @@ const SettingsPage = () => {
     </div>
   )
 }
-
-export default SettingsPage

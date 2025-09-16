@@ -9,8 +9,6 @@ const data: Reader[] = rawData.map((reader) => ({
   Status: reader.Status === 'activo' ? 'activo' : 'inactivo',
 }))
 
-const ReadersPage = () => {
+export function ReadersPage() {
   return <DataTable columns={columns} data={data} resource="students" />
 }
-
-export default ReadersPage

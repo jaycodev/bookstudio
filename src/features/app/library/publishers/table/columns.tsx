@@ -41,10 +41,10 @@ export const columns: ColumnDef<PublisherList>[] = [
   {
     accessorKey: 'name',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'name')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const name = row.getValue<string>('name')
+    cell: ({ getValue, row }) => {
+      const name = getValue<string>()
       const photoUrl = row.original.photoUrl
 
       return (
@@ -67,14 +67,14 @@ export const columns: ColumnDef<PublisherList>[] = [
     },
   },
   {
-    id: 'nationalityId',
-    accessorFn: (row) => String(row.nationalityId),
+    id: 'nationality',
+    accessorFn: (row) => String(row.nationality.id),
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'nationalityId')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const code = row.original.nationalityCode
-      const name = row.original.nationalityName
+      const code = row.original.nationality.code
+      const name = row.original.nationality.name
 
       return (
         <Badge variant="outline">
@@ -86,7 +86,7 @@ export const columns: ColumnDef<PublisherList>[] = [
     enableSorting: false,
     meta: {
       filter: {
-        title: getColumnLabel(resource, 'nationalityId'),
+        title: getColumnLabel(resource, 'nationality'),
         options: nationalitiesOptions,
       },
     },
@@ -97,21 +97,18 @@ export const columns: ColumnDef<PublisherList>[] = [
   {
     accessorKey: 'website',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'website')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      let website = row.getValue('website') as string | null
-
+    cell: ({ getValue }) => {
+      const website = getValue<string>()
       if (!website) return null
 
-      if (!/^https?:\/\//i.test(website)) {
-        website = `https://${website}`
-      }
+      const url = /^https?:\/\//i.test(website) ? website : `https://${website}`
 
       return (
         <Badge variant="outline" className="flex items-center gap-1">
-          <a href={website} target="_blank" rel="noopener noreferrer" className="hover:underline">
-            {row.getValue('website') as string}
+          <a href={url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+            {website}
           </a>
         </Badge>
       )
@@ -121,10 +118,10 @@ export const columns: ColumnDef<PublisherList>[] = [
   {
     accessorKey: 'address',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'address')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const address = row.getValue('address') as string
+    cell: ({ getValue }) => {
+      const address = getValue<string>()
       return (
         <Badge variant="outline">
           <MapPin className="mr-1" />
@@ -137,11 +134,10 @@ export const columns: ColumnDef<PublisherList>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'status')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ row }) => {
-      const status = row.getValue<keyof typeof statusBadges>('status')
-      const meta = statusBadges[status]
+      const meta = statusBadges[row.original.status]
 
       if (!meta) return null
       const Icon = meta.icon

@@ -3,9 +3,11 @@
     "id": 20,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-Z5B40zh6694uqvZB6XbpLHkJ5dPbV_TuK0VhPrw5WtwfcNM3eZ1M3agJR6czbcKlz38",
     "name": "Ediciones B",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.edicionesb.com",
     "address": "Barcelona, España",
     "status": "ACTIVO"
@@ -14,9 +16,11 @@
     "id": 19,
     "photoUrl": "https://pbs.twimg.com/profile_images/1369193039466553345/bmhVCrT7_400x400.jpg",
     "name": "Alianza Editorial",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.alianzaeditorial.es",
     "address": "Madrid, España",
     "status": "INACTIVO"
@@ -25,9 +29,11 @@
     "id": 18,
     "photoUrl": "https://casatomadalibreriacafe.com/wp-content/uploads/2020/09/logo_CRITICA.jpg",
     "name": "Crítica",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.ed-critica.es",
     "address": "Barcelona, España",
     "status": "ACTIVO"
@@ -36,9 +42,11 @@
     "id": 17,
     "photoUrl": "https://hablemos-escritoras-as.s3.us-west-1.amazonaws.com/variants/wgnm367hidp8j4s1pmefduijvyfv/fec9312db351f781c0197cc9c4f9c66013b1e39507ba1aecf24862b67be970f0",
     "name": "Debolsillo",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.penguinlibros.com",
     "address": "Barcelona, España",
     "status": "ACTIVO"
@@ -47,9 +55,11 @@
     "id": 16,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyiLwCL41nSe1jcHg4uee2dCZyBUGr4HS3bg&s",
     "name": "Salamandra",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.salamandra.info",
     "address": "Barcelona, España",
     "status": "ACTIVO"
@@ -58,9 +68,11 @@
     "id": 15,
     "photoUrl": "https://es.babelio.com/users/EDIG_Andres-Bello_9631.jpg",
     "name": "Editorial Andrés Bello",
-    "nationalityId": 6,
-    "nationalityCode": "cl",
-    "nationalityName": "Chilena",
+    "nationality": {
+      "id": 6,
+      "code": "cl",
+      "name": "Chilena"
+    },
     "website": "www.andresbello.cl",
     "address": "Santiago, Chile",
     "status": "ACTIVO"
@@ -69,9 +81,11 @@
     "id": 14,
     "photoUrl": "https://http2.mlstatic.com/D_NQ_NP_718679-MLM31408428279_072019-O.webp",
     "name": "Editorial Porrúa",
-    "nationalityId": 4,
-    "nationalityCode": "mx",
-    "nationalityName": "Mexicana",
+    "nationality": {
+      "id": 4,
+      "code": "mx",
+      "name": "Mexicana"
+    },
     "website": "www.porrua.com",
     "address": "Ciudad de México, México",
     "status": "ACTIVO"
@@ -80,9 +94,11 @@
     "id": 13,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqIiS61_tgWiFOKdEiulmL8jZZkt0f6wbj6Q&s",
     "name": "Emecé Editores",
-    "nationalityId": 3,
-    "nationalityCode": "ar",
-    "nationalityName": "Argentina",
+    "nationality": {
+      "id": 3,
+      "code": "ar",
+      "name": "Argentina"
+    },
     "website": "www.emece.com.ar",
     "address": "Buenos Aires, Argentina",
     "status": "INACTIVO"
@@ -91,9 +107,11 @@
     "id": 12,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQijPZ8s7YKGiJUWwnBZqojCS0rfCWUw6d1Tw&s",
     "name": "Editorial Sudamericana",
-    "nationalityId": 3,
-    "nationalityCode": "ar",
-    "nationalityName": "Argentina",
+    "nationality": {
+      "id": 3,
+      "code": "ar",
+      "name": "Argentina"
+    },
     "website": "www.sudamericanalibros.com.ar",
     "address": "Buenos Aires, Argentina",
     "status": "ACTIVO"
@@ -102,9 +120,11 @@
     "id": 11,
     "photoUrl": "https://pbs.twimg.com/profile_images/887441240110751744/mwP27QIB_400x400.jpg",
     "name": "Editorial Norma",
-    "nationalityId": 5,
-    "nationalityCode": "co",
-    "nationalityName": "Colombiana",
+    "nationality": {
+      "id": 5,
+      "code": "co",
+      "name": "Colombiana"
+    },
     "website": "www.librerianorma.com",
     "address": "Bogotá, Colombia",
     "status": "ACTIVO"
@@ -113,9 +133,11 @@
     "id": 10,
     "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL5wYUc7Sdg3cfgS7eKvaaDBX6xpxD2mUEsg&s",
     "name": "Peisa",
-    "nationalityId": 1,
-    "nationalityCode": "pe",
-    "nationalityName": "Peruana",
+    "nationality": {
+      "id": 1,
+      "code": "pe",
+      "name": "Peruana"
+    },
     "website": "www.peisa.com.pe",
     "address": "Lima, Perú",
     "status": "ACTIVO"
@@ -124,9 +146,11 @@
     "id": 9,
     "photoUrl": null,
     "name": "Tusquets",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.tusquetseditores.com",
     "address": "Barcelona, España",
     "status": "INACTIVO"
@@ -135,9 +159,11 @@
     "id": 8,
     "photoUrl": null,
     "name": "Cátedra",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.catedra.com",
     "address": "Madrid, España",
     "status": "ACTIVO"
@@ -146,9 +172,11 @@
     "id": 7,
     "photoUrl": null,
     "name": "Seix Barral",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.seixbarral.es",
     "address": "Barcelona, España",
     "status": "ACTIVO"
@@ -157,9 +185,11 @@
     "id": 6,
     "photoUrl": null,
     "name": "Fondo de Cultura Económica",
-    "nationalityId": 4,
-    "nationalityCode": "mx",
-    "nationalityName": "Mexicana",
+    "nationality": {
+      "id": 4,
+      "code": "mx",
+      "name": "Mexicana"
+    },
     "website": "www.fondodeculturaeconomica.com",
     "address": "Ciudad de México, México",
     "status": "ACTIVO"
@@ -168,9 +198,11 @@
     "id": 5,
     "photoUrl": null,
     "name": "Anagrama",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.anagrama-ed.es",
     "address": "Barcelona, España",
     "status": "INACTIVO"
@@ -179,9 +211,11 @@
     "id": 4,
     "photoUrl": null,
     "name": "Santillana",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.santillana.com",
     "address": "Madrid, España",
     "status": "ACTIVO"
@@ -190,9 +224,11 @@
     "id": 3,
     "photoUrl": null,
     "name": "Penguin Random House",
-    "nationalityId": 7,
-    "nationalityCode": "us",
-    "nationalityName": "Estadounidense",
+    "nationality": {
+      "id": 7,
+      "code": "us",
+      "name": "Estadounidense"
+    },
     "website": "www.penguinrandomhouse.com",
     "address": "New York, Estados Unidos",
     "status": "ACTIVO"
@@ -201,9 +237,11 @@
     "id": 2,
     "photoUrl": null,
     "name": "Alfaguara",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.alfaguara.com",
     "address": "Calle Torrelaguna 60, Madrid, España",
     "status": "ACTIVO"
@@ -212,9 +250,11 @@
     "id": 1,
     "photoUrl": null,
     "name": "Planeta",
-    "nationalityId": 2,
-    "nationalityCode": "es",
-    "nationalityName": "Española",
+    "nationality": {
+      "id": 2,
+      "code": "es",
+      "name": "Española"
+    },
     "website": "www.planeta.es",
     "address": "Av. Diagonal 662-664, Barcelona, España",
     "status": "ACTIVO"

@@ -25,7 +25,7 @@ export function ReadersPage() {
         data={data}
         resource="readers"
         title="Lectores"
-        description="Miembros activos."
+        description="Seguimiento de miembros."
         icon={BookOpenText}
       />
     </>

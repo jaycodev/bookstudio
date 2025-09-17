@@ -97,6 +97,11 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     role: 'Rol',
     status: 'Estado',
   },
+  roles: {
+    name: 'Nombre',
+    description: 'Descripción',
+    permissions: 'Permisos',
+  },
 }
 
 export function getColumnLabel(resource: string, columnId: string): string {

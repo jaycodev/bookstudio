@@ -25,7 +25,7 @@ export function WorkersPage() {
         data={data}
         resource="workers"
         title="Trabajadores"
-        description="Control de personal."
+        description="Administra tu equipo."
         icon={Briefcase}
       />
     </>

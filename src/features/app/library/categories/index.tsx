@@ -12,7 +12,10 @@ let data: CategoryList[] = []
 try {
   data = categoryListSchema.array().parse(rawData)
 } catch (error) {
-  console.error('Failed to parse book data. Please check the structure of your JSON file.', error)
+  console.error(
+    'Failed to parse category data. Please check the structure of your JSON file.',
+    error
+  )
   data = []
 }
 

@@ -1,0 +1,162 @@
+[
+  {
+    "id": 20,
+    "name": "Préstamos Especiales",
+    "description": "Material audiovisual y multimedia",
+    "shelfCount": 1,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 19,
+    "name": "Talleres",
+    "description": "Salas para actividades académicas",
+    "shelfCount": 1,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 18,
+    "name": "Cafetería",
+    "description": "Área de alimentación y socialización",
+    "shelfCount": 0,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 17,
+    "name": "Auditorio",
+    "description": "Espacio para conferencias y presentaciones",
+    "shelfCount": 0,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 16,
+    "name": "Biblioteca Digital",
+    "description": "Acceso a recursos electrónicos",
+    "shelfCount": 1,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 15,
+    "name": "Ludoteca",
+    "description": "Espacio de juegos educativos para niños",
+    "shelfCount": 1,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 14,
+    "name": "Exposiciones",
+    "description": "Área para exhibiciones temporales",
+    "shelfCount": 1,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 13,
+    "name": "Área de Descanso",
+    "description": "Zona de relajación y lectura informal",
+    "shelfCount": 0,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 12,
+    "name": "Cubículos de Estudio",
+    "description": "Espacios individuales de estudio",
+    "shelfCount": 0,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 11,
+    "name": "Sala de Conferencias",
+    "description": "Espacio para eventos académicos",
+    "shelfCount": 0,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 10,
+    "name": "Archivo Histórico",
+    "description": "Documentos y libros antiguos",
+    "shelfCount": 1,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 9,
+    "name": "Recepción",
+    "description": "Área de información y orientación",
+    "shelfCount": 0,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 8,
+    "name": "Sala de Computadoras",
+    "description": "Área con acceso a recursos digitales",
+    "shelfCount": 1,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 7,
+    "name": "Sala de Investigación",
+    "description": "Área especializada para investigadores",
+    "shelfCount": 4,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 6,
+    "name": "Depósito",
+    "description": "Almacén de libros no disponibles para préstamo",
+    "shelfCount": 3,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 5,
+    "name": "Sala de Referencia",
+    "description": "Enciclopedias y obras de consulta",
+    "shelfCount": 4,
+    "bookCount": 1,
+    "copyCount": 2
+  },
+  {
+    "id": 4,
+    "name": "Sala Infantil",
+    "description": "Área destinada a niños y literatura infantil",
+    "shelfCount": 5,
+    "bookCount": 4,
+    "copyCount": 21
+  },
+  {
+    "id": 3,
+    "name": "Hemeroteca",
+    "description": "Sección de revistas y periódicos",
+    "shelfCount": 3,
+    "bookCount": 0,
+    "copyCount": 0
+  },
+  {
+    "id": 2,
+    "name": "Sala de Estudio",
+    "description": "Área silenciosa para estudio individual",
+    "shelfCount": 8,
+    "bookCount": 6,
+    "copyCount": 19
+  },
+  {
+    "id": 1,
+    "name": "Sala General",
+    "description": "Sala principal con literatura general y consulta",
+    "shelfCount": 10,
+    "bookCount": 18,
+    "copyCount": 56
+  }
+]

@@ -37,7 +37,7 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     readerCode: 'Cód. lector',
     reader: 'Lector',
     loanDate: 'Fecha préstamo',
-    itemCount: 'Ejemplares',
+    items: 'Ejemplares',
     statusCounts: 'Estados',
   },
   reservations: {
@@ -73,6 +73,13 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     website: 'Sitio web',
     address: 'Dirección',
     status: 'Estado',
+  },
+  locations: {
+    name: 'Nombre',
+    description: 'Descripción',
+    shelves: 'Estantes',
+    books: 'Libros',
+    copies: 'Ejemplares',
   },
   students: {
     StudentID: 'ID',

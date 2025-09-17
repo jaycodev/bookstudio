@@ -126,7 +126,8 @@ export const columns: ColumnDef<LoanList>[] = [
     },
   },
   {
-    accessorKey: 'itemCount',
+    id: 'items',
+    accessorFn: (row) => String(row.itemCount),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),

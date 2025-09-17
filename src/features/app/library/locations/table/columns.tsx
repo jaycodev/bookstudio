@@ -1,19 +1,23 @@
 import type { ColumnDef } from '@tanstack/react-table'
+import { Archive, BookCopy, Boxes } from 'lucide-react'
 
-import { Badge } from '@/components/ui/badge'
+import { Badge } from '@/components/ui/badge.tsx'
 import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/config/column-labels.ts'
-import { statusBadges } from '@/features/app/components/badges/status.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
 
-import { levelBadges } from '../components/badges/level.ts'
-import { levelOptions, statusOptions } from '../data/options-data.ts'
-import { CategoryList } from '../schema/list.schema.ts'
+import type { LocationList } from '../schema/list.schema.ts'
 
-const resource = 'categories'
+const resource = 'locations'
 
-export const columns: ColumnDef<CategoryList>[] = [
+const getBadgeVariant = (value: number) => {
+  if (value === 0) return 'muted'
+  if (value <= 10) return 'warning'
+  return 'brand'
+}
+
+export const columns: ColumnDef<LocationList>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -47,73 +51,76 @@ export const columns: ColumnDef<CategoryList>[] = [
     },
   },
   {
-    accessorKey: 'level',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
-    enableSorting: false,
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'level'),
-        options: levelOptions,
-      },
-    },
-    cell: ({ row }) => {
-      const meta = levelBadges[row.original.level]
-
-      if (!meta) return null
-      const Icon = meta.icon
-
-      return (
-        <Badge variant={meta.variant}>
-          <Icon className="mr-1" />
-          {meta.label}
-        </Badge>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
-  },
-  {
     accessorKey: 'description',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     cell: ({ getValue }) => {
-      return <span className="truncate block max-w-[34rem] text-sm">{getValue<string>()}</span>
+      return <span className="truncate block max-w-[30rem] text-sm">{getValue<string>()}</span>
     },
     enableSorting: false,
   },
   {
-    accessorKey: 'status',
+    id: 'shelves',
+    accessorFn: (row) => row.shelfCount,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    cell: ({ row }) => {
-      const meta = statusBadges[row.original.status]
-
-      if (!meta) return null
-      const Icon = meta.icon
-
+    cell: ({ getValue }) => {
+      const value = getValue<number>()
+      const displayValue = value === 0 ? '-' : value
       return (
-        <Badge variant={meta.variant}>
-          <Icon className="mr-1" />
-          {meta.label}
+        <Badge variant={getBadgeVariant(value)}>
+          <Archive className="mr-1" />
+          {displayValue}
         </Badge>
       )
     },
-    enableSorting: false,
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
-        options: statusOptions,
-      },
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+  },
+  {
+    id: 'books',
+    accessorFn: (row) => row.bookCount,
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
+    ),
+    cell: ({ getValue }) => {
+      const value = getValue<number>()
+      const displayValue = value === 0 ? '-' : value
+      return (
+        <Badge variant={getBadgeVariant(value)}>
+          <BookCopy className="mr-1" />
+          {displayValue}
+        </Badge>
+      )
+    },
+    meta: {
+      headerClass: 'text-center',
+      cellClass: 'text-center',
+    },
+  },
+  {
+    id: 'copies',
+    accessorFn: (row) => row.copyCount,
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
+    ),
+    cell: ({ getValue }) => {
+      const value = getValue<number>()
+      const displayValue = value === 0 ? '-' : value
+      return (
+        <Badge variant={getBadgeVariant(value)}>
+          <Boxes className="mr-1" />
+          {displayValue}
+        </Badge>
+      )
+    },
+    meta: {
+      headerClass: 'text-center',
+      cellClass: 'text-center',
     },
   },
   {

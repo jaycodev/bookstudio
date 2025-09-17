@@ -81,14 +81,13 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     books: 'Libros',
     copies: 'Ejemplares',
   },
-  students: {
-    StudentID: 'ID',
-    DNI: 'DNI',
-    FirstName: 'Nombres',
-    LastName: 'Apellidos',
-    Phone: 'Teléfono',
-    Email: 'Correo electrónico',
-    Status: 'Estado',
+  readers: {
+    code: 'Código',
+    fullName: 'Nombre',
+    phone: 'Teléfono',
+    email: 'Correo electrónico',
+    type: 'Tipo',
+    status: 'Estado',
   },
   users: {
     UserID: 'ID',

@@ -1,19 +1,20 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import { CheckCircle2, XCircle } from 'lucide-react'
+import { BookOpenText, Mail, Phone } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { getColumnLabel } from '@/config/column-labels.ts'
 import { DataTableColumnHeader } from '@/features/app/components/data-table/data-table-column-header.tsx'
 import { DataTableRowActions } from '@/features/app/components/data-table/data-table-row-actions.tsx'
-import { cn } from '@/lib/utils'
 
-import { status } from '../data/options-data.ts'
-import { Reader } from '../schema/list.schema.ts'
+import { statusBadges } from '../components/badges/status.ts'
+import { typeBadges } from '../components/badges/type.ts'
+import { statusOptions, typeOptions } from '../data/options-data.ts'
+import { ReaderList } from '../schema/list.schema.ts'
 
-const resource = 'students'
+const resource = 'readers'
 
-export const columns: ColumnDef<Reader>[] = [
+export const columns: ColumnDef<ReaderList>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -38,72 +39,132 @@ export const columns: ColumnDef<Reader>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'StudentID',
+    accessorKey: 'code',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'StudentID')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
+    cell: ({ getValue }) => {
+      const code = getValue<string>()
+      return (
+        <Badge variant="outline" className="font-mono">
+          <BookOpenText className="mr-1" />
+          {code}
+        </Badge>
+      )
+    },
   },
   {
-    accessorKey: 'DNI',
+    accessorKey: 'fullName',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'DNI')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
     meta: {
       searchable: true,
     },
   },
   {
-    accessorKey: 'FirstName',
+    accessorKey: 'phone',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'FirstName')} />
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-  },
-  {
-    accessorKey: 'LastName',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'LastName')} />
-    ),
-  },
-  {
-    accessorKey: 'Phone',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Phone')} />
-    ),
-  },
-  {
-    accessorKey: 'Email',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Email')} />
-    ),
-  },
-  {
-    accessorKey: 'Status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, 'Status')} />
-    ),
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'Status'),
-        options: status,
-      },
-    },
-    cell: ({ row }) => {
-      const status = row.getValue('Status') as Reader['Status']
-      const Icon = status === 'activo' ? CheckCircle2 : XCircle
+    cell: ({ getValue }) => {
+      const phone = getValue<string>()
+      const formattedPhone = phone ? `+51${phone}` : undefined
 
       return (
-        <Badge variant="outline" className="capitalize flex items-center gap-1">
-          <Icon
-            className={cn(
-              'w-4 h-4',
-              status === 'activo' ? 'text-green-500 dark:text-green-400' : 'text-destructive'
-            )}
-          />
-          {status}
+        <Badge variant="outline">
+          <Phone className="mr-1" />
+          {phone ? (
+            <a href={`tel:${formattedPhone}`} className="hover:underline">
+              {phone}
+            </a>
+          ) : (
+            '—'
+          )}
         </Badge>
       )
     },
-    filterFn: (row, id, value) => value.includes(row.getValue(id)),
+    enableSorting: false,
+  },
+  {
+    accessorKey: 'email',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
+    ),
+    cell: ({ getValue }) => {
+      const email = getValue<string>()
+      return (
+        <Badge variant="outline">
+          <Mail className="mr-1" />
+          <a href={`mailto:${email}`} className="hover:underline">
+            {email}
+          </a>
+        </Badge>
+      )
+    },
+    enableSorting: false,
+  },
+  {
+    accessorKey: 'type',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
+    ),
+    cell: ({ row }) => {
+      const meta = typeBadges[row.original.type]
+
+      if (!meta) return null
+      const Icon = meta.icon
+
+      return (
+        <Badge variant={meta.variant}>
+          <Icon className="mr-1" />
+          {meta.label}
+        </Badge>
+      )
+    },
+    enableSorting: false,
+    meta: {
+      headerClass: 'text-center',
+      cellClass: 'text-center',
+      filter: {
+        title: getColumnLabel(resource, 'type'),
+        options: typeOptions,
+      },
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(String(row.getValue(id)))
+    },
+  },
+  {
+    accessorKey: 'status',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
+    ),
+    cell: ({ row }) => {
+      const meta = statusBadges[row.original.status]
+
+      if (!meta) return null
+      const Icon = meta.icon
+
+      return (
+        <Badge variant={meta.variant}>
+          <Icon className="mr-1" />
+          {meta.label}
+        </Badge>
+      )
+    },
+    enableSorting: false,
+    meta: {
+      headerClass: 'text-center',
+      cellClass: 'text-center',
+      filter: {
+        title: getColumnLabel(resource, 'status'),
+        options: statusOptions,
+      },
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(String(row.getValue(id)))
+    },
   },
   {
     id: 'actions',

@@ -1,13 +1,15 @@
 import { z } from 'zod'
 
-export const readerSchema = z.object({
-  StudentID: z.number(),
-  DNI: z.string(),
-  FirstName: z.string(),
-  LastName: z.string(),
-  Phone: z.string().optional(),
-  Email: z.string(),
-  Status: z.enum(['activo', 'inactivo']),
+import { ReaderStatus, ReaderType } from './enums'
+
+export const readerListSchema = z.object({
+  id: z.number(),
+  code: z.string(),
+  fullName: z.string(),
+  phone: z.string(),
+  email: z.string(),
+  type: ReaderType,
+  status: ReaderStatus,
 })
 
-export type Reader = z.infer<typeof readerSchema>
+export type ReaderList = z.infer<typeof readerListSchema>

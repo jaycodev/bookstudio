@@ -1,8 +1,20 @@
-import { CheckCircle2, XCircle } from 'lucide-react'
-
 import { FilterOption } from '@/types/types'
 
-export const status: FilterOption[] = [
-  { label: 'Activo', value: 'activo', icon: CheckCircle2 },
-  { label: 'Inactivo', value: 'inactivo', icon: XCircle },
-]
+import { statusBadges } from '../components/badges/status'
+import { typeBadges } from '../components/badges/type'
+
+export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
+  ([key, { label, icon }]) => ({
+    value: key,
+    label,
+    icon,
+  })
+)
+
+export const typeOptions: FilterOption[] = Object.entries(typeBadges).map(
+  ([key, { label, icon }]) => ({
+    value: key,
+    label,
+    icon,
+  })
+)

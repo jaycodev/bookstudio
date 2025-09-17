@@ -52,15 +52,15 @@ export const columns: ColumnDef<ReaderList>[] = [
         </Badge>
       )
     },
+    meta: {
+      searchable: true,
+    },
   },
   {
     accessorKey: 'fullName',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
     ),
-    meta: {
-      searchable: true,
-    },
   },
   {
     accessorKey: 'phone',

@@ -1,4 +1,4 @@
-import { Activity, AlertTriangle, CircleMinus, type LucideIcon, Trash } from 'lucide-react'
+import { Activity, AlertTriangle, type LucideIcon, Trash } from 'lucide-react'
 
 export const statusBadges = {
   ACTIVO: {
@@ -10,11 +10,6 @@ export const statusBadges = {
     label: 'Suspendido',
     icon: AlertTriangle,
     variant: 'warning',
-  },
-  BLOQUEADO: {
-    label: 'Bloqueado',
-    icon: CircleMinus,
-    variant: 'muted',
   },
   ELIMINADO: {
     label: 'Eliminado',

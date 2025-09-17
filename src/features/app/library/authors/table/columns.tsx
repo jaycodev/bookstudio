@@ -51,7 +51,7 @@ export const columns: ColumnDef<AuthorList>[] = [
         <div className="flex items-center gap-2">
           <Avatar className="rounded-sm">
             {photoUrl ? (
-              <AvatarImage src={photoUrl} alt={name} className="object-cover" />
+              <AvatarImage src={photoUrl} alt={`Foto de ${name}`} className="object-cover" />
             ) : (
               <AvatarFallback className="text-xs object-cover rounded-sm">
                 <User className="size-5 text-muted-foreground" />

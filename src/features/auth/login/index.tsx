@@ -11,7 +11,7 @@ import { PasswordInput } from '@/components/ui/password-input'
 import { cn } from '@/lib/utils'
 
 const loginSchema = z.object({
-  email: z.string().trim().email(),
+  email: z.email().trim(),
   password: z.string().trim().min(8),
 })
 

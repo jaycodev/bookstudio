@@ -16,8 +16,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 
-const forgotPasswordSchema = z.object({
-  email: z.string().trim().email({ message: 'Introduce un correo electrónico válido.' }),
+export const forgotPasswordSchema = z.object({
+  email: z.email({ message: 'Introduce un correo electrónico válido.' }).trim(),
 })
 
 type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>

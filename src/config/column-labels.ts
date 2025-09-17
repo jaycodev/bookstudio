@@ -89,14 +89,13 @@ export const columnLabelsByResource: Record<string, Record<string, string>> = {
     type: 'Tipo',
     status: 'Estado',
   },
-  users: {
-    UserID: 'ID',
-    Username: 'Nombre de usuario',
-    Email: 'Correo electrónico',
-    FirstName: 'Nombres',
-    LastName: 'Apellidos',
-    Role: 'Rol',
-    ProfilePhoto: 'Foto',
+  workers: {
+    profilePhotoUrl: 'Foto',
+    username: 'Nombre usuario',
+    email: 'Correo electrónico',
+    fullName: 'Nombre',
+    role: 'Rol',
+    status: 'Estado',
   },
 }
 

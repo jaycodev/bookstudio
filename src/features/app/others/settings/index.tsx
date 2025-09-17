@@ -54,7 +54,7 @@ const personalSchema = z.object({
     .refine((val) => /^[A-Za-z0-9_]+$/.test(val), {
       message: 'El nombre de usuario solo puede contener letras, números y guiones bajos.',
     }),
-  email: z.string().trim().email({ message: 'Introduce un correo electrónico válido.' }),
+  email: z.email({ message: 'Introduce un correo electrónico válido.' }).trim(),
   firstName: z
     .string()
     .min(2, { message: 'El nombre debe tener al menos 2 caracteres.' })

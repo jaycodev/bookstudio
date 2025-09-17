@@ -7,7 +7,7 @@ export const readerListSchema = z.object({
   code: z.string(),
   fullName: z.string(),
   phone: z.string(),
-  email: z.string(),
+  email: z.email(),
   type: ReaderType,
   status: ReaderStatus,
 })

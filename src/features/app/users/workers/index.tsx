@@ -1,14 +1,33 @@
-import { DataTable } from '@/features/app/components/data-table/data-table.tsx'
+import { Briefcase } from 'lucide-react'
+
+import { Breadcrumbs } from '@/features/app/components/breadcrumbs.tsx'
+import { DataTable } from '@/features/app/components/data-table/data-table'
 
 import rawData from './data/workers.json'
-import { Worker } from './schema/list.schema.ts'
-import { columns } from './table/columns.tsx'
+import { WorkerList, workerListSchema } from './schema/list.schema.ts'
+import { columns } from './table/columns'
 
-const data: Worker[] = rawData.map((worker) => ({
-  ...worker,
-  Role: worker.Role === 'administrador' ? 'administrador' : 'bibliotecario',
-}))
+let data: WorkerList[] = []
+
+try {
+  data = workerListSchema.array().parse(rawData)
+} catch (error) {
+  console.error('Failed to parse worker data. Please check the structure of your JSON file.', error)
+  data = []
+}
 
 export function WorkersPage() {
-  return <DataTable columns={columns} data={data} resource="users" />
+  return (
+    <>
+      <Breadcrumbs />
+      <DataTable
+        columns={columns}
+        data={data}
+        resource="workers"
+        title="Trabajadores"
+        description="Control de personal."
+        icon={Briefcase}
+      />
+    </>
+  )
 }

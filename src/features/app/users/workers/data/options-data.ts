@@ -1,8 +1,17 @@
-import { BookUser, ShieldUser } from 'lucide-react'
-
 import { FilterOption } from '@/types/types'
 
-export const roles: FilterOption[] = [
-  { label: 'Administrador', value: 'administrador', icon: ShieldUser },
-  { label: 'Bibliotecario', value: 'bibliotecario', icon: BookUser },
-]
+import { statusBadges } from '../components/badges/status'
+import rolesOptionsJson from '../data/roles-options.json'
+
+export const rolesOptions: FilterOption[] = rolesOptionsJson.map((role) => ({
+  value: String(role.value),
+  label: role.label,
+}))
+
+export const statusOptions: FilterOption[] = Object.entries(statusBadges).map(
+  ([key, { label, icon }]) => ({
+    value: key,
+    label,
+    icon,
+  })
+)

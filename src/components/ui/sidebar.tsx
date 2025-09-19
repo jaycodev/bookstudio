@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useEffect, useRef } from 'react'
+
 import { Slot } from '@radix-ui/react-slot'
 import { useLocation } from '@tanstack/react-router'
 import { cva, VariantProps } from 'class-variance-authority'

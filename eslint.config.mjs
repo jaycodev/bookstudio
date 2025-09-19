@@ -46,8 +46,8 @@ export default defineConfig([
         'warn',
         {
           groups: [
-            ['^react$', '^@?\\w'],
-            ['^\\u0000'],
+            ['^react$', '^react/'],
+            ['^@?\\w'],
             ['^@/'],
             ['^\\.\\.(?!/?$)', '^\\./'],
             ['\\.css$', '\\.scss$', '\\.less$'],

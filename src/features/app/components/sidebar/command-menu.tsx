@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useNavigate } from '@tanstack/react-router'
 import { ArrowRight, ChevronRight, LaptopMinimal, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'

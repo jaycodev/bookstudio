@@ -1,6 +1,4 @@
-# Build
-node_modules/
-dist/
-.build/
-public/vendor/
-**/*.min.js
+node_modules
+.next
+dist
+build

@@ -13,9 +13,7 @@ export default {
   overrides: [
     {
       files: ['*.tsx', '*.ts', '*.jsx', '*.js'],
-      options: {
-        parser: 'babel-ts',
-      },
+      options: { parser: 'babel-ts' },
     },
   ],
 }

@@ -37,13 +37,15 @@
     "editor.tabSize": 2
   },
   "files.exclude": {
-    "**/.tanstack": true,
     "**/dist": true,
+    "**/.next": true,
+    "**/out": true,
     "**/node_modules": true
   },
   "search.exclude": {
-    "**/.tanstack": true,
     "**/dist": true,
+    "**/.next": true,
+    "**/out": true,
     "**/node_modules": true
   }
 }

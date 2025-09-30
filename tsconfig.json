@@ -30,6 +30,7 @@
 
       "@hooks/*": ["./hooks/*"],
       "@lib/*": ["./lib/*"],
+      "@mocks/*": ["./mocks/*"],
       "@typings": ["./typings"]
     }
   },

@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/fines.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/fines.json'
-import { FineList, fineListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { FineList, fineListSchema } from './list.schema'
 
 let data: FineList[] = []
 

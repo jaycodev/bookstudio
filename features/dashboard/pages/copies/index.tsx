@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/copies.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/copies.json'
-import { CopyList, copyListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { CopyList, copyListSchema } from './list.schema'
 
 let data: CopyList[] = []
 

@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/reservations.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/reservations.json'
-import { ReservationList, reservationListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { ReservationList, reservationListSchema } from './list.schema'
 
 let data: ReservationList[] = []
 

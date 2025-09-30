@@ -26,7 +26,7 @@ export function DashboardLayout({ children }: Props) {
                 <Button asChild variant="ghost" className="size-8 rounded-full">
                   <a
                     aria-label="GitHub repo"
-                    href="https://github.com/jason-vila/bookstudio"
+                    href="https://github.com/jaycodev/bookstudio"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

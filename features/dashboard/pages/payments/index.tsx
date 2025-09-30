@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/payments.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/payments.json'
-import { PaymentList, paymentListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { PaymentList, paymentListSchema } from './list.schema'
 
 let data: PaymentList[] = []
 

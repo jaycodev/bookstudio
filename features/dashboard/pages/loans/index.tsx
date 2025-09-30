@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/loans.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/loans.json'
-import { LoanList, loanListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { LoanList, loanListSchema } from './list.schema'
 
 let data: LoanList[] = []
 

@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/workers.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/workers.json'
-import { WorkerList, workerListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { WorkerList, workerListSchema } from './list.schema'
 
 let data: WorkerList[] = []
 

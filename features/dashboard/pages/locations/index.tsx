@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/locations.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/locations.json'
-import { LocationList, locationListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { LocationList, locationListSchema } from './list.schema'
 
 let data: LocationList[] = []
 

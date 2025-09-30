@@ -63,6 +63,7 @@ export default defineConfig([
               '^@config',
               '^@context',
               '^@typings',
+              '^@mocks',
               '^@auth',
               '^@dashboard',
               '^@error',

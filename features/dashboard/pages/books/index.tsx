@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/books.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/books.json'
-import { BookList, bookListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { BookList, bookListSchema } from './list.schema'
 
 let data: BookList[] = []
 

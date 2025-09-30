@@ -1,9 +1,9 @@
+import rawData from '@mocks/data/roles.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
 
-import rawData from './data/roles.json'
-import { RoleList, roleListSchema } from './schema/list.schema'
-import { columns } from './table/columns'
+import { columns } from './columns'
+import { RoleList, roleListSchema } from './list.schema'
 
 let data: RoleList[] = []
 

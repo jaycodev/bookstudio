@@ -59,7 +59,6 @@ export default defineConfig([
               '^@components',
               '^@lib',
               '^@hooks',
-              '^@app',
               '^@config',
               '^@context',
               '^@typings',

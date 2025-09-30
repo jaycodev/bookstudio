@@ -4,7 +4,7 @@ import { ThemeProvider } from 'next-themes'
 
 import { NavigationProgress } from '@components/feedback/navigation-progress'
 
-import '@app/globals.css'
+import './globals.css'
 
 const inter = Inter({
   subsets: ['latin'],

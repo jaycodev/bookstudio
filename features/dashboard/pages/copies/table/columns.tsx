@@ -3,12 +3,11 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { Archive, BookText, Boxes, Layers, MapPin } from 'lucide-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
-import { getColumnLabel } from '@/config/column-labels'
-import { DataTableColumnHeader } from '@/features/dashboard/components/data-table/data-table-column-header'
-import { DataTableRowActions } from '@/features/dashboard/components/data-table/data-table-row-actions'
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
+import { Badge } from '@components/ui/badge'
+import { Checkbox } from '@components/ui/checkbox'
+import { getColumnLabel } from '@config/column-labels'
+import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
 
 import { conditionBadges } from '../components/badges/condition'
 import { statusBadges } from '../components/badges/status'

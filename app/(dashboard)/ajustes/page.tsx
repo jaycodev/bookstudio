@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { SettingsPage } from '@/features/dashboard/pages/settings'
+import { pageMap } from '@config/page-map'
+import { SettingsPage } from '@dashboard/pages/settings'
 
 const page = pageMap['/ajustes']
 

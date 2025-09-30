@@ -1,5 +1,5 @@
-import { statusBadges } from '@/features/dashboard/components/badges/status'
-import { FilterOption } from '@/types/types'
+import { FilterOption } from '@typings'
+import { statusBadges } from '@dashboard/components/badges'
 
 import { levelBadges } from '../components/badges/level'
 

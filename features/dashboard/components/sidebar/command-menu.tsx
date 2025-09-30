@@ -14,9 +14,9 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@/components/ui/command'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { useSearch } from '@/context/search-context'
+} from '@components/ui/command'
+import { ScrollArea } from '@components/ui/scroll-area'
+import { useSearch } from '@context/search-context'
 
 import { sidebarData } from './sidebar.data'
 

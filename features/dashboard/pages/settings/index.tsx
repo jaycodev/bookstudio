@@ -7,14 +7,14 @@ import { Pencil, Trash, Upload } from 'lucide-react'
 import { useForm, useWatch } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
+import { Button } from '@components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@components/ui/dropdown-menu'
 import {
   Form,
   FormControl,
@@ -23,10 +23,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { PasswordInput } from '@/components/ui/password-input'
-import { Separator } from '@/components/ui/separator'
+} from '@components/ui/form'
+import { Input } from '@components/ui/input'
+import { PasswordInput } from '@components/ui/password-input'
+import { Separator } from '@components/ui/separator'
 
 const photoSchema = z.object({
   photo: z
@@ -109,7 +109,7 @@ type PasswordFormValues = z.infer<typeof passwordSchema>
 
 const personalDefaults: Partial<PersonalFormValues> = {
   username: 'Jason',
-  email: 'jasonvilac@gmail.com',
+  email: 'jason.vilac@gmail.com',
   firstName: 'Jason',
   lastName: 'Vila',
 }

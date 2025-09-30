@@ -1,8 +1,7 @@
 import { Info } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
-
-import { ErrorLayout } from '../layout'
+import { Button } from '@components/ui/button'
+import { ErrorLayout } from '@error/layout'
 
 export function MaintenanceErrorPage() {
   return (

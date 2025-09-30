@@ -3,14 +3,13 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { BookCheck, BookText, BookX, Building2, CircleCheck, Tags, XCircle } from 'lucide-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { getColumnLabel } from '@/config/column-labels'
-import { statusBadges } from '@/features/dashboard/components/badges/status'
-import { DataTableColumnHeader } from '@/features/dashboard/components/data-table/data-table-column-header'
-import { DataTableRowActions } from '@/features/dashboard/components/data-table/data-table-row-actions'
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
+import { Badge } from '@components/ui/badge'
+import { Checkbox } from '@components/ui/checkbox'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@components/ui/tooltip'
+import { getColumnLabel } from '@config/column-labels'
+import { statusBadges } from '@dashboard/components/badges'
+import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
 
 import {
   availabilityOptions,

@@ -1,11 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { ModeToggle } from '@/components/ui/mode-toggle'
-import { Separator } from '@/components/ui/separator'
-import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import { SearchProvider } from '@/context/search-context'
-
-import { AppSidebar } from './components/sidebar/app-sidebar'
-import { Search } from './components/sidebar/search'
+import { Button } from '@components/ui/button'
+import { ModeToggle } from '@components/ui/mode-toggle'
+import { Separator } from '@components/ui/separator'
+import { SidebarInset, SidebarProvider, SidebarTrigger } from '@components/ui/sidebar'
+import { SearchProvider } from '@context/search-context'
+import { AppSidebar, Search } from '@dashboard/components/sidebar'
 
 interface Props {
   children?: React.ReactNode

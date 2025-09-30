@@ -2,9 +2,9 @@
 
 import { SearchIcon } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
-import { useSearch } from '@/context/search-context'
-import { cn } from '@/lib/utils'
+import { Button } from '@components/ui/button'
+import { cn } from '@lib/utils'
+import { useSearch } from '@context/search-context'
 
 interface Props {
   className?: string

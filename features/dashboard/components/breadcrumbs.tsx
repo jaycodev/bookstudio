@@ -10,11 +10,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
-import { pageMap } from '@/config/page-map'
-
-import { sidebarData } from './sidebar/sidebar.data'
-import { sidebarMap } from './sidebar/sidebar-map'
+} from '@components/ui/breadcrumb'
+import { pageMap } from '@config/page-map'
+import { sidebarData, sidebarMap } from '@dashboard/components/sidebar'
 
 export function Breadcrumbs() {
   const pathname = usePathname()

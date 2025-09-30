@@ -4,7 +4,7 @@ import * as React from 'react'
 
 import Link from 'next/link'
 
-import { Logo } from '@/components/shared/logo'
+import { Logo } from '@components/shared/logo'
 import {
   Sidebar,
   SidebarContent,
@@ -14,7 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from '@/components/ui/sidebar'
+} from '@components/ui/sidebar'
 
 import { NavGroup } from './nav-group'
 import { NavUser } from './nav-user'

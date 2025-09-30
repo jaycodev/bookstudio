@@ -1,15 +1,9 @@
-import { ValidUrl } from '@/config/page-map'
+import { ValidUrl } from '@config/page-map'
 
 interface User {
   name: string
   email: string
   avatar: string
-}
-
-interface Team {
-  name: string
-  logo: React.ElementType
-  plan: string
 }
 
 interface BaseNavItem {
@@ -37,7 +31,6 @@ interface NavGroup {
 
 interface SidebarData {
   user: User
-  teams: Team[]
   navGroups: NavGroup[]
 }
 

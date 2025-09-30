@@ -6,8 +6,8 @@ import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Badge } from '@/components/ui/badge'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { Badge } from '@components/ui/badge'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@components/ui/collapsible'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@components/ui/dropdown-menu'
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -26,7 +26,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from '@/components/ui/sidebar'
+} from '@components/ui/sidebar'
 
 import { NavCollapsible, type NavGroup, NavItem, NavLink } from './types'
 
@@ -152,9 +152,9 @@ const SidebarMenuCollapsedDropdown = ({
 
 function checkIsActive(pathname: string, item: NavItem, mainNav = false) {
   return (
-    pathname === item.url || // /endpoint?search=param
-    pathname.split('?')[0] === item.url || // endpoint
-    !!item?.items?.filter((i) => i.url === pathname).length || // if child nav is active
+    pathname === item.url ||
+    pathname.split('?')[0] === item.url ||
+    !!item?.items?.filter((i) => i.url === pathname).length ||
     (mainNav &&
       pathname.split('/')[1] !== '' &&
       pathname.split('/')[1] === item?.url?.split('/')[1])

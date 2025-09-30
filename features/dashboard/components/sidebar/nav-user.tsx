@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { Bell, ChevronsUpDown, LogOut, User } from 'lucide-react'
 import Link from 'next/link'
 
-import { ConfirmDialog } from '@/components/shared/confirm-dialog'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ConfirmDialog } from '@components/shared/confirm-dialog'
+import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,13 +15,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from '@/components/ui/sidebar'
+} from '@components/ui/dropdown-menu'
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@components/ui/sidebar'
 
 export function NavUser({
   user,

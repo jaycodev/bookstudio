@@ -1,5 +1,5 @@
-import { Breadcrumbs } from '@/features/dashboard/components/breadcrumbs'
-import { DataTable } from '@/features/dashboard/components/data-table/data-table'
+import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
+import { DataTable } from '@dashboard/components/data-table'
 
 import rawData from './data/copies.json'
 import { CopyList, copyListSchema } from './schema/list.schema'

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { LoginPage } from '@/features/auth/pages/login'
+import { pageMap } from '@config/page-map'
+import { LoginPage } from '@auth/pages/login'
 
 const page = pageMap['/iniciar-sesion']
 

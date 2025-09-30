@@ -3,11 +3,10 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { BookText, Calendar, Handshake, History, OctagonAlert } from 'lucide-react'
 
-import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
-import { getColumnLabel } from '@/config/column-labels'
-import { DataTableColumnHeader } from '@/features/dashboard/components/data-table/data-table-column-header'
-import { DataTableRowActions } from '@/features/dashboard/components/data-table/data-table-row-actions'
+import { Badge } from '@components/ui/badge'
+import { Checkbox } from '@components/ui/checkbox'
+import { getColumnLabel } from '@config/column-labels'
+import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
 
 import { statusBadges } from '../components/badges/status'
 import { copiesOptions, loansOptions, statusOptions } from '../data/options-data'

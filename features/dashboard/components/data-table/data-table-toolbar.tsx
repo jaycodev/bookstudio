@@ -1,14 +1,16 @@
+'use client'
+
 import { useState } from 'react'
 
 import { Table } from '@tanstack/react-table'
 import { Search, Trash, X } from 'lucide-react'
 import { DateRange } from 'react-day-picker'
 
-import { Button } from '@/components/ui/button'
-import { DateRangePicker } from '@/components/ui/date-range-picker'
-import { Input } from '@/components/ui/input'
-import { getColumnLabel } from '@/config/column-labels'
-import { FilterOption } from '@/types/types'
+import { Button } from '@components/ui/button'
+import { DateRangePicker } from '@components/ui/date-range-picker'
+import { Input } from '@components/ui/input'
+import { getColumnLabel } from '@config/column-labels'
+import { FilterOption } from '@typings'
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter'
 import { DataTableViewOptions } from './data-table-view-options'

@@ -1,4 +1,4 @@
-import { FilterOption } from '@/types/types'
+import { FilterOption } from '@typings'
 
 import { methodBadges } from '../components/badges/method'
 import readersOptionsJson from './readers-options.json'

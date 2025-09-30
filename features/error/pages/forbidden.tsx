@@ -1,4 +1,4 @@
-import { ErrorLayout } from '../layout'
+import { ErrorLayout } from '@error/layout'
 
 export function ForbiddenErrorPage() {
   return (

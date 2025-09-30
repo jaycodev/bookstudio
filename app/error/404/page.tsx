@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { NotFoundErrorPage } from '@/features/error/pages/not-found'
+import { pageMap } from '@config/page-map'
+import { NotFoundErrorPage } from '@error/pages/not-found'
 
 const page = pageMap['/error/404']
 

@@ -14,8 +14,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { buttonVariants } from '@/components/ui/button'
+} from '@components/ui/alert-dialog'
+import { buttonVariants } from '@components/ui/button'
 
 interface ConfirmActionButton {
   label: string

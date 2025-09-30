@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { PublishersPage } from '@/features/dashboard/pages/publishers'
+import { pageMap } from '@config/page-map'
+import { PublishersPage } from '@dashboard/pages/publishers'
 
 const page = pageMap['/editoriales']
 

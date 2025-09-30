@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { Status } from '@/features/dashboard/enums/status'
+import { Status } from '@dashboard/enums/status'
 
 import { CategoryLevel } from './enums'
 

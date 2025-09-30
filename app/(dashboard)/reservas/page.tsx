@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { ReservationsPage } from '@/features/dashboard/pages/reservations'
+import { pageMap } from '@config/page-map'
+import { ReservationsPage } from '@dashboard/pages/reservations'
 
 const page = pageMap['/reservas']
 

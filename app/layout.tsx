@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
-import { NavigationProgress } from '@/components/feedback/navigation-progress'
+import { NavigationProgress } from '@components/feedback/navigation-progress'
 
-import '@/app/globals.css'
+import '@app/globals.css'
 
 const inter = Inter({
   subsets: ['latin'],

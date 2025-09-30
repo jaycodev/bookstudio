@@ -1,7 +1,7 @@
 import { BookCheck, BookX, CircleCheck, XCircle } from 'lucide-react'
 
-import { statusBadges } from '@/features/dashboard/components/badges/status'
-import { FilterOption } from '@/types/types'
+import { FilterOption } from '@typings'
+import { statusBadges } from '@dashboard/components/badges'
 
 import categoriesOptionsJson from './categories-options.json'
 import languagesOptionsJson from './languages-options.json'

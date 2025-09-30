@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { FinesPage } from '@/features/dashboard/pages/fines'
+import { pageMap } from '@config/page-map'
+import { FinesPage } from '@dashboard/pages/fines'
 
 const page = pageMap['/multas']
 

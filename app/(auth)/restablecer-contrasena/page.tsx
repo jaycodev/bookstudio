@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { ResetPasswordPage } from '@/features/auth/pages/reset-password'
+import { pageMap } from '@config/page-map'
+import { ResetPasswordPage } from '@auth/pages/reset-password'
 
 const page = pageMap['/restablecer-contrasena']
 

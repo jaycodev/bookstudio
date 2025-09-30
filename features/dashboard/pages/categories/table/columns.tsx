@@ -2,12 +2,11 @@
 
 import type { ColumnDef } from '@tanstack/react-table'
 
-import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
-import { getColumnLabel } from '@/config/column-labels'
-import { statusBadges } from '@/features/dashboard/components/badges/status'
-import { DataTableColumnHeader } from '@/features/dashboard/components/data-table/data-table-column-header'
-import { DataTableRowActions } from '@/features/dashboard/components/data-table/data-table-row-actions'
+import { Badge } from '@components/ui/badge'
+import { Checkbox } from '@components/ui/checkbox'
+import { getColumnLabel } from '@config/column-labels'
+import { statusBadges } from '@dashboard/components/badges'
+import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
 
 import { levelBadges } from '../components/badges/level'
 import { levelOptions, statusOptions } from '../data/options-data'

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@/config/page-map'
-import { GeneralErrorPage } from '@/features/error/pages/general'
+import { pageMap } from '@config/page-map'
+import { GeneralErrorPage } from '@error/pages/general'
 
 const page = pageMap['/error/500']
 

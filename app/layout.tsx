@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
-
-import { NavigationProgress } from '@components/feedback/navigation-progress'
+import NextTopLoader from 'nextjs-toploader'
 
 import './globals.css'
 
@@ -74,7 +73,7 @@ export default function RootLayout({
           disableTransitionOnChange
           enableColorScheme
         >
-          <NavigationProgress />
+          <NextTopLoader color="var(--ring)" height={2} easing="linear" showSpinner={false} />
           {children}
         </ThemeProvider>
       </body>

@@ -92,11 +92,8 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              className="text-destructive data-[highlighted]:text-destructive"
-              onClick={handleLogoutClick}
-            >
-              <LogOut className="text-current" />
+            <DropdownMenuItem variant="destructive" onClick={handleLogoutClick}>
+              <LogOut />
               Cerrar sesión
             </DropdownMenuItem>
           </DropdownMenuContent>

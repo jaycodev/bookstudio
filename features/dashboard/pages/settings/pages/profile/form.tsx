@@ -174,11 +174,8 @@ export function ProfileForm() {
                   Subir foto
                 </DropdownMenuItem>
                 {avatarUrl && (
-                  <DropdownMenuItem
-                    className="text-destructive data-[highlighted]:text-destructive"
-                    onClick={handleDeletePhoto}
-                  >
-                    <Trash className="text-current" />
+                  <DropdownMenuItem variant="destructive" onClick={handleDeletePhoto}>
+                    <Trash />
                     Eliminar foto
                   </DropdownMenuItem>
                 )}

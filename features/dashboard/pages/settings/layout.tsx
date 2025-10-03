@@ -38,7 +38,7 @@ const sidebarNavItems = [
 export function SettingsLayout({ children }: Props) {
   return (
     <div data-layout="fixed" className="flex flex-1 p-5 gap-4 flex-col overflow-hidden">
-      <div className="flex h-full flex-col lg:px-16 lg:py-5">
+      <div className="flex h-full flex-col">
         <div className="space-y-0.5 flex-none">
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <Settings strokeWidth={2.5} />

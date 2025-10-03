@@ -68,7 +68,7 @@
   --chart-2: oklch(0.72 0.16 162.5);
   --chart-3: oklch(0.78 0.18 70.1);
   --chart-4: oklch(0.68 0.24 303.9);
-  --chart-5: oklch(0.70 0.22 16.4);
+  --chart-5: oklch(0.7 0.22 16.4);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.21 0.006 285.885);
@@ -145,6 +145,10 @@
     scrollbar-width: thin;
     scrollbar-color: var(--border-hsl) transparent;
   }
+}
+
+@utility faded-bottom {
+  @apply after:pointer-events-none after:absolute after:start-0 after:bottom-0 after:hidden after:h-32 after:w-full after:rounded-b-2xl after:bg-[linear-gradient(180deg,_transparent_10%,_var(--background)_70%)] md:after:block;
 }
 
 .CollapsibleContent {

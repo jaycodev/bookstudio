@@ -117,10 +117,10 @@ export function DataTable<TData, TValue>({
     <div className="space-y-4">
       <div className="mb-2 flex flex-wrap items-center justify-between space-y-2 gap-x-4">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h1 className="text-2xl font-bold flex items-center gap-2">
             {Icon && <Icon strokeWidth={2.5} />}
             {title}
-          </h2>
+          </h1>
           <p className="text-muted-foreground">{description}</p>
         </div>
         <div className="flex gap-2">

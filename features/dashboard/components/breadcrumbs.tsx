@@ -30,7 +30,6 @@ export function Breadcrumbs() {
             <span className="text-muted-foreground cursor-default">{groupName}</span>
           </BreadcrumbItem>
         )}
-
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage>{currentPage.title}</BreadcrumbPage>

@@ -2,7 +2,6 @@ type PageMeta = {
   title: string
   authOnly?: boolean
   showInSidebar?: boolean
-  parentItem?: ValidUrl
 }
 
 export const pageMap: Record<string, PageMeta> = {
@@ -28,6 +27,8 @@ export const pageMap: Record<string, PageMeta> = {
   '/ajustes/cuenta': { title: 'Cuenta', authOnly: true },
   '/ajustes/apariencia': { title: 'Apariencia', authOnly: true },
   '/ajustes/notificaciones': { title: 'Notificaciones', authOnly: true },
+  '/ajustes/visualizacion': { title: 'Visualización', authOnly: true },
+
   '/centro-de-ayuda': { title: 'Centro de ayuda', authOnly: true, showInSidebar: true },
 
   '/iniciar-sesion': { title: 'Iniciar sesión' },

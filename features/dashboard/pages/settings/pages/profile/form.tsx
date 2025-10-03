@@ -25,8 +25,7 @@ import {
   FormMessage,
 } from '@components/ui/form'
 import { Input } from '@components/ui/input'
-import { PasswordInput } from '@components/ui/password-input'
-import { Separator } from '@components/ui/separator'
+import { showSubmittedData } from '@lib/show-submitted-data'
 
 const photoSchema = z.object({
   photo: z
@@ -76,36 +75,8 @@ const personalSchema = z.object({
     }),
 })
 
-const passwordSchema = z
-  .object({
-    currentPassword: z.string().trim().min(8, {
-      message: 'La contraseña actual debe tener al menos 8 caracteres.',
-    }),
-    newPassword: z
-      .string()
-      .trim()
-      .min(8, { message: 'La contraseña debe tener al menos 8 caracteres.' })
-      .max(50, {
-        message: 'La contraseña no puede tener más de 50 caracteres.',
-      })
-      .regex(/^\S+$/, { message: 'La contraseña no puede contener espacios en blanco.' })
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/, {
-        message:
-          'La contraseña debe incluir al menos una minúscula, una mayúscula, un número y un carácter especial (@$!%*?&).',
-      }),
-    confirmNewPassword: z
-      .string()
-      .trim()
-      .min(8, { message: 'Debes confirmar la contraseña nueva.' }),
-  })
-  .refine((data) => data.newPassword === data.confirmNewPassword, {
-    message: 'Las contraseñas no coinciden.',
-    path: ['confirmNewPassword'],
-  })
-
 type PhotoFormValues = z.infer<typeof photoSchema>
 type PersonalFormValues = z.infer<typeof personalSchema>
-type PasswordFormValues = z.infer<typeof passwordSchema>
 
 const personalDefaults: Partial<PersonalFormValues> = {
   username: 'Jason',
@@ -114,13 +85,7 @@ const personalDefaults: Partial<PersonalFormValues> = {
   lastName: 'Vila',
 }
 
-const passwordDefaults: Partial<PasswordFormValues> = {
-  currentPassword: '',
-  newPassword: '',
-  confirmNewPassword: '',
-}
-
-export function SettingsPage() {
+export function ProfileForm() {
   const photoForm = useForm<PhotoFormValues>({
     resolver: zodResolver(photoSchema),
     defaultValues: { photo: null },
@@ -133,40 +98,24 @@ export function SettingsPage() {
     mode: 'onChange',
   })
 
-  const passwordForm = useForm<PasswordFormValues>({
-    resolver: zodResolver(passwordSchema),
-    defaultValues: passwordDefaults,
-    mode: 'onChange',
-  })
-
   const photoValue = useWatch({ control: photoForm.control, name: 'photo' })
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [photoError, setPhotoError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleUploadPhoto = () => {
-    fileInputRef.current?.click()
-  }
-
+  const handleUploadPhoto = () => fileInputRef.current?.click()
   const handleDeletePhoto = () => {
     photoForm.setValue('photo', null)
     setAvatarUrl(null)
-    setPhotoError(null)
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
-    }
+    if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
   const handlePhotoSubmit = (data: PhotoFormValues) => {
-    console.log('Datos de la foto de perfil:', data)
+    showSubmittedData(data)
   }
 
   const handlePersonalSubmit = (data: PersonalFormValues) => {
-    console.log('Datos personales:', data)
-  }
-
-  const handlePasswordSubmit = (data: PasswordFormValues) => {
-    console.log('Datos para cambiar contraseña:', data)
+    showSubmittedData(data)
   }
 
   useEffect(() => {
@@ -176,7 +125,6 @@ export function SettingsPage() {
         const objectUrl = URL.createObjectURL(photoValue)
         setAvatarUrl(objectUrl)
         setPhotoError(null)
-
         photoForm.handleSubmit(handlePhotoSubmit)()
         return () => URL.revokeObjectURL(objectUrl)
       } catch (error) {
@@ -185,26 +133,16 @@ export function SettingsPage() {
           setAvatarUrl(null)
         }
       }
-    } else {
-      setAvatarUrl(null)
-      setPhotoError(null)
     }
   }, [photoValue, photoForm])
 
   const getFallback = () => {
     const { firstName, lastName } = personalForm.getValues()
-    return `${firstName[0] || ''}${lastName[0] || ''}`.toUpperCase()
+    return `${firstName?.[0] || ''}${lastName?.[0] || ''}`.toUpperCase()
   }
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
-      <div>
-        <h3 className="text-lg font-semibold">Configuración de perfil</h3>
-        <p className="text-sm text-muted-foreground">
-          Actualiza tu información personal, foto de perfil y contraseña.
-        </p>
-      </div>
-
       <div className="flex flex-col items-center relative">
         <div className="relative">
           <Avatar key={avatarUrl ?? 'fallback'} className="w-32 h-32">
@@ -266,12 +204,9 @@ export function SettingsPage() {
         {photoError && <p className="text-xs text-destructive mt-2 text-center">{photoError}</p>}
       </div>
 
-      <Separator />
-
       <Form {...personalForm}>
         <form onSubmit={personalForm.handleSubmit(handlePersonalSubmit)} className="space-y-8">
           <div className="space-y-6">
-            <h4 className="text-md font-semibold">Información personal</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
               <FormField
                 control={personalForm.control}
@@ -343,74 +278,8 @@ export function SettingsPage() {
               )}
             />
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center sm:justify-start">
             <Button type="submit">Actualizar perfil</Button>
-          </div>
-        </form>
-      </Form>
-
-      <Separator />
-
-      <Form {...passwordForm}>
-        <form onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)} className="space-y-8">
-          <div className="space-y-6">
-            <h4 className="text-md font-semibold">Cambiar contraseña</h4>
-            <FormField
-              control={passwordForm.control}
-              name="currentPassword"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>Contraseña actual</FormLabel>
-                  <FormControl>
-                    <PasswordInput
-                      placeholder="Contraseña actual"
-                      autoComplete="current-password"
-                      {...field}
-                    />
-                  </FormControl>
-                  {fieldState.error && <FormMessage />}
-                </FormItem>
-              )}
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              <FormField
-                control={passwordForm.control}
-                name="newPassword"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Contraseña nueva</FormLabel>
-                    <FormControl>
-                      <PasswordInput
-                        placeholder="Contraseña nueva"
-                        autoComplete="new-password"
-                        {...field}
-                      />
-                    </FormControl>
-                    {fieldState.error && <FormMessage />}
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={passwordForm.control}
-                name="confirmNewPassword"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Confirmar contraseña nueva</FormLabel>
-                    <FormControl>
-                      <PasswordInput
-                        placeholder="Confirmar contraseña nueva"
-                        autoComplete="new-password"
-                        {...field}
-                      />
-                    </FormControl>
-                    {fieldState.error && <FormMessage />}
-                  </FormItem>
-                )}
-              />
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <Button type="submit">Cambiar contraseña</Button>
           </div>
         </form>
       </Form>

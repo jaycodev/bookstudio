@@ -1,0 +1,59 @@
+interface Props {
+  children?: React.ReactNode
+}
+
+import { Bell, Monitor, Palette, Settings, UserCog, Wrench } from 'lucide-react'
+
+import { Separator } from '@components/ui/separator'
+import { SidebarNav } from '@dashboard/pages/settings/components/sidebar-nav'
+
+const sidebarNavItems = [
+  {
+    title: 'Perfil',
+    href: '/ajustes',
+    icon: <UserCog size={18} />,
+  },
+  {
+    title: 'Cuenta',
+    href: '/ajustes/cuenta',
+    icon: <Wrench size={18} />,
+  },
+  {
+    title: 'Apariencia',
+    href: '/ajustes/apariencia',
+    icon: <Palette size={18} />,
+  },
+  {
+    title: 'Notificaciones',
+    href: '/ajustes/notificaciones',
+    icon: <Bell size={18} />,
+  },
+  {
+    title: 'Visualización',
+    href: '/ajustes/visualizacion',
+    icon: <Monitor size={18} />,
+  },
+]
+
+export function SettingsLayout({ children }: Props) {
+  return (
+    <div className="flex h-full flex-col lg:px-16 lg:py-5">
+      <div className="space-y-0.5 flex-none">
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <Settings strokeWidth={2.5} />
+          Ajustes
+        </h1>
+        <p className="text-muted-foreground">
+          Administre la configuración y preferencias de su cuenta.
+        </p>
+      </div>
+      <Separator className="my-4 lg:my-6 flex-none" />
+      <div className="flex flex-1 flex-col space-y-2 min-h-0 md:space-y-2 lg:flex-row lg:space-y-0 lg:space-x-12">
+        <aside className="top-0 lg:sticky lg:w-1/5 flex-none">
+          <SidebarNav items={sidebarNavItems} />
+        </aside>
+        <div className="flex flex-1 min-h-0 w-full p-1">{children}</div>
+      </div>
+    </div>
+  )
+}

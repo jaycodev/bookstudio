@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 
 import { pageMap } from '@config/page-map'
-import { SettingsProfilePage } from '@dashboard/pages/settings/pages/profile'
+import { SettingsDisplayPage } from '@dashboard/pages/settings/pages/display'
 
-const page = pageMap['/ajustes']
+const page = pageMap['/ajustes/visualizacion']
 
 export const metadata: Metadata = {
   title: page.title,
 }
 
 export default function Page() {
-  return <SettingsProfilePage />
+  return <SettingsDisplayPage />
 }

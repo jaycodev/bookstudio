@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
 
-import { SettingsLayout } from '@dashboard/pages/settings/layout'
+import { DashboardLayout } from '@dashboard/layout'
 
 interface Props {
   children: ReactNode
 }
 
 export default function Layout({ children }: Props) {
-  return <SettingsLayout>{children}</SettingsLayout>
+  return <DashboardLayout>{children}</DashboardLayout>
 }

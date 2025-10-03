@@ -1,11 +1,9 @@
 import { ReactNode } from 'react'
 
-import { DashboardLayout } from '@dashboard/layout'
-
 interface Props {
   children: ReactNode
 }
 
 export default function Layout({ children }: Props) {
-  return <DashboardLayout>{children}</DashboardLayout>
+  return <div className="flex flex-1 p-5 gap-4 flex-col">{children}</div>
 }

@@ -2,6 +2,7 @@ import { Cloud } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@components/ui/button'
+import { ModeToggle } from '@components/ui/mode-toggle'
 import { Separator } from '@components/ui/separator'
 import { SidebarTrigger } from '@components/ui/sidebar'
 import { Search } from '@dashboard/components/sidebar'
@@ -40,6 +41,7 @@ export function Header() {
               </svg>
             </a>
           </Button>
+          <ModeToggle />
         </div>
       </div>
     </header>

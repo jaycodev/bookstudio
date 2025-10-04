@@ -2,7 +2,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-import { Bell, Monitor, Palette, Settings, UserCog, Wrench } from 'lucide-react'
+import { Bell, Monitor, Palette, Settings, User, Wrench } from 'lucide-react'
 
 import { Separator } from '@components/ui/separator'
 import { SidebarNav } from '@dashboard/pages/settings/components/sidebar-nav'
@@ -11,7 +11,7 @@ const sidebarNavItems = [
   {
     title: 'Perfil',
     href: '/ajustes',
-    icon: <UserCog size={18} />,
+    icon: <User size={18} />,
   },
   {
     title: 'Cuenta',

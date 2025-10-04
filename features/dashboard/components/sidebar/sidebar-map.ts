@@ -5,10 +5,10 @@ import {
   Briefcase,
   Building2,
   Calendar1,
+  ChartColumnBig,
   CircleQuestionMark,
   DollarSign,
   Handshake,
-  LayoutDashboard,
   MapPin,
   OctagonAlert,
   Settings,
@@ -32,7 +32,7 @@ const setSidebar = <T extends ValidUrl>(url: T, meta: SidebarVisualMeta) => {
   }
 }
 
-setSidebar('/', { icon: LayoutDashboard, group: 'principal' })
+setSidebar('/', { icon: ChartColumnBig, group: 'principal' })
 setSidebar('/prestamos', { icon: Handshake, group: 'principal' })
 setSidebar('/reservas', { icon: Calendar1, group: 'principal' })
 setSidebar('/multas', { icon: OctagonAlert, group: 'principal' })

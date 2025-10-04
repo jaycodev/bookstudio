@@ -5,14 +5,13 @@ import { BookText, Calendar, Handshake, History, OctagonAlert } from 'lucide-rea
 
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { statusBadges } from './badges'
 import type { FineList } from './list.schema'
 import { copiesOptions, loansOptions, statusOptions } from './options-data'
-
-const resource = 'fines'
 
 export const columns: ColumnDef<FineList>[] = [
   {
@@ -40,9 +39,7 @@ export const columns: ColumnDef<FineList>[] = [
   },
   {
     accessorKey: 'code',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<FineList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -59,9 +56,7 @@ export const columns: ColumnDef<FineList>[] = [
   {
     id: 'loanCode',
     accessorFn: (row) => String(row.loan.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<FineList>(),
     cell: ({ row }) => {
       const code = row.original.loan.code
       return (
@@ -71,12 +66,10 @@ export const columns: ColumnDef<FineList>[] = [
         </Badge>
       )
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'loanCode'),
-        options: loansOptions,
-      },
-    },
+    meta: withMetaLabelFilter<FineList>({
+      columnId: 'loanCode',
+      options: loansOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
@@ -84,9 +77,7 @@ export const columns: ColumnDef<FineList>[] = [
   {
     id: 'copyCode',
     accessorFn: (row) => String(row.copy.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<FineList>(),
     cell: ({ row }) => {
       const code = row.original.copy.code
       return (
@@ -96,21 +87,17 @@ export const columns: ColumnDef<FineList>[] = [
         </Badge>
       )
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'copyCode'),
-        options: copiesOptions,
-      },
-    },
+    meta: withMetaLabelFilter<FineList>({
+      columnId: 'copyCode',
+      options: copiesOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
   {
     accessorKey: 'amount',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<FineList>(),
     cell: ({ getValue }) => {
       const amount = getValue<number>()
       const formatted = `S/. ${amount.toFixed(2)}`
@@ -124,9 +111,7 @@ export const columns: ColumnDef<FineList>[] = [
   },
   {
     accessorKey: 'daysLate',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<FineList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -143,9 +128,7 @@ export const columns: ColumnDef<FineList>[] = [
   },
   {
     accessorKey: 'issuedAt',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<FineList>(),
     cell: ({ getValue }) => {
       const date = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
@@ -176,9 +159,7 @@ export const columns: ColumnDef<FineList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<FineList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -196,10 +177,10 @@ export const columns: ColumnDef<FineList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<FineList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

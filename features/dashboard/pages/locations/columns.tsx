@@ -5,12 +5,10 @@ import { Archive, BookCopy, Boxes } from 'lucide-react'
 
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import type { LocationList } from './list.schema'
-
-const resource = 'locations'
 
 const getBadgeVariant = (value: number) => {
   if (value === 0) return 'muted'
@@ -44,18 +42,14 @@ export const columns: ColumnDef<LocationList>[] = [
   },
   {
     accessorKey: 'name',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LocationList>(),
     meta: {
       searchable: true,
     },
   },
   {
     accessorKey: 'description',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LocationList>(),
     cell: ({ getValue }) => {
       return <span className="truncate block max-w-[30rem] text-sm">{getValue<string>()}</span>
     },
@@ -64,9 +58,7 @@ export const columns: ColumnDef<LocationList>[] = [
   {
     id: 'shelves',
     accessorFn: (row) => row.shelfCount,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LocationList>(),
     cell: ({ getValue }) => {
       const value = getValue<number>()
       const displayValue = value === 0 ? '-' : value
@@ -85,9 +77,7 @@ export const columns: ColumnDef<LocationList>[] = [
   {
     id: 'books',
     accessorFn: (row) => row.bookCount,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LocationList>(),
     cell: ({ getValue }) => {
       const value = getValue<number>()
       const displayValue = value === 0 ? '-' : value
@@ -106,9 +96,7 @@ export const columns: ColumnDef<LocationList>[] = [
   {
     id: 'copies',
     accessorFn: (row) => row.copyCount,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LocationList>(),
     cell: ({ getValue }) => {
       const value = getValue<number>()
       const displayValue = value === 0 ? '-' : value

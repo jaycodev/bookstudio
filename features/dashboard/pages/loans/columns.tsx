@@ -7,14 +7,13 @@ import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@components/ui/tooltip'
 import { createObjectSumFacetCalculator } from '@lib/object-facets'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { statusBadges } from './badges'
 import { LoanList } from './list.schema'
 import { readersOptions, statusOptions } from './options-data'
-
-const resource = 'loans'
 
 export const columns: ColumnDef<LoanList>[] = [
   {
@@ -42,9 +41,7 @@ export const columns: ColumnDef<LoanList>[] = [
   },
   {
     accessorKey: 'code',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LoanList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -61,9 +58,7 @@ export const columns: ColumnDef<LoanList>[] = [
   {
     id: 'readerCode',
     accessorFn: (row) => String(row.reader.code),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LoanList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -77,27 +72,21 @@ export const columns: ColumnDef<LoanList>[] = [
   {
     id: 'reader',
     accessorFn: (row) => String(row.reader.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LoanList>(),
     cell: ({ row }) => {
       return row.original.reader.fullName
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'reader'),
-        options: readersOptions,
-      },
-    },
+    meta: withMetaLabelFilter<LoanList>({
+      columnId: 'reader',
+      options: readersOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
   {
     accessorKey: 'loanDate',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LoanList>(),
     meta: {
       dateRangeFilter: true,
       headerClass: 'text-center',
@@ -129,9 +118,7 @@ export const columns: ColumnDef<LoanList>[] = [
   {
     id: 'items',
     accessorFn: (row) => String(row.itemCount),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LoanList>(),
     cell: ({ getValue }) => {
       const value = getValue<number>()
       return (
@@ -148,9 +135,7 @@ export const columns: ColumnDef<LoanList>[] = [
   },
   {
     accessorKey: 'statusCounts',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<LoanList>(),
     cell: ({ getValue }) => {
       const statusCounts = getValue<object>()
 
@@ -184,10 +169,10 @@ export const columns: ColumnDef<LoanList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'statusCounts'),
+      ...withMetaLabelFilter<LoanList>({
+        columnId: 'statusCounts',
         options: statusOptions,
-      },
+      }),
       customFacetCalculator: createObjectSumFacetCalculator('statusCounts', [
         'borrowed',
         'returned',

@@ -6,14 +6,13 @@ import { Archive, BookText, Boxes, Layers, MapPin } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { conditionBadges, statusBadges } from './badges'
 import type { CopyList } from './list.schema'
 import { booksOptions, conditionsOptions, statusOptions } from './options-data'
-
-const resource = 'copies'
 
 export const columns: ColumnDef<CopyList>[] = [
   {
@@ -41,9 +40,7 @@ export const columns: ColumnDef<CopyList>[] = [
   },
   {
     accessorKey: 'code',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CopyList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -60,9 +57,7 @@ export const columns: ColumnDef<CopyList>[] = [
   {
     id: 'book',
     accessorFn: (row) => String(row.book.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CopyList>(),
     cell: ({ row }) => {
       const title = row.original.book.title
       const coverUrl = row.original.book.coverUrl
@@ -82,12 +77,10 @@ export const columns: ColumnDef<CopyList>[] = [
         </div>
       )
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'book'),
-        options: booksOptions,
-      },
-    },
+    meta: withMetaLabelFilter<CopyList>({
+      columnId: 'book',
+      options: booksOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
@@ -95,9 +88,7 @@ export const columns: ColumnDef<CopyList>[] = [
   {
     id: 'shelf',
     accessorFn: (row) => String(row.shelf.code),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CopyList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -116,9 +107,7 @@ export const columns: ColumnDef<CopyList>[] = [
   {
     id: 'floor',
     accessorFn: (row) => String(row.shelf.floor),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CopyList>(),
     cell: ({ getValue }) => {
       const floor = getValue<string>()
       return (
@@ -137,9 +126,7 @@ export const columns: ColumnDef<CopyList>[] = [
   {
     id: 'location',
     accessorFn: (row) => String(row.location.name),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CopyList>(),
     cell: ({ getValue }) => {
       const name = getValue<string>()
       return (
@@ -153,9 +140,7 @@ export const columns: ColumnDef<CopyList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CopyList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -173,10 +158,10 @@ export const columns: ColumnDef<CopyList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<CopyList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(String(row.getValue(id)))
@@ -184,9 +169,7 @@ export const columns: ColumnDef<CopyList>[] = [
   },
   {
     accessorKey: 'condition',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CopyList>(),
     cell: ({ row }) => {
       const meta = conditionBadges[row.original.condition]
 
@@ -204,10 +187,10 @@ export const columns: ColumnDef<CopyList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'condition'),
+      ...withMetaLabelFilter<CopyList>({
+        columnId: 'condition',
         options: conditionsOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

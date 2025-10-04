@@ -7,9 +7,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@components/ui/tooltip'
-import { getColumnLabel } from '@config/column-labels'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { statusBadges } from '@dashboard/components/badges'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { BookList } from './list.schema'
 import {
@@ -20,8 +21,6 @@ import {
   publishersOptions,
   statusOptions,
 } from './options-data'
-
-const resource = 'books'
 
 export const columns: ColumnDef<BookList>[] = [
   {
@@ -49,9 +48,7 @@ export const columns: ColumnDef<BookList>[] = [
   },
   {
     accessorKey: 'title',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<BookList>(),
     cell: ({ getValue, row }) => {
       const title = getValue<string>()
       const coverUrl = row.original.coverUrl
@@ -78,9 +75,7 @@ export const columns: ColumnDef<BookList>[] = [
   {
     id: 'category',
     accessorFn: (row) => String(row.category.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<BookList>(),
     cell: ({ row }) => {
       const name = row.original.category.name
       return (
@@ -90,12 +85,10 @@ export const columns: ColumnDef<BookList>[] = [
         </Badge>
       )
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'category'),
-        options: categoriesOptions,
-      },
-    },
+    meta: withMetaLabelFilter<BookList>({
+      columnId: 'category',
+      options: categoriesOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
@@ -103,9 +96,7 @@ export const columns: ColumnDef<BookList>[] = [
   {
     id: 'publisher',
     accessorFn: (row) => String(row.publisher.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<BookList>(),
     cell: ({ row }) => {
       const name = row.original.publisher.name
       return (
@@ -115,12 +106,10 @@ export const columns: ColumnDef<BookList>[] = [
         </Badge>
       )
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'publisher'),
-        options: publishersOptions,
-      },
-    },
+    meta: withMetaLabelFilter<BookList>({
+      columnId: 'publisher',
+      options: publishersOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
@@ -128,9 +117,7 @@ export const columns: ColumnDef<BookList>[] = [
   {
     id: 'language',
     accessorFn: (row) => String(row.language.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<BookList>(),
     cell: ({ row }) => {
       const code = row.original.language.code
       const name = row.original.language.name
@@ -157,10 +144,10 @@ export const columns: ColumnDef<BookList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'language'),
+      ...withMetaLabelFilter<BookList>({
+        columnId: 'language',
         options: languagesOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
@@ -169,9 +156,7 @@ export const columns: ColumnDef<BookList>[] = [
   {
     id: 'copiesLoaned',
     accessorFn: (row) => (row.copies.loaned > 0 ? 'loaned' : 'notLoaned'),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<BookList>(),
     cell: ({ row }) => {
       const value = row.original.copies.loaned
       const isEmpty = value === 0
@@ -198,12 +183,12 @@ export const columns: ColumnDef<BookList>[] = [
       )
     },
     meta: {
-      cellClass: 'text-center',
       headerClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'copiesLoaned'),
+      cellClass: 'text-center',
+      ...withMetaLabelFilter<BookList>({
+        columnId: 'copiesLoaned',
         options: loanOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
@@ -212,9 +197,7 @@ export const columns: ColumnDef<BookList>[] = [
   {
     id: 'copiesAvailable',
     accessorFn: (row) => (row.copies.available > 0 ? 'available' : 'notAvailable'),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<BookList>(),
     cell: ({ row }) => {
       const value = row.original.copies.available
       const isEmpty = value === 0
@@ -243,10 +226,10 @@ export const columns: ColumnDef<BookList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'copiesAvailable'),
+      ...withMetaLabelFilter<BookList>({
+        columnId: 'copiesAvailable',
         options: availabilityOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
@@ -254,9 +237,7 @@ export const columns: ColumnDef<BookList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<BookList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -274,10 +255,10 @@ export const columns: ColumnDef<BookList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<BookList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

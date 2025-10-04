@@ -5,14 +5,13 @@ import { BookOpenText, Calendar, DollarSign, ListChecks } from 'lucide-react'
 
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { methodBadges } from './badges'
 import type { PaymentList } from './list.schema'
-import { readersOptions, statusOptions } from './options-data'
-
-const resource = 'payments'
+import { methodsOptions, readersOptions } from './options-data'
 
 export const columns: ColumnDef<PaymentList>[] = [
   {
@@ -40,9 +39,7 @@ export const columns: ColumnDef<PaymentList>[] = [
   },
   {
     accessorKey: 'code',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PaymentList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -58,9 +55,7 @@ export const columns: ColumnDef<PaymentList>[] = [
   },
   {
     accessorKey: 'fineCount',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PaymentList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -78,9 +73,7 @@ export const columns: ColumnDef<PaymentList>[] = [
   {
     id: 'readerCode',
     accessorFn: (row) => String(row.reader.code),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PaymentList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -94,27 +87,21 @@ export const columns: ColumnDef<PaymentList>[] = [
   {
     id: 'reader',
     accessorFn: (row) => String(row.reader.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PaymentList>(),
     cell: ({ row }) => {
       return row.original.reader.fullName
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'reader'),
-        options: readersOptions,
-      },
-    },
+    meta: withMetaLabelFilter<PaymentList>({
+      columnId: 'reader',
+      options: readersOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
   {
     accessorKey: 'amount',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PaymentList>(),
     cell: ({ getValue }) => {
       const amount = getValue<number>()
       const formatted = `S/. ${amount.toFixed(2)}`
@@ -128,9 +115,7 @@ export const columns: ColumnDef<PaymentList>[] = [
   },
   {
     accessorKey: 'paymentDate',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PaymentList>(),
     cell: ({ getValue }) => {
       const date = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
@@ -161,9 +146,7 @@ export const columns: ColumnDef<PaymentList>[] = [
   },
   {
     accessorKey: 'method',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PaymentList>(),
     cell: ({ row }) => {
       const meta = methodBadges[row.original.method]
 
@@ -181,10 +164,10 @@ export const columns: ColumnDef<PaymentList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'method'),
-        options: statusOptions,
-      },
+      ...withMetaLabelFilter<PaymentList>({
+        columnId: 'method',
+        options: methodsOptions,
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

@@ -5,14 +5,13 @@ import { BookOpenText, Mail, Phone } from 'lucide-react'
 
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { statusBadges, typeBadges } from './badges'
 import { ReaderList } from './list.schema'
 import { statusOptions, typeOptions } from './options-data'
-
-const resource = 'readers'
 
 export const columns: ColumnDef<ReaderList>[] = [
   {
@@ -40,9 +39,7 @@ export const columns: ColumnDef<ReaderList>[] = [
   },
   {
     accessorKey: 'code',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReaderList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -52,21 +49,17 @@ export const columns: ColumnDef<ReaderList>[] = [
         </Badge>
       )
     },
+  },
+  {
+    accessorKey: 'fullName',
+    header: withMetaLabelHeader<ReaderList>(),
     meta: {
       searchable: true,
     },
   },
   {
-    accessorKey: 'fullName',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
-  },
-  {
     accessorKey: 'phone',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReaderList>(),
     cell: ({ getValue }) => {
       const phone = getValue<string>()
       const formattedPhone = phone ? `+51${phone}` : undefined
@@ -88,9 +81,7 @@ export const columns: ColumnDef<ReaderList>[] = [
   },
   {
     accessorKey: 'email',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReaderList>(),
     cell: ({ getValue }) => {
       const email = getValue<string>()
       return (
@@ -106,9 +97,7 @@ export const columns: ColumnDef<ReaderList>[] = [
   },
   {
     accessorKey: 'type',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReaderList>(),
     cell: ({ row }) => {
       const meta = typeBadges[row.original.type]
 
@@ -126,10 +115,10 @@ export const columns: ColumnDef<ReaderList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'type'),
+      ...withMetaLabelFilter<ReaderList>({
+        columnId: 'type',
         options: typeOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(String(row.getValue(id)))
@@ -137,9 +126,7 @@ export const columns: ColumnDef<ReaderList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReaderList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -157,10 +144,10 @@ export const columns: ColumnDef<ReaderList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<ReaderList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(String(row.getValue(id)))

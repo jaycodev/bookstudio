@@ -5,12 +5,10 @@ import { KeyRound } from 'lucide-react'
 
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { RoleList } from './list.schema'
-
-const resource = 'roles'
 
 export const columns: ColumnDef<RoleList>[] = [
   {
@@ -38,18 +36,14 @@ export const columns: ColumnDef<RoleList>[] = [
   },
   {
     accessorKey: 'name',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<RoleList>(),
     meta: {
       searchable: true,
     },
   },
   {
     accessorKey: 'description',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<RoleList>(),
     cell: ({ getValue }) => {
       return <span className="truncate block max-w-[60rem] text-sm">{getValue<string>()}</span>
     },
@@ -58,9 +52,7 @@ export const columns: ColumnDef<RoleList>[] = [
   {
     id: 'permissions',
     accessorFn: (row) => row.permissionCount,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<RoleList>(),
     cell: ({ getValue }) => {
       const value = getValue<number>()
       const displayValue = value === 0 ? '-' : value

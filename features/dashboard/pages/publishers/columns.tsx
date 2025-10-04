@@ -6,14 +6,13 @@ import { Building2, MapPin } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { statusBadges } from '@dashboard/components/badges'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { PublisherList } from './list.schema'
 import { nationalitiesOptions, statusOptions } from './options-data'
-
-const resource = 'publishers'
 
 export const columns: ColumnDef<PublisherList>[] = [
   {
@@ -41,9 +40,7 @@ export const columns: ColumnDef<PublisherList>[] = [
   },
   {
     accessorKey: 'name',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PublisherList>(),
     cell: ({ getValue, row }) => {
       const name = getValue<string>()
       const photoUrl = row.original.photoUrl
@@ -70,9 +67,7 @@ export const columns: ColumnDef<PublisherList>[] = [
   {
     id: 'nationality',
     accessorFn: (row) => String(row.nationality.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PublisherList>(),
     cell: ({ row }) => {
       const code = row.original.nationality.code
       const name = row.original.nationality.name
@@ -85,21 +80,17 @@ export const columns: ColumnDef<PublisherList>[] = [
       )
     },
     enableSorting: false,
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'nationality'),
-        options: nationalitiesOptions,
-      },
-    },
+    meta: withMetaLabelFilter<PublisherList>({
+      columnId: 'nationality',
+      options: nationalitiesOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
   {
     accessorKey: 'website',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PublisherList>(),
     cell: ({ getValue }) => {
       const website = getValue<string>()
       if (!website) return null
@@ -118,9 +109,7 @@ export const columns: ColumnDef<PublisherList>[] = [
   },
   {
     accessorKey: 'address',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PublisherList>(),
     cell: ({ getValue }) => {
       const address = getValue<string>()
       return (
@@ -134,9 +123,7 @@ export const columns: ColumnDef<PublisherList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<PublisherList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -154,10 +141,10 @@ export const columns: ColumnDef<PublisherList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<PublisherList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

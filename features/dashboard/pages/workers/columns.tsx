@@ -7,14 +7,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
 import { getInitials } from '@lib/utils'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { statusBadges } from './badges'
 import { WorkerList } from './list.schema'
 import { rolesOptions, statusOptions } from './options-data'
-
-const resource = 'workers'
 
 export const columns: ColumnDef<WorkerList>[] = [
   {
@@ -42,9 +41,7 @@ export const columns: ColumnDef<WorkerList>[] = [
   },
   {
     accessorKey: 'username',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<WorkerList>(),
     cell: ({ getValue, row }) => {
       const username = getValue<string>()
       const fullName = row.original.fullName
@@ -69,9 +66,7 @@ export const columns: ColumnDef<WorkerList>[] = [
   },
   {
     accessorKey: 'email',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<WorkerList>(),
     cell: ({ getValue }) => {
       const email = getValue<string>()
       return (
@@ -87,16 +82,12 @@ export const columns: ColumnDef<WorkerList>[] = [
   },
   {
     accessorKey: 'fullName',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<WorkerList>(),
   },
   {
     id: 'role',
     accessorFn: (row) => String(row.role.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<WorkerList>(),
     cell: ({ row }) => {
       const name = row.original.role.name
       return (
@@ -107,21 +98,17 @@ export const columns: ColumnDef<WorkerList>[] = [
       )
     },
     enableSorting: false,
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'role'),
-        options: rolesOptions,
-      },
-    },
+    meta: withMetaLabelFilter<WorkerList>({
+      columnId: 'role',
+      options: rolesOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<WorkerList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -139,10 +126,10 @@ export const columns: ColumnDef<WorkerList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<WorkerList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(String(row.getValue(id)))

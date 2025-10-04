@@ -5,14 +5,13 @@ import { BookOpenText, BookText, Calendar, Calendar1 } from 'lucide-react'
 
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { statusBadges } from './badges'
 import type { ReservationList } from './list.schema'
 import { readersOptions, statusOptions } from './options-data'
-
-const resource = 'reservations'
 
 export const columns: ColumnDef<ReservationList>[] = [
   {
@@ -40,9 +39,7 @@ export const columns: ColumnDef<ReservationList>[] = [
   },
   {
     accessorKey: 'code',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReservationList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -59,9 +56,7 @@ export const columns: ColumnDef<ReservationList>[] = [
   {
     id: 'readerCode',
     accessorFn: (row) => String(row.reader.code),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReservationList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -75,18 +70,14 @@ export const columns: ColumnDef<ReservationList>[] = [
   {
     id: 'reader',
     accessorFn: (row) => String(row.reader.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReservationList>(),
     cell: ({ row }) => {
       return row.original.reader.fullName
     },
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'reader'),
-        options: readersOptions,
-      },
-    },
+    meta: withMetaLabelFilter<ReservationList>({
+      columnId: 'reader',
+      options: readersOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
@@ -94,9 +85,7 @@ export const columns: ColumnDef<ReservationList>[] = [
   {
     id: 'copyCode',
     accessorFn: (row) => String(row.copy.code),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReservationList>(),
     cell: ({ getValue }) => {
       const code = getValue<string>()
       return (
@@ -109,9 +98,7 @@ export const columns: ColumnDef<ReservationList>[] = [
   },
   {
     accessorKey: 'reservationDate',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReservationList>(),
     cell: ({ getValue }) => {
       const date = new Date(getValue<string>())
       const formatted = new Intl.DateTimeFormat('es-ES', {
@@ -142,9 +129,7 @@ export const columns: ColumnDef<ReservationList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<ReservationList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -162,10 +147,10 @@ export const columns: ColumnDef<ReservationList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<ReservationList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

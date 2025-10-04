@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 
+import type { Row } from '@tanstack/react-table'
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,6 +23,7 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui/table'
 import { cn } from '@lib/utils'
+import { getColumnLabel } from '@config/column-labels'
 import { sidebarMap } from '@dashboard/components/sidebar'
 
 import { DataTablePagination } from './data-table-pagination'
@@ -35,8 +37,8 @@ const normalizeText = (text: string): string => {
     .trim()
 }
 
-const createSmartFilter = () => {
-  return (row: any, columnId: string, filterValue: string) => {
+const createSmartFilter = <TData,>() => {
+  return (row: Row<TData>, columnId: string, filterValue: string) => {
     if (!filterValue) return true
 
     const cellValue = row.getValue(columnId)
@@ -78,16 +80,37 @@ export function DataTable<TData, TValue>({
   })
 
   const enhancedColumns = React.useMemo(() => {
-    return columns.map((column) => {
-      if (column.meta?.searchable) {
-        return {
-          ...column,
-          filterFn: createSmartFilter(),
-        }
+    return columns.map((column): ColumnDef<TData, TValue> => {
+      const meta = {
+        ...column.meta,
+        resource,
       }
-      return column
+
+      if (meta?.filter) {
+        const filter = { ...meta.filter }
+        const filterColumnId: string =
+          filter.columnId ?? column.id ?? (column as { accessorKey?: string }).accessorKey ?? ''
+
+        if (!filter.title) {
+          filter.title = getColumnLabel(resource, filterColumnId)
+        }
+
+        filter.columnId = filterColumnId
+        meta.filter = filter
+      }
+
+      const updatedColumn: ColumnDef<TData, TValue> = {
+        ...column,
+        meta,
+      }
+
+      if (column.meta?.searchable) {
+        updatedColumn.filterFn = createSmartFilter<TData>()
+      }
+
+      return updatedColumn
     })
-  }, [columns])
+  }, [columns, resource])
 
   const table = useReactTable({
     data,

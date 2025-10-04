@@ -6,14 +6,13 @@ import { Calendar, User } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { statusBadges } from '@dashboard/components/badges'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { AuthorList } from './list.schema'
 import { nationalitiesOptions, statusOptions } from './options-data'
-
-const resource = 'authors'
 
 export const columns: ColumnDef<AuthorList>[] = [
   {
@@ -41,9 +40,7 @@ export const columns: ColumnDef<AuthorList>[] = [
   },
   {
     accessorKey: 'name',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<AuthorList>(),
     cell: ({ getValue, row }) => {
       const name = getValue<string>()
       const photoUrl = row.original.photoUrl
@@ -70,9 +67,7 @@ export const columns: ColumnDef<AuthorList>[] = [
   {
     id: 'nationality',
     accessorFn: (row) => String(row.nationality.id),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<AuthorList>(),
     cell: ({ row }) => {
       const code = row.original.nationality.code
       const name = row.original.nationality.name
@@ -85,21 +80,17 @@ export const columns: ColumnDef<AuthorList>[] = [
       )
     },
     enableSorting: false,
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'nationality'),
-        options: nationalitiesOptions,
-      },
-    },
+    meta: withMetaLabelFilter<AuthorList>({
+      columnId: 'nationality',
+      options: nationalitiesOptions,
+    }),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
   },
   {
     accessorKey: 'birthDate',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<AuthorList>(),
     meta: {
       dateRangeFilter: true,
       headerClass: 'text-center',
@@ -130,9 +121,7 @@ export const columns: ColumnDef<AuthorList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<AuthorList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -150,10 +139,10 @@ export const columns: ColumnDef<AuthorList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<AuthorList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

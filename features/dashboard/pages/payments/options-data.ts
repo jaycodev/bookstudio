@@ -8,7 +8,7 @@ export const readersOptions: FilterOption[] = readersOptionsJson.map((reader) =>
   label: reader.label,
 }))
 
-export const statusOptions: FilterOption[] = Object.entries(methodBadges).map(
+export const methodsOptions: FilterOption[] = Object.entries(methodBadges).map(
   ([key, { label, icon }]) => ({
     value: key,
     label,

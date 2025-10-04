@@ -4,15 +4,14 @@ import type { ColumnDef } from '@tanstack/react-table'
 
 import { Badge } from '@components/ui/badge'
 import { Checkbox } from '@components/ui/checkbox'
-import { getColumnLabel } from '@config/column-labels'
+import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { statusBadges } from '@dashboard/components/badges'
-import { DataTableColumnHeader, DataTableRowActions } from '@dashboard/components/data-table'
+import { DataTableRowActions } from '@dashboard/components/data-table'
 
 import { levelBadges } from './badges'
 import { CategoryList } from './list.schema'
 import { levelOptions, statusOptions } from './options-data'
-
-const resource = 'categories'
 
 export const columns: ColumnDef<CategoryList>[] = [
   {
@@ -40,25 +39,19 @@ export const columns: ColumnDef<CategoryList>[] = [
   },
   {
     accessorKey: 'name',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CategoryList>(),
     meta: {
       searchable: true,
     },
   },
   {
     accessorKey: 'level',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CategoryList>(),
     enableSorting: false,
-    meta: {
-      filter: {
-        title: getColumnLabel(resource, 'level'),
-        options: levelOptions,
-      },
-    },
+    meta: withMetaLabelFilter<CategoryList>({
+      columnId: 'level',
+      options: levelOptions,
+    }),
     cell: ({ row }) => {
       const meta = levelBadges[row.original.level]
 
@@ -78,9 +71,7 @@ export const columns: ColumnDef<CategoryList>[] = [
   },
   {
     accessorKey: 'description',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CategoryList>(),
     cell: ({ getValue }) => {
       return <span className="truncate block max-w-[34rem] text-sm">{getValue<string>()}</span>
     },
@@ -88,9 +79,7 @@ export const columns: ColumnDef<CategoryList>[] = [
   },
   {
     accessorKey: 'status',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={getColumnLabel(resource, column.id)} />
-    ),
+    header: withMetaLabelHeader<CategoryList>(),
     cell: ({ row }) => {
       const meta = statusBadges[row.original.status]
 
@@ -108,10 +97,10 @@ export const columns: ColumnDef<CategoryList>[] = [
     meta: {
       headerClass: 'text-center',
       cellClass: 'text-center',
-      filter: {
-        title: getColumnLabel(resource, 'status'),
+      ...withMetaLabelFilter<CategoryList>({
+        columnId: 'status',
         options: statusOptions,
-      },
+      }),
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

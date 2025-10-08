@@ -1,5 +1,4 @@
 import { Cloud } from 'lucide-react'
-import Link from 'next/link'
 
 import { Button } from '@components/ui/button'
 import { ModeToggle } from '@components/ui/mode-toggle'
@@ -18,10 +17,15 @@ export function Header() {
         <Search />
         <div className="ml-auto flex items-center gap-2">
           <Button asChild variant="ghost" className="rounded-full">
-            <Link href="/docs/api" aria-label="Documentación API">
+            <a
+              aria-label="Documentación API"
+              href="https://api-bookstudio.onrender.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Cloud />
               API
-            </Link>
+            </a>
           </Button>
           <Button asChild variant="ghost" size="icon" className="rounded-full">
             <a

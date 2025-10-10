@@ -1,9 +1,9 @@
 import { Cloud } from 'lucide-react'
 
 import { Button } from '@components/ui/button'
-import { ModeToggle } from '@components/ui/mode-toggle'
 import { Separator } from '@components/ui/separator'
 import { SidebarTrigger } from '@components/ui/sidebar'
+import { ThemeToggle } from '@components/ui/theme-toggle'
 import { Search } from '@dashboard/components/sidebar'
 
 export function Header() {
@@ -45,7 +45,7 @@ export function Header() {
               </svg>
             </a>
           </Button>
-          <ModeToggle />
+          <ThemeToggle />
         </div>
       </div>
     </header>

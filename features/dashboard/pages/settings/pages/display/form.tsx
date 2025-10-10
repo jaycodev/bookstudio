@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '@components/ui/button'
-import { Checkbox } from '@components/ui/checkbox'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   Form,
   FormControl,
@@ -14,8 +14,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@components/ui/form'
-import { showSubmittedData } from '@lib/show-submitted-data'
+} from '@/components/ui/form'
+import { showSubmittedData } from '@/lib/show-submitted-data'
 
 const items = [
   {

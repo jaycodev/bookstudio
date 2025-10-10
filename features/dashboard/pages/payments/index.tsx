@@ -1,6 +1,7 @@
-import rawData from '@mocks/data/payments.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
+
+import rawData from '@/mocks/data/payments.json'
 
 import { columns } from './columns'
 import { PaymentList, paymentListSchema } from './list.schema'

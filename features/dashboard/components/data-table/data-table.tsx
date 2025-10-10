@@ -20,11 +20,19 @@ import {
 import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
-import { Button } from '@components/ui/button'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui/table'
-import { cn } from '@lib/utils'
-import { getColumnLabel } from '@config/column-labels'
 import { sidebarMap } from '@dashboard/components/sidebar'
+
+import { Button } from '@/components/ui/button'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { getColumnLabel } from '@/config/column-labels'
+import { cn } from '@/lib/utils'
 
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'

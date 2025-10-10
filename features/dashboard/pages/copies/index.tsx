@@ -1,6 +1,7 @@
-import rawData from '@mocks/data/copies.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
+
+import rawData from '@/mocks/data/copies.json'
 
 import { columns } from './columns'
 import { CopyList, copyListSchema } from './list.schema'

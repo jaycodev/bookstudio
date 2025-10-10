@@ -1,5 +1,6 @@
-import { FilterOption } from '@typings'
 import { statusBadges } from '@dashboard/components/badges'
+
+import { FilterOption } from '@/typings'
 
 import { levelBadges } from './badges'
 

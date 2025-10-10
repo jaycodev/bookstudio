@@ -1,6 +1,7 @@
-import rawData from '@mocks/data/categories.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
+
+import rawData from '@/mocks/data/categories.json'
 
 import { columns } from './columns'
 import { CategoryList, categoryListSchema } from './list.schema'

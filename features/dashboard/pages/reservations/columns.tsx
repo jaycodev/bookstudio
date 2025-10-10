@@ -3,11 +3,12 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { BookOpenText, BookText, Calendar, Calendar1 } from 'lucide-react'
 
-import { Badge } from '@components/ui/badge'
-import { Checkbox } from '@components/ui/checkbox'
-import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { DataTableRowActions } from '@dashboard/components/data-table'
+
+import { Badge } from '@/components/ui/badge'
+import { Checkbox } from '@/components/ui/checkbox'
+import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
 
 import { statusBadges } from './badges'
 import type { ReservationList } from './list.schema'

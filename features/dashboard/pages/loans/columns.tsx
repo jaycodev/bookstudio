@@ -3,13 +3,14 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { BookCopy, BookOpenText, Calendar, Handshake } from 'lucide-react'
 
-import { Badge } from '@components/ui/badge'
-import { Checkbox } from '@components/ui/checkbox'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@components/ui/tooltip'
-import { createObjectSumFacetCalculator } from '@lib/object-facets'
-import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { DataTableRowActions } from '@dashboard/components/data-table'
+
+import { Badge } from '@/components/ui/badge'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { createObjectSumFacetCalculator } from '@/lib/object-facets'
+import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
 
 import { statusBadges } from './badges'
 import { LoanList } from './list.schema'

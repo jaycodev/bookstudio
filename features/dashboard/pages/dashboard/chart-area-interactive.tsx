@@ -11,7 +11,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@components/ui/card'
+} from '@/components/ui/card'
 import {
   ChartConfig,
   ChartContainer,
@@ -19,16 +19,16 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from '@components/ui/chart'
+} from '@/components/ui/chart'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@components/ui/select'
-import { ToggleGroup, ToggleGroupItem } from '@components/ui/toggle-group'
-import { useIsMobile } from '@hooks/use-mobile'
+} from '@/components/ui/select'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { useIsMobile } from '@/hooks/use-mobile'
 
 const chartData = [
   { date: '2024-04-01', loans: 45, returns: 38 },

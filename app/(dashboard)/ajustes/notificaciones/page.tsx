@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@config/page-map'
 import { SettingsNotificationsPage } from '@dashboard/pages/settings/pages/notifications'
+
+import { pageMap } from '@/config/page-map'
 
 const page = pageMap['/ajustes/notificaciones']
 

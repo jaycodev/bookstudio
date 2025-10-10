@@ -1,6 +1,7 @@
-import { SidebarInset, SidebarProvider } from '@components/ui/sidebar'
-import { SearchProvider } from '@context/search-context'
 import { AppSidebar } from '@dashboard/components/sidebar'
+
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { SearchProvider } from '@/context/search-context'
 
 import { Header } from './components/header'
 

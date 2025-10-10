@@ -2,8 +2,9 @@
 
 import type { HeaderContext } from '@tanstack/react-table'
 
-import { getColumnLabel } from '@config/column-labels'
 import { DataTableColumnHeader } from '@dashboard/components/data-table'
+
+import { getColumnLabel } from '@/config/column-labels'
 
 export function withMetaLabelHeader<TData, TValue = unknown>() {
   function MetaLabelHeader({ column }: HeaderContext<TData, TValue>) {

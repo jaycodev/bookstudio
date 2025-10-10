@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@config/page-map'
 import { UnauthorisedErrorPage } from '@error/pages/unauthorized'
+
+import { pageMap } from '@/config/page-map'
 
 const page = pageMap['/error/401']
 

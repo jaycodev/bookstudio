@@ -5,11 +5,18 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Logo } from '@components/shared/logo'
-import { Button } from '@components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@components/ui/form'
-import { Input } from '@components/ui/input'
-import { cn } from '@lib/utils'
+import { Logo } from '@/components/shared/logo'
+import { Button } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 export const forgotPasswordSchema = z.object({
   email: z.email({ message: 'Introduce un correo electrónico válido.' }).trim(),

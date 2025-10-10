@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '@components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -17,9 +17,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@components/ui/form'
-import { RadioGroup, RadioGroupItem } from '@components/ui/radio-group'
-import { showSubmittedData } from '@lib/show-submitted-data'
+} from '@/components/ui/form'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { showSubmittedData } from '@/lib/show-submitted-data'
 
 const schema = z.object({
   theme: z.enum(['light', 'dark']),

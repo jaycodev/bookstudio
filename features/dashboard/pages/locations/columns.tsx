@@ -3,10 +3,11 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { Archive, BookCopy, Boxes } from 'lucide-react'
 
-import { Badge } from '@components/ui/badge'
-import { Checkbox } from '@components/ui/checkbox'
-import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { DataTableRowActions } from '@dashboard/components/data-table'
+
+import { Badge } from '@/components/ui/badge'
+import { Checkbox } from '@/components/ui/checkbox'
+import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
 
 import type { LocationList } from './list.schema'
 

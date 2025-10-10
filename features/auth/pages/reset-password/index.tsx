@@ -4,11 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Logo } from '@components/shared/logo'
-import { Button } from '@components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@components/ui/form'
-import { PasswordInput } from '@components/ui/password-input'
-import { cn } from '@lib/utils'
+import { Logo } from '@/components/shared/logo'
+import { Button } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import { PasswordInput } from '@/components/ui/password-input'
+import { cn } from '@/lib/utils'
 
 const resetPasswordSchema = z
   .object({

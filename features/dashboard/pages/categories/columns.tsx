@@ -2,12 +2,13 @@
 
 import type { ColumnDef } from '@tanstack/react-table'
 
-import { Badge } from '@components/ui/badge'
-import { Checkbox } from '@components/ui/checkbox'
-import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { statusBadges } from '@dashboard/components/badges'
 import { DataTableRowActions } from '@dashboard/components/data-table'
+
+import { Badge } from '@/components/ui/badge'
+import { Checkbox } from '@/components/ui/checkbox'
+import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
 
 import { levelBadges } from './badges'
 import { CategoryList } from './list.schema'

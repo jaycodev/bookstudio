@@ -1,6 +1,7 @@
-import rawData from '@mocks/data/locations.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
+
+import rawData from '@/mocks/data/locations.json'
 
 import { columns } from './columns'
 import { LocationList, locationListSchema } from './list.schema'

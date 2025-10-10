@@ -1,6 +1,7 @@
-import rawData from '@mocks/data/publishers.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
+
+import rawData from '@/mocks/data/publishers.json'
 
 import { columns } from './columns'
 import { PublisherList, publisherListSchema } from './list.schema'

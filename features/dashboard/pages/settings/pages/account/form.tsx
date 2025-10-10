@@ -4,10 +4,17 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '@components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@components/ui/form'
-import { PasswordInput } from '@components/ui/password-input'
-import { showSubmittedData } from '@lib/show-submitted-data'
+import { Button } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import { PasswordInput } from '@/components/ui/password-input'
+import { showSubmittedData } from '@/lib/show-submitted-data'
 
 const passwordSchema = z
   .object({

@@ -2,8 +2,8 @@
 
 import { Pie, PieChart } from 'recharts'
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card'
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from '@components/ui/chart'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from '@/components/ui/chart'
 
 const chartData = [
   { status: 'available', copies: 650, fill: 'var(--color-available)' },

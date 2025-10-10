@@ -6,8 +6,8 @@ import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Badge } from '@components/ui/badge'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@components/ui/collapsible'
+import { Badge } from '@/components/ui/badge'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@components/ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -26,7 +26,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from '@components/ui/sidebar'
+} from '@/components/ui/sidebar'
 
 import { NavCollapsible, type NavGroup, NavItem, NavLink } from './types'
 

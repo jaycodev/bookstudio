@@ -7,14 +7,14 @@ import { Pencil, Trash, Upload } from 'lucide-react'
 import { useForm, useWatch } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
-import { Button } from '@components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@components/ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 import {
   Form,
   FormControl,
@@ -23,9 +23,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@components/ui/form'
-import { Input } from '@components/ui/input'
-import { showSubmittedData } from '@lib/show-submitted-data'
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { showSubmittedData } from '@/lib/show-submitted-data'
 
 const photoSchema = z.object({
   photo: z

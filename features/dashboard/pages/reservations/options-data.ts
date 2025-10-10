@@ -1,5 +1,5 @@
-import { FilterOption } from '@typings'
-import readersOptionsJson from '@mocks/options/readers.json'
+import readersOptionsJson from '@/mocks/options/readers.json'
+import { FilterOption } from '@/typings'
 
 import { statusBadges } from './badges'
 

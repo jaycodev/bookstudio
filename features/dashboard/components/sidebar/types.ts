@@ -1,4 +1,4 @@
-import { ValidUrl } from '@config/page-map'
+import { ValidUrl } from '@/config/page-map'
 
 interface User {
   name: string

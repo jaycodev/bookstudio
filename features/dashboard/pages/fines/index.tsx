@@ -1,6 +1,7 @@
-import rawData from '@mocks/data/fines.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
+
+import rawData from '@/mocks/data/fines.json'
 
 import { columns } from './columns'
 import { FineList, fineListSchema } from './list.schema'

@@ -4,8 +4,9 @@ interface Props {
 
 import { Bell, Monitor, Palette, Settings, User, Wrench } from 'lucide-react'
 
-import { Separator } from '@components/ui/separator'
 import { SidebarNav } from '@dashboard/pages/settings/components/sidebar-nav'
+
+import { Separator } from '@/components/ui/separator'
 
 const sidebarNavItems = [
   {

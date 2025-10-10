@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@config/page-map'
 import { BooksPage } from '@dashboard/pages/books'
+
+import { pageMap } from '@/config/page-map'
 
 const page = pageMap['/libros']
 

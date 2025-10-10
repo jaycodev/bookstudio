@@ -1,6 +1,7 @@
-import rawData from '@mocks/data/workers.json'
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table'
+
+import rawData from '@/mocks/data/workers.json'
 
 import { columns } from './columns'
 import { WorkerList, workerListSchema } from './list.schema'

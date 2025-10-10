@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
-import { pageMap } from '@config/page-map'
 import { PaymentsPage } from '@dashboard/pages/payments'
+
+import { pageMap } from '@/config/page-map'
 
 const page = pageMap['/pagos']
 

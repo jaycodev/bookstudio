@@ -4,15 +4,16 @@ import React from 'react'
 
 import { usePathname } from 'next/navigation'
 
+import { sidebarData, sidebarMap } from '@dashboard/components/sidebar'
+
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@components/ui/breadcrumb'
-import { pageMap } from '@config/page-map'
-import { sidebarData, sidebarMap } from '@dashboard/components/sidebar'
+} from '@/components/ui/breadcrumb'
+import { pageMap } from '@/config/page-map'
 
 export function Breadcrumbs() {
   const pathname = usePathname()

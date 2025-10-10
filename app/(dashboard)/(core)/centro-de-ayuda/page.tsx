@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { ComingSoon } from '@components/shared/coming-soon'
-import { pageMap } from '@config/page-map'
+import { ComingSoon } from '@/components/shared/coming-soon'
+import { pageMap } from '@/config/page-map'
 
 const page = pageMap['/centro-de-ayuda']
 

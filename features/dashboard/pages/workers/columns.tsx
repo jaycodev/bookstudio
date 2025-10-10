@@ -3,13 +3,14 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { Mail, ShieldCheck } from 'lucide-react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar'
-import { Badge } from '@components/ui/badge'
-import { Checkbox } from '@components/ui/checkbox'
-import { getInitials } from '@lib/utils'
-import { withMetaLabelFilter } from '@lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@lib/with-meta-label-header'
 import { DataTableRowActions } from '@dashboard/components/data-table'
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import { Checkbox } from '@/components/ui/checkbox'
+import { getInitials } from '@/lib/utils'
+import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
 
 import { statusBadges } from './badges'
 import { WorkerList } from './list.schema'

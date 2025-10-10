@@ -1,4 +1,4 @@
-import { pageMap, type ValidUrl } from '@config/page-map'
+import { pageMap, type ValidUrl } from '@/config/page-map'
 
 import { sidebarMap } from './sidebar-map'
 

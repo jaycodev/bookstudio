@@ -17,7 +17,7 @@ import {
   Users,
 } from 'lucide-react'
 
-import { pageMap, type ValidUrl } from '@config/page-map'
+import { pageMap, type ValidUrl } from '@/config/page-map'
 
 type SidebarVisualMeta = {
   icon: React.ElementType

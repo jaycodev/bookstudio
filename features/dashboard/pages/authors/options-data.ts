@@ -1,7 +1,7 @@
 import { statusBadges } from '@dashboard/components/badges'
 
 import nationalitiesOptionsJson from '@/mocks/options/nationalities.json'
-import { FilterOption } from '@/typings'
+import { FilterOption } from '@/typings/types'
 
 export const nationalitiesOptions: FilterOption[] = nationalitiesOptionsJson.map((nationality) => ({
   value: String(nationality.value),

@@ -5,7 +5,7 @@ import { statusBadges } from '@dashboard/components/badges'
 import categoriesOptionsJson from '@/mocks/options/categories.json'
 import languagesOptionsJson from '@/mocks/options/languages.json'
 import publishersOptionsJson from '@/mocks/options/publishers.json'
-import { FilterOption } from '@/typings'
+import { FilterOption } from '@/typings/types'
 
 export const categoriesOptions: FilterOption[] = categoriesOptionsJson.map((category) => ({
   value: String(category.value),

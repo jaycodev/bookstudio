@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { DateRangePicker } from '@/components/ui/date-range-picker'
 import { Input } from '@/components/ui/input'
 import { getColumnLabel } from '@/config/column-labels'
-import { FilterOption } from '@/typings'
+import { FilterOption } from '@/typings/types'
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter'
 import { DataTableViewOptions } from './data-table-view-options'

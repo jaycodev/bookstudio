@@ -1,5 +1,5 @@
 import rolesOptionsJson from '@/mocks/options/roles.json'
-import { FilterOption } from '@/typings'
+import { FilterOption } from '@/typings/types'
 
 import { statusBadges } from './badges'
 

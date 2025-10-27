@@ -1,6 +1,6 @@
 import copiesOptionsJson from '@/mocks/options/copies.json'
 import loansOptionsJson from '@/mocks/options/loans.json'
-import { FilterOption } from '@/typings'
+import { FilterOption } from '@/typings/types'
 
 import { statusBadges } from './badges'
 

@@ -1,6 +1,6 @@
 import { Cloud } from 'lucide-react'
 
-import { Search } from '@dashboard/components/sidebar'
+import { Search } from '@dashboard/components/sidebar/search'
 
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'

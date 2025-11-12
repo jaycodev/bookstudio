@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { CommandMenu } from '@dashboard/components/sidebar'
+import { CommandMenu } from '@dashboard/components/sidebar/command-menu'
 
 interface SearchContextType {
   open: boolean

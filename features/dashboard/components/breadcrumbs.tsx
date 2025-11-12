@@ -4,7 +4,8 @@ import React from 'react'
 
 import { usePathname } from 'next/navigation'
 
-import { sidebarData, sidebarMap } from '@dashboard/components/sidebar'
+import { sidebarData } from '@dashboard/components/sidebar/sidebar.data'
+import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
 import {
   Breadcrumb,

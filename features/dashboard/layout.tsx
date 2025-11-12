@@ -1,4 +1,4 @@
-import { AppSidebar } from '@dashboard/components/sidebar'
+import { AppSidebar } from '@dashboard/components/sidebar/app-sidebar'
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { SearchProvider } from '@/context/search-context'

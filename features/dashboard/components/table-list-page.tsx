@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 
 import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table/data-table'
-import { sidebarMap } from '@dashboard/components/sidebar'
+import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
 import { Button } from '@/components/ui/button'
 

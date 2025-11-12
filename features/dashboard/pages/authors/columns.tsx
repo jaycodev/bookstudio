@@ -4,7 +4,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { Calendar, User } from 'lucide-react'
 
 import { statusBadges } from '@dashboard/components/badges'
-import { DataTableRowActions } from '@dashboard/components/data-table'
+import { DataTableRowActions } from '@dashboard/components/data-table/data-table-row-actions'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'

@@ -3,7 +3,7 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { BookCopy, BookOpenText, Calendar, Handshake } from 'lucide-react'
 
-import { DataTableRowActions } from '@dashboard/components/data-table'
+import { DataTableRowActions } from '@dashboard/components/data-table/data-table-row-actions'
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'

@@ -3,7 +3,7 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { Archive, BookText, Boxes, Layers, MapPin } from 'lucide-react'
 
-import { DataTableRowActions } from '@dashboard/components/data-table'
+import { DataTableRowActions } from '@dashboard/components/data-table/data-table-row-actions'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'

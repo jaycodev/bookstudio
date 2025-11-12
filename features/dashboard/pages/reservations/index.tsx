@@ -1,5 +1,4 @@
-import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
-import { DataTable } from '@dashboard/components/data-table'
+import { TableListPage } from '@dashboard/components/table-list-page'
 
 import rawData from '@/mocks/data/reservations.json'
 
@@ -24,15 +23,12 @@ interface Props {
 
 export function ReservationsPage({ title }: Props) {
   return (
-    <>
-      <Breadcrumbs />
-      <DataTable
-        columns={columns}
-        data={data}
-        resource="reservations"
-        title={title}
-        description="Organizadas, claras y accesibles."
-      />
-    </>
+    <TableListPage
+      columns={columns}
+      data={data}
+      resource="reservations"
+      title={title}
+      description="Organizadas, claras y accesibles."
+    />
   )
 }

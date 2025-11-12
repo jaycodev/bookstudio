@@ -1,5 +1,4 @@
-import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
-import { DataTable } from '@dashboard/components/data-table'
+import { TableListPage } from '@dashboard/components/table-list-page'
 
 import rawData from '@/mocks/data/payments.json'
 
@@ -24,15 +23,12 @@ interface Props {
 
 export function PaymentsPage({ title }: Props) {
   return (
-    <>
-      <Breadcrumbs />
-      <DataTable
-        columns={columns}
-        data={data}
-        resource="payments"
-        title={title}
-        description="Historial de transacciones."
-      />
-    </>
+    <TableListPage
+      columns={columns}
+      data={data}
+      resource="payments"
+      title={title}
+      description="Historial de transacciones."
+    />
   )
 }

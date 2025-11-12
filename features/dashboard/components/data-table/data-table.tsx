@@ -17,12 +17,7 @@ import {
   useReactTable,
   VisibilityState,
 } from '@tanstack/react-table'
-import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
-import { usePathname } from 'next/navigation'
 
-import { sidebarMap } from '@dashboard/components/sidebar'
-
-import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
@@ -63,21 +58,13 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   resource: string
-  title?: string
-  description?: string
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   resource,
-  title = 'Listado',
-  description = 'Esta es la información disponible en la tabla.',
 }: DataTableProps<TData, TValue>) {
-  const pathname = usePathname()
-  const sidebarMeta = sidebarMap[pathname as keyof typeof sidebarMap]
-  const Icon = sidebarMeta?.icon
-
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
@@ -146,30 +133,6 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <div className="mb-2 flex flex-wrap items-center justify-between space-y-2 gap-x-4">
-        <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            {Icon && <Icon strokeWidth={2.5} />}
-            {title}
-          </h1>
-          <p className="text-muted-foreground">{description}</p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline">
-            <FileX className="text-green-500 dark:text-green-400" />
-            Excel
-          </Button>
-          <Button variant="outline">
-            <FileSpreadsheet className="text-destructive" />
-            PDF
-          </Button>
-          <Button>
-            <CirclePlus />
-            Agregar
-          </Button>
-        </div>
-      </div>
-      <div className="flex items-center space-x-2 mb-2 w-full"></div>
       <DataTableToolbar table={table} resource={resource} />
       <div className="overflow-y-auto rounded-md border">
         <Table>

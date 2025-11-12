@@ -1,5 +1,4 @@
-import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
-import { DataTable } from '@dashboard/components/data-table'
+import { TableListPage } from '@dashboard/components/table-list-page'
 
 import rawData from '@/mocks/data/roles.json'
 
@@ -21,15 +20,12 @@ interface Props {
 
 export function RolesPage({ title }: Props) {
   return (
-    <>
-      <Breadcrumbs />
-      <DataTable
-        columns={columns}
-        data={data}
-        resource="roles"
-        title={title}
-        description="Define permisos fácilmente."
-      />
-    </>
+    <TableListPage
+      columns={columns}
+      data={data}
+      resource="roles"
+      title={title}
+      description="Define permisos fácilmente."
+    />
   )
 }

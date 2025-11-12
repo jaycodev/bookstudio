@@ -1,5 +1,4 @@
-import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
-import { DataTable } from '@dashboard/components/data-table'
+import { TableListPage } from '@dashboard/components/table-list-page'
 
 import rawData from '@/mocks/data/locations.json'
 
@@ -24,15 +23,12 @@ interface Props {
 
 export function LocationsPage({ title }: Props) {
   return (
-    <>
-      <Breadcrumbs />
-      <DataTable
-        columns={columns}
-        data={data}
-        resource="locations"
-        title={title}
-        description="Gestiona los espacios de tu biblioteca."
-      />
-    </>
+    <TableListPage
+      columns={columns}
+      data={data}
+      resource="locations"
+      title={title}
+      description="Gestiona los espacios de tu biblioteca."
+    />
   )
 }

@@ -1,5 +1,4 @@
-import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
-import { DataTable } from '@dashboard/components/data-table'
+import { TableListPage } from '@dashboard/components/table-list-page'
 
 import rawData from '@/mocks/data/readers.json'
 
@@ -21,15 +20,12 @@ interface Props {
 
 export function ReadersPage({ title }: Props) {
   return (
-    <>
-      <Breadcrumbs />
-      <DataTable
-        columns={columns}
-        data={data}
-        resource="readers"
-        title={title}
-        description="Seguimiento de miembros."
-      />
-    </>
+    <TableListPage
+      columns={columns}
+      data={data}
+      resource="readers"
+      title={title}
+      description="Seguimiento de miembros."
+    />
   )
 }

@@ -51,7 +51,7 @@ export function DataTableSkeleton({
             : null}
           {dateRangeCount > 0
             ? Array.from({ length: dateRangeCount }).map((_, i) => (
-                <Skeleton key={`date-${i}`} className="h-8 w-[260px]" />
+                <Skeleton key={`date-${i}`} className="h-8 w-[240px]" />
               ))
             : null}
         </div>

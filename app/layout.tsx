@@ -75,7 +75,7 @@ export default function RootLayout({
           disableTransitionOnChange
           enableColorScheme
         >
-          <NextTopLoader color="var(--ring)" height={2} easing="linear" showSpinner={false} />
+          <NextTopLoader color="var(--primary)" height={2} easing="linear" showSpinner={false} />
           <Toaster duration={5000} />
           {children}
         </ThemeProvider>

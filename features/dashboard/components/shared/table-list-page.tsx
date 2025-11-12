@@ -12,6 +12,7 @@ import { Breadcrumbs } from '@dashboard/components/shared/breadcrumbs'
 import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
 import { Button } from '@/components/ui/button'
+import { Spinner } from '@/components/ui/spinner'
 
 interface TableListPageProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -70,17 +71,17 @@ export function TableListPage<TData, TValue>({
             </h1>
             <p className="text-muted-foreground">{description}</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
-              <FileX className="text-green-500 dark:text-green-400" />
+          <div className={`flex gap-2 ${isLoading ? 'cursor-wait' : ''}`}>
+            <Button variant="outline" disabled={isLoading}>
+              {isLoading ? <Spinner /> : <FileX className="text-green-500 dark:text-green-400" />}
               Excel
             </Button>
-            <Button variant="outline">
-              <FileSpreadsheet className="text-destructive" />
+            <Button variant="outline" disabled={isLoading}>
+              {isLoading ? <Spinner /> : <FileSpreadsheet className="text-destructive" />}
               PDF
             </Button>
-            <Button>
-              <CirclePlus />
+            <Button disabled={isLoading}>
+              {isLoading ? <Spinner /> : <CirclePlus />}
               Agregar
             </Button>
           </div>

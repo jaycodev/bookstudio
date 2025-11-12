@@ -42,7 +42,7 @@ export function DataTableSkeleton({
   return (
     <div className={cn('flex w-full flex-col gap-4 overflow-auto', className)} {...props}>
       <div className="flex flex-wrap items-center justify-between space-x-2 gap-2">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 cursor-wait">
           {withSearch ? <Skeleton className="h-8 w-[190px] lg:w-[270px]" /> : null}
           {filterCount > 0
             ? Array.from({ length: filterCount }).map((_, i) => (
@@ -56,12 +56,12 @@ export function DataTableSkeleton({
             : null}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-wait">
           {withViewOptions ? <Skeleton className="hidden h-8 w-22 lg:block" /> : null}
         </div>
       </div>
       <div className="rounded-md border">
-        <Table>
+        <Table className="cursor-wait">
           <TableHeader>
             {Array.from({ length: 1 }).map((_, i) => (
               <TableRow key={i} className="hover:bg-transparent">
@@ -100,14 +100,14 @@ export function DataTableSkeleton({
       </div>
       {withPagination ? (
         <div className="flex flex-col items-center justify-between space-y-4 px-2 lg:flex-row lg:space-y-0">
-          <div className="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-6 sm:space-y-0">
+          <div className="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-6 sm:space-y-0 cursor-wait">
             <Skeleton className="h-8 w-58 shrink-0" />
             <div className="flex items-center gap-2">
               <Skeleton className="h-8 w-17" />
               <Skeleton className="h-8 w-26" />
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 cursor-wait">
             <div className="flex items-center justify-center font-medium text-sm">
               <Skeleton className="h-8 w-22" />
             </div>

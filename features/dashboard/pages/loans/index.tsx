@@ -1,4 +1,4 @@
-import { TableListPage } from '@dashboard/components/table-list-page'
+import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import rawData from '@/mocks/data/loans.json'
 

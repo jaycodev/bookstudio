@@ -6,6 +6,8 @@ import { ArrowRight, LaptopMinimal, Moon, Sun } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 
+import { sidebarData } from '@dashboard/components/sidebar/sidebar.data'
+
 import {
   CommandDialog,
   CommandEmpty,
@@ -17,8 +19,6 @@ import {
 } from '@/components/ui/command'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useSearch } from '@/context/search-context'
-
-import { sidebarData } from './sidebar.data'
 
 export function CommandMenu() {
   const router = useRouter()

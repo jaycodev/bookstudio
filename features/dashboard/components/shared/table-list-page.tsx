@@ -4,8 +4,8 @@ import { ColumnDef } from '@tanstack/react-table'
 import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
-import { Breadcrumbs } from '@dashboard/components/breadcrumbs'
 import { DataTable } from '@dashboard/components/data-table/data-table'
+import { Breadcrumbs } from '@dashboard/components/shared/breadcrumbs'
 import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
 import { Button } from '@/components/ui/button'

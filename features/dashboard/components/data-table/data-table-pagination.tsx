@@ -47,7 +47,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
           <p className="text-sm font-medium">Filas por página</p>
         </div>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-4">
         <div className="flex items-center justify-center text-sm font-medium">
           Página {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
         </div>

@@ -1,10 +1,13 @@
 'use client'
 
+import * as React from 'react'
+
 import { ColumnDef } from '@tanstack/react-table'
 import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 import { DataTable } from '@dashboard/components/data-table/data-table'
+import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { Breadcrumbs } from '@dashboard/components/shared/breadcrumbs'
 import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
@@ -16,6 +19,7 @@ interface TableListPageProps<TData, TValue> {
   resource: string
   title: string
   description: string
+  initialLoadingTime?: number
 }
 
 export function TableListPage<TData, TValue>({
@@ -24,10 +28,35 @@ export function TableListPage<TData, TValue>({
   resource,
   title,
   description,
+  initialLoadingTime = 1000,
 }: TableListPageProps<TData, TValue>) {
   const pathname = usePathname()
   const sidebarMeta = sidebarMap[pathname as keyof typeof sidebarMap]
   const Icon = sidebarMeta?.icon
+
+  const filterCount = React.useMemo(() => {
+    return columns.filter((col) => {
+      const meta = col.meta as Record<string, unknown> | undefined
+      return meta?.filter && !meta?.dateRangeFilter
+    }).length
+  }, [columns])
+
+  const dateRangeCount = React.useMemo(() => {
+    return columns.filter((col) => {
+      const meta = col.meta as Record<string, unknown> | undefined
+      return meta?.dateRangeFilter
+    }).length
+  }, [columns])
+
+  const [isLoading, setIsLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, initialLoadingTime)
+
+    return () => clearTimeout(timer)
+  }, [initialLoadingTime])
 
   return (
     <>
@@ -56,7 +85,15 @@ export function TableListPage<TData, TValue>({
             </Button>
           </div>
         </div>
-        <DataTable columns={columns} data={data} resource={resource} />
+        {isLoading ? (
+          <DataTableSkeleton
+            columnCount={columns.length}
+            filterCount={filterCount}
+            dateRangeCount={dateRangeCount}
+          />
+        ) : (
+          <DataTable columns={columns} data={data} resource={resource} />
+        )}
       </div>
     </>
   )

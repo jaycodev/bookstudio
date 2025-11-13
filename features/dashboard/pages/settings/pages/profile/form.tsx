@@ -25,7 +25,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { showSubmittedData } from '@/lib/show-submitted-data'
+import { showSubmittedData } from '@/lib/utils/components/show-submitted-data'
 
 const photoSchema = z.object({
   photo: z

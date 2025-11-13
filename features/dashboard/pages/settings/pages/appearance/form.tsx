@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { showSubmittedData } from '@/lib/show-submitted-data'
+import { showSubmittedData } from '@/lib/utils/components/show-submitted-data'
 
 const schema = z.object({
   theme: z.enum(['light', 'dark']),

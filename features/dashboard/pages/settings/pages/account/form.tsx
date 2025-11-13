@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { PasswordInput } from '@/components/ui/password-input'
-import { showSubmittedData } from '@/lib/show-submitted-data'
+import { showSubmittedData } from '@/lib/utils/components/show-submitted-data'
 
 const passwordSchema = z
   .object({

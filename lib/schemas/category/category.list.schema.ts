@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-import { Status } from '@dashboard/enums'
+import { Status } from '@/lib/schemas/common/api-enums'
 
-import { CategoryLevel } from './enums'
+import { CategoryLevel } from './category.enums'
 
 export const categoryListSchema = z.object({
   id: z.number(),

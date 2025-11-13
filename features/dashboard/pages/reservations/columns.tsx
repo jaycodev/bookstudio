@@ -7,11 +7,11 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
+import type { ReservationList } from '@/lib/schemas/reservation/reservation.list.schema'
+import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 import { statusBadges } from './badges'
-import type { ReservationList } from './list.schema'
 import { readersOptions, statusOptions } from './options-data'
 
 export const columns: ColumnDef<ReservationList>[] = [

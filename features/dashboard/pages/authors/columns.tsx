@@ -9,10 +9,10 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
+import { AuthorList } from '@/lib/schemas/author/author.list.schema'
+import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
-import { AuthorList } from './list.schema'
 import { nationalitiesOptions, statusOptions } from './options-data'
 
 export const columns: ColumnDef<AuthorList>[] = [

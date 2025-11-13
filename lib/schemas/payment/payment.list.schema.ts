@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { PaymentMethod } from './enums'
+import { PaymentMethod } from './payment.enums'
 
 export const paymentListSchema = z.object({
   id: z.number(),

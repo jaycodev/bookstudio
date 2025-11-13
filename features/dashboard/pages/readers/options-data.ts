@@ -1,4 +1,4 @@
-import { FilterOption } from '@/typings/types'
+import { FilterOption } from '@/lib/types'
 
 import { statusBadges, typeBadges } from './badges'
 

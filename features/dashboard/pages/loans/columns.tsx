@@ -8,12 +8,12 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { createObjectSumFacetCalculator } from '@/lib/object-facets'
-import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
+import { LoanList } from '@/lib/schemas/loan/loan.list.schema'
+import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
+import { createObjectSumFacetCalculator } from '@/lib/utils/facets'
 
 import { statusBadges } from './badges'
-import { LoanList } from './list.schema'
 import { readersOptions, statusOptions } from './options-data'
 
 export const columns: ColumnDef<LoanList>[] = [

@@ -1,24 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/roles.json'
+import { rolesApi } from '@/lib/api/roles'
 
 import { columns } from './columns'
-import { RoleList, roleListSchema } from './list.schema'
-
-let data: RoleList[] = []
-
-try {
-  data = roleListSchema.array().parse(rawData)
-} catch (error) {
-  console.error('Failed to parse role data. Please check the structure of your JSON file.', error)
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function RolesPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['roles'],
+    queryFn: rolesApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch roles:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

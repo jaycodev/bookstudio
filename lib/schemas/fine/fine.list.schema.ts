@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { FineStatus } from './enums'
+import { FineStatus } from './fine.enums'
 
 export const fineListSchema = z.object({
   id: z.number(),

@@ -7,9 +7,8 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
-
-import type { LocationList } from './list.schema'
+import type { LocationList } from '@/lib/schemas/location/location.list.schema'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 const getBadgeVariant = (value: number) => {
   if (value === 0) return 'muted'

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { CopyCondition, CopyStatus } from './enums'
+import { CopyCondition, CopyStatus } from './copy.enums'
 
 export const copyListSchema = z.object({
   id: z.number(),

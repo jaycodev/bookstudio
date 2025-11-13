@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Switch } from '@/components/ui/switch'
-import { showSubmittedData } from '@/lib/show-submitted-data'
+import { showSubmittedData } from '@/lib/utils/components/show-submitted-data'
 
 const notificationsFormSchema = z.object({
   type: z.enum(['all', 'mentions', 'none'], {

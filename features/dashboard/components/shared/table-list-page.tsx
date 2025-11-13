@@ -16,11 +16,12 @@ import { Spinner } from '@/components/ui/spinner'
 
 interface TableListPageProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  data?: TData[]
   resource: string
   title: string
   description: string
-  initialLoadingTime?: number
+  filterCount?: number
+  dateRangeCount?: number
 }
 
 export function TableListPage<TData, TValue>({
@@ -29,35 +30,30 @@ export function TableListPage<TData, TValue>({
   resource,
   title,
   description,
-  initialLoadingTime = 1000,
+  filterCount,
+  dateRangeCount,
 }: TableListPageProps<TData, TValue>) {
   const pathname = usePathname()
   const sidebarMeta = sidebarMap[pathname as keyof typeof sidebarMap]
   const Icon = sidebarMeta?.icon
 
-  const filterCount = React.useMemo(() => {
+  const computedFilterCount = React.useMemo(() => {
+    if (filterCount !== undefined) return filterCount
     return columns.filter((col) => {
       const meta = col.meta as Record<string, unknown> | undefined
       return meta?.filter && !meta?.dateRangeFilter
     }).length
-  }, [columns])
+  }, [filterCount, columns])
 
-  const dateRangeCount = React.useMemo(() => {
+  const computedDateRangeCount = React.useMemo(() => {
+    if (dateRangeCount !== undefined) return dateRangeCount
     return columns.filter((col) => {
       const meta = col.meta as Record<string, unknown> | undefined
       return meta?.dateRangeFilter
     }).length
-  }, [columns])
+  }, [dateRangeCount, columns])
 
-  const [isLoading, setIsLoading] = React.useState(true)
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, initialLoadingTime)
-
-    return () => clearTimeout(timer)
-  }, [initialLoadingTime])
+  const isLoading = data === undefined
 
   return (
     <>
@@ -89,11 +85,11 @@ export function TableListPage<TData, TValue>({
         {isLoading ? (
           <DataTableSkeleton
             columnCount={columns.length}
-            filterCount={filterCount}
-            dateRangeCount={dateRangeCount}
+            filterCount={computedFilterCount}
+            dateRangeCount={computedDateRangeCount}
           />
         ) : (
-          <DataTable columns={columns} data={data} resource={resource} />
+          <DataTable columns={columns} data={data ?? []} resource={resource} />
         )}
       </div>
     </>

@@ -1,5 +1,5 @@
+import { FilterOption } from '@/lib/types'
 import readersOptionsJson from '@/mocks/options/readers.json'
-import { FilterOption } from '@/typings/types'
 
 import { methodBadges } from './badges'
 

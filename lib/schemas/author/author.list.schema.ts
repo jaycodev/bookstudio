@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { Status } from '@dashboard/enums'
+import { Status } from '@/lib/schemas/common/api-enums'
 
 export const authorListSchema = z.object({
   id: z.number(),

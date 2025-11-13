@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { ReservationStatus } from './enums'
+import { ReservationStatus } from './reservation.enums'
 
 export const reservationListSchema = z.object({
   id: z.number(),

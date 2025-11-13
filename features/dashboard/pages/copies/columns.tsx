@@ -8,11 +8,11 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
+import type { CopyList } from '@/lib/schemas/copy/copy.list.schema'
+import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 import { conditionBadges, statusBadges } from './badges'
-import type { CopyList } from './list.schema'
 import { booksOptions, conditionsOptions, statusOptions } from './options-data'
 
 export const columns: ColumnDef<CopyList>[] = [

@@ -1,24 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/publishers.json'
+import { publishersApi } from '@/lib/api/publishers'
 
 import { columns } from './columns'
-import { PublisherList, publisherListSchema } from './list.schema'
-
-let data: PublisherList[] = []
-
-try {
-  data = publisherListSchema.array().parse(rawData)
-} catch (error) {
-  console.error('Failed to parse copy data. Please check the structure of your JSON file.', error)
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function PublishersPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['publishers'],
+    queryFn: publishersApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch publishers:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

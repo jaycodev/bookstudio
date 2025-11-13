@@ -1,27 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/categories.json'
+import { categoriesApi } from '@/lib/api/categories'
 
 import { columns } from './columns'
-import { CategoryList, categoryListSchema } from './list.schema'
-
-let data: CategoryList[] = []
-
-try {
-  data = categoryListSchema.array().parse(rawData)
-} catch (error) {
-  console.error(
-    'Failed to parse category data. Please check the structure of your JSON file.',
-    error
-  )
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function CategoriesPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['categories'],
+    queryFn: categoriesApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch categories:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

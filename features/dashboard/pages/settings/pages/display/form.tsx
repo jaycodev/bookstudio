@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { showSubmittedData } from '@/lib/show-submitted-data'
+import { showSubmittedData } from '@/lib/utils/components/show-submitted-data'
 
 const items = [
   {

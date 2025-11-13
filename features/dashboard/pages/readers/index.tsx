@@ -1,24 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/readers.json'
+import { readersApi } from '@/lib/api/readers'
 
 import { columns } from './columns'
-import { ReaderList, readerListSchema } from './list.schema'
-
-let data: ReaderList[] = []
-
-try {
-  data = readerListSchema.array().parse(rawData)
-} catch (error) {
-  console.error('Failed to parse reader data. Please check the structure of your JSON file.', error)
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function ReadersPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['readers'],
+    queryFn: readersApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch readers:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

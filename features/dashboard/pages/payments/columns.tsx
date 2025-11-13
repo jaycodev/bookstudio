@@ -7,11 +7,11 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
+import type { PaymentList } from '@/lib/schemas/payment/payment.list.schema'
+import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 import { methodBadges } from './badges'
-import type { PaymentList } from './list.schema'
 import { methodsOptions, readersOptions } from './options-data'
 
 export const columns: ColumnDef<PaymentList>[] = [

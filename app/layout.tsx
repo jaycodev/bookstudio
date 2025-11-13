@@ -5,6 +5,8 @@ import NextTopLoader from 'nextjs-toploader'
 
 import { Toaster } from '@/components/ui/sonner'
 
+import { QueryProvider } from './providers/query-provider'
+
 import './globals.css'
 
 const inter = Inter({
@@ -69,16 +71,18 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
-          enableColorScheme
-        >
-          <NextTopLoader color="var(--primary)" height={2} easing="linear" showSpinner={false} />
-          <Toaster duration={5000} />
-          {children}
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
+            enableColorScheme
+          >
+            <NextTopLoader color="var(--primary)" height={2} easing="linear" showSpinner={false} />
+            <Toaster duration={5000} />
+            {children}
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   )

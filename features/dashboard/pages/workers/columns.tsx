@@ -8,12 +8,12 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
+import { WorkerList } from '@/lib/schemas/worker/worker.list.schema'
 import { getInitials } from '@/lib/utils'
-import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
+import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 import { statusBadges } from './badges'
-import { WorkerList } from './list.schema'
 import { rolesOptions, statusOptions } from './options-data'
 
 export const columns: ColumnDef<WorkerList>[] = [

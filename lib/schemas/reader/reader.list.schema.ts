@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { ReaderStatus, ReaderType } from './enums'
+import { ReaderStatus, ReaderType } from './reader.enums'
 
 export const readerListSchema = z.object({
   id: z.number(),

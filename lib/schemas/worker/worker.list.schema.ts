@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { WorkerStatus } from './enums'
+import { WorkerStatus } from './worker.enums'
 
 export const workerListSchema = z.object({
   id: z.number(),

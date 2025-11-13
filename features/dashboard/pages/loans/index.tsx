@@ -1,24 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/loans.json'
+import { loansApi } from '@/lib/api/loans'
 
 import { columns } from './columns'
-import { LoanList, loanListSchema } from './list.schema'
-
-let data: LoanList[] = []
-
-try {
-  data = loanListSchema.array().parse(rawData)
-} catch (error) {
-  console.error('Failed to parse loan data. Please check the structure of your JSON file.', error)
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function LoansPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['loans'],
+    queryFn: loansApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch loans:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

@@ -7,9 +7,8 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
-
-import { RoleList } from './list.schema'
+import { RoleList } from '@/lib/schemas/role/role.list.schema'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 export const columns: ColumnDef<RoleList>[] = [
   {

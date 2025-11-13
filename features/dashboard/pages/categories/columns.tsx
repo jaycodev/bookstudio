@@ -7,11 +7,11 @@ import { DataTableRowActions } from '@dashboard/components/data-table/data-table
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { withMetaLabelFilter } from '@/lib/with-meta-label-filter'
-import { withMetaLabelHeader } from '@/lib/with-meta-label-header'
+import { CategoryList } from '@/lib/schemas/category/category.list.schema'
+import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
+import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 import { levelBadges } from './badges'
-import { CategoryList } from './list.schema'
 import { levelOptions, statusOptions } from './options-data'
 
 export const columns: ColumnDef<CategoryList>[] = [

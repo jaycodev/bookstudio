@@ -1,27 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/payments.json'
+import { paymentsApi } from '@/lib/api/payments'
 
 import { columns } from './columns'
-import { PaymentList, paymentListSchema } from './list.schema'
-
-let data: PaymentList[] = []
-
-try {
-  data = paymentListSchema.array().parse(rawData)
-} catch (error) {
-  console.error(
-    'Failed to parse payment data. Please check the structure of your JSON file.',
-    error
-  )
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function PaymentsPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['payments'],
+    queryFn: paymentsApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch payments:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

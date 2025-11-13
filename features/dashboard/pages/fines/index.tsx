@@ -1,24 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/fines.json'
+import { finesApi } from '@/lib/api/fines'
 
 import { columns } from './columns'
-import { FineList, fineListSchema } from './list.schema'
-
-let data: FineList[] = []
-
-try {
-  data = fineListSchema.array().parse(rawData)
-} catch (error) {
-  console.error('Failed to parse fine data. Please check the structure of your JSON file.', error)
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function FinesPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['fines'],
+    queryFn: finesApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch fines:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

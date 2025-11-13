@@ -1,24 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/authors.json'
+import { authorsApi } from '@/lib/api/authors'
 
 import { columns } from './columns'
-import { AuthorList, authorListSchema } from './list.schema'
-
-let data: AuthorList[] = []
-
-try {
-  data = authorListSchema.array().parse(rawData)
-} catch (error) {
-  console.error('Failed to parse author data. Please check the structure of your JSON file.', error)
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function AuthorsPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['authors'],
+    queryFn: authorsApi.getAll,
+    staleTime: 5 * 60 * 1000, // Cache por 5 minutos
+  })
+
+  if (error) {
+    console.error('Failed to fetch authors:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

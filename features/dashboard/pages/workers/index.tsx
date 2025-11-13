@@ -1,24 +1,28 @@
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
-import rawData from '@/mocks/data/workers.json'
+import { workersApi } from '@/lib/api/workers'
 
 import { columns } from './columns'
-import { WorkerList, workerListSchema } from './list.schema'
-
-let data: WorkerList[] = []
-
-try {
-  data = workerListSchema.array().parse(rawData)
-} catch (error) {
-  console.error('Failed to parse worker data. Please check the structure of your JSON file.', error)
-  data = []
-}
 
 interface Props {
   title: string
 }
 
 export function WorkersPage({ title }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['workers'],
+    queryFn: workersApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch workers:', error)
+  }
+
   return (
     <TableListPage
       columns={columns}

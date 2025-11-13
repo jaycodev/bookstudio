@@ -4,7 +4,9 @@ import { apiClient } from './client'
 
 export const rolesApi = {
   async getAll(): Promise<RoleList[]> {
-    const data = await apiClient.get('/roles')
+    const data = await apiClient.get('/roles', {
+      cache: 'no-store',
+    })
     return roleListSchema.array().parse(data)
   },
 }

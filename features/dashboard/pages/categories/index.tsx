@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { categoriesApi } from '@/lib/api/categories'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function CategoriesPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['categories'],
-    queryFn: categoriesApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch categories:', error)
-  }
+export async function CategoriesPage({ title, pathname }: Props) {
+  const data = await categoriesApi.getAll()
 
   return (
     <TableListPage

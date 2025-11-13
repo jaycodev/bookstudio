@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { reservationsApi } from '@/lib/api/reservations'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function ReservationsPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['reservations'],
-    queryFn: reservationsApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch reservations:', error)
-  }
+export async function ReservationsPage({ title, pathname }: Props) {
+  const data = await reservationsApi.getAll()
 
   return (
     <TableListPage

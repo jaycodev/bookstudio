@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { authorsApi } from '@/lib/api/authors'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function AuthorsPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['authors'],
-    queryFn: authorsApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch authors:', error)
-  }
+export async function AuthorsPage({ title, pathname }: Props) {
+  const data = await authorsApi.getAll()
 
   return (
     <TableListPage

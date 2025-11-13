@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { loansApi } from '@/lib/api/loans'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function LoansPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['loans'],
-    queryFn: loansApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch loans:', error)
-  }
+export async function LoansPage({ title, pathname }: Props) {
+  const data = await loansApi.getAll()
 
   return (
     <TableListPage

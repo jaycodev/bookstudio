@@ -4,7 +4,9 @@ import { apiClient } from './client'
 
 export const authorsApi = {
   async getAll(): Promise<AuthorList[]> {
-    const data = await apiClient.get('/authors')
+    const data = await apiClient.get('/authors', {
+      cache: 'no-store',
+    })
     return authorListSchema.array().parse(data)
   },
 }

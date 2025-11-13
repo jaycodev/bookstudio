@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { rolesApi } from '@/lib/api/roles'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function RolesPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['roles'],
-    queryFn: rolesApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch roles:', error)
-  }
+export async function RolesPage({ title, pathname }: Props) {
+  const data = await rolesApi.getAll()
 
   return (
     <TableListPage

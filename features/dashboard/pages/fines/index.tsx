@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { finesApi } from '@/lib/api/fines'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function FinesPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['fines'],
-    queryFn: finesApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch fines:', error)
-  }
+export async function FinesPage({ title, pathname }: Props) {
+  const data = await finesApi.getAll()
 
   return (
     <TableListPage

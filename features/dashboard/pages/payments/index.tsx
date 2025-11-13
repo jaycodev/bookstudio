@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { paymentsApi } from '@/lib/api/payments'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function PaymentsPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['payments'],
-    queryFn: paymentsApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch payments:', error)
-  }
+export async function PaymentsPage({ title, pathname }: Props) {
+  const data = await paymentsApi.getAll()
 
   return (
     <TableListPage

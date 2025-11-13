@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { readersApi } from '@/lib/api/readers'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function ReadersPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['readers'],
-    queryFn: readersApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch readers:', error)
-  }
+export async function ReadersPage({ title, pathname }: Props) {
+  const data = await readersApi.getAll()
 
   return (
     <TableListPage

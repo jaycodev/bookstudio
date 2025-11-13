@@ -1,7 +1,3 @@
-'use client'
-
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { copiesApi } from '@/lib/api/copies'
@@ -13,16 +9,8 @@ interface Props {
   pathname: string
 }
 
-export function CopiesPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['copies'],
-    queryFn: copiesApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
-
-  if (error) {
-    console.error('Failed to fetch copies:', error)
-  }
+export async function CopiesPage({ title, pathname }: Props) {
+  const data = await copiesApi.getAll()
 
   return (
     <TableListPage

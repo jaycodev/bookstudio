@@ -1,3 +1,7 @@
+import { Suspense } from 'react'
+
+import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
+import { TableListContent } from '@dashboard/components/shared/table-list-content'
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { authorsApi } from '@/lib/api/authors'
@@ -10,16 +14,11 @@ interface Props {
 }
 
 export async function AuthorsPage({ title, pathname }: Props) {
-  const data = await authorsApi.getAll()
-
   return (
-    <TableListPage
-      columns={columns}
-      data={data}
-      resource="authors"
-      title={title}
-      description="Rápidos, claros y ordenados."
-      pathname={pathname}
-    />
+    <TableListPage title={title} description="Rápidos, claros y ordenados." pathname={pathname}>
+      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+        <TableListContent columns={columns} resource="authors" dataFetcher={authorsApi.getAll} />
+      </Suspense>
+    </TableListPage>
   )
 }

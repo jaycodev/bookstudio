@@ -1,3 +1,7 @@
+import { Suspense } from 'react'
+
+import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
+import { TableListContent } from '@dashboard/components/shared/table-list-content'
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { workersApi } from '@/lib/api/workers'
@@ -10,16 +14,11 @@ interface Props {
 }
 
 export async function WorkersPage({ title, pathname }: Props) {
-  const data = await workersApi.getAll()
-
   return (
-    <TableListPage
-      columns={columns}
-      data={data}
-      resource="workers"
-      title={title}
-      description="Administra tu equipo."
-      pathname={pathname}
-    />
+    <TableListPage title={title} description="Administra tu equipo." pathname={pathname}>
+      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+        <TableListContent columns={columns} resource="workers" dataFetcher={workersApi.getAll} />
+      </Suspense>
+    </TableListPage>
   )
 }

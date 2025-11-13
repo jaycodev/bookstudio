@@ -1,3 +1,7 @@
+import { Suspense } from 'react'
+
+import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
+import { TableListContent } from '@dashboard/components/shared/table-list-content'
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { finesApi } from '@/lib/api/fines'
@@ -10,16 +14,11 @@ interface Props {
 }
 
 export async function FinesPage({ title, pathname }: Props) {
-  const data = await finesApi.getAll()
-
   return (
-    <TableListPage
-      columns={columns}
-      data={data}
-      resource="fines"
-      title={title}
-      description="Control de sanciones."
-      pathname={pathname}
-    />
+    <TableListPage title={title} description="Control de sanciones." pathname={pathname}>
+      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+        <TableListContent columns={columns} resource="fines" dataFetcher={finesApi.getAll} />
+      </Suspense>
+    </TableListPage>
   )
 }

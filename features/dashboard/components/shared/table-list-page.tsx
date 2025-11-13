@@ -1,42 +1,51 @@
-import { ColumnDef } from '@tanstack/react-table'
+import { ReactNode } from 'react'
+
+import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
 
 import { Breadcrumbs } from '@dashboard/components/shared/breadcrumbs'
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListHeader } from '@dashboard/components/shared/table-list-header'
+import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
-interface TableListPageProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data?: TData[]
-  resource: string
+import { Button } from '@/components/ui/button'
+
+interface TableListPageProps {
   title: string
   description: string
   pathname: string
-  filterCount?: number
-  dateRangeCount?: number
+  children: ReactNode
 }
 
-export function TableListPage<TData, TValue>({
-  columns,
-  data,
-  resource,
-  title,
-  description,
-  pathname,
-  filterCount,
-  dateRangeCount,
-}: TableListPageProps<TData, TValue>) {
+export function TableListPage({ title, description, pathname, children }: TableListPageProps) {
+  const sidebarMeta = sidebarMap[pathname as keyof typeof sidebarMap]
+  const Icon = sidebarMeta?.icon
+
   return (
     <>
       <Breadcrumbs pathname={pathname} />
       <div className="space-y-4">
-        <TableListHeader title={title} description={description} pathname={pathname} />
-        <TableListContent
-          columns={columns}
-          data={data}
-          resource={resource}
-          filterCount={filterCount}
-          dateRangeCount={dateRangeCount}
-        />
+        <div className="mb-2 flex flex-wrap items-center justify-between space-y-2 gap-x-4">
+          <div>
+            <h1 className="text-2xl font-bold flex items-center gap-2">
+              {Icon && <Icon strokeWidth={2.5} />}
+              {title}
+            </h1>
+            <p className="text-muted-foreground">{description}</p>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="outline">
+              <FileX className="text-green-500 dark:text-green-400" />
+              Excel
+            </Button>
+            <Button variant="outline">
+              <FileSpreadsheet className="text-destructive" />
+              PDF
+            </Button>
+            <Button>
+              <CirclePlus />
+              Agregar
+            </Button>
+          </div>
+        </div>
+        {children}
       </div>
     </>
   )

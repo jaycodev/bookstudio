@@ -1,3 +1,7 @@
+import { Suspense } from 'react'
+
+import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
+import { TableListContent } from '@dashboard/components/shared/table-list-content'
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { readersApi } from '@/lib/api/readers'
@@ -10,16 +14,11 @@ interface Props {
 }
 
 export async function ReadersPage({ title, pathname }: Props) {
-  const data = await readersApi.getAll()
-
   return (
-    <TableListPage
-      columns={columns}
-      data={data}
-      resource="readers"
-      title={title}
-      description="Seguimiento de miembros."
-      pathname={pathname}
-    />
+    <TableListPage title={title} description="Seguimiento de miembros." pathname={pathname}>
+      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+        <TableListContent columns={columns} resource="readers" dataFetcher={readersApi.getAll} />
+      </Suspense>
+    </TableListPage>
   )
 }

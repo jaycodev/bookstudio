@@ -1,3 +1,7 @@
+import { Suspense } from 'react'
+
+import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
+import { TableListContent } from '@dashboard/components/shared/table-list-content'
 import { TableListPage } from '@dashboard/components/shared/table-list-page'
 
 import { locationsApi } from '@/lib/api/locations'
@@ -10,16 +14,19 @@ interface Props {
 }
 
 export async function LocationsPage({ title, pathname }: Props) {
-  const data = await locationsApi.getAll()
-
   return (
     <TableListPage
-      columns={columns}
-      data={data}
-      resource="locations"
       title={title}
       description="Gestiona los espacios de tu biblioteca."
       pathname={pathname}
-    />
+    >
+      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+        <TableListContent
+          columns={columns}
+          resource="locations"
+          dataFetcher={locationsApi.getAll}
+        />
+      </Suspense>
+    </TableListPage>
   )
 }

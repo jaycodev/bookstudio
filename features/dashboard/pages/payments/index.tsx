@@ -16,7 +16,7 @@ interface Props {
 export async function PaymentsPage({ title, pathname }: Props) {
   return (
     <TableListPage title={title} description="Historial de transacciones." pathname={pathname}>
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={9} filterCount={2} dateRangeCount={1} />}>
         <TableListContent columns={columns} resource="payments" dataFetcher={paymentsApi.getAll} />
       </Suspense>
     </TableListPage>

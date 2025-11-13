@@ -16,7 +16,7 @@ interface Props {
 export async function ReadersPage({ title, pathname }: Props) {
   return (
     <TableListPage title={title} description="Seguimiento de miembros." pathname={pathname}>
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={8} filterCount={2} dateRangeCount={0} />}>
         <TableListContent columns={columns} resource="readers" dataFetcher={readersApi.getAll} />
       </Suspense>
     </TableListPage>

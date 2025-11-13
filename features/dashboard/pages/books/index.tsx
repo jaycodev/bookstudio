@@ -20,7 +20,7 @@ export async function BooksPage({ title, pathname }: Props) {
       description="Admínistralos sin complicaciones."
       pathname={pathname}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={9} filterCount={6} dateRangeCount={0} />}>
         <TableListContent columns={columns} resource="books" dataFetcher={booksApi.getAll} />
       </Suspense>
     </TableListPage>

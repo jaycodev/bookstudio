@@ -20,7 +20,7 @@ export async function CategoriesPage({ title, pathname }: Props) {
       description="Organiza tus libros por temas fácilmente."
       pathname={pathname}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={0} />}>
         <TableListContent
           columns={columns}
           resource="categories"

@@ -20,7 +20,7 @@ export async function LocationsPage({ title, pathname }: Props) {
       description="Gestiona los espacios de tu biblioteca."
       pathname={pathname}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={7} filterCount={0} dateRangeCount={0} />}>
         <TableListContent
           columns={columns}
           resource="locations"

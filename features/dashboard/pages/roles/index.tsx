@@ -16,7 +16,7 @@ interface Props {
 export async function RolesPage({ title, pathname }: Props) {
   return (
     <TableListPage title={title} description="Define permisos fácilmente." pathname={pathname}>
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={5} filterCount={0} dateRangeCount={0} />}>
         <TableListContent columns={columns} resource="roles" dataFetcher={rolesApi.getAll} />
       </Suspense>
     </TableListPage>

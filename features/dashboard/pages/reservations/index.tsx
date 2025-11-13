@@ -20,7 +20,7 @@ export async function ReservationsPage({ title, pathname }: Props) {
       description="Organizadas, claras y accesibles."
       pathname={pathname}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={8} filterCount={2} dateRangeCount={1} />}>
         <TableListContent
           columns={columns}
           resource="reservations"

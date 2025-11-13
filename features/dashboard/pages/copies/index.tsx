@@ -20,7 +20,7 @@ export async function CopiesPage({ title, pathname }: Props) {
       description="Controla tu inventario fácilmente."
       pathname={pathname}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={9} filterCount={3} dateRangeCount={0} />}>
         <TableListContent columns={columns} resource="copies" dataFetcher={copiesApi.getAll} />
       </Suspense>
     </TableListPage>

@@ -16,7 +16,7 @@ interface Props {
 export async function PublishersPage({ title, pathname }: Props) {
   return (
     <TableListPage title={title} description="Información siempre lista." pathname={pathname}>
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={1} />}>
+      <Suspense fallback={<DataTableSkeleton columnCount={7} filterCount={2} dateRangeCount={0} />}>
         <TableListContent
           columns={columns}
           resource="publishers"

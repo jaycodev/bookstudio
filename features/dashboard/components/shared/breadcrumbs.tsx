@@ -1,9 +1,3 @@
-'use client'
-
-import React from 'react'
-
-import { usePathname } from 'next/navigation'
-
 import { sidebarData } from '@dashboard/components/sidebar/sidebar.data'
 import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
@@ -16,8 +10,11 @@ import {
 } from '@/components/ui/breadcrumb'
 import { pageMap } from '@/config/page-map'
 
-export function Breadcrumbs() {
-  const pathname = usePathname()
+interface BreadcrumbsProps {
+  pathname: string
+}
+
+export function Breadcrumbs({ pathname }: BreadcrumbsProps) {
   const currentPage = pageMap[pathname]
   if (!currentPage) return null
 

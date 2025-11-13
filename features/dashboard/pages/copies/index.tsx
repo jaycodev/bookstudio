@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function CopiesPage({ title }: Props) {
+export function CopiesPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['copies'],
     queryFn: copiesApi.getAll,
@@ -30,6 +31,7 @@ export function CopiesPage({ title }: Props) {
       resource="copies"
       title={title}
       description="Controla tu inventario fácilmente."
+      pathname={pathname}
     />
   )
 }

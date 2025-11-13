@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function RolesPage({ title }: Props) {
+export function RolesPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['roles'],
     queryFn: rolesApi.getAll,
@@ -30,6 +31,7 @@ export function RolesPage({ title }: Props) {
       resource="roles"
       title={title}
       description="Define permisos fácilmente."
+      pathname={pathname}
     />
   )
 }

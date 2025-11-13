@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function CategoriesPage({ title }: Props) {
+export function CategoriesPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['categories'],
     queryFn: categoriesApi.getAll,
@@ -30,6 +31,7 @@ export function CategoriesPage({ title }: Props) {
       resource="categories"
       title={title}
       description="Organiza tus libros por temas fácilmente."
+      pathname={pathname}
     />
   )
 }

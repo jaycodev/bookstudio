@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function ReservationsPage({ title }: Props) {
+export function ReservationsPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['reservations'],
     queryFn: reservationsApi.getAll,
@@ -30,6 +31,7 @@ export function ReservationsPage({ title }: Props) {
       resource="reservations"
       title={title}
       description="Organizadas, claras y accesibles."
+      pathname={pathname}
     />
   )
 }

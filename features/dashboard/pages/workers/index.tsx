@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function WorkersPage({ title }: Props) {
+export function WorkersPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['workers'],
     queryFn: workersApi.getAll,
@@ -30,6 +31,7 @@ export function WorkersPage({ title }: Props) {
       resource="workers"
       title={title}
       description="Administra tu equipo."
+      pathname={pathname}
     />
   )
 }

@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function PaymentsPage({ title }: Props) {
+export function PaymentsPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['payments'],
     queryFn: paymentsApi.getAll,
@@ -30,6 +31,7 @@ export function PaymentsPage({ title }: Props) {
       resource="payments"
       title={title}
       description="Historial de transacciones."
+      pathname={pathname}
     />
   )
 }

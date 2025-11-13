@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function ReadersPage({ title }: Props) {
+export function ReadersPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['readers'],
     queryFn: readersApi.getAll,
@@ -30,6 +31,7 @@ export function ReadersPage({ title }: Props) {
       resource="readers"
       title={title}
       description="Seguimiento de miembros."
+      pathname={pathname}
     />
   )
 }

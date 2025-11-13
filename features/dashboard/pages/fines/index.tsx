@@ -10,9 +10,10 @@ import { columns } from './columns'
 
 interface Props {
   title: string
+  pathname: string
 }
 
-export function FinesPage({ title }: Props) {
+export function FinesPage({ title, pathname }: Props) {
   const { data, error } = useQuery({
     queryKey: ['fines'],
     queryFn: finesApi.getAll,
@@ -30,6 +31,7 @@ export function FinesPage({ title }: Props) {
       resource="fines"
       title={title}
       description="Control de sanciones."
+      pathname={pathname}
     />
   )
 }

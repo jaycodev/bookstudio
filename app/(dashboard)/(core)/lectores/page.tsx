@@ -4,12 +4,13 @@ import { ReadersPage } from '@dashboard/pages/readers'
 
 import { pageMap } from '@/config/page-map'
 
-const page = pageMap['/lectores']
+const PATHNAME = '/lectores'
+const page = pageMap[PATHNAME]
 
 export const metadata: Metadata = {
   title: page.title,
 }
 
 export default function Page() {
-  return <ReadersPage title={page.title} />
+  return <ReadersPage title={page.title} pathname={PATHNAME} />
 }

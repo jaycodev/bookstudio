@@ -4,12 +4,13 @@ import { LocationsPage } from '@dashboard/pages/locations'
 
 import { pageMap } from '@/config/page-map'
 
-const page = pageMap['/ubicaciones']
+const PATHNAME = '/ubicaciones'
+const page = pageMap[PATHNAME]
 
 export const metadata: Metadata = {
   title: page.title,
 }
 
 export default function Page() {
-  return <LocationsPage title={page.title} />
+  return <LocationsPage title={page.title} pathname={PATHNAME} />
 }

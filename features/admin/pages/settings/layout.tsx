@@ -11,27 +11,27 @@ import { Separator } from '@/components/ui/separator'
 const sidebarNavItems = [
   {
     title: 'Perfil',
-    href: '/ajustes',
+    href: '/admin/ajustes',
     icon: <User size={18} />,
   },
   {
     title: 'Cuenta',
-    href: '/ajustes/cuenta',
+    href: '/admin/ajustes/cuenta',
     icon: <Wrench size={18} />,
   },
   {
     title: 'Apariencia',
-    href: '/ajustes/apariencia',
+    href: '/admin/ajustes/apariencia',
     icon: <Palette size={18} />,
   },
   {
     title: 'Notificaciones',
-    href: '/ajustes/notificaciones',
+    href: '/admin/ajustes/notificaciones',
     icon: <Bell size={18} />,
   },
   {
     title: 'Visualización',
-    href: '/ajustes/visualizacion',
+    href: '/admin/ajustes/visualizacion',
     icon: <Monitor size={18} />,
   },
 ]

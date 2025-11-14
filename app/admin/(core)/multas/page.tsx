@@ -4,7 +4,7 @@ import { FinesPage } from '@admin/pages/fines'
 
 import { pageMap } from '@/config/page-map'
 
-const PATHNAME = '/multas'
+const PATHNAME = '/admin/multas'
 const page = pageMap[PATHNAME]
 
 const title = page.title

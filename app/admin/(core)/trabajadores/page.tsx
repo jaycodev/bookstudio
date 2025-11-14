@@ -4,7 +4,7 @@ import { WorkersPage } from '@admin/pages/workers'
 
 import { pageMap } from '@/config/page-map'
 
-const PATHNAME = '/trabajadores'
+const PATHNAME = '/admin/trabajadores'
 const page = pageMap[PATHNAME]
 
 const title = page.title

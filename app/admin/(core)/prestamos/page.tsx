@@ -4,7 +4,7 @@ import { LoansPage } from '@admin/pages/loans'
 
 import { pageMap } from '@/config/page-map'
 
-const PATHNAME = '/prestamos'
+const PATHNAME = '/admin/prestamos'
 const page = pageMap[PATHNAME]
 
 const title = page.title

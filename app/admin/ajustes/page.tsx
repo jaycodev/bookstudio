@@ -4,10 +4,13 @@ import { SettingsProfilePage } from '@admin/pages/settings/pages/profile'
 
 import { pageMap } from '@/config/page-map'
 
-const page = pageMap['/ajustes']
+const PATHNAME = '/admin/ajustes'
+const page = pageMap[PATHNAME]
+
+const title = page.title
 
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {

@@ -6,51 +6,71 @@ type PageMeta = {
 }
 
 export const pageMap: Record<string, PageMeta> = {
-  '/': { title: 'Dashboard', authOnly: true, showInSidebar: true },
+  '/admin': { title: 'Dashboard', authOnly: true, showInSidebar: true },
 
-  '/prestamos': { title: 'Préstamos', authOnly: true, showInSidebar: true, resource: 'loans' },
-  '/reservas': { title: 'Reservas', authOnly: true, showInSidebar: true, resource: 'reservations' },
-  '/multas': { title: 'Multas', authOnly: true, showInSidebar: true, resource: 'fines' },
-  '/pagos': { title: 'Pagos', authOnly: true, showInSidebar: true, resource: 'payments' },
+  '/admin/prestamos': {
+    title: 'Préstamos',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'loans',
+  },
+  '/admin/reservas': {
+    title: 'Reservas',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'reservations',
+  },
+  '/admin/multas': { title: 'Multas', authOnly: true, showInSidebar: true, resource: 'fines' },
+  '/admin/pagos': { title: 'Pagos', authOnly: true, showInSidebar: true, resource: 'payments' },
 
-  '/libros': { title: 'Libros', authOnly: true, showInSidebar: true, resource: 'books' },
-  '/ejemplares': { title: 'Ejemplares', authOnly: true, showInSidebar: true, resource: 'copies' },
-  '/autores': { title: 'Autores', authOnly: true, showInSidebar: true, resource: 'authors' },
-  '/editoriales': {
+  '/admin/libros': { title: 'Libros', authOnly: true, showInSidebar: true, resource: 'books' },
+  '/admin/ejemplares': {
+    title: 'Ejemplares',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'copies',
+  },
+  '/admin/autores': { title: 'Autores', authOnly: true, showInSidebar: true, resource: 'authors' },
+  '/admin/editoriales': {
     title: 'Editoriales',
     authOnly: true,
     showInSidebar: true,
     resource: 'publishers',
   },
-  '/categorias': {
+  '/admin/categorias': {
     title: 'Categorías',
     authOnly: true,
     showInSidebar: true,
     resource: 'categories',
   },
-  '/ubicaciones': {
+  '/admin/ubicaciones': {
     title: 'Ubicaciones',
     authOnly: true,
     showInSidebar: true,
     resource: 'locations',
   },
 
-  '/lectores': { title: 'Lectores', authOnly: true, showInSidebar: true, resource: 'readers' },
-  '/trabajadores': {
+  '/admin/lectores': {
+    title: 'Lectores',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'readers',
+  },
+  '/admin/trabajadores': {
     title: 'Trabajadores',
     authOnly: true,
     showInSidebar: true,
     resource: 'workers',
   },
-  '/roles': { title: 'Roles', authOnly: true, showInSidebar: true, resource: 'roles' },
+  '/admin/roles': { title: 'Roles', authOnly: true, showInSidebar: true, resource: 'roles' },
 
-  '/ajustes': { title: 'Ajustes', authOnly: true, showInSidebar: true },
-  '/ajustes/cuenta': { title: 'Cuenta', authOnly: true },
-  '/ajustes/apariencia': { title: 'Apariencia', authOnly: true },
-  '/ajustes/notificaciones': { title: 'Notificaciones', authOnly: true },
-  '/ajustes/visualizacion': { title: 'Visualización', authOnly: true },
+  '/admin/ajustes': { title: 'Ajustes', authOnly: true, showInSidebar: true },
+  '/admin/ajustes/cuenta': { title: 'Cuenta', authOnly: true },
+  '/admin/ajustes/apariencia': { title: 'Apariencia', authOnly: true },
+  '/admin/ajustes/notificaciones': { title: 'Notificaciones', authOnly: true },
+  '/admin/ajustes/visualizacion': { title: 'Visualización', authOnly: true },
 
-  '/centro-de-ayuda': { title: 'Centro de ayuda', authOnly: true, showInSidebar: true },
+  '/admin/centro-de-ayuda': { title: 'Centro de ayuda', authOnly: true, showInSidebar: true },
 
   '/iniciar-sesion': { title: 'Iniciar sesión' },
   '/recuperar-contrasena': { title: 'Recuperar contraseña' },

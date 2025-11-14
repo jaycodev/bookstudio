@@ -4,7 +4,7 @@ import { ReservationsPage } from '@admin/pages/reservations'
 
 import { pageMap } from '@/config/page-map'
 
-const PATHNAME = '/reservas'
+const PATHNAME = '/admin/reservas'
 const page = pageMap[PATHNAME]
 
 const title = page.title

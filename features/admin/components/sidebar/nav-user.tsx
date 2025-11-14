@@ -84,13 +84,13 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/ajustes">
+                <Link href="/admin/ajustes">
                   <User className="text-current" />
                   Perfil
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/ajustes/notificaciones">
+                <Link href="/admin/ajustes/notificaciones">
                   <Bell className="text-current" />
                   Notificaciones
                 </Link>

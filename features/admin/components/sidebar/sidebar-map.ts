@@ -32,22 +32,21 @@ const setSidebar = <T extends ValidUrl>(url: T, meta: SidebarVisualMeta) => {
   }
 }
 
-setSidebar('/', { icon: ChartColumnBig, group: 'principal' })
-setSidebar('/prestamos', { icon: Handshake, group: 'principal' })
-setSidebar('/reservas', { icon: Calendar1, group: 'principal' })
-setSidebar('/multas', { icon: OctagonAlert, group: 'principal' })
-setSidebar('/pagos', { icon: DollarSign, group: 'principal' })
+setSidebar('/admin', { icon: ChartColumnBig, group: 'principal' })
+setSidebar('/admin/prestamos', { icon: Handshake, group: 'principal' })
+setSidebar('/admin/reservas', { icon: Calendar1, group: 'principal' })
+setSidebar('/admin/multas', { icon: OctagonAlert, group: 'principal' })
+setSidebar('/admin/pagos', { icon: DollarSign, group: 'principal' })
+setSidebar('/admin/ejemplares', { icon: Boxes, group: 'biblioteca' })
+setSidebar('/admin/libros', { icon: BookCopy, group: 'biblioteca' })
+setSidebar('/admin/autores', { icon: Users, group: 'biblioteca' })
+setSidebar('/admin/editoriales', { icon: Building2, group: 'biblioteca' })
+setSidebar('/admin/categorias', { icon: Tags, group: 'biblioteca' })
+setSidebar('/admin/ubicaciones', { icon: MapPin, group: 'biblioteca' })
 
-setSidebar('/ejemplares', { icon: Boxes, group: 'biblioteca' })
-setSidebar('/libros', { icon: BookCopy, group: 'biblioteca' })
-setSidebar('/autores', { icon: Users, group: 'biblioteca' })
-setSidebar('/editoriales', { icon: Building2, group: 'biblioteca' })
-setSidebar('/categorias', { icon: Tags, group: 'biblioteca' })
-setSidebar('/ubicaciones', { icon: MapPin, group: 'biblioteca' })
+setSidebar('/admin/lectores', { icon: BookOpenText, group: 'usuarios' })
+setSidebar('/admin/trabajadores', { icon: Briefcase, group: 'usuarios' })
+setSidebar('/admin/roles', { icon: ShieldCheck, group: 'usuarios' })
 
-setSidebar('/lectores', { icon: BookOpenText, group: 'usuarios' })
-setSidebar('/trabajadores', { icon: Briefcase, group: 'usuarios' })
-setSidebar('/roles', { icon: ShieldCheck, group: 'usuarios' })
-
-setSidebar('/ajustes', { icon: Settings, group: 'otros' })
-setSidebar('/centro-de-ayuda', { icon: CircleQuestionMark, group: 'otros' })
+setSidebar('/admin/ajustes', { icon: Settings, group: 'otros' })
+setSidebar('/admin/centro-de-ayuda', { icon: CircleQuestionMark, group: 'otros' })

@@ -4,10 +4,13 @@ import { SettingsDisplayPage } from '@admin/pages/settings/pages/display'
 
 import { pageMap } from '@/config/page-map'
 
-const page = pageMap['/ajustes/visualizacion']
+const PATHNAME = '/admin/ajustes/visualizacion'
+const page = pageMap[PATHNAME]
+
+const title = page.title
 
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {

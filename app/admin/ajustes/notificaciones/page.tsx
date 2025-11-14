@@ -4,10 +4,13 @@ import { SettingsNotificationsPage } from '@admin/pages/settings/pages/notificat
 
 import { pageMap } from '@/config/page-map'
 
-const page = pageMap['/ajustes/notificaciones']
+const PATHNAME = '/admin/ajustes/notificaciones'
+const page = pageMap[PATHNAME]
+
+const title = page.title
 
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {

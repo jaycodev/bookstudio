@@ -4,7 +4,7 @@ import { PublishersPage } from '@admin/pages/publishers'
 
 import { pageMap } from '@/config/page-map'
 
-const PATHNAME = '/editoriales'
+const PATHNAME = '/admin/editoriales'
 const page = pageMap[PATHNAME]
 
 const title = page.title

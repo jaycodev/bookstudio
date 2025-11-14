@@ -4,7 +4,7 @@ import { CategoriesPage } from '@admin/pages/categories'
 
 import { pageMap } from '@/config/page-map'
 
-const PATHNAME = '/categorias'
+const PATHNAME = '/admin/categorias'
 const page = pageMap[PATHNAME]
 
 const title = page.title

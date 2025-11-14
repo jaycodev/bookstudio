@@ -70,7 +70,7 @@ export function DataTableSkeleton({
                     key={j}
                     style={{
                       width: cozyCellWidths[j],
-                      minWidth: shrinkZero ? cozyCellWidths[j] : 'auto',
+                      minWidth: shrinkZero ? cozyCellWidths[j] : '9.5rem',
                     }}
                   >
                     <Skeleton className="h-6 w-full" />
@@ -87,7 +87,7 @@ export function DataTableSkeleton({
                     key={j}
                     style={{
                       width: cozyCellWidths[j],
-                      minWidth: shrinkZero ? cozyCellWidths[j] : 'auto',
+                      minWidth: shrinkZero ? cozyCellWidths[j] : '9.5rem',
                     }}
                   >
                     <Skeleton className="h-6 my-1 w-full" />

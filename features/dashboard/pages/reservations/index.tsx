@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListPage } from '@dashboard/components/shared/table-list-page'
+import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { reservationsApi } from '@/lib/api/reservations'
 
@@ -15,18 +12,17 @@ interface Props {
 
 export async function ReservationsPage({ title, pathname }: Props) {
   return (
-    <TableListPage
+    <TableListLayout
       title={title}
       description="Organizadas, claras y accesibles."
       pathname={pathname}
+      skeletonConfig={{ columnCount: 8, filterCount: 2, dateRangeCount: 1 }}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={8} filterCount={2} dateRangeCount={1} />}>
-        <TableListContent
-          columns={columns}
-          resource="reservations"
-          dataFetcher={reservationsApi.getAll}
-        />
-      </Suspense>
-    </TableListPage>
+      <TableListContent
+        columns={columns}
+        resource="reservations"
+        dataFetcher={reservationsApi.getAll}
+      />
+    </TableListLayout>
   )
 }

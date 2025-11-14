@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListPage } from '@dashboard/components/shared/table-list-page'
+import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { paymentsApi } from '@/lib/api/payments'
 
@@ -15,10 +12,13 @@ interface Props {
 
 export async function PaymentsPage({ title, pathname }: Props) {
   return (
-    <TableListPage title={title} description="Historial de transacciones." pathname={pathname}>
-      <Suspense fallback={<DataTableSkeleton columnCount={9} filterCount={2} dateRangeCount={1} />}>
-        <TableListContent columns={columns} resource="payments" dataFetcher={paymentsApi.getAll} />
-      </Suspense>
-    </TableListPage>
+    <TableListLayout
+      title={title}
+      description="Historial de transacciones."
+      pathname={pathname}
+      skeletonConfig={{ columnCount: 9, filterCount: 2, dateRangeCount: 1 }}
+    >
+      <TableListContent columns={columns} resource="payments" dataFetcher={paymentsApi.getAll} />
+    </TableListLayout>
   )
 }

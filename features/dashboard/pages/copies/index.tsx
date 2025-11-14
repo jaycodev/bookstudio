@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListPage } from '@dashboard/components/shared/table-list-page'
+import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { copiesApi } from '@/lib/api/copies'
 
@@ -15,14 +12,13 @@ interface Props {
 
 export async function CopiesPage({ title, pathname }: Props) {
   return (
-    <TableListPage
+    <TableListLayout
       title={title}
       description="Controla tu inventario fácilmente."
       pathname={pathname}
+      skeletonConfig={{ columnCount: 9, filterCount: 3, dateRangeCount: 0 }}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={9} filterCount={3} dateRangeCount={0} />}>
-        <TableListContent columns={columns} resource="copies" dataFetcher={copiesApi.getAll} />
-      </Suspense>
-    </TableListPage>
+      <TableListContent columns={columns} resource="copies" dataFetcher={copiesApi.getAll} />
+    </TableListLayout>
   )
 }

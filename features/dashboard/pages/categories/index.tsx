@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListPage } from '@dashboard/components/shared/table-list-page'
+import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { categoriesApi } from '@/lib/api/categories'
 
@@ -15,18 +12,17 @@ interface Props {
 
 export async function CategoriesPage({ title, pathname }: Props) {
   return (
-    <TableListPage
+    <TableListLayout
       title={title}
       description="Organiza tus libros por temas fácilmente."
       pathname={pathname}
+      skeletonConfig={{ columnCount: 6, filterCount: 2, dateRangeCount: 0 }}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={6} filterCount={2} dateRangeCount={0} />}>
-        <TableListContent
-          columns={columns}
-          resource="categories"
-          dataFetcher={categoriesApi.getAll}
-        />
-      </Suspense>
-    </TableListPage>
+      <TableListContent
+        columns={columns}
+        resource="categories"
+        dataFetcher={categoriesApi.getAll}
+      />
+    </TableListLayout>
   )
 }

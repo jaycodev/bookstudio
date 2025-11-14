@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListPage } from '@dashboard/components/shared/table-list-page'
+import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { finesApi } from '@/lib/api/fines'
 
@@ -15,10 +12,13 @@ interface Props {
 
 export async function FinesPage({ title, pathname }: Props) {
   return (
-    <TableListPage title={title} description="Control de sanciones." pathname={pathname}>
-      <Suspense fallback={<DataTableSkeleton columnCount={9} filterCount={3} dateRangeCount={1} />}>
-        <TableListContent columns={columns} resource="fines" dataFetcher={finesApi.getAll} />
-      </Suspense>
-    </TableListPage>
+    <TableListLayout
+      title={title}
+      description="Control de sanciones."
+      pathname={pathname}
+      skeletonConfig={{ columnCount: 9, filterCount: 3, dateRangeCount: 1 }}
+    >
+      <TableListContent columns={columns} resource="fines" dataFetcher={finesApi.getAll} />
+    </TableListLayout>
   )
 }

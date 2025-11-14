@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListPage } from '@dashboard/components/shared/table-list-page'
+import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { booksApi } from '@/lib/api/books'
 
@@ -15,14 +12,13 @@ interface Props {
 
 export async function BooksPage({ title, pathname }: Props) {
   return (
-    <TableListPage
+    <TableListLayout
       title={title}
       description="Admínistralos sin complicaciones."
       pathname={pathname}
+      skeletonConfig={{ columnCount: 9, filterCount: 6, dateRangeCount: 0 }}
     >
-      <Suspense fallback={<DataTableSkeleton columnCount={9} filterCount={6} dateRangeCount={0} />}>
-        <TableListContent columns={columns} resource="books" dataFetcher={booksApi.getAll} />
-      </Suspense>
-    </TableListPage>
+      <TableListContent columns={columns} resource="books" dataFetcher={booksApi.getAll} />
+    </TableListLayout>
   )
 }

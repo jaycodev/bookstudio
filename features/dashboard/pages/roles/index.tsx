@@ -1,8 +1,5 @@
-import { Suspense } from 'react'
-
-import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { TableListContent } from '@dashboard/components/shared/table-list-content'
-import { TableListPage } from '@dashboard/components/shared/table-list-page'
+import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { rolesApi } from '@/lib/api/roles'
 
@@ -15,10 +12,13 @@ interface Props {
 
 export async function RolesPage({ title, pathname }: Props) {
   return (
-    <TableListPage title={title} description="Define permisos fácilmente." pathname={pathname}>
-      <Suspense fallback={<DataTableSkeleton columnCount={5} filterCount={0} dateRangeCount={0} />}>
-        <TableListContent columns={columns} resource="roles" dataFetcher={rolesApi.getAll} />
-      </Suspense>
-    </TableListPage>
+    <TableListLayout
+      title={title}
+      description="Define permisos fácilmente."
+      pathname={pathname}
+      skeletonConfig={{ columnCount: 5, filterCount: 0, dateRangeCount: 0 }}
+    >
+      <TableListContent columns={columns} resource="roles" dataFetcher={rolesApi.getAll} />
+    </TableListLayout>
   )
 }

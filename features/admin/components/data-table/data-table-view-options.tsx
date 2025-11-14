@@ -13,7 +13,7 @@ import {
   CommandList,
 } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { getColumnLabel } from '@/config/column-labels'
+import { getColumnLabel } from '@admin/config/column-labels'
 import { cn } from '@/lib/utils'
 
 interface DataTableViewOptionsProps<TData> {

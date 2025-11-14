@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { staleTimes } from '@/config/stale-times'
+import { staleTimes } from '@admin/config/stale-times'
 
 export function useListQuery<T>(route: string, queryKey: string[], queryFn: () => Promise<T>) {
   return useQuery({

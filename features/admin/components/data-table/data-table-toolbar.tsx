@@ -6,10 +6,11 @@ import { Table } from '@tanstack/react-table'
 import { Search, Trash, X } from 'lucide-react'
 import { DateRange } from 'react-day-picker'
 
+import { getColumnLabel } from '@admin/config/column-labels'
+
 import { Button } from '@/components/ui/button'
 import { DateRangePicker } from '@/components/ui/date-range-picker'
 import { Input } from '@/components/ui/input'
-import { getColumnLabel } from '@/config/column-labels'
 import { FilterOption } from '@/lib/types'
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter'

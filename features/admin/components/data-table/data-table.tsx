@@ -26,7 +26,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { getColumnLabel } from '@/config/column-labels'
+import { getColumnLabel } from '@admin/config/column-labels'
 import { cn } from '@/lib/utils'
 
 import { DataTablePagination } from './data-table-pagination'

@@ -21,6 +21,7 @@
     "paths": {
       "@auth/*": ["./features/auth/*"],
       "@admin/*": ["./features/admin/*"],
+      "@public/*": ["./features/public/*"],
       "@error/*": ["./features/error/*"],
       "@/*": ["./*"]
     }

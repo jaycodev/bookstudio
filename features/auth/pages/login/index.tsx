@@ -33,7 +33,7 @@ export function LoginPage({ className, ...props }: React.ComponentPropsWithoutRe
   })
 
   const onSubmit = () => {
-    router.push('/')
+    router.push('/admin')
   }
 
   return (

@@ -32,8 +32,7 @@ export function LoginPage({ className, ...props }: React.ComponentPropsWithoutRe
     },
   })
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log('Datos de login:', data)
+  const onSubmit = () => {
     router.push('/')
   }
 

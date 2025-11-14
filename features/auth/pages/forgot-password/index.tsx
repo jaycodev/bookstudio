@@ -33,9 +33,7 @@ export function ForgotPasswordPage({ className, ...props }: React.ComponentProps
     },
   })
 
-  const onSubmit = (data: ForgotPasswordFormValues) => {
-    console.log('Datos para restablecer contraseña:', data)
-  }
+  const onSubmit = () => {}
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>

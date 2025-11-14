@@ -55,9 +55,7 @@ export function ResetPasswordPage({ className, ...props }: React.ComponentPropsW
     },
   })
 
-  const onSubmit = (data: ResetPasswordFormValues) => {
-    console.log('Datos para crear contraseña nueva:', data)
-  }
+  const onSubmit = () => {}
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>

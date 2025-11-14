@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { rolesApi } from '@/lib/api/roles'
@@ -10,15 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function RolesPage({ title, pathname }: Props) {
+export function RolesPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['roles'],
+    queryFn: rolesApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch roles:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="roles"
       title={title}
       description="Define permisos fácilmente."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 5, filterCount: 0, dateRangeCount: 0 }}
-    >
-      <TableListContent columns={columns} resource="roles" dataFetcher={rolesApi.getAll} />
-    </TableListLayout>
+    />
   )
 }

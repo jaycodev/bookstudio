@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { locationsApi } from '@/lib/api/locations'
@@ -10,15 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function LocationsPage({ title, pathname }: Props) {
+export function LocationsPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['locations'],
+    queryFn: locationsApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch locations:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="locations"
       title={title}
       description="Gestiona los espacios de tu biblioteca."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 7, filterCount: 0, dateRangeCount: 0 }}
-    >
-      <TableListContent columns={columns} resource="locations" dataFetcher={locationsApi.getAll} />
-    </TableListLayout>
+    />
   )
 }

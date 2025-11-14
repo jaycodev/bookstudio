@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { copiesApi } from '@/lib/api/copies'
@@ -10,15 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function CopiesPage({ title, pathname }: Props) {
+export function CopiesPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['copies'],
+    queryFn: copiesApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch copies:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="copies"
       title={title}
       description="Controla tu inventario fácilmente."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 9, filterCount: 3, dateRangeCount: 0 }}
-    >
-      <TableListContent columns={columns} resource="copies" dataFetcher={copiesApi.getAll} />
-    </TableListLayout>
+    />
   )
 }

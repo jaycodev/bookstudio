@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { finesApi } from '@/lib/api/fines'
@@ -10,15 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function FinesPage({ title, pathname }: Props) {
+export function FinesPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['fines'],
+    queryFn: finesApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch fines:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="fines"
       title={title}
       description="Control de sanciones."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 9, filterCount: 3, dateRangeCount: 1 }}
-    >
-      <TableListContent columns={columns} resource="fines" dataFetcher={finesApi.getAll} />
-    </TableListLayout>
+    />
   )
 }

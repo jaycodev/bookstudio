@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { authorsApi } from '@/lib/api/authors'
@@ -10,15 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function AuthorsPage({ title, pathname }: Props) {
+export function AuthorsPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['authors'],
+    queryFn: authorsApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch authors:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="authors"
       title={title}
-      description="Gestiona los autores de la plataforma"
+      description="Rápidos, claros y ordenados."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 6, filterCount: 2, dateRangeCount: 1 }}
-    >
-      <TableListContent columns={columns} resource="authors" dataFetcher={authorsApi.getAll} />
-    </TableListLayout>
+    />
   )
 }

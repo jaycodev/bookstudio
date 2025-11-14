@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { workersApi } from '@/lib/api/workers'
@@ -10,15 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function WorkersPage({ title, pathname }: Props) {
+export function WorkersPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['workers'],
+    queryFn: workersApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch workers:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="workers"
       title={title}
       description="Administra tu equipo."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 7, filterCount: 2, dateRangeCount: 0 }}
-    >
-      <TableListContent columns={columns} resource="workers" dataFetcher={workersApi.getAll} />
-    </TableListLayout>
+    />
   )
 }

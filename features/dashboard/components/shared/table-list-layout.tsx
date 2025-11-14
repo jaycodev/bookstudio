@@ -1,36 +1,62 @@
-import { ReactNode, Suspense } from 'react'
+'use client'
 
+import { ColumnDef } from '@tanstack/react-table'
 import { CirclePlus, FileSpreadsheet, FileX } from 'lucide-react'
 
-import type { DataTableSkeletonProps } from '@dashboard/components/data-table/data-table-skeleton'
+import { DataTable } from '@dashboard/components/data-table/data-table'
 import { DataTableSkeleton } from '@dashboard/components/data-table/data-table-skeleton'
 import { Breadcrumbs } from '@dashboard/components/shared/breadcrumbs'
 import { sidebarMap } from '@dashboard/components/sidebar/sidebar-map'
 
 import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
 
-interface TableListLayoutProps {
+interface TableListLayoutProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[]
+  data?: TData[]
+  resource: string
   title: string
   description: string
   pathname: string
-  children: ReactNode
-  skeletonConfig?: Partial<DataTableSkeletonProps>
+  filterCount?: number
+  dateRangeCount?: number
 }
 
-function TableListContent({
+function getFilterCount<TData, TValue>(
+  columns: ColumnDef<TData, TValue>[],
+  filterCount: number | undefined
+): number {
+  if (filterCount !== undefined) return filterCount
+  return columns.filter((col) => {
+    const meta = col.meta as Record<string, unknown> | undefined
+    return meta?.filter && !meta?.dateRangeFilter
+  }).length
+}
+
+function getDateRangeCount<TData, TValue>(
+  columns: ColumnDef<TData, TValue>[],
+  dateRangeCount: number | undefined
+): number {
+  if (dateRangeCount !== undefined) return dateRangeCount
+  return columns.filter((col) => {
+    const meta = col.meta as Record<string, unknown> | undefined
+    return meta?.dateRangeFilter
+  }).length
+}
+
+export function TableListLayout<TData, TValue>({
+  columns,
+  data,
+  resource,
   title,
   description,
   pathname,
-  children,
-  isLoading = false,
-}: {
-  title: string
-  description: string
-  pathname: string
-  children: ReactNode
-  isLoading?: boolean
-}) {
+  filterCount,
+  dateRangeCount,
+}: TableListLayoutProps<TData, TValue>) {
+  const computedFilterCount = getFilterCount(columns, filterCount)
+  const computedDateRangeCount = getDateRangeCount(columns, dateRangeCount)
+  const isLoading = data === undefined
+
   const sidebarMeta = sidebarMap[pathname as keyof typeof sidebarMap]
   const Icon = sidebarMeta?.icon
 
@@ -46,54 +72,31 @@ function TableListContent({
             </h1>
             <p className="text-muted-foreground">{description}</p>
           </div>
-          <div className={`flex gap-2 ${isLoading ? 'cursor-wait' : ''}`}>
-            <Button variant="outline" disabled={isLoading}>
-              {isLoading ? <Spinner /> : <FileX className="text-green-500 dark:text-green-400" />}
+          <div className="flex gap-2">
+            <Button variant="outline">
+              <FileX className="text-green-500 dark:text-green-400" />
               Excel
             </Button>
-            <Button variant="outline" disabled={isLoading}>
-              {isLoading ? <Spinner /> : <FileSpreadsheet className="text-destructive" />}
+            <Button variant="outline">
+              <FileSpreadsheet className="text-destructive" />
               PDF
             </Button>
-            <Button disabled={isLoading}>
-              {isLoading ? <Spinner /> : <CirclePlus />}
+            <Button>
+              <CirclePlus />
               Agregar
             </Button>
           </div>
         </div>
-        {children}
+        {isLoading ? (
+          <DataTableSkeleton
+            columnCount={columns.length}
+            filterCount={computedFilterCount}
+            dateRangeCount={computedDateRangeCount}
+          />
+        ) : (
+          <DataTable columns={columns} data={data ?? []} resource={resource} />
+        )}
       </div>
     </>
-  )
-}
-
-export function TableListLayout({
-  title,
-  description,
-  pathname,
-  children,
-  skeletonConfig,
-}: TableListLayoutProps) {
-  const commonProps = { title, description, pathname }
-
-  const resolvedSkeletonConfig: DataTableSkeletonProps = {
-    columnCount: 6,
-    filterCount: 2,
-    dateRangeCount: 1,
-    ...skeletonConfig,
-  }
-
-  return (
-    <Suspense
-      fallback={
-        <TableListContent {...commonProps} isLoading={true}>
-          <DataTableSkeleton {...resolvedSkeletonConfig} />
-        </TableListContent>
-      }
-    >
-      <TableListContent {...commonProps} isLoading={false}>
-        {children}
-      </TableListContent>
-    </Suspense>
   )
 }

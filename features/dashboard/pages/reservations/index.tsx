@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { reservationsApi } from '@/lib/api/reservations'
@@ -10,19 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function ReservationsPage({ title, pathname }: Props) {
+export function ReservationsPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['reservations'],
+    queryFn: reservationsApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch reservations:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="reservations"
       title={title}
       description="Organizadas, claras y accesibles."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 8, filterCount: 2, dateRangeCount: 1 }}
-    >
-      <TableListContent
-        columns={columns}
-        resource="reservations"
-        dataFetcher={reservationsApi.getAll}
-      />
-    </TableListLayout>
+    />
   )
 }

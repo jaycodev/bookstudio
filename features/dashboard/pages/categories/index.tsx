@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { categoriesApi } from '@/lib/api/categories'
@@ -10,19 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function CategoriesPage({ title, pathname }: Props) {
+export function CategoriesPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['categories'],
+    queryFn: categoriesApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch categories:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="categories"
       title={title}
       description="Organiza tus libros por temas fácilmente."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 6, filterCount: 2, dateRangeCount: 0 }}
-    >
-      <TableListContent
-        columns={columns}
-        resource="categories"
-        dataFetcher={categoriesApi.getAll}
-      />
-    </TableListLayout>
+    />
   )
 }

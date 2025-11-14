@@ -1,4 +1,7 @@
-import { TableListContent } from '@dashboard/components/shared/table-list-content'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
+
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
 import { booksApi } from '@/lib/api/books'
@@ -10,15 +13,25 @@ interface Props {
   pathname: string
 }
 
-export async function BooksPage({ title, pathname }: Props) {
+export function BooksPage({ title, pathname }: Props) {
+  const { data, error } = useQuery({
+    queryKey: ['books'],
+    queryFn: booksApi.getAll,
+    staleTime: 5 * 60 * 1000,
+  })
+
+  if (error) {
+    console.error('Failed to fetch books:', error)
+  }
+
   return (
     <TableListLayout
+      columns={columns}
+      data={data}
+      resource="books"
       title={title}
       description="Admínistralos sin complicaciones."
       pathname={pathname}
-      skeletonConfig={{ columnCount: 9, filterCount: 6, dateRangeCount: 0 }}
-    >
-      <TableListContent columns={columns} resource="books" dataFetcher={booksApi.getAll} />
-    </TableListLayout>
+    />
   )
 }

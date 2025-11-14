@@ -5,13 +5,15 @@ import { FinesPage } from '@dashboard/pages/fines'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/multas'
-const RESOURCE = 'fines'
 const page = pageMap[PATHNAME]
 
+const title = page.title
+const resource = page.resource!
+
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {
-  return <FinesPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
+  return <FinesPage title={title} pathname={PATHNAME} resource={resource} />
 }

@@ -5,13 +5,15 @@ import { PaymentsPage } from '@dashboard/pages/payments'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/pagos'
-const RESOURCE = 'payments'
 const page = pageMap[PATHNAME]
 
+const title = page.title
+const resource = page.resource!
+
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {
-  return <PaymentsPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
+  return <PaymentsPage title={title} pathname={PATHNAME} resource={resource} />
 }

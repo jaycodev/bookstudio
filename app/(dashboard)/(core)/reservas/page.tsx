@@ -5,13 +5,15 @@ import { ReservationsPage } from '@dashboard/pages/reservations'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/reservas'
-const RESOURCE = 'reservations'
 const page = pageMap[PATHNAME]
 
+const title = page.title
+const resource = page.resource!
+
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {
-  return <ReservationsPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
+  return <ReservationsPage title={title} pathname={PATHNAME} resource={resource} />
 }

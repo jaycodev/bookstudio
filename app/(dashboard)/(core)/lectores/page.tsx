@@ -5,13 +5,15 @@ import { ReadersPage } from '@dashboard/pages/readers'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/lectores'
-const RESOURCE = 'readers'
 const page = pageMap[PATHNAME]
 
+const title = page.title
+const resource = page.resource!
+
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {
-  return <ReadersPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
+  return <ReadersPage title={title} pathname={PATHNAME} resource={resource} />
 }

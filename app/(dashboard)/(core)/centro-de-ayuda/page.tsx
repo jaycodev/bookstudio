@@ -3,10 +3,13 @@ import type { Metadata } from 'next'
 import { ComingSoon } from '@/components/shared/coming-soon'
 import { pageMap } from '@/config/page-map'
 
-const page = pageMap['/centro-de-ayuda']
+const PATHNAME = '/centro-de-ayuda'
+const page = pageMap[PATHNAME]
+
+const title = page.title
 
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {

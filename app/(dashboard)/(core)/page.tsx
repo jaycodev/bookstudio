@@ -4,10 +4,13 @@ import { DashboardPage } from '@dashboard/pages/dashboard'
 
 import { pageMap } from '@/config/page-map'
 
-const page = pageMap['/']
+const PATHNAME = '/'
+const page = pageMap[PATHNAME]
+
+const title = page.title
 
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {

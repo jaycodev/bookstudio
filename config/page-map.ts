@@ -2,26 +2,47 @@ type PageMeta = {
   title: string
   authOnly?: boolean
   showInSidebar?: boolean
+  resource?: string
 }
 
 export const pageMap: Record<string, PageMeta> = {
   '/': { title: 'Dashboard', authOnly: true, showInSidebar: true },
 
-  '/prestamos': { title: 'Préstamos', authOnly: true, showInSidebar: true },
-  '/reservas': { title: 'Reservas', authOnly: true, showInSidebar: true },
-  '/multas': { title: 'Multas', authOnly: true, showInSidebar: true },
-  '/pagos': { title: 'Pagos', authOnly: true, showInSidebar: true },
+  '/prestamos': { title: 'Préstamos', authOnly: true, showInSidebar: true, resource: 'loans' },
+  '/reservas': { title: 'Reservas', authOnly: true, showInSidebar: true, resource: 'reservations' },
+  '/multas': { title: 'Multas', authOnly: true, showInSidebar: true, resource: 'fines' },
+  '/pagos': { title: 'Pagos', authOnly: true, showInSidebar: true, resource: 'payments' },
 
-  '/libros': { title: 'Libros', authOnly: true, showInSidebar: true },
-  '/ejemplares': { title: 'Ejemplares', authOnly: true, showInSidebar: true },
-  '/autores': { title: 'Autores', authOnly: true, showInSidebar: true },
-  '/editoriales': { title: 'Editoriales', authOnly: true, showInSidebar: true },
-  '/categorias': { title: 'Categorías', authOnly: true, showInSidebar: true },
-  '/ubicaciones': { title: 'Ubicaciones', authOnly: true, showInSidebar: true },
+  '/libros': { title: 'Libros', authOnly: true, showInSidebar: true, resource: 'books' },
+  '/ejemplares': { title: 'Ejemplares', authOnly: true, showInSidebar: true, resource: 'copies' },
+  '/autores': { title: 'Autores', authOnly: true, showInSidebar: true, resource: 'authors' },
+  '/editoriales': {
+    title: 'Editoriales',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'publishers',
+  },
+  '/categorias': {
+    title: 'Categorías',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'categories',
+  },
+  '/ubicaciones': {
+    title: 'Ubicaciones',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'locations',
+  },
 
-  '/lectores': { title: 'Lectores', authOnly: true, showInSidebar: true },
-  '/trabajadores': { title: 'Trabajadores', authOnly: true, showInSidebar: true },
-  '/roles': { title: 'Roles', authOnly: true, showInSidebar: true },
+  '/lectores': { title: 'Lectores', authOnly: true, showInSidebar: true, resource: 'readers' },
+  '/trabajadores': {
+    title: 'Trabajadores',
+    authOnly: true,
+    showInSidebar: true,
+    resource: 'workers',
+  },
+  '/roles': { title: 'Roles', authOnly: true, showInSidebar: true, resource: 'roles' },
 
   '/ajustes': { title: 'Ajustes', authOnly: true, showInSidebar: true },
   '/ajustes/cuenta': { title: 'Cuenta', authOnly: true },

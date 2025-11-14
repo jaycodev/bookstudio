@@ -5,13 +5,15 @@ import { CategoriesPage } from '@dashboard/pages/categories'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/categorias'
-const RESOURCE = 'categories'
 const page = pageMap[PATHNAME]
 
+const title = page.title
+const resource = page.resource!
+
 export const metadata: Metadata = {
-  title: page.title,
+  title,
 }
 
 export default function Page() {
-  return <CategoriesPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
+  return <CategoriesPage title={title} pathname={PATHNAME} resource={resource} />
 }

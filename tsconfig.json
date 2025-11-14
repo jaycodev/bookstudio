@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@auth/*": ["./features/auth/*"],
-      "@dashboard/*": ["./features/dashboard/*"],
+      "@admin/*": ["./features/admin/*"],
       "@error/*": ["./features/error/*"],
       "@/*": ["./*"]
     }

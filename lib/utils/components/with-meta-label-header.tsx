@@ -2,7 +2,7 @@
 
 import type { HeaderContext } from '@tanstack/react-table'
 
-import { DataTableColumnHeader } from '@dashboard/components/data-table/data-table-column-header'
+import { DataTableColumnHeader } from '@admin/components/data-table/data-table-column-header'
 
 import { getColumnLabel } from '@/config/column-labels'
 

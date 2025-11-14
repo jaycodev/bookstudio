@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 
-import { Menu, X } from 'lucide-react'
+import { LogInIcon, Menu, X } from 'lucide-react'
+import Link from 'next/link'
 
 import { Logo } from '@/components/shared/logo'
 import { Button } from '@/components/ui/button'
@@ -41,9 +42,12 @@ export default function Header() {
 
           <div className="hidden md:flex items-center gap-3">
             <Button variant="outline">Mi Biblioteca</Button>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Acceder
-            </Button>
+            <Link href="/iniciar-sesion">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <LogInIcon />
+                Iniciar sesión
+              </Button>
+            </Link>
           </div>
 
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -69,7 +73,9 @@ export default function Header() {
               <Button variant="outline" className="flex-1">
                 Mi Biblioteca
               </Button>
-              <Button className="flex-1 bg-primary text-primary-foreground">Acceder</Button>
+              <Button className="flex-1 bg-primary text-primary-foreground" asChild>
+                <Link href="/iniciar-sesion">Acceder</Link>
+              </Button>
             </div>
           </div>
         )}

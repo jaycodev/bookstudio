@@ -1,34 +1,31 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
+import { useListQuery } from '@/hooks/use-list-query'
 import { copiesApi } from '@/lib/api/copies'
+import type { CopyList } from '@/lib/schemas/copy/copy.list.schema'
 
 import { columns } from './columns'
 
 interface Props {
   title: string
   pathname: string
+  resource: string
 }
 
-export function CopiesPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['copies'],
-    queryFn: copiesApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
+export function CopiesPage({ title, pathname, resource }: Props) {
+  const { data, error } = useListQuery<CopyList[]>(pathname, [resource], copiesApi.getAll)
 
   if (error) {
-    console.error('Failed to fetch copies:', error)
+    console.error(`Failed to fetch ${resource}:`, error)
   }
 
   return (
     <TableListLayout
       columns={columns}
       data={data}
-      resource="copies"
+      resource={resource}
       title={title}
       description="Controla tu inventario fácilmente."
       pathname={pathname}

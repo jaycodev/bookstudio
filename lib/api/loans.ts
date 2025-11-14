@@ -4,9 +4,7 @@ import { apiClient } from './client'
 
 export const loansApi = {
   async getAll(): Promise<LoanList[]> {
-    const data = await apiClient.get('/loans', {
-      cache: 'no-store',
-    })
+    const data = await apiClient.get('/loans')
     return loanListSchema.array().parse(data)
   },
 }

@@ -4,9 +4,7 @@ import { apiClient } from './client'
 
 export const booksApi = {
   async getAll(): Promise<BookList[]> {
-    const data = await apiClient.get('/books', {
-      cache: 'no-store',
-    })
+    const data = await apiClient.get('/books')
     return bookListSchema.array().parse(data)
   },
 }

@@ -7,9 +7,7 @@ import { apiClient } from './client'
 
 export const reservationsApi = {
   async getAll(): Promise<ReservationList[]> {
-    const data = await apiClient.get('/reservations', {
-      cache: 'no-store',
-    })
+    const data = await apiClient.get('/reservations')
     return reservationListSchema.array().parse(data)
   },
 }

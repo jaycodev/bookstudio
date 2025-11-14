@@ -5,6 +5,7 @@ import { CopiesPage } from '@dashboard/pages/copies'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/ejemplares'
+const RESOURCE = 'copies'
 const page = pageMap[PATHNAME]
 
 export const metadata: Metadata = {
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <CopiesPage title={page.title} pathname={PATHNAME} />
+  return <CopiesPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
 }

@@ -1,34 +1,31 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
+import { useListQuery } from '@/hooks/use-list-query'
 import { workersApi } from '@/lib/api/workers'
+import type { WorkerList } from '@/lib/schemas/worker/worker.list.schema'
 
 import { columns } from './columns'
 
 interface Props {
   title: string
   pathname: string
+  resource: string
 }
 
-export function WorkersPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['workers'],
-    queryFn: workersApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
+export function WorkersPage({ title, pathname, resource }: Props) {
+  const { data, error } = useListQuery<WorkerList[]>(pathname, [resource], workersApi.getAll)
 
   if (error) {
-    console.error('Failed to fetch workers:', error)
+    console.error(`Failed to fetch ${resource}:`, error)
   }
 
   return (
     <TableListLayout
       columns={columns}
       data={data}
-      resource="workers"
+      resource={resource}
       title={title}
       description="Administra tu equipo."
       pathname={pathname}

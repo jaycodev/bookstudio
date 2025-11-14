@@ -4,9 +4,7 @@ import { apiClient } from './client'
 
 export const categoriesApi = {
   async getAll(): Promise<CategoryList[]> {
-    const data = await apiClient.get('/categories', {
-      cache: 'no-store',
-    })
+    const data = await apiClient.get('/categories')
     return categoryListSchema.array().parse(data)
   },
 }

@@ -1,34 +1,31 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
+import { useListQuery } from '@/hooks/use-list-query'
 import { categoriesApi } from '@/lib/api/categories'
+import type { CategoryList } from '@/lib/schemas/category/category.list.schema'
 
 import { columns } from './columns'
 
 interface Props {
   title: string
   pathname: string
+  resource: string
 }
 
-export function CategoriesPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['categories'],
-    queryFn: categoriesApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
+export function CategoriesPage({ title, pathname, resource }: Props) {
+  const { data, error } = useListQuery<CategoryList[]>(pathname, [resource], categoriesApi.getAll)
 
   if (error) {
-    console.error('Failed to fetch categories:', error)
+    console.error(`Failed to fetch ${resource}:`, error)
   }
 
   return (
     <TableListLayout
       columns={columns}
       data={data}
-      resource="categories"
+      resource={resource}
       title={title}
       description="Organiza tus libros por temas fácilmente."
       pathname={pathname}

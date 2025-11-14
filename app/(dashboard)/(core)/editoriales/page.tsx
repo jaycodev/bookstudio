@@ -5,6 +5,7 @@ import { PublishersPage } from '@dashboard/pages/publishers'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/editoriales'
+const RESOURCE = 'publishers'
 const page = pageMap[PATHNAME]
 
 export const metadata: Metadata = {
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <PublishersPage title={page.title} pathname={PATHNAME} />
+  return <PublishersPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
 }

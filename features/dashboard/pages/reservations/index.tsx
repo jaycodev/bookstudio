@@ -1,34 +1,35 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-
 import { TableListLayout } from '@dashboard/components/shared/table-list-layout'
 
+import { useListQuery } from '@/hooks/use-list-query'
 import { reservationsApi } from '@/lib/api/reservations'
+import type { ReservationList } from '@/lib/schemas/reservation/reservation.list.schema'
 
 import { columns } from './columns'
 
 interface Props {
   title: string
   pathname: string
+  resource: string
 }
 
-export function ReservationsPage({ title, pathname }: Props) {
-  const { data, error } = useQuery({
-    queryKey: ['reservations'],
-    queryFn: reservationsApi.getAll,
-    staleTime: 5 * 60 * 1000,
-  })
+export function ReservationsPage({ title, pathname, resource }: Props) {
+  const { data, error } = useListQuery<ReservationList[]>(
+    pathname,
+    [resource],
+    reservationsApi.getAll
+  )
 
   if (error) {
-    console.error('Failed to fetch reservations:', error)
+    console.error(`Failed to fetch ${resource}:`, error)
   }
 
   return (
     <TableListLayout
       columns={columns}
       data={data}
-      resource="reservations"
+      resource={resource}
       title={title}
       description="Organizadas, claras y accesibles."
       pathname={pathname}

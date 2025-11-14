@@ -5,6 +5,7 @@ import { LoansPage } from '@dashboard/pages/loans'
 import { pageMap } from '@/config/page-map'
 
 const PATHNAME = '/prestamos'
+const RESOURCE = 'loans'
 const page = pageMap[PATHNAME]
 
 export const metadata: Metadata = {
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <LoansPage title={page.title} pathname={PATHNAME} />
+  return <LoansPage title={page.title} pathname={PATHNAME} resource={RESOURCE} />
 }

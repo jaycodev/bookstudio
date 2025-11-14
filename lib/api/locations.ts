@@ -4,9 +4,7 @@ import { apiClient } from './client'
 
 export const locationsApi = {
   async getAll(): Promise<LocationList[]> {
-    const data = await apiClient.get('/locations', {
-      cache: 'no-store',
-    })
+    const data = await apiClient.get('/locations')
     return locationListSchema.array().parse(data)
   },
 }

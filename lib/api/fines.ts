@@ -4,9 +4,7 @@ import { apiClient } from './client'
 
 export const finesApi = {
   async getAll(): Promise<FineList[]> {
-    const data = await apiClient.get('/fines', {
-      cache: 'no-store',
-    })
+    const data = await apiClient.get('/fines')
     return fineListSchema.array().parse(data)
   },
 }

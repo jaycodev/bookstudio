@@ -62,7 +62,7 @@ const SidebarMenuLink = ({ item, pathname }: { item: NavLink; pathname: string }
   return (
     <SidebarMenuItem>
       <SidebarMenuButton asChild isActive={checkIsActive(pathname, item)} tooltip={item.title}>
-        <Link href={item.url} onClick={() => setOpenMobile(false)}>
+        <Link href={item.url} prefetch={false} onClick={() => setOpenMobile(false)}>
           {item.icon && <item.icon />}
           <span>{item.title}</span>
           {item.badge && <NavBadge>{item.badge}</NavBadge>}

@@ -46,7 +46,7 @@ export function DataTableFacetedFilter<TData, TValue>({
       return result
     }
     return column?.getFacetedUniqueValues()
-  }, [column, customFacetCalculator, filteredRowModel])
+  }, [column, customFacetCalculator, filteredRowModel, table])
 
   const selectedValues = new Set(column?.getFilterValue() as string[])
 

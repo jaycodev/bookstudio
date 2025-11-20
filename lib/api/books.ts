@@ -1,7 +1,7 @@
 import {
   type BookFilterOptions,
   bookFilterOptionsSchema,
-} from '@/lib/schemas/book/book.filter-options.schema'
+} from '@/lib/schemas/book/book.filter.options.schema'
 import { type BookList, bookListSchema } from '@/lib/schemas/book/book.list.schema'
 
 import { apiClient } from './client'

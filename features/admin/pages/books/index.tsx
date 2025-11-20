@@ -7,7 +7,7 @@ import { TableListLayout } from '@admin/components/shared/table-list-layout'
 import { useFilterOptions } from '@/hooks/use-filter-options'
 import { useListQuery } from '@/hooks/use-list-query'
 import { booksApi } from '@/lib/api/books'
-import type { BookFilterOptions } from '@/lib/schemas/book/book.filter-options.schema'
+import type { BookFilterOptions } from '@/lib/schemas/book/book.filter.options.schema'
 import type { BookList } from '@/lib/schemas/book/book.list.schema'
 
 import { getColumns } from './columns'

@@ -7,7 +7,7 @@ import { TableListLayout } from '@admin/components/shared/table-list-layout'
 import { useFilterOptions } from '@/hooks/use-filter-options'
 import { useListQuery } from '@/hooks/use-list-query'
 import { copiesApi } from '@/lib/api/copies'
-import type { CopiesFilterOptions } from '@/lib/schemas/copy/copy.filter-options.schema'
+import type { CopiesFilterOptions } from '@/lib/schemas/copy/copy.filter.options.schema'
 import type { CopyList } from '@/lib/schemas/copy/copy.list.schema'
 
 import { getColumns } from './columns'

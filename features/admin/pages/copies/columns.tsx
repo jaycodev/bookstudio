@@ -8,7 +8,7 @@ import { DataTableRowActions } from '@admin/components/data-table/data-table-row
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import type { CopiesFilterOptionsParams } from '@/lib/schemas/copy/copy.filter-options.schema'
+import type { CopiesFilterOptionsParams } from '@/lib/schemas/copy/copy.filter.options.schema'
 import type { CopyList } from '@/lib/schemas/copy/copy.list.schema'
 import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filter'
 import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'

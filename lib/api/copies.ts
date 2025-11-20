@@ -1,7 +1,7 @@
 import {
   type CopiesFilterOptions,
   copiesFilterOptionsSchema,
-} from '@/lib/schemas/copy/copy.filter-options.schema'
+} from '@/lib/schemas/copy/copy.filter.options.schema'
 import { type CopyList, copyListSchema } from '@/lib/schemas/copy/copy.list.schema'
 
 import { apiClient } from './client'

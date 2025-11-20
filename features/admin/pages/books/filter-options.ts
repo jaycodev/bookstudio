@@ -3,24 +3,6 @@ import { BookCheck, BookX, CircleCheck, XCircle } from 'lucide-react'
 import { statusBadges } from '@admin/components/badges'
 
 import { FilterOption } from '@/lib/types'
-import categoriesOptionsJson from '@/mocks/options/categories.json'
-import languagesOptionsJson from '@/mocks/options/languages.json'
-import publishersOptionsJson from '@/mocks/options/publishers.json'
-
-export const categoriesOptions: FilterOption[] = categoriesOptionsJson.map((category) => ({
-  value: String(category.value),
-  label: category.label,
-}))
-
-export const publishersOptions: FilterOption[] = publishersOptionsJson.map((publisher) => ({
-  value: String(publisher.value),
-  label: publisher.label,
-}))
-
-export const languagesOptions: FilterOption[] = languagesOptionsJson.map((language) => ({
-  value: String(language.value),
-  label: language.label,
-}))
 
 export const loanOptions: FilterOption[] = [
   {

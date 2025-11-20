@@ -12,7 +12,7 @@ import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filt
 import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 import { levelBadges } from './badges'
-import { levelOptions, statusOptions } from './options-data'
+import { levelOptions, statusOptions } from './filter-options'
 
 export const columns: ColumnDef<CategoryList>[] = [
   {

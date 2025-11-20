@@ -1,12 +1,16 @@
 'use client'
 
+import { useMemo } from 'react'
+
 import { TableListLayout } from '@admin/components/shared/table-list-layout'
 
+import { useFilterOptions } from '@/hooks/use-filter-options'
 import { useListQuery } from '@/hooks/use-list-query'
 import { workersApi } from '@/lib/api/workers'
+import type { WorkerFilterOptions } from '@/lib/schemas/worker/worker.filter.options.schema'
 import type { WorkerList } from '@/lib/schemas/worker/worker.list.schema'
 
-import { columns } from './columns'
+import { getColumns } from './columns'
 
 interface Props {
   title: string
@@ -16,6 +20,18 @@ interface Props {
 
 export function WorkersPage({ title, pathname, resource }: Props) {
   const { data, error } = useListQuery<WorkerList[]>(pathname, [resource], workersApi.getAll)
+  const { data: filterOptions } = useFilterOptions<WorkerFilterOptions>(
+    ['workers-filter-options'],
+    workersApi.getFilterOptions
+  )
+
+  const columns = useMemo(
+    () =>
+      getColumns({
+        roles: filterOptions?.roles,
+      }),
+    [filterOptions]
+  )
 
   if (error) {
     console.error(`Failed to fetch ${resource}:`, error)

@@ -12,7 +12,7 @@ import { withMetaLabelFilter } from '@/lib/utils/components/with-meta-label-filt
 import { withMetaLabelHeader } from '@/lib/utils/components/with-meta-label-header'
 
 import { statusBadges, typeBadges } from './badges'
-import { statusOptions, typeOptions } from './options-data'
+import { statusOptions, typeOptions } from './filter-options'
 
 export const columns: ColumnDef<ReaderList>[] = [
   {

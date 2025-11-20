@@ -1,12 +1,16 @@
 'use client'
 
+import { useMemo } from 'react'
+
 import { TableListLayout } from '@admin/components/shared/table-list-layout'
 
+import { useFilterOptions } from '@/hooks/use-filter-options'
 import { useListQuery } from '@/hooks/use-list-query'
 import { reservationsApi } from '@/lib/api/reservations'
+import type { ReservationFilterOptions } from '@/lib/schemas/reservation/reservation.filter.options.schema'
 import type { ReservationList } from '@/lib/schemas/reservation/reservation.list.schema'
 
-import { columns } from './columns'
+import { getColumns } from './columns'
 
 interface Props {
   title: string
@@ -19,6 +23,18 @@ export function ReservationsPage({ title, pathname, resource }: Props) {
     pathname,
     [resource],
     reservationsApi.getAll
+  )
+  const { data: filterOptions } = useFilterOptions<ReservationFilterOptions>(
+    ['reservations-filter-options'],
+    reservationsApi.getFilterOptions
+  )
+
+  const columns = useMemo(
+    () =>
+      getColumns({
+        readers: filterOptions?.readers,
+      }),
+    [filterOptions]
   )
 
   if (error) {

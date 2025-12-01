@@ -3,6 +3,8 @@ import * as React from 'react'
 import type { Table } from '@tanstack/react-table'
 import { Check, ChevronsUpDown, Settings2 } from 'lucide-react'
 
+import { getColumnLabel } from '@admin/config/column-labels'
+
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -13,7 +15,6 @@ import {
   CommandList,
 } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { getColumnLabel } from '@admin/config/column-labels'
 import { cn } from '@/lib/utils'
 
 interface DataTableViewOptionsProps<TData> {

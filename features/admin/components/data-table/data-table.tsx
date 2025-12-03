@@ -18,6 +18,8 @@ import {
   VisibilityState,
 } from '@tanstack/react-table'
 
+import { getColumnLabel } from '@admin/config/column-labels'
+
 import {
   Table,
   TableBody,
@@ -26,7 +28,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { getColumnLabel } from '@admin/config/column-labels'
 import { cn } from '@/lib/utils'
 
 import { DataTablePagination } from './data-table-pagination'
@@ -155,8 +156,15 @@ export function DataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+              table.getRowModel().rows.map((row, index) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                  className="table-row-animate"
+                  style={{
+                    animationDelay: `${index * 0.05}s`,
+                  }}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}

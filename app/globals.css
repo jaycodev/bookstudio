@@ -178,3 +178,19 @@
     height: 0;
   }
 }
+
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.table-row-animate {
+  opacity: 0;
+  animation: slideDownFadeIn 0.5s ease-out forwards;
+}

@@ -3,7 +3,6 @@
 import type { HeaderContext } from '@tanstack/react-table'
 
 import { DataTableColumnHeader } from '@admin/components/data-table/data-table-column-header'
-
 import { getColumnLabel } from '@admin/config/column-labels'
 
 export function withMetaLabelHeader<TData, TValue = unknown>() {
